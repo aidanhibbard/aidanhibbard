@@ -14,6 +14,7 @@ Languages I use
 
 Frameworks I build with
 
+ - Meteor
  - Vue / Nuxt
  - React / Next
  - React native
