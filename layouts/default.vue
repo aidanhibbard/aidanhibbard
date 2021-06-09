@@ -1,5 +1,6 @@
 <template>
-<div>
+<v-app dark>
+<div id="navbar">
     <v-app-bar
       color="deep-purple"
       dark
@@ -39,6 +40,7 @@
       </v-list>
     </v-navigation-drawer>
 </div>
+</v-app>
 </template>
 
 <script>
@@ -49,3 +51,9 @@ export default {
     }),
 }
 </script>
+
+<style scoped>
+#navbar {
+  max-height: 56px;
+}
+</style>
