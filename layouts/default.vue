@@ -1,12 +1,11 @@
 <template>
-  <v-app dark>
+  <v-app>
     <center>
       <v-app-bar
-        color="deep-purple"
-        dark
+        color="light-blue"
         fixed
       >
-        <v-toolbar-title>{Aidan Hibbard}</v-toolbar-title>
+        <v-toolbar-title>Aidan Hibbard</v-toolbar-title>
         <v-spacer />
         <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       </v-app-bar>
@@ -54,5 +53,10 @@ export default {
 </script>
 
 <style scoped>
-
+.v-toolbar__title {
+  color: white;
+}
+.v-btn--icon.v-size--default .v-icon, .v-btn--fab.v-size--default .v-icon {
+  color: white;
+}
 </style>

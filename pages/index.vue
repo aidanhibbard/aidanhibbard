@@ -1,17 +1,20 @@
 <template>
-  <div>
-    <Banner />
+  <div id="home_page">
+    <Hero />
   </div>
 </template>
 
 <script>
-import Banner from '~/components/banner.vue'
+import Hero from '~/components/Hero'
 export default {
   components: {
-    Banner
+    Hero,
   },
 }
 </script>
 
 <style scoped>
+#home_page {
+  margin-top: 56px;
+}
 </style>
