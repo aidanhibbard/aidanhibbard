@@ -21,7 +21,7 @@
         >
           <v-list-item-group
             v-model="group"
-            active-class="deep-purple--text text--accent-4"
+            active-class="light-blue--text text--accent-4"
           >
             <v-list-item>
               <v-list-item-icon>
@@ -32,10 +32,32 @@
 
             <v-list-item>
               <v-list-item-icon>
-                <v-icon>mdi-account</v-icon>
+                <v-icon>mdi-book</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>Account</v-list-item-title>
+              <v-list-item-title>Blog</v-list-item-title>
             </v-list-item>
+
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-folder</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Projects</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-cart</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Shop</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-pen</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Contact</v-list-item-title>
+            </v-list-item>
+
           </v-list-item-group>
         </v-list>
       </v-navigation-drawer>
@@ -58,5 +80,8 @@ export default {
 }
 .v-btn--icon.v-size--default .v-icon, .v-btn--fab.v-size--default .v-icon {
   color: white;
+}
+.v-list-item__title, .v-list-item__subtitle {
+  flex: none;
 }
 </style>
