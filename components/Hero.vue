@@ -3,7 +3,7 @@
         <v-carousel-item
         v-for="(item,i) in items"
         :key="i"
-        :src="item.src"
+        :src="require(`~/assets/${item.src}`)"
         >
         </v-carousel-item>
     </v-carousel>
@@ -16,16 +16,16 @@ export default {
         return {
             items: [
             {
-                src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+                src: 'mountain.jpg',
             },
             {
-                src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+                src: 'mountain.jpg',
             },
             {
-                src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+                src: 'mountain.jpg',
             },
             {
-                src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+                src: 'mountain.jpg',
             },
             ],
         }
