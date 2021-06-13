@@ -14,6 +14,12 @@
             :style="{ 
                 backgroundImage: `url(${item.src})`,
             }"
+            style="
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            "
             >
             </v-card>
         </v-carousel-item>
