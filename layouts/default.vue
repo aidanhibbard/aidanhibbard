@@ -88,4 +88,7 @@ export default {
 .v-list-item__title, .v-list-item__subtitle {
   flex: none;
 }
+.v-main {
+  margin-top: 56px;
+}
 </style>
