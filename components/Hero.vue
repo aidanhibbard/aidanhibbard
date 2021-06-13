@@ -4,8 +4,7 @@
         v-for="(item,i) in items"
         :key="i"
         :src="require(`~/assets/${item.src}`)"
-        >
-        </v-carousel-item>
+        ></v-carousel-item>
     </v-carousel>
 </template>
 
@@ -15,24 +14,24 @@ export default {
     data () {
         return {
             items: [
-            {
-                src: 'mountain.jpg',
-            },
-            {
-                src: 'mountain.jpg',
-            },
-            {
-                src: 'mountain.jpg',
-            },
-            {
-                src: 'mountain.jpg',
-            },
+                {
+                    src: 'mountain.jpg',
+                },
+                {
+                    src: 'mountain.jpg',
+                },
+                {
+                    src: 'mountain.jpg',
+                },
+                {
+                    src: 'mountain.jpg',
+                },
             ],
         }
     },
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

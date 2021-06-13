@@ -62,6 +62,10 @@
         </v-list>
       </v-navigation-drawer>
     </center>
+    
+    <v-main>
+      <Nuxt />
+    </v-main>
   </v-app>
 </template>
 

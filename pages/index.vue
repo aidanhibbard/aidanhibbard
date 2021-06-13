@@ -1,5 +1,5 @@
 <template>
-  <div id="home_page">
+  <div>
     <Hero />
   </div>
 </template>
@@ -14,7 +14,4 @@ export default {
 </script>
 
 <style scoped>
-#home_page {
-  margin-top: 56px;
-}
 </style>
