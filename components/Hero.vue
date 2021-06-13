@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import ad from '~/assets/ad.png'
 import HeroSlideOne from '~/assets/mountain.jpg'
 export default {
     name: 'Hero',
@@ -34,16 +35,16 @@ export default {
         return {
             items: [
                 {
-                    src: HeroSlideOne,
+                    src: ad,
+                },
+                {
+                    src: ad,
                 },
                 {
                     src: HeroSlideOne,
                 },
                 {
-                    src: HeroSlideOne,
-                },
-                {
-                    src: HeroSlideOne,
+                    src: ad,
                 },
             ],
         }
@@ -53,7 +54,7 @@ export default {
 
 <style scoped>
 .v-carousel {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 .v-card {
     margin: 0 auto;
