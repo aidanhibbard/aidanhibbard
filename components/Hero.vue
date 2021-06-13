@@ -1,7 +1,8 @@
 <template>
     <v-carousel 
     hide-delimiters 
-    cycle height="100px"
+    cycle 
+    height="100px"
     :show-arrows="false"
     >
         <v-carousel-item
@@ -9,34 +10,34 @@
         :key="i"
         >
             <v-card
-            color="#385F73"
             dark
+            :style="{ 
+                backgroundImage: `url(${item.src})`,
+            }"
             >
-            <v-img 
-            :src="require(`~/assets/${item.src}`)"
-            />
             </v-card>
         </v-carousel-item>
     </v-carousel>
 </template>
 
 <script>
+import HeroSlideOne from '~/assets/mountain.jpg'
 export default {
     name: 'Hero',
     data () {
         return {
             items: [
                 {
-                    src: 'mountain.jpg',
+                    src: HeroSlideOne,
                 },
                 {
-                    src: 'mountain.jpg',
+                    src: HeroSlideOne,
                 },
                 {
-                    src: 'mountain.jpg',
+                    src: HeroSlideOne,
                 },
                 {
-                    src: 'mountain.jpg',
+                    src: HeroSlideOne,
                 },
             ],
         }
@@ -46,7 +47,7 @@ export default {
 
 <style scoped>
 .v-carousel {
-    margin-top: 15px;
+    margin-top: 30px;
 }
 .v-card {
     margin: 0 auto;
