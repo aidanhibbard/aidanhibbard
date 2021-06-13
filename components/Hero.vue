@@ -1,5 +1,9 @@
 <template>
-    <v-carousel hide-delimiters>
+    <v-carousel 
+    hide-delimiters 
+    cycle height="100px"
+    :show-arrows="false"
+    >
         <v-carousel-item
         v-for="(item,i) in items"
         :key="i"
@@ -8,17 +12,9 @@
             color="#385F73"
             dark
             >
-                <v-card-title class="text-h5">
-                Unlimited music now
-                </v-card-title>
-
-                <v-card-subtitle>Listen to your favorite artists and albums whenever and wherever, online and offline.</v-card-subtitle>
-
-                <v-card-actions>
-                <v-btn text>
-                    Listen Now
-                </v-btn>
-                </v-card-actions>
+            <v-img 
+            :src="require(`~/assets/${item.src}`)"
+            />
             </v-card>
         </v-carousel-item>
     </v-carousel>
@@ -31,16 +27,16 @@ export default {
         return {
             items: [
                 {
-                    src: 'https://cdn.cosmicjs.com/b3c91580-ca26-11eb-ba89-e7f98c8c358b-Frame-2.png',
+                    src: 'mountain.jpg',
                 },
                 {
-                    src: 'https://cdn.cosmicjs.com/b3c91580-ca26-11eb-ba89-e7f98c8c358b-Frame-2.png',
+                    src: 'mountain.jpg',
                 },
                 {
-                    src: 'https://cdn.cosmicjs.com/b3c91580-ca26-11eb-ba89-e7f98c8c358b-Frame-2.png',
+                    src: 'mountain.jpg',
                 },
                 {
-                    src: 'https://cdn.cosmicjs.com/b3c91580-ca26-11eb-ba89-e7f98c8c358b-Frame-2.png',
+                    src: 'mountain.jpg',
                 },
             ],
         }
@@ -51,6 +47,10 @@ export default {
 <style scoped>
 .v-carousel {
     margin-top: 15px;
-    height: 250px;
+}
+.v-card {
+    margin: 0 auto;
+    width: 80%;
+    height: 100px;
 }
 </style>
