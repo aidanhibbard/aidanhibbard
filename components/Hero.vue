@@ -59,6 +59,6 @@ export default {
 .v-card {
     margin: 0 auto;
     width: 80%;
-    height: 100px;
+    height: 150px;
 }
 </style>
