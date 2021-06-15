@@ -28,6 +28,7 @@ h1 {
     text-align: center;
 }
 .v-card {
+    margin: 0 auto;
     margin-bottom: 20px;
     max-width: 425px;
 }
