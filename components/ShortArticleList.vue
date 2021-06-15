@@ -27,4 +27,8 @@ export default {
 h1 {
     text-align: center;
 }
+.v-card {
+    margin-bottom: 20px;
+    max-width: 425px;
+}
 </style>
