@@ -4,7 +4,9 @@
     <ShortArticleList 
       :ArticlesMeta="articles"
     />
-    <CurrentProjects />
+    <CurrentProjects 
+    :ProjectsMeta="ghdata"
+    />
   </div>
 </template>
 
@@ -18,14 +20,18 @@ export default {
     ShortArticleList,
     CurrentProjects,
   },
-    async asyncData({ $content, params }) {
+    async asyncData({ $content, params, $axios }) {
       try {
+        const ghdata = await $axios.$get('https://api.github.com/users/aidanhibbard/repos')
         const articles = await $content({ deep: true })
           .only(['title', 'desc', 'date', 'tags', 'a'])
           .sortBy('date')
           .limit(3)
           .fetch()
-        return { articles }
+        return { 
+          articles,
+          ghdata,
+        }
       } catch (err) {
         return { err }
       }
