@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <h1> Recent Articles </h1>
+        <h1>Recent Articles</h1>
         <br />
                 <v-card
                     v-for="(article, index) in ArticlesMeta"
@@ -25,11 +25,18 @@ export default {
 
 <style scoped>
 h1 {
+    margin-top: 10px;
     text-align: center;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 .v-card {
     margin: 0 auto;
     margin-bottom: 20px;
     max-width: 425px;
+    border-radius: 10px;
+}
+.v-card__subtitle {
+    padding-bottom: 3px;
 }
 </style>
