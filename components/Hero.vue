@@ -9,6 +9,7 @@
         :key="i"
         >
             <v-card
+            elevation="3"
             >
             </v-card>
         </v-carousel-item>
