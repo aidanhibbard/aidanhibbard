@@ -34,9 +34,15 @@ h1 {
     margin: 0 auto;
     margin-bottom: 20px;
     max-width: 425px;
-    border-radius: 10px;
+    border-radius: 5px;
+}
+.v-card__title {
+    padding-top: 5px;
 }
 .v-card__subtitle {
     padding-bottom: 3px;
+}
+.v-card__text {
+    padding-bottom: 5px;
 }
 </style>
