@@ -1,19 +1,21 @@
 <template>
-    <v-carousel 
-    hide-delimiters 
-    cycle 
-    :show-arrows="false"
-    >
-        <v-carousel-item
-        v-for="(item,i) in items"
-        :key="i"
+    <v-container>
+        <v-carousel 
+        hide-delimiters 
+        cycle 
+        :show-arrows="false"
         >
-            <v-card
-            elevation="3"
+            <v-carousel-item
+            v-for="(item,i) in items"
+            :key="i"
             >
-            </v-card>
-        </v-carousel-item>
-    </v-carousel>
+                <v-card
+                elevation="3"
+                >
+                </v-card>
+            </v-carousel-item>
+        </v-carousel>
+    </v-container>
 </template>
 
 <script>
@@ -43,6 +45,9 @@ export default {
 </script>
 
 <style scoped>
+.container {
+    height: 150px;
+}
 .v-carousel {
     margin-top: 20px;
 }
