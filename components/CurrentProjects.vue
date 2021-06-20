@@ -3,7 +3,21 @@
         <h1>Current Projects</h1>
         <br />
         <div>
-            {{ProjectsMeta}}
+            <ul>
+                <li
+                    v-for="(project, index) in ProjectsMeta"
+                    :key="index"
+                >
+                {{project.name}}
+                <br />
+                {{project.description}} {{project.language}}
+                <br />
+                {{project.html_url}}
+                <br />
+                {{project.updated_at}}
+                <br />
+                </li>
+            </ul>
         </div>
     </v-container>
 </template>
@@ -20,5 +34,8 @@ export default {
 <style scoped>
 h1 {
     text-align: center;
+}
+ul {
+    list-style: none;
 }
 </style>

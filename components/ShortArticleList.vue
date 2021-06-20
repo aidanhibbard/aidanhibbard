@@ -25,7 +25,7 @@ export default {
 
 <style scoped>
 h1 {
-    margin-top: 10px;
+    margin-top: 45px;
     text-align: center;
     margin-bottom: 0;
     padding-bottom: 0;

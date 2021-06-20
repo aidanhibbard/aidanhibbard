@@ -46,14 +46,14 @@ export default {
 
 <style scoped>
 .container {
-    height: 150px;
+    height: 100px;
 }
 .v-carousel {
     margin-top: 20px;
 }
 .v-card {
     margin: 0 auto;
-    width: 80%;
-    height: 150px;
+    width: 90%;
+    height: 100px;
 }
 </style>
