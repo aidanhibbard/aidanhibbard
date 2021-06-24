@@ -31,7 +31,11 @@
                     rounded
                     text
                 >
+                    <nuxt-link 
+                        :to="project.html_url"
+                    >
                     GitHub
+                    </nuxt-link>
                 </v-btn>
             </v-card-actions>
         </v-card>
