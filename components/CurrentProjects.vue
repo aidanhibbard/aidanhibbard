@@ -14,21 +14,18 @@
             <v-card-actions>
                 <v-btn
                     outlined
-                    rounded
                     text
                 >
                     Read More
                 </v-btn>
                 <v-btn
                     outlined
-                    rounded
                     text
                 >
                     Demo
                 </v-btn>
                 <v-btn
                     outlined
-                    rounded
                     text
                 >
                     <nuxt-link 
