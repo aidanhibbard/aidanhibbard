@@ -2,23 +2,15 @@
     <v-container>
         <h1>Current Projects</h1>
         <br />
-        <div>
-            <ul>
-                <li
-                    v-for="(project, index) in ProjectsMeta"
-                    :key="index"
-                >
-                {{project.name}}
-                <br />
-                {{project.description}} {{project.language}}
-                <br />
-                {{project.html_url}}
-                <br />
-                {{project.updated_at}}
-                <br />
-                </li>
-            </ul>
-        </div>
+        <v-card
+            v-for="(project, index) in ProjectsMeta"
+            :key="index"
+            elevation="6"
+        >
+            <v-card-title>{{project.name}}</v-card-title>
+            <v-card-subtitle>{{project.updated_at}}</v-card-subtitle>
+            <v-card-text>{{project.description}}</v-card-text>
+        </v-card>
     </v-container>
 </template>
 
@@ -34,8 +26,5 @@ export default {
 <style scoped>
 h1 {
     text-align: center;
-}
-ul {
-    list-style: none;
 }
 </style>
