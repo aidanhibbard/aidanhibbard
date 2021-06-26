@@ -50,8 +50,11 @@ h1 {
 }
 .v-card__title {
     padding-top: 5px;
+    padding-bottom: 0;
 }
 .v-card__subtitle {
+    margin-top: 0;
+    padding-top: 0;
     padding-bottom: 3px;
 }
 .v-card__text {
