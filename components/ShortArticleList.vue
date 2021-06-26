@@ -7,16 +7,20 @@
                 :key="index"
                 elevation="6"
             >
-                <v-card-title>{{article.title}}</v-card-title>
+                <nuxt-link :to="{ name: 'blog-slug', params: { slug: article.a } }">
+                    <v-card-title>{{article.title}}</v-card-title>
+                </nuxt-link>
                 <v-card-subtitle>{{article.date.substr(0, 10)}}</v-card-subtitle>
                 <v-card-text>{{article.desc}}</v-card-text>
                 <v-card-actions>
+                <nuxt-link :to="{ name: 'blog-slug', params: { slug: article.a } }">
                     <v-btn
                         outlined
                         text
                     >
                         Read More
                     </v-btn>
+                </nuxt-link>
             </v-card-actions>
         </v-card>
     </v-container>
