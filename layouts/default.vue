@@ -5,7 +5,7 @@
         color="light-blue"
         fixed
       >
-        <v-toolbar-title>Aidan Hibbard</v-toolbar-title>
+        <v-toolbar-title><a href="/">Aidan Hibbard</a></v-toolbar-title>
         <v-spacer />
         <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       </v-app-bar>
