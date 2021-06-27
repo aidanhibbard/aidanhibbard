@@ -1,7 +1,6 @@
 <template>
     <article>
         <h1>{{ article.title }}</h1>
-        <br />
             <TableOfContents :toc="article.toc" />
             <nuxt-content :document="article"/>
     </article>
@@ -35,6 +34,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
