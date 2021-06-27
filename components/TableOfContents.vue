@@ -28,4 +28,7 @@ export default {
 h2 {
     font-weight: bold;
 }
+ul {
+    list-style: none;
+}
 </style>
