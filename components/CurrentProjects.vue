@@ -29,6 +29,7 @@
                     text
                 >
                     <nuxt-link 
+                        class="ghbtn"
                         :to="project.html_url"
                     >
                     GitHub
@@ -69,5 +70,24 @@ h1 {
 }
 .v-card__text {
     padding-bottom: 5px;
+}
+.ghbtn:link {
+    text-decoration: none;
+    color: #3fb950;
+}
+
+.ghbtn:visited {
+    text-decoration: none;
+    color: #3fb950;
+}
+
+.ghbtn:hover {
+    text-decoration: none;
+    color: #3fb950;
+}
+
+.ghbtn:active {
+    text-decoration: none;
+    color: #3fb950;
 }
 </style>
