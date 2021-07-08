@@ -48,4 +48,9 @@ export default {
 </script>
 
 <style scoped>
+#FullError {
+  margin-top: 45px;
+  text-align: center;
+  color: red;
+}
 </style>
