@@ -2,6 +2,7 @@
     <v-container>
         <h1>Current Projects</h1>
         <br />
+        <div v-if="ProjectsMeta">
         <v-card
             v-for="(project, index) in ProjectsMeta"
             :key="index"
@@ -37,6 +38,13 @@
                 </v-btn>
             </v-card-actions>
         </v-card>
+        </div>
+        <div 
+        class="ProjectsError"
+        v-else
+        >
+        Could not fetch from GitHub
+        </div>
     </v-container>
 </template>
 
@@ -89,5 +97,9 @@ h1 {
 .ghbtn:active {
     text-decoration: none;
     color: #3fb950;
+}
+.ProjectsError {
+    text-align: center;
+    color: red;
 }
 </style>
