@@ -1,13 +1,13 @@
 <template>
   <div>
-    <Hero />
     <div
     id="FullError"
     v-if="err"
     >
-    Could not load content please refresh
+    Could not load page content please try refreshing
     </div>
     <div v-else>
+    <Hero />
     <ShortArticleList 
       :ArticlesMeta="articles"
     />
