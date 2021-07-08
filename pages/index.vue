@@ -1,12 +1,20 @@
 <template>
   <div>
     <Hero />
+    <div
+    id="FullError"
+    v-if="err"
+    >
+    Could not load content please refresh
+    </div>
+    <div v-else>
     <ShortArticleList 
       :ArticlesMeta="articles"
     />
     <CurrentProjects 
     :ProjectsMeta="ghdata"
     />
+    </div>
   </div>
 </template>
 

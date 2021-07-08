@@ -43,7 +43,7 @@
         class="ProjectsError"
         v-else
         >
-        Could not fetch from GitHub
+        Could not fetch metadata from GitHub
         </div>
     </v-container>
 </template>
