@@ -1,19 +1,19 @@
 <template>
   <div>
     <div
-    id="FullError"
-    v-if="err"
+      id="FullError"
+      v-if="err"
     >
-    Could not load page content please try refreshing
+      Could not load content please try refreshing the page
     </div>
     <div v-else>
-    <Hero />
-    <ShortArticleList 
-      :ArticlesMeta="articles"
-    />
-    <CurrentProjects 
-    :ProjectsMeta="ghdata"
-    />
+      <Hero />
+      <ShortArticleList 
+        :ArticlesMeta="articles"
+      />
+      <CurrentProjects 
+      :ProjectsMeta="ghdata"
+      />
     </div>
   </div>
 </template>

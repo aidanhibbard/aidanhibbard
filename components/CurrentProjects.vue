@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <h1>Current Projects</h1>
+        <h1>My Current Projects</h1>
         <br />
         <div v-if="ProjectsMeta">
         <v-card
@@ -17,7 +17,12 @@
                     outlined
                     text
                 >
-                    Read More
+                    <nuxt-link 
+                        class="ghbtn"
+                        :to="{ name: 'projects-slug', params: { slug: project.name } }"
+                    >
+                    ReadMe
+                    </nuxt-link>
                 </v-btn>
                 <v-btn
                     outlined
