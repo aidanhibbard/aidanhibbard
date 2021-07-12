@@ -17,6 +17,7 @@ export default {
             const [article] = await $content({ deep: true })
                 .where({ dir: `/${params.slug}` })
                 .fetch()
+            console.log(article)
             const related = await $content({ deep: true })
                 .only(['title', 'image', 'path'])
                 .where({ title: { $ne: article.title } })

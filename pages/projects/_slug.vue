@@ -1,6 +1,6 @@
 <template>
     <article>
-        <nuxt-content :document="page" />
+        {{page}}
     </article>
 </template>
 
@@ -9,8 +9,9 @@ import Markdown from '@nuxt/content/parsers/markdown'
 import { getDefaults, processMarkdownOptions } from '@nuxt/content/lib/utils'
 export default {
     async asyncData({ $axios, params }) {
-        const resp = await $axios.get(`https://raw.githubusercontent.com/AidanHibbard/${params.slug}/main/README.md`)
-        const page = await this.parseMarkdown(resp.data)
+        const resp = await $axios.get(`http://192.168.1.101:5000/`)
+        const page = await parseMarkdown(resp.data)
+        console.log(page)
         return {
             page,
         }
