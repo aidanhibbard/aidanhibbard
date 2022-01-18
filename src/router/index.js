@@ -16,7 +16,21 @@ const routes = [
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/About.vue')
     }
-  }
+  },
+  {
+    path: '/blog',
+    name: 'Blog',
+    component: function () {
+      return import(/* webpackChunkName: "about" */ '../views/Blog.vue')
+    }
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: function () {
+      return import(/* webpackChunkName: "about" */ '../views/Contact.vue')
+    }
+  },
 ]
 
 const router = createRouter({

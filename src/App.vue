@@ -1,12 +1,28 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <div id="banner">
+      <span id="name">{ Aidan Hibbard }</span>
+    </div>
+    <div id="links">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link to="/blog">Blog</router-link> |
+      <router-link to="/contact">Contact</router-link>
+    </div>
   </div>
   <router-view/>
 </template>
 
+<script>
+
+</script>
+
+
 <style>
+* {
+  margin: 0;
+  padding: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -16,12 +32,23 @@
 }
 
 #nav {
-  padding: 30px;
+  padding-top: 10px;
 }
 
 #nav a {
   font-weight: bold;
+  font-size: 18px;
   color: #2c3e50;
+}
+
+#name {
+  color: #0c2a2c;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+#links {
+  padding-top: 10px;
 }
 
 #nav a.router-link-exact-active {
