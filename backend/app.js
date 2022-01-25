@@ -52,28 +52,28 @@ app.get('/blog/posts', async (req, res) => {
             const end_index = page * limit;
             const filtered_files = files.slice(start_index, end_index);
             const result = new Array();
-        for (let i = 0;i<filtered_files.length;i++) {  
-            const data = await fs.readFile(`./posts/${filtered_files[i]}/index.md`, 'utf8');
-            const post = fm(data);
-            const meta = {
+            filtered_files.forEach(async (file) => {
+                const data = await fs.readFile(`./posts/${file}/index.md`, 'utf8');
+                const post = fm(data);
+                const meta = {
                     attributes: post.attributes
                 };
-            result.push(meta);
-        };
-        if (end_index < files.length) {
-            result.push({
-                page: page + 1,
-                limit: limit
+                result.push(meta);
             });
-        };
-        if (start_index > 0) {
-            result.push({
-                page: page - 1,
-                limit: limit
-            });
-        };
-        res.json(result);
-        res.status(200);
+            if (end_index < files.length) {
+                result.push({
+                    page: page + 1,
+                    limit: limit
+                });
+            };
+            if (start_index > 0) {
+                result.push({
+                    page: page - 1,
+                    limit: limit
+                });
+            };
+            res.json(result);
+            res.status(200);
     } catch (error) {
         res.json({ error });
         res.status(400);
