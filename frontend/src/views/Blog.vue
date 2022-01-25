@@ -28,7 +28,7 @@ export default {
     },
     mounted () {
         axios.get(
-            `http://localhost:3000/blog/posts/?page=${this.page}limit=${this.limit}`
+            `http://localhost:3000/blog/posts/?page=${this.page}`
         ).then((response) => {
             this.posts = response.data;
         }).catch((err) => {

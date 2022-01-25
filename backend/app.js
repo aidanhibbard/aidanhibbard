@@ -45,19 +45,21 @@ app.get('/', (req, res) => {
 
 app.get('/blog/posts', async (req, res) => {
     try { 
-            const page = parseInt(req.query.page);
-            const limit = parseInt(req.query.limit);
-            const files = await fs.readdir(posts_path);
-            const start_index = (page - 1) * limit;
-            const end_index = page * limit;
-            const filtered_files = files.slice(start_index, end_index);
-            const result = new Array();
+            const 
+                page = parseInt(req.query.page),
+                limit = 5,
+                files = await fs.readdir(posts_path),
+                start_index = (page - 1) * limit,
+                end_index = page * limit,
+                filtered_files = files.slice(start_index, end_index),
+                result = [];
             filtered_files.forEach(async (file) => {
-                const data = await fs.readFile(`./posts/${file}/index.md`, 'utf8');
-                const post = fm(data);
-                const meta = {
-                    attributes: post.attributes
-                };
+                const 
+                    data = await fs.readFile(`./posts/${file}/index.md`, 'utf8'),
+                    post = fm(data),
+                    meta = {
+                        attributes: post.attributes
+                    };
                 result.push(meta);
             });
             if (end_index < files.length) {
