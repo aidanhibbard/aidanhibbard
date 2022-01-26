@@ -9,15 +9,21 @@
             <p>{{ error }}</p>
         </div>
         <div v-if="posts !== null">
-            {{ posts }}
+            <BlogCards 
+                :post_data="posts"
+            />
         </div>
     </div>
 </template>
 
 <script>
+import BlogCards from '@/components/BlogCards.vue'
 import axios from 'axios';
 export default {
     name: 'blog',
+    components: {
+        BlogCards
+    },
     data () {
         return {
             posts: null,

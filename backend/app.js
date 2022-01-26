@@ -53,15 +53,15 @@ app.get('/blog/posts', async (req, res) => {
                 end_index = page * limit,
                 filtered_files = files.slice(start_index, end_index),
                 result = [];
-            filtered_files.forEach(async (file) => {
-                const 
-                    data = await fs.readFile(`./posts/${file}/index.md`, 'utf8'),
+            for (let i = 0;i<filtered_files.length;i++) {
+                const
+                    data = await fs.readFile(`./posts/${filtered_files[i]}/index.md`, 'utf8'),
                     post = fm(data),
                     meta = {
                         attributes: post.attributes
                     };
                 result.push(meta);
-            });
+            };
             if (end_index < files.length) {
                 result.push({
                     page: page + 1,
@@ -94,3 +94,12 @@ app.get('/blog/posts/:post_name', (req, res) => {
 app.listen(port, () => {
     console.log(`App running at http://${ip}:${port}`);
 });
+// filtered_files.forEach(async (file) => {
+//     const 
+//         data = await fs.readFile(`./posts/${file}/index.md`, 'utf8'),
+//         post = fm(data),
+//         meta = {
+//             attributes: post.attributes
+//         };
+//     result.push(meta);
+// });
