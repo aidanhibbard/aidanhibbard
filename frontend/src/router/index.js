@@ -24,13 +24,6 @@ const routes = [
       return import(/* webpackChunkName: "about" */ '../views/Blog.vue')
     }
   },
-  {
-    path: '/contact',
-    name: 'Contact',
-    component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/Contact.vue')
-    }
-  },
 ]
 
 const router = createRouter({

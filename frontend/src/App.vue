@@ -1,4 +1,5 @@
 <template>
+<div id="app_main">
   <div id="nav">
     <div id="banner">
       <span id="name">{ Aidan Hibbard }</span>
@@ -6,11 +7,11 @@
     <div id="links">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/blog">Blog</router-link> |
-      <router-link to="/contact">Contact</router-link>
+      <router-link to="/blog">Blog</router-link>
     </div>
   </div>
   <router-view/>
+</div>
 </template>
 
 <script>
