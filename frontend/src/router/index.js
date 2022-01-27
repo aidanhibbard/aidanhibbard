@@ -18,10 +18,17 @@ const routes = [
     }
   },
   {
-    path: '/blog',
-    name: 'Blog',
+    path: '/articles',
+    name: 'Articles',
     component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/Blog.vue')
+      return import(/* webpackChunkName: "articles" */ '../views/Articles.vue')
+    }
+  },
+  {
+    path: '/projects',
+    name: 'Projects',
+    component: function () {
+      return import(/* webpackChunkName: "projects" */ '../views/Projects.vue')
     }
   },
 ]

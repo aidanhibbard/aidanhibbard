@@ -10,7 +10,7 @@
         </div>
         <div v-if="posts !== null">
             <BlogCards 
-                :post_data="posts"
+                :post_metas="posts"
             />
         </div>
     </div>
@@ -20,7 +20,7 @@
 import BlogCards from '@/components/BlogCards.vue'
 import axios from 'axios';
 export default {
-    name: 'blog',
+    name: 'articles',
     components: {
         BlogCards
     },
