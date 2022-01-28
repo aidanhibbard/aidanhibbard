@@ -1,7 +1,10 @@
 ---
 title: 3D Components with Vue and ThreeJS
 desc: Building 3D components with Vue and ThreeJS 
-a: 3d-vue-components
+links:
+  - threejs-heightmaps
+  - https://codepen.io/aidanhibbard/pen/WNXvExR
+  - https://github.com/AidanHibbard/mountains
 date: 2020-10-10
 image: index.jpg
 tags:

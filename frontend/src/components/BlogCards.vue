@@ -5,35 +5,42 @@
             :key="key"
             class="blog_card"
         >
-            <div 
-                v-if="key % 2 === 0"
-                class="left"
-            >
-            Left
-            </div>
-            <div 
-                v-if="key % 2 !== 0"
-                class="right"
-            >
-            Right
-            </div>
-            <h1>{{ meta.attributes.title }}</h1>
-            <CardTags
-                :tags="meta.attributes.tags"
-            />
+        <div 
+            v-if="key % 2 === 0"
+            class="left"
+        >
+        </div>
+        <div 
+            v-if="key % 2 !== 0"
+            class="right"
+        >
+        </div>
+        <h1>
+            {{ 
+                meta.attributes.title
+            }}
+        </h1>
+        <p>
+            {{
+                meta.attributes.desc
+            }}
+        </p>
+        <ArticleLinks
+            :links="meta.attributes.links"
+        />
         </div>
     </div>
 </template>
 
 <script>
-import CardTags from '@/components/CardTags.vue'
+import ArticleLinks from '@/components/ArticleLinks'
 export default {
     name: 'BlogCards',
     props: {
         post_metas: Array,
     },
     components: {
-        CardTags,
+        ArticleLinks,
     },
 }
 </script>
@@ -42,10 +49,12 @@ export default {
 .blog_card {
     margin: 0 auto;
     height: 100px;
-    border: 1px solid black;
     border-radius: 5px;
     margin-bottom: 10px;
     max-width: 400px;
+    padding: 3px;
+    background: rgb(66,185,131);
+    background: linear-gradient(306deg, rgba(66,185,131,1) 0%, rgba(135,206,250,1) 100%);
 }
 @media screen and (max-width: 900px) {
     .blog_card {
@@ -69,9 +78,13 @@ export default {
     height: 100%;
     width: 33%;
     float: left;
-    background-color: lightskyblue;
+    background-color: #87cefa;
 }
 h1 {
     font-size: 15px;
+}
+p {
+    font-size: 13px;
+    margin-bottom: 5px;
 }
 </style>
