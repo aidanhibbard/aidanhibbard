@@ -6,7 +6,7 @@ links:
   - https://codepen.io/aidanhibbard/pen/WNXvExR
   - https://github.com/AidanHibbard/mountains
 date: 2022-27-01
-image: index.jpg
+image: https://c.tenor.com/GC1fbgCjkaIAAAAd/nebula-galaxy.gif
 tags:
   - Heightmaps
   - ThreeJS

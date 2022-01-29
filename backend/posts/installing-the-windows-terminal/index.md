@@ -4,7 +4,7 @@ desc: Installing the windows terminal and setting up the linux bash
 links:
   - installing-the-windows-terminal
 date: 2020-10-10
-image: index.jpg
+image: https://i.imgur.com/0yp6nFf.jpeg
 tags:
   - Windows
   - Terminal

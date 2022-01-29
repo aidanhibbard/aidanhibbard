@@ -8,11 +8,21 @@
         <div 
             v-if="key % 2 === 0"
             class="left"
+            :style="{
+                'background-image': `url(${meta.attributes.image})`,
+                'background-repeat': 'no-repeat',
+                'background-size': '100% 100%'
+            }"
         >
         </div>
         <div 
             v-if="key % 2 !== 0"
             class="right"
+            :style="{
+                'background-image': `url(${meta.attributes.image})`,
+                'background-repeat': 'no-repeat',
+                'background-size': '100% 100%'
+            }"
         >
         </div>
         <h1>
@@ -67,18 +77,16 @@ export default {
     }
 }
 .right {
-    border-radius: 0 5px 5px 0;
+    border-radius: 5px;
     height: 100%;
     width: 33%;
     float: right;
-    background-color: aquamarine;
 }
 .left {
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px;
     height: 100%;
     width: 33%;
     float: left;
-    background-color: #87cefa;
 }
 h1 {
     font-size: 15px;
