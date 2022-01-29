@@ -20,7 +20,7 @@
 import BlogCards from '@/components/BlogCards.vue'
 import axios from 'axios';
 export default {
-    name: 'articles',
+    name: 'Blog',
     components: {
         BlogCards
     },

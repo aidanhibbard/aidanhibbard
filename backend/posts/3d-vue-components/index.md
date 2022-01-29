@@ -6,7 +6,7 @@ links:
   - https://codepen.io/aidanhibbard/pen/WNXvExR
   - https://github.com/AidanHibbard/mountains
 date: 2020-10-10
-image: https://i.imgur.com/0yp6nFf.jpeg
+image: https://cdpn.io/aidanhibbard/fullpage/vYWOZmz
 tags:
   - 3D
   - ThreeJS

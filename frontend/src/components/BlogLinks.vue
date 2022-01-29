@@ -1,9 +1,9 @@
 <template>
-    <div id="article_links">
+    <div id="blog_links">
         <a 
             v-for="(link, key) in links"
             :key="key"
-            class="article_link"
+            class="blog_link"
             :href="link"
         >
             <span v-if="key === 0">
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-    name: 'ArticleLinks',
+    name: 'BlogLinks',
     props: {
         links: Array,
     },

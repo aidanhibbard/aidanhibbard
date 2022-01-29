@@ -35,7 +35,7 @@
                 meta.attributes.desc
             }}
         </p>
-        <ArticleLinks
+        <BlogLinks
             :links="meta.attributes.links"
         />
         </div>
@@ -43,14 +43,14 @@
 </template>
 
 <script>
-import ArticleLinks from '@/components/ArticleLinks'
+import BlogLinks from '@/components/BlogLinks'
 export default {
     name: 'BlogCards',
     props: {
         post_metas: Array,
     },
     components: {
-        ArticleLinks,
+        BlogLinks,
     },
 }
 </script>
@@ -68,7 +68,7 @@ export default {
 }
 @media screen and (max-width: 900px) {
     .blog_card {
-        width: 75%;
+        width: 85%;
     }
 }
 @media screen and (min-width: 900px) {

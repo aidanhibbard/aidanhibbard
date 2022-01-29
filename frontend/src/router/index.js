@@ -18,11 +18,18 @@ const routes = [
     }
   },
   {
-    path: '/articles',
-    name: 'Articles',
+    path: '/blog',
+    name: 'Blog',
     component: function () {
-      return import(/* webpackChunkName: "articles" */ '../views/Articles.vue')
-    }
+      return import(/* webpackChunkName: "blog" */ '../views/Blog.vue')
+    },
+  },
+  {
+    path: '/blog/post/:name',
+    name: 'Post',
+    component: function () {
+      return import(/* webpackChunkName: "post" */ '../views/nested/Post.vue')
+    },
   },
   {
     path: '/projects',
