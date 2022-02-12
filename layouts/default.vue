@@ -1,4 +1,5 @@
 <template>
+    <div id="app_main">
     <div id="nav">
         <div id="banner">
         <span id="name">Aidan Hibbard</span>
@@ -9,6 +10,8 @@
             <nuxt-link to="/blog">Blog</nuxt-link>
             <nuxt-link to="/projects">Projects</nuxt-link>
         </div>
+    </div>
+        <slot />
     </div>
 </template>
 

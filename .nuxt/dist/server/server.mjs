@@ -1993,7 +1993,7 @@ const __vite_ssr_import_2__ = await __vite_ssr_import__("/node_modules/vue/serve
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_nuxt_link = __vite_ssr_import_1__.resolveComponent("nuxt-link")
 
-  _push(`<div${__vite_ssr_import_2__.ssrRenderAttrs(__vite_ssr_import_1__.mergeProps({ id: "nav" }, _attrs))}><div id="banner"><span id="name">Aidan Hibbard</span></div><div id="links">`)
+  _push(`<div${__vite_ssr_import_2__.ssrRenderAttrs(__vite_ssr_import_1__.mergeProps({ id: "app_main" }, _attrs))}><div id="nav"><div id="banner"><span id="name">Aidan Hibbard</span></div><div id="links">`)
   _push(__vite_ssr_import_2__.ssrRenderComponent(_component_nuxt_link, { to: "/" }, {
     default: __vite_ssr_import_1__.withCtx((_, _push, _parent, _scopeId) => {
       if (_push) {
@@ -2043,6 +2043,8 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
     _: 1 /* STABLE */
   }, _parent))
   _push(`</div></div>`)
+  __vite_ssr_import_2__.ssrRenderSlot(_ctx.$slots, "default", {}, null, _push, _parent)
+  _push(`</div>`)
 }
 
 const __vite_ssr_import_3__ = await __vite_ssr_import__("/layouts/default.vue?vue&type=style&index=0&lang.css");
@@ -2068,7 +2070,9 @@ __vite_ssr_exports__.default = /*#__PURE__*/__vite_ssr_import_5__.default(_sfc_m
 // - /layouts/default.vue ($id_7689e89d)
 // - /layouts/error.vue ($id_6c552589)
 // - /pages/blog/index.vue?macro=true ($id_381d5fdd)
+// - /pages/blog/post/[post].vue?macro=true ($id_95fb1834)
 // - /pages/blog/index.vue ($id_83c2b1d1)
+// - /pages/blog/post/[post].vue ($id_e6bd3f17)
 // - /node_modules/nuxt3/dist/app/components/nuxt-root.vue ($id_f8564e04)
 // - /node_modules/nuxt3/dist/pages/runtime/app.vue ($id_0851ff57)
 // Dependencies: 
@@ -2329,6 +2333,7 @@ Object.defineProperty(__vite_ssr_exports__, "meta", { enumerable: true, configur
 // Parents: 
 // - /@id/__x00__virtual:/home/aidanhibbard/Desktop/Projects/aidanhibbard/.nuxt/routes.mjs ($id_0923b770)
 // Dependencies: 
+// - /node_modules/vue/server-renderer/index.js ($id_b215fa1c)
 // - /node_modules/vue/dist/vue.cjs.js ($id_60f0615f)
 // - /@id/plugin-vue:export-helper ($id_bbb863c1)
 // --------------------
@@ -2338,23 +2343,25 @@ const _sfc_main = {
 
 }
 
+const __vite_ssr_import_0__ = await __vite_ssr_import__("/node_modules/vue/server-renderer/index.js");
+
 
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  
+  _push(`${__vite_ssr_import_0__.ssrInterpolate(_ctx.$route.params.post)}`)
 }
 
 
-const __vite_ssr_import_0__ = await __vite_ssr_import__("/node_modules/vue/dist/vue.cjs.js");
+const __vite_ssr_import_1__ = await __vite_ssr_import__("/node_modules/vue/dist/vue.cjs.js");
 
 const _sfc_setup = _sfc_main.setup
 _sfc_main.setup = (props, ctx) => {
-  const ssrContext = __vite_ssr_import_0__.useSSRContext()
+  const ssrContext = __vite_ssr_import_1__.useSSRContext()
   ;(ssrContext.modules || (ssrContext.modules = new Set())).add("pages/blog/post/[post].vue")
   return _sfc_setup ? _sfc_setup(props, ctx) : undefined
 }
-const __vite_ssr_import_1__ = await __vite_ssr_import__("/@id/plugin-vue:export-helper");
+const __vite_ssr_import_2__ = await __vite_ssr_import__("/@id/plugin-vue:export-helper");
 
-__vite_ssr_exports__.default = /*#__PURE__*/__vite_ssr_import_1__.default(_sfc_main, [['ssrRender',_sfc_ssrRender],['__file',"/home/aidanhibbard/Desktop/Projects/aidanhibbard/pages/blog/post/[post].vue"]])
+__vite_ssr_exports__.default = /*#__PURE__*/__vite_ssr_import_2__.default(_sfc_main, [['ssrRender',_sfc_ssrRender],['__file',"/home/aidanhibbard/Desktop/Projects/aidanhibbard/pages/blog/post/[post].vue"]])
 const meta = undefined
 Object.defineProperty(__vite_ssr_exports__, "meta", { enumerable: true, configurable: true, get(){ return meta }});;
 }
@@ -2496,6 +2503,7 @@ __vite_ssr_exports__.default = /*#__PURE__*/__vite_ssr_import_3__.default(_sfc_m
 // Parents: 
 // - /@id/__x00__virtual:/home/aidanhibbard/Desktop/Projects/aidanhibbard/.nuxt/routes.mjs ($id_0923b770)
 // Dependencies: 
+// - /node_modules/vue/server-renderer/index.js ($id_b215fa1c)
 // - /node_modules/vue/dist/vue.cjs.js ($id_60f0615f)
 // - /@id/plugin-vue:export-helper ($id_bbb863c1)
 // --------------------
@@ -2505,23 +2513,25 @@ const _sfc_main = {
 
 }
 
+const __vite_ssr_import_0__ = await __vite_ssr_import__("/node_modules/vue/server-renderer/index.js");
+
 
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  
+  _push(`${__vite_ssr_import_0__.ssrInterpolate(_ctx.$route.params.post)}`)
 }
 
 
-const __vite_ssr_import_0__ = await __vite_ssr_import__("/node_modules/vue/dist/vue.cjs.js");
+const __vite_ssr_import_1__ = await __vite_ssr_import__("/node_modules/vue/dist/vue.cjs.js");
 
 const _sfc_setup = _sfc_main.setup
 _sfc_main.setup = (props, ctx) => {
-  const ssrContext = __vite_ssr_import_0__.useSSRContext()
+  const ssrContext = __vite_ssr_import_1__.useSSRContext()
   ;(ssrContext.modules || (ssrContext.modules = new Set())).add("pages/blog/post/[post].vue")
   return _sfc_setup ? _sfc_setup(props, ctx) : undefined
 }
-const __vite_ssr_import_1__ = await __vite_ssr_import__("/@id/plugin-vue:export-helper");
+const __vite_ssr_import_2__ = await __vite_ssr_import__("/@id/plugin-vue:export-helper");
 
-__vite_ssr_exports__.default = /*#__PURE__*/__vite_ssr_import_1__.default(_sfc_main, [['ssrRender',_sfc_ssrRender],['__file',"/home/aidanhibbard/Desktop/Projects/aidanhibbard/pages/blog/post/[post].vue"]]);
+__vite_ssr_exports__.default = /*#__PURE__*/__vite_ssr_import_2__.default(_sfc_main, [['ssrRender',_sfc_ssrRender],['__file',"/home/aidanhibbard/Desktop/Projects/aidanhibbard/pages/blog/post/[post].vue"]]);
 }
 
 
