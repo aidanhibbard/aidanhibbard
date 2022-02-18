@@ -145,7 +145,7 @@ server.listen(listenAddress, () => {
   });
 });
 
-const STATIC_ASSETS_BASE = "/_nuxt/home/aidanhibbard/Desktop/Projects/aidanhibbard/dist" + "/" + "1644698278";
+const STATIC_ASSETS_BASE = "/_nuxt/home/aidanhibbard/Desktop/Projects/aidanhibbard/dist" + "/" + "1645159248";
 const PAYLOAD_JS = "/payload.js";
 const getClientManifest = cachedImport(() => import('/home/aidanhibbard/Desktop/Projects/aidanhibbard/.nuxt/dist/server/client.manifest.mjs'));
 const getSSRApp = cachedImport(() => import('/home/aidanhibbard/Desktop/Projects/aidanhibbard/.nuxt/dist/server/server.mjs'));
