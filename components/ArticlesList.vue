@@ -44,7 +44,8 @@ const fetchArticles = async () => {
                 '_path',
                 'title',
                 'description',
-                'date'
+                'date',
+                'tags'
             ])
             .find()
     state.loading = false;
@@ -53,13 +54,79 @@ fetchArticles();
 </script>
 
 <template>
-    <div>
-        {{ state.articles }}
-        <br>
-        {{ pages }}
+  <div class="card-container">
+    <div v-for="article in state.articles" :key="article._path" class="card">
+      <div class="card-header">
+        <h2 class="card-title">{{ article.title }}</h2>
+        <p class="card-date">{{ new Date(article.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) }}</p>
+      </div>
+      <div class="card-body">
+        <p>{{ article.description }}</p>
+        <div class="tags">
+          <span v-for="tag in article.tags" :key="tag" class="tag">{{ tag }}</span>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
-<style>
-    
+<style scoped>
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card {
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        max-width: 500px;
+        width: 100%;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .card-date {
+        font-size: 1rem;
+        color: #666;
+    }
+
+    .card-body {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .tag {
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        background-color: #f1f1f1;
+        font-size: 0.8rem;
+        line-height: 1;
+    }
 </style>
