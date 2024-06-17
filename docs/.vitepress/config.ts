@@ -4,5 +4,5 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   title: 'Aidan Hibard',
   description: 'My Portfolio',
-  base: '/aidanhibbard/',
+  base: '/',
 });
