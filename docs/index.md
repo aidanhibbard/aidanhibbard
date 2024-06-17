@@ -7,7 +7,7 @@ hero:
   text: "Projects, Articles, and More"
   tagline: 
   actions:
-    - theme: 
+    - theme:
       text: Articles
       link: /articles
     - theme: alt
@@ -16,10 +16,10 @@ hero:
 
 features:
   - title: My GitHub
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    details: View my personal GitHub with my projects, and readme.
   - title: My Resume
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    details: View my work history, skills, and more about me.
   - title: My Articles
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    details: Find articles on CI/CD pipelines, frameworks, and more...
 ---
 
