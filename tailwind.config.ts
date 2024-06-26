@@ -1,4 +1,7 @@
 import type { Config } from 'tailwindcss';
+import typography from '@tailwindcss/typography'
+import defaultTheme from 'tailwindcss/defaultTheme';
+import forms from '@tailwindcss/forms';
 
 export default {
   content: [
@@ -10,7 +13,14 @@ export default {
     './error.vue',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    typography(),
+    forms(),
+  ],
 } satisfies Config;
