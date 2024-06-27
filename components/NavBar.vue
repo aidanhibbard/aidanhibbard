@@ -1,17 +1,17 @@
 <script setup lang='ts'>
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuItem } from '@headlessui/vue'
-import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
+import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuItem } from '@headlessui/vue';
+import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
 
 const navigation = [
   { name: 'Articles', href: '#', current: true },
   { name: 'Projects', href: '#', current: false },
   { name: 'About', href: '#', current: false },
   { name: 'Resume', href: '#', current: false },
-]
+];
 </script>
 
 <template>
-  <Disclosure as="nav" class="bg-slate-900 sticky top-0" v-slot="{ open }">
+  <Disclosure as="nav" class="sticky top-0" v-slot="{ open }">
     <header class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">

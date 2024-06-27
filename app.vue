@@ -10,7 +10,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-html, body, #__nuxt, #app {
+html, body, #__nuxt {
   min-height: 100vh;
 }
 </style>

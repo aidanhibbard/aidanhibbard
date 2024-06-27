@@ -13,7 +13,6 @@
 
 <style scoped>
 #app {
-  background-color: #83a7ac;
-  background-image: linear-gradient(19deg, #83a7ac 0%, #6d6d6d 100%);
+  min-height: 100%;
 }
 </style>
