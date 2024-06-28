@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div id="app">
+  <div class="min-h-full">
     <NavBar />
     <main>
       <slot />
@@ -12,7 +12,5 @@
 </template>
 
 <style scoped>
-#app {
-  min-height: 100%;
-}
+
 </style>
