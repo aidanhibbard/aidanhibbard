@@ -51,7 +51,7 @@ const dark = ref(false);
               <Switch
               v-model="dark"
               :class="dark ? 'bg-white' : 'bg-gray-900'"
-              class="relative inline-flex h-6 w-11 items-center rounded-full outline mt-1 lg:mt-3.5"
+              class="relative inline-flex h-6 w-11 items-center rounded-full mt-1 lg:mt-3.5"
             >
               <span class="sr-only">dark mode</span>
               <span
