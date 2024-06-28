@@ -8,8 +8,13 @@ const navigation = [
   { name: 'About', href: '/about', current: false },
   { name: 'Resume', href: '/resume', current: false },
 ];
-
+const route = useRoute();
 const dark = ref(false);
+
+watch(() => route.path, () => {
+
+});
+const currentItem = computed(() => navigation.find((n) => n.href === route.path || n.href === `/${route.path.split('/')[1]}`));
 </script>
 
 <template>
