@@ -5,7 +5,7 @@
 <template>
   <div class="mx-auto max-w-7xl py-18 sm:px-6 sm:py-1">
     <div class="relative isolate overflow-hidden px-6 pt-8 sm:px-16 md:pt-10 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
-      <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-16 lg:text-left">
+      <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-8 lg:text-left">
         <h3 class="text-lg font-semibold text-gray-500">Latest Article</h3>
         <NuxtLink to="/">
           <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
