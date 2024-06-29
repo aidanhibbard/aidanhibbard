@@ -18,8 +18,8 @@
           <NuxtLink to="/articles" class="text-md font-semibold leading-6 text-gray-900">Browse articles <span aria-hidden="true">→</span></NuxtLink>
         </div>
       </div>
-      <NuxtLink class="sm:mt-8 md:mt-8 lg:mt-16" to="/">
-        <div class="relative h-80">
+      <NuxtLink to="/">
+        <div class="relative h-80 mt-8">
           <img class="absolute left-0 top-0 w-[57rem] max-w-none" src="~/assets/images/install-private-npm-modules-with-cloud-build/carbon.png" alt="App screenshot" />
         </div>
       </NuxtLink>
