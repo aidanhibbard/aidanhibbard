@@ -3,7 +3,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, Switch } from '@he
 import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
 
 const navigation = [
-  { name: 'Articles', href: '/articles', current: true },
+  { name: 'Articles', href: '/articles', current: false },
   { name: 'Projects', href: '/projects', current: false },
   { name: 'About', href: '/about', current: false },
   { name: 'Resume', href: '/resume', current: false },
@@ -11,14 +11,17 @@ const navigation = [
 const route = useRoute();
 const dark = ref(false);
 
-watch(() => route.path, () => {
+const search = ref('');
 
+
+watch(() => route.path, () => {
+  const found = navigation.findIndex((n) => n.href === route.path || n.href === `/${route.path.split('/')[1]}`);
+  navigation[found].current = true;
 });
-const currentItem = computed(() => navigation.find((n) => n.href === route.path || n.href === `/${route.path.split('/')[1]}`));
 </script>
 
 <template>
-  <Disclosure as="nav" class="sticky top-0 bg-white z-[100]" v-slot="{ open }">
+  <Disclosure as="nav" class="sticky top-0 bg-white z-[100] border-b" v-slot="{ open }">
     <header class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -45,8 +48,15 @@ const currentItem = computed(() => navigation.find((n) => n.href === route.path 
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           <!-- Profile dropdown -->
           <Menu as="div" class="relative ml-3 flex space-x-4 justify-between">
-            <div class="relative mt-2 shadow-sm hidden lg:block">
+            <div class="relative mt-2 shadow-sm hidden lg:block relative">
               <input type="text" name="Search" id="search" class="w-full rounded-md border-0 py-1.5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Find anything..." />
+              <ul class="mt-4 bg-white shadow-lg rounded-md absolute bottom-[-1] w-full">
+                <li class="px-4 py-2 border-b border-gray-200 hover:bg-gray-100">Item 1</li>
+                <li class="px-4 py-2 border-b border-gray-200 hover:bg-gray-100">Item 2</li>
+                <li class="px-4 py-2 border-b border-gray-200 hover:bg-gray-100">Item 3</li>
+                <li class="px-4 py-2 border-b border-gray-200 hover:bg-gray-100">Item 4</li>
+                <li class="px-4 py-2 hover:bg-gray-100">Item 5</li>
+              </ul>
             </div>
             <button type="button" class="relative p-1 text-gray-900 block lg:hidden">
               <span class="absolute -inset-1.5" />
