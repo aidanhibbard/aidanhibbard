@@ -64,7 +64,7 @@ watch(() => state.query, async () => {
                 name="Search"
                 id="search"
                 class="w-full rounded-md border-0 py-1.5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                placeholder="Find anything..."
+                placeholder="Search articles and projects"
                 v-model="state.query"
               />
               <ul v-if="state.foundItems.length > 0 && state.query" class="mt-4 bg-white shadow-lg rounded-md absolute bottom-[-1] w-full">
