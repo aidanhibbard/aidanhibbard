@@ -1,6 +1,13 @@
 <script setup lang='ts'>
+import { watch } from 'vue';
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, Switch } from '@headlessui/vue';
 import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
+import type { ParsedContent } from '@nuxt/content';
+
+const state = reactive({
+  query: '',
+  foundItems: [] as Pick<ParsedContent, "title" | "slug">[],
+})
 
 const navigation = [
   { name: 'Articles', href: '/articles', current: false },
@@ -11,12 +18,15 @@ const navigation = [
 const route = useRoute();
 const dark = ref(false);
 
-const search = ref('');
-
-
-watch(() => route.path, () => {
-  const found = navigation.findIndex((n) => n.href === route.path || n.href === `/${route.path.split('/')[1]}`);
-  navigation[found].current = true;
+watch(() => state.query, async () => {
+  if (state.query) {
+    const found = await queryContent('articles')
+      .where({ title: { $contains: state.query } })
+      .only(['title', 'slug'])
+      .limit(5)
+      .find();
+    state.foundItems = found;
+  }
 });
 </script>
 
@@ -49,13 +59,18 @@ watch(() => route.path, () => {
           <!-- Profile dropdown -->
           <Menu as="div" class="relative ml-3 flex space-x-4 justify-between">
             <div class="relative mt-2 shadow-sm hidden lg:block relative">
-              <input type="text" name="Search" id="search" class="w-full rounded-md border-0 py-1.5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Find anything..." />
-              <ul class="mt-4 bg-white shadow-lg rounded-md absolute bottom-[-1] w-full">
-                <li class="px-4 py-2 border-b border-gray-200 hover:bg-gray-100">Item 1</li>
-                <li class="px-4 py-2 border-b border-gray-200 hover:bg-gray-100">Item 2</li>
-                <li class="px-4 py-2 border-b border-gray-200 hover:bg-gray-100">Item 3</li>
-                <li class="px-4 py-2 border-b border-gray-200 hover:bg-gray-100">Item 4</li>
-                <li class="px-4 py-2 hover:bg-gray-100">Item 5</li>
+              <input 
+                type="text"
+                name="Search"
+                id="search"
+                class="w-full rounded-md border-0 py-1.5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                placeholder="Find anything..."
+                v-model="state.query"
+              />
+              <ul v-if="state.foundItems.length > 0 && state.query" class="mt-4 bg-white shadow-lg rounded-md absolute bottom-[-1] w-full">
+                <li v-for="item in state.foundItems" class="px-4 py-2 border-b border-gray-200 hover:bg-gray-100">
+                  {{ item.title }}
+                </li>
               </ul>
             </div>
             <button type="button" class="relative p-1 text-gray-900 block lg:hidden">
