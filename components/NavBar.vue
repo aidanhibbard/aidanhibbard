@@ -58,7 +58,7 @@ watch(() => state.query, async () => {
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           <!-- Profile dropdown -->
           <Menu as="div" class="relative ml-3 flex space-x-4 justify-between">
-            <div class="relative mt-2 shadow-sm hidden lg:block relative">
+            <div class="relative shadow-sm hidden lg:block relative">
               <input 
                 type="text"
                 name="Search"
@@ -81,7 +81,7 @@ watch(() => state.query, async () => {
               <Switch
               v-model="dark"
               :class="dark ? 'bg-white' : 'bg-gray-900'"
-              class="relative inline-flex h-6 w-11 items-center rounded-full mt-1 lg:mt-3.5 outline outline-1"
+              class="relative inline-flex h-6 w-11 items-center rounded-full mt-1 lg:mt-1.5 outline outline-1"
             >
               <span class="sr-only">dark mode</span>
               <span
