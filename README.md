@@ -26,6 +26,10 @@ interface Aidan extends Person {
     'Rails',
     'Laravel'
   ];
+  processors: [
+    'BullMQ',
+    'SideKiq'
+  ];
   platforms: [
     'Google Cloud',
     'Vercel'
