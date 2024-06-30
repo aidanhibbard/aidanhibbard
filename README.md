@@ -25,7 +25,7 @@ interface Aidan extends Person {
     'Rails',
     'Laravel'
   ];
-  hosts: [
+  platforms: [
     'Google Cloud',
     'Vercel'
   ];
