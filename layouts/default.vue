@@ -4,6 +4,7 @@
 
 <template>
   <div class="min-h-full">
+    <MaintnenceBanner />
     <NavBar />
     <main>
       <slot />
