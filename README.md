@@ -18,6 +18,7 @@ interface Aidan extends Person {
     'PHP',
   ];
   frameworks: [
+    'Angular',
     'Nuxt',
     'Next',
     'Express',
