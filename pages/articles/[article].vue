@@ -14,7 +14,10 @@ useSeoMeta({
 
 <template>
   <div class="flex justify-center px-4 sm:px-6 lg:px-8 py-12">
-    <ContentDoc :path="$route.path" class="w-full max-w-4xl">
+    <ContentDoc
+      :path="$route.path"
+      class="w-full max-w-4xl"
+    >
       <template #found>
         <article class="prose lg:prose-xl prose-slate mx-auto">
           <ContentRenderer />

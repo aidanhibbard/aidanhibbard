@@ -1,0 +1,5 @@
+{
+  "extends": ["@nuxt", "plugin:prettier-recommended", "prettier"],
+  "semi": true,
+  "trailingComma": "all"
+}
