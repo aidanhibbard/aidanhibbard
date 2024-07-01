@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   // TODO: Make devtools a ENV key
   devtools: { enabled: false, },
-  modules: ['@nuxt/content', '@nuxt/image', '@nuxt/eslint'],
+  modules: ['@nuxt/content', '@nuxt/image', '@nuxt/eslint', '@nuxtjs/color-mode'],
   css: ['~/assets/css/tailwind.css'],
   postcss: {
     plugins: {
@@ -10,4 +10,8 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  // https://color-mode.nuxtjs.org/#tailwindcss
+  colorMode: {
+    classSuffix: ''
+  }
 });

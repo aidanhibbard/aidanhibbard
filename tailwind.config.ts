@@ -4,6 +4,7 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
 export default {
+  darkMode: 'class',
   content: [
     './components/**/*.{js,vue,ts}',
     './layouts/**/*.vue',
