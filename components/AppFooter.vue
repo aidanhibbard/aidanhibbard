@@ -65,7 +65,7 @@
         </div>
       </div>
     </div>
-    <div class="items-center flex flex-col md:flex-row justify-around gap-4 border-t border-gray-100 py-6">
+    <div class="items-center flex flex-col md:flex-row justify-around gap-4 border-t border-b border-gray-100 py-6">
       <p class="text-sm/6 text-slate-600 max-md:text-center">
         © 2024 Aidan Hibbard. All rights reserved.
       </p>
