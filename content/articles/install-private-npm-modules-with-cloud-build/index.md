@@ -2,6 +2,7 @@
 title: 'Installing Private NPM Modules with Cloud Build'
 desc: 'Learn how to secretly mount a .npmrc in your docker image to avoid leaking keys.'
 publishedAt: 06-17-24
+img: '/images/articles/install-private-npm-modules-with-cloud-build/carbon.png'
 ---
 Recently I was tasked with creating a new pipelines from app repositories in GitHub to Cloud Run deployments. One of our apps used private modules not hosted in our own artifact registry (BullMQ Pro), and we needed a secure way to pull the secrets without leaking them into the docker image.
 

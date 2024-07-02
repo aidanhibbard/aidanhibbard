@@ -1,5 +1,11 @@
 <script setup lang='ts'>
-
+const { data } = await useAsyncData(
+  'article',
+  () => queryContent('articles')
+    .sort({ publishedAt: -1 })
+    .limit(1)
+    .find()
+)
 </script>
 
 <template>
@@ -12,15 +18,15 @@
           </h3>
           <NuxtLink to="/">
             <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Using private NPM modules with Google Cloud Build
+              {{ data![0]?.title }}
             </h2>
           </NuxtLink>
           <p class="mt-6 text-lg leading-8 text-gray-600">
-            Learn how to secretly mount a .npmrc in your docker image to avoid leaking keys.
+            {{ data![0]?.desc }}
           </p>
           <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
             <NuxtLink
-              to="/"
+              :to="data![0]?._path"
               class="px-5 py-2.5 text-lg font-semibold text-white bg-gray-900 shadow-sm rounded hover:shadow-xl delay-75"
             >
               Read
@@ -37,7 +43,7 @@
           <div class="relative h-80 mt-8">
             <img
               class="absolute left-0 top-0 w-[57rem] max-w-none"
-              src="~/assets/images/install-private-npm-modules-with-cloud-build/carbon.png"
+              :src="data![0]?.img"
               alt="App screenshot"
             >
           </div>

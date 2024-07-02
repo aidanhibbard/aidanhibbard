@@ -55,13 +55,13 @@
                 class="text-sm/6 text-gray-600 hover:text-gray-900 group-last:text-slate-900 [&>span]:group-last:inline-block [&>span]:group-last:transition [&>span]:group-last:hover:translate-x-0.5"
               >Contact</a>
             </li>
+            <li class="group">
+              <a
+                href="/components/marketing/sections/header"
+                class="text-sm/6 text-gray-600 hover:text-gray-900 group-last:text-slate-900 [&>span]:group-last:inline-block [&>span]:group-last:transition [&>span]:group-last:hover:translate-x-0.5"
+              >Resume</a>
+            </li>
           </ul>
-        </div>
-        <div class="flex-1 max-w-xs text-center">
-          <h3 class="text-sm/6 font-semibold text-gray-900">
-            Templates &amp; UI Kits
-          </h3>
-          <ul class="mt-4 space-y-4" />
         </div>
       </div>
     </div>
