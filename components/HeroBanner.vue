@@ -16,7 +16,7 @@ const { data } = await useAsyncData(
           <h3 class="text-lg font-semibold text-gray-500">
             Latest Article
           </h3>
-          <NuxtLink to="/">
+          <NuxtLink :to="data![0]?._path">
             <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               {{ data![0]?.title }}
             </h2>
@@ -39,7 +39,7 @@ const { data } = await useAsyncData(
             </NuxtLink>
           </div>
         </div>
-        <NuxtLink to="/">
+        <NuxtLink :to="data![0]?._path">
           <div class="relative h-80 mt-8">
             <img
               class="absolute left-0 top-0 w-[57rem] max-w-none"

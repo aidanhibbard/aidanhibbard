@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+import hljs from 'highlight.js';
+
 const route = useRoute()
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
 if (!page.value) { throw createError({ statusCode: 404, statusMessage: 'Page not found' }) }
@@ -9,11 +11,17 @@ useSeoMeta({
   description: page.value.description,
   ogDescription: page.value.description
 })
+
+onMounted(() => {
+  document.querySelectorAll('pre code').forEach((el) => {
+    hljs.highlightElement(el as HTMLElement);
+  });
+})
 </script>
 
 <template>
   <div>
-    <ArticleHero />
+    <ArticleHero :page="page!" />
     <div class="flex justify-center px-4 sm:px-6 lg:px-8 py-12">
       <AppToc :links="page?.body?.toc?.links" />
       <ContentDoc

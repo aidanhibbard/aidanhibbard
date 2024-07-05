@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <footer class="mx-auto mt-32 w-full max-w-container px-4 sm:px-6 lg:px-8">
+  <footer class="mx-auto mt-8 w-full max-w-container px-4 sm:px-6 lg:px-8">
     <h2
       id="footer-heading"
       class="sr-only"

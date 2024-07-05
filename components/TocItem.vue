@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { TocLink } from '@nuxt/content';
-
-const props = defineProps<{
+defineProps<{
   link: TocLink;
 }>();
 </script>
@@ -10,7 +9,7 @@ const props = defineProps<{
   <div :class="`pl-${link.depth * 4}`">
     <a
       :href="`#${link.id}`"
-      class="text-gray-900 hover:underline"
+      class="text-gray-900"
     >{{ link.text }}</a>
     <div v-if="link.children && link.children.length">
       <TocItem
