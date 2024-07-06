@@ -2,7 +2,7 @@
 import type { TocLink } from '@nuxt/content';
 
 const props = defineProps<{
-  links?: TocLink[];
+  links: TocLink[];
 }>();
 </script>
 

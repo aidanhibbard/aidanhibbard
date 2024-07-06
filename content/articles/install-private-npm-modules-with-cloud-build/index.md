@@ -20,12 +20,12 @@ Per the NPM docs this "will leave no trace after npm dependency installation is 
 
 (Note: mounting secrets in a dockerfile will require enabling BuildKit)
 
-::FormattedCode{type="warning"}
+<pre><code class="language-yaml code">
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'your-registry-domain', '.']
     env:
       - 'DOCKER_BUILDKIT=1'
-::
+</code></pre>
 
 So I added our needed NPM tokens to cloud secrets, and made them available to cloudbuild VIA the availableSecrets key in the cloudbuild.yaml
 
@@ -36,7 +36,6 @@ availableSecrets:
       env: 'NPM_TOKEN'
     - versionName: projects/YOUR_PROJECT_ID/secrets/NPM_TASKFORCESH_TOKEN/versions/latest
       env: 'NPM_TASKFORCESH_TOKEN'
-```
 </code></pre>
 
 Generating the .npmrc for the docker image needs to be done as a bash step before your docker build step

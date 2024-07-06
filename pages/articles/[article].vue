@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import hljs from 'highlight.js';
+import highlightJS from 'highlight.js';
 
 const route = useRoute()
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
@@ -13,23 +13,21 @@ useSeoMeta({
 })
 
 onMounted(() => {
-  document.querySelectorAll('pre code').forEach((el) => {
-    hljs.highlightElement(el as HTMLElement);
-  });
+  highlightJS.highlightAll();
 })
 </script>
 
 <template>
   <div>
     <ArticleHero :page="page!" />
-    <div class="flex justify-center px-4 sm:px-6 lg:px-8 py-12">
-      <AppToc :links="page?.body?.toc?.links" />
+    <div class="sm:flex-col md:flex-col lg:flex-row flex justify-center gap-x-8 sm:px-6 lg:px-8 py-12">
+      <AppToc :links="page?.body?.toc?.links!" />
       <ContentDoc
         :path="$route.path"
         class="w-full max-w-4xl"
       >
         <template #found>
-          <article class="prose lg:prose-xl prose-slate mx-auto">
+          <article class="prose lg:prose-xl mx-auto">
             <ContentRenderer />
           </article>
         </template>
@@ -44,4 +42,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.code {
+  border-radius: 8px;
+}
 </style>

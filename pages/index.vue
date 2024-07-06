@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from '@heroicons/vue/20/solid';
 const colorMode = useColorMode();
 </script>
 

@@ -33,7 +33,9 @@ watch(() => state.query, async () => {
       <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
           <!-- Mobile menu button-->
-          <DisclosureButton class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+          <DisclosureButton 
+            class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          >
             <span class="absolute -inset-0.5" />
             <span class="sr-only">Open main menu</span>
             <Bars3Icon
@@ -124,14 +126,14 @@ watch(() => state.query, async () => {
       </div>
     </header>
 
-    <DisclosurePanel class="sm:hidden">
-      <div class="space-y-1 px-2 pb-3 pt-2">
+    <DisclosurePanel class="sm:hidden z-[500]">
+      <div class="space-y-1 px-2 pb-3 pt-2 z-[500]">
         <DisclosureButton
           v-for="item in navigation"
           :key="item.name"
           as="a"
           :href="item.href"
-          :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'block rounded-md px-3 py-2 text-base font-medium']"
+          :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'block rounded-md px-3 py-2 text-base font-medium z-[500]']"
           :aria-current="item.current ? 'page' : undefined"
         >
           {{ item.name }}
