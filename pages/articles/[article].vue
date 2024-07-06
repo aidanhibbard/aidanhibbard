@@ -1,6 +1,4 @@
 <script setup lang='ts'>
-import highlightJS from 'highlight.js';
-
 const route = useRoute()
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
 if (!page.value) { throw createError({ statusCode: 404, statusMessage: 'Page not found' }) }
@@ -10,10 +8,6 @@ useSeoMeta({
   ogTitle: `${page.value.title}`,
   description: page.value.description,
   ogDescription: page.value.description
-})
-
-onMounted(() => {
-  highlightJS.highlightAll();
 })
 </script>
 
@@ -44,5 +38,6 @@ onMounted(() => {
 <style scoped>
 .code {
   border-radius: 8px;
+  border: 1px solid gray;
 }
 </style>
