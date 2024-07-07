@@ -4,6 +4,7 @@ desc: 'Learn how to secretly mount a .npmrc in your docker image to avoid leakin
 publishedAt: 06-17-24
 lastEditedAt: 06-17-24
 img: '/images/articles/install-private-npm-modules-with-cloud-build/carbon.png'
+tags: 'Tutorial,Docker,Google Cloud,Cloud Build,npm'
 ---
 
 ## Introduction
