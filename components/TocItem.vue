@@ -9,7 +9,7 @@ defineProps<{
   <div :class="`pl-${link.depth * 4}`">
     <a
       :href="`#${link.id}`"
-      class="text-gray-900"
+      class="text-gray-900 text-lg block h-full py-2 px-4 border-b hover:bg-gray-100 transition duration-150"
     >{{ link.text }}</a>
     <div v-if="link.children && link.children.length">
       <TocItem

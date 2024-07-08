@@ -29,21 +29,24 @@ function formatDate(dateString: string): string {
           <p class="mt-6 text-lg leading-8 text-gray-600">
             {{ page.desc }}
           </p>
-          <p class="mt-4 text-sm leading-4 text-gray-600">
-            Published {{ formatDate(page.publishedAt) }}
-          </p>
-          <p class="text-sm leading-4 text-gray-600">
-            Last edited {{ formatDate(page.lastEditedAt) }}
-          </p>
-          <div class="flex justify-between mt-4 mx-auto">
-            <NuxtLink
-              v-for="t in (page.tags as string).split(',')"
-              :key="t"
-              :to="`/articles?tag=${t}`"
-              class="block px-1 py-1 rounded-md bg-gray-300 text-gray-900 text-sm"
-            >
-              {{ t }}
-            </NuxtLink>
+          <div class="mt-4 space-y-2 text-sm leading-4 text-gray-600">
+            <p>
+              Published {{ formatDate(page.publishedAt) }}
+            </p>
+            <p>
+              Last edited {{ formatDate(page.lastEditedAt) }}
+            </p>
+            <p>
+              Tags:
+              <NuxtLink
+                v-for="(t, idx) in (page.tags as string).split(',')"
+                :key="t"
+                :to="`/articles?tag=${t.trim()}`"
+                class="text-gray-900 hover:underline"
+              >
+                {{ t.trim() }}<span v-if="idx !== (page.tags as string).split(',').length - 1">, </span>
+              </NuxtLink>
+            </p>
           </div>
         </div>
         <div class="relative h-80 mt-8">

@@ -36,8 +36,5 @@ useSeoMeta({
 </template>
 
 <style scoped>
-.code {
-  border-radius: 8px;
-  border: 1px solid gray;
-}
+
 </style>

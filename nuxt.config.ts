@@ -15,14 +15,10 @@ export default defineNuxtConfig({
   content: {
     highlight: {
       theme: {
-        // Default theme (same as single string)
-        default: 'github-light',
-        // Theme used if `html.dark`
-        dark: 'github-dark',
-        // Theme used if `html.sepia`
-        sepia: 'monokai'
-      }
-    }
+        light: 'github-dark',
+        default: 'github-dark',
+      },
+    },
   },
   // https://color-mode.nuxtjs.org/#tailwindcss
   colorMode: {
