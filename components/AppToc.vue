@@ -5,6 +5,7 @@ const props = defineProps<{
   links: TocLink[];
 }>();
 
+// https://firefox-source-docs.mozilla.org/performance/scroll-linked_effects.html
 onMounted(() => {
   document.addEventListener('scroll', () => {
     const stickyItem = document.getElementById('toc-lg')!;

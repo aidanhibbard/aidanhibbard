@@ -41,11 +41,12 @@ const { data } = await useAsyncData(
         </div>
         <NuxtLink :to="data![0]?._path">
           <div class="relative h-80 mt-8">
-            <img
+            <NuxtImg
               class="absolute left-0 top-0 w-[57rem] max-w-none"
               :src="'/' + data![0]?.img"
               alt="App screenshot"
-            >
+              format="webp"
+            />
           </div>
         </NuxtLink>
       </div>

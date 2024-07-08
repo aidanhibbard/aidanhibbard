@@ -50,11 +50,12 @@ function formatDate(dateString: string): string {
           </div>
         </div>
         <div class="relative h-80 mt-8">
-          <img
+          <NuxtImg
             class="absolute left-0 top-0 w-[57rem] max-w-none"
             :src="'/' + page.img"
             alt="App screenshot"
-          >
+            format="webp"
+          />
         </div>
       </div>
     </div>
