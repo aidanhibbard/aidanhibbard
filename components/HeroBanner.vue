@@ -43,7 +43,7 @@ const { data } = await useAsyncData(
           <div class="relative h-80 mt-8">
             <img
               class="absolute left-0 top-0 w-[57rem] max-w-none"
-              :src="data![0]?.img"
+              :src="'/' + data![0]?.img"
               alt="App screenshot"
             >
           </div>

@@ -1,13 +1,16 @@
 <script setup lang='ts'>
 const route = useRoute()
+const config = useAppConfig();
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
 if (!page.value) { throw createError({ statusCode: 404, statusMessage: 'Page not found' }) }
 
 useSeoMeta({
   title: `${page.value.title}`,
   ogTitle: `${page.value.title}`,
-  description: page.value.description,
-  ogDescription: page.value.description
+  description: page.value.desc,
+  ogDescription: page.value.desc,
+  ogUrl: `${config.baseUrl}${page.value.img}`,
+  ogImage: `${config.baseUrl}${page.value.img}`,
 })
 </script>
 

@@ -52,7 +52,7 @@ function formatDate(dateString: string): string {
         <div class="relative h-80 mt-8">
           <img
             class="absolute left-0 top-0 w-[57rem] max-w-none"
-            :src="page.img"
+            :src="'/' + page.img"
             alt="App screenshot"
           >
         </div>
