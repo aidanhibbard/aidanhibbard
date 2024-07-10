@@ -3,7 +3,13 @@ export default defineNuxtConfig({
   appConfig: {
     baseUrl: process.env.BASE_URL || '',
   },
-  modules: ['@nuxt/content', '@nuxt/image', '@nuxt/eslint', '@nuxtjs/color-mode'],
+  modules: [
+    '@nuxt/content',
+    '@nuxt/image',
+    '@nuxt/eslint',
+    '@nuxtjs/color-mode',
+    '@nuxt/ui'
+  ],
   css: ['~/assets/css/tailwind.css'],
   postcss: {
     plugins: {
@@ -21,7 +27,7 @@ export default defineNuxtConfig({
   },
   // https://color-mode.nuxtjs.org/#tailwindcss
   colorMode: {
-    classSuffix: ''
+    classSuffix: 'light',
   },
   compatibilityDate: '2024-07-05',
 });
