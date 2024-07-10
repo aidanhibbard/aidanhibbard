@@ -4,22 +4,6 @@ import type { TocLink } from '@nuxt/content';
 const props = defineProps<{
   links: TocLink[];
 }>();
-
-// https://firefox-source-docs.mozilla.org/performance/scroll-linked_effects.html
-onMounted(() => {
-  document.addEventListener('scroll', () => {
-    const stickyItem = document.getElementById('toc-lg')!;
-    const yOffset = window.scrollY;
-    const triggerPoint = 512;
-    const additionalTop = 64;
-
-    if (yOffset > triggerPoint) {
-      stickyItem.style.top = `${additionalTop}px`;
-    } else {
-      stickyItem.style.top = '0px';
-    }
-  });
-})
 </script>
 
 <template>
@@ -36,5 +20,8 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
+#toc-lg {
+  position: sticky;
+  top: 64px;
+}
 </style>

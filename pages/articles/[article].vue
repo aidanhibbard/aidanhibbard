@@ -21,7 +21,7 @@ useSeoMeta({
       <AppToc :links="page?.body?.toc?.links!" />
       <ContentDoc
         :path="$route.path"
-        class="w-full max-w-4xl"
+        class="w-full max-w-4xl px-4"
       >
         <template #found>
           <article class="prose lg:prose-xl mx-auto">
