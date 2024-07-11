@@ -17,7 +17,7 @@ useSeoMeta({
 <template>
   <div>
     <ArticleHero :page="page!" />
-    <div class="sm:flex-col md:flex-col lg:flex-row flex justify-center gap-x-8 sm:px-6 lg:px-8 py-12">
+    <div class="sm:flex-column lg:flex justify-center gap-x-8 sm:px-6 lg:px-8 py-12">
       <AppToc :links="page?.body?.toc?.links!" />
       <ContentDoc
         :path="$route.path"
