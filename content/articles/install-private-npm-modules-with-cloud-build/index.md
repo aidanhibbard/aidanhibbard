@@ -7,9 +7,7 @@ img: 'images/articles/install-private-npm-modules-with-cloud-build/index.png'
 tags: 'Tutorial,Docker,Google Cloud,Cloud Build,npm'
 ---
 
-::article-header
-## Introduction
-::
+## [Introduction]{.block .mb-6 .prose .sm:prose-md .md:prose-lg .lg:prose-xl .text-gray-900 .h-full .hover:text-green-300 .transition .duration-50 .no-underline}
 
 ::article-paragraph
 Recently I was tasked with creating a new pipelines from app repositories in GitHub to Cloud Run deployments. One of our apps used private modules not hosted in our own artifact registry (BullMQ Pro), and we needed a secure way to pull the secrets without leaking them into the docker image.
@@ -27,9 +25,7 @@ I saw many people using pipelines where they generated a .npmrc file, or added p
 Per the NPM docs this "will leave no trace after npm dependency installation is done."
 ::
 
-::article-header
-## Setup
-::
+## [Setup]{.block .mb-6 .prose .sm:prose-md .md:prose-lg .lg:prose-xl .text-gray-900 .h-full .hover:text-green-300 .transition .duration-50 .no-underline}
 
 ::article-paragraph
 (Note: mounting secrets in a dockerfile will require enabling BuildKit)
