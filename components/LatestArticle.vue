@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="overflow-hidden px-6 sm:px-16 sm:pt-16 md:pt-10 lg:flex lg:gap-x-20 lg:px-24 lg:pt-24 w-full">
+  <div class="overflow-hidden px-6 sm:px-16 sm:pt-0 lg:flex lg:gap-x-20 lg:px-24 lg:pt-24 w-full">
     <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:text-left">
       <h3 class="text-lg font-semibold text-gray-700">
         Latest Article
