@@ -7,7 +7,7 @@ const { navigation } = useNav();
 
 const state = reactive({
   query: '',
-  foundItems: [] as Pick<ParsedContent, "title" | "slug">[],
+  foundItems: [] as Pick<ParsedContent, "title" | "_path">[],
   dark: false,
 });
 
@@ -15,7 +15,7 @@ watch(() => state.query, async () => {
   if (state.query) {
     const found = await queryContent('articles')
       .where({ title: { $contains: state.query } })
-      .only(['title', 'slug'])
+      .only(['title', '_path'])
       .limit(5)
       .find();
     state.foundItems = found;
@@ -72,7 +72,6 @@ watch(() => state.query, async () => {
           </div>
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          <!-- Profile dropdown -->
           <Menu
             as="div"
             class="relative ml-3 flex space-x-4 justify-between"
@@ -93,9 +92,13 @@ watch(() => state.query, async () => {
                 <li
                   v-for="item in state.foundItems"
                   :key="item.title"
-                  class="px-4 py-2 border-b border-gray-200 hover:bg-gray-100"
                 >
-                  {{ item.title }}
+                  <NuxtLink
+                    :to="item._path"
+                    class="block h-full px-4 py-2 border-b border-gray-200 hover:bg-gray-100 bg-none"
+                  >
+                    {{ item.title }}
+                  </NuxtLink>
                 </li>
               </ul>
             </div>
