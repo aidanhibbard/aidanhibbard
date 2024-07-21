@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="min-h-full">
+  <div class="h-full antialiased">
     <MaintnenceBanner />
     <NavBar />
     <main>

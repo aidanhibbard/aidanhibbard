@@ -6,7 +6,7 @@ defineProps<{
 </script>
 
 <template>
-  <div :class="`pl-${link.depth * 4}`">
+  <div :class="`pl-${link.depth * 12}`">
     <a
       :href="`#${link.id}`"
       class="text-gray-900 text-lg block h-full py-2 px-4 border-b hover:bg-gray-100 transition duration-150"

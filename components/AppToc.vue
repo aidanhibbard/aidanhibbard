@@ -9,12 +9,13 @@ const props = defineProps<{
 <template>
   <div
     id="toc-lg"
-    class="sticky top-0 h-min"
+    class="sticky top-0 h-min bg-white"
   >
     <TocItem
       v-for="link in props.links"
       :key="link.id"
       :link="link"
+      class="invisible md:visible"
     />
   </div>
 </template>
