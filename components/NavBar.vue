@@ -127,7 +127,7 @@ watch(() => state.query, async () => {
     </header>
 
     <DisclosurePanel class="sm:hidden z-[500]">
-      <div class="space-y-1 px-2 pb-3 pt-2 z-[500]">
+      <div class="space-y-1 px-2 pb-3 pt-2 z-[500] border-t">
         <DisclosureButton
           v-for="item in navigation"
           :key="item.name"
