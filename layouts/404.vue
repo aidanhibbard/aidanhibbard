@@ -29,10 +29,12 @@ useHead({
           >
             Go back home
           </NuxtLink>
-          <a
-            href="#"
+          <NuxtLink
+            href="https://github.com/aidanHibbard/aidanhibbard/issues"
             class="text-sm font-semibold text-gray-900"
-          >Open an issue on GitHub <span aria-hidden="true">&rarr;</span></a>
+          >
+            Open an issue on GitHub <span aria-hidden="true">&rarr;</span>
+          </NuxtLink>
         </div>
       </div>
     </main>
