@@ -21,7 +21,9 @@ import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon, ClockIcon } from '
         <NuxtImg
           class="w-[48rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
           src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
-          alt=""
+          alt="Application Image"
+          loading="lazy"
+          preset="cover"
         />
       </div>
       <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
@@ -71,7 +73,7 @@ import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon, ClockIcon } from '
               </li>
             </ul>
             <p class="mt-8">
-              test
+              With years expierence working across tech stacks, I'm always looking for a new challenge.
             </p>
             <h2 class="mt-16 text-2xl font-bold tracking-tight text-gray-900">
               No code? No problem.
