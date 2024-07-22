@@ -1,4 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useHead({
+  title: 'Aidan Hibbard',
+  titleTemplate: '%s %separator %siteName',
+  templateParams: { separator: '|', siteName: 'Error' },
+  meta: [
+    { name: 'description', content: 'Blog, projects, and more.' },
+  ],
+  htmlAttrs: {
+    lang: 'en'
+  }
+})
+</script>
 
 <template>
   <div>

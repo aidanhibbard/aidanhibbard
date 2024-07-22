@@ -79,7 +79,7 @@ import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon, ClockIcon } from '
               No code? No problem.
             </h2>
             <p class="mt-6">
-              Comapnies nowadays want to launch faster than ever before retool, webflow, and wordpress allow for a MVP to be spunup almost instantly. 
+              Comapnies nowadays want to launch faster than ever before, with retool, webflow, and wordpress allow for a MVP to be spunup almost instantly. 
               However, long running queries, and bloated wordpress projects are all to prevelant. 
               Always happy to help reduce page speed, and lower server response times.
             </p>
