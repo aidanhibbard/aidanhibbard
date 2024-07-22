@@ -23,7 +23,6 @@ import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon, ClockIcon } from '
           src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
           alt="Application Image"
           loading="lazy"
-          preset="cover"
         />
       </div>
       <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
