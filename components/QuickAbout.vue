@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from '@heroicons/vue/20/solid';
+import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon } from '@heroicons/vue/20/solid';
 </script>
 
 <template>
@@ -30,28 +30,28 @@ import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from '@heroicons/vue/20/
             <p>Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id.</p>
             <ul class="mt-8 space-y-8 text-gray-600">
               <li class="flex gap-x-3">
-                <CloudArrowUpIcon
+                <SparklesIcon
                   class="mt-1 h-5 w-5 flex-none text-indigo-600"
                   aria-hidden="true"
                 />
                 <span><strong class="font-semibold text-gray-900">Beautiful UIs.</strong> Working with designers, and analysts to build user interfaces with the latest in design, such as Tailwind, Vuetify, Styled Components, and more.</span>
               </li>
               <li class="flex gap-x-3">
-                <LockClosedIcon
+                <ServerIcon
                   class="mt-1 h-5 w-5 flex-none text-indigo-600"
                   aria-hidden="true"
                 />
                 <span><strong class="font-semibold text-gray-900">Scalable Backend Solutions.</strong> Using SSO, Pusher, background processing, Pub/Sub, and more to build apps that are meant to last.</span>
               </li>
               <li class="flex gap-x-3">
-                <ServerIcon
+                <WrenchIcon
                   class="mt-1 h-5 w-5 flex-none text-indigo-600"
                   aria-hidden="true"
                 />
                 <span><strong class="font-semibold text-gray-900">Tooling and DevOps.</strong> Developing CLIs to standardize team processes. Deploying applications with Kubernetes, Cloud Run, App Engine, and platforms such as Vercel. Using Docker and creating CI/CD pipelines with GitHub Actions, Google Cloud Build, CodeFresh, and more.</span>
               </li>
               <li class="flex gap-x-3">
-                <ServerIcon
+                <ArrowPathIcon
                   class="mt-1 h-5 w-5 flex-none text-indigo-600"
                   aria-hidden="true"
                 />
