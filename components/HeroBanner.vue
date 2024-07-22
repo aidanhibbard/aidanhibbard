@@ -25,8 +25,7 @@ const { data } = await useAsyncData(
 
 <style scoped>
 #gradient {
-  background: linear-gradient(225deg, #82cdf6 0%, #e3baa5 100%),
-    url('/images/gradient.png') no-repeat center center;
+  background: linear-gradient(225deg, #82cdf6 0%, #e3baa5 100%);
   background-size: cover;
 }
 </style>
