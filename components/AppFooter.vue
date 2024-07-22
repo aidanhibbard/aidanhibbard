@@ -1,5 +1,17 @@
-<script setup>
-
+<script setup lang="ts">
+const sections = [
+  { title: 'Social Links', links: [
+    { title: 'LinkedIn', href: 'https://www.linkedin.com/in/aidan-hibbard/' },
+    { title: 'GitHub', href: 'https://github.com/AidanHibbard' },
+    { title: 'CodePen', href: 'https://codepen.io/your-work' },
+    { title: 'Instagram', href: 'https://www.instagram.com/aidan_hibbard/' }
+  ]},
+  { title: 'Personal Info', links: [
+    { title: 'About', href: '/about' },
+    { title: 'Contact', href: '/contact' },
+    { title: 'Resume', href: '/resume' },
+  ]},
+];
 </script>
 
 <template>
@@ -13,53 +25,26 @@
     <div class="mb-16">
       <hr class="mt-10 border-t border-zinc-100">
       <div class="mt-10 flex justify-around">
-        <div class="flex-1 max-w-xs text-center">
+        <div
+          v-for="s in sections"
+          .key="s.title"
+          class="flex-1 max-w-xs text-center"
+        >
           <h3 class="text-sm/6 font-semibold text-gray-900">
-            Social Links
+            {{ s.title }}
           </h3>
           <ul class="mt-4 space-y-4">
-            <li class="group">
-              <a
-                href="/components/marketing/sections/heroes"
-                class="text-sm/6 text-gray-600 hover:text-gray-900 group-last:text-slate-900 [&>span]:group-last:inline-block [&>span]:group-last:transition [&>span]:group-last:hover:translate-x-0.5"
-              >LinkedIn</a>
-            </li>
-            <li class="group">
-              <a
-                href="/components/marketing/sections/feature-sections"
-                class="text-sm/6 text-gray-600 hover:text-gray-900 group-last:text-slate-900 [&>span]:group-last:inline-block [&>span]:group-last:transition [&>span]:group-last:hover:translate-x-0.5"
-              >GitHub</a>
-            </li>
-            <li class="group">
-              <a
-                href="/components/marketing/sections/pricing"
-                class="text-sm/6 text-gray-600 hover:text-gray-900 group-last:text-slate-900 [&>span]:group-last:inline-block [&>span]:group-last:transition [&>span]:group-last:hover:translate-x-0.5"
-              >CodePen</a>
-            </li>
-            <li class="group">
-              <a
-                href="/components/marketing/sections/header"
-                class="text-sm/6 text-gray-600 hover:text-gray-900 group-last:text-slate-900 [&>span]:group-last:inline-block [&>span]:group-last:transition [&>span]:group-last:hover:translate-x-0.5"
-              >Instagram</a>
-            </li>
-          </ul>
-        </div>
-        <div class="flex-1 max-w-xs text-center">
-          <h3 class="text-sm/6 font-semibold text-gray-900">
-            About
-          </h3>
-          <ul class="mt-4 space-y-4">
-            <li class="group">
-              <a
-                href="/components/marketing/sections/header"
-                class="text-sm/6 text-gray-600 hover:text-gray-900 group-last:text-slate-900 [&>span]:group-last:inline-block [&>span]:group-last:transition [&>span]:group-last:hover:translate-x-0.5"
-              >Contact</a>
-            </li>
-            <li class="group">
-              <a
-                href="/components/marketing/sections/header"
-                class="text-sm/6 text-gray-600 hover:text-gray-900 group-last:text-slate-900 [&>span]:group-last:inline-block [&>span]:group-last:transition [&>span]:group-last:hover:translate-x-0.5"
-              >Resume</a>
+            <li
+              v-for="l in s.links"
+              .key="l.title"
+              class="group"
+            >
+              <NuxtLink
+                :to="l.href"
+                class="text-sm/6 text-gray-600 hover:text-gray-900"
+              >
+                {{ l.title }}
+              </NuxtLink>
             </li>
           </ul>
         </div>

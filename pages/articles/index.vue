@@ -120,7 +120,7 @@ const selected = ref(people[3])
               <ListboxOption
                 v-for="person in people"
                 :key="person.id"
-                v-slot="{ active, selected }"
+                v-slot="{ active }"
                 as="template"
                 :value="person"
               >
