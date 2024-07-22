@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/eslint',
     '@nuxtjs/color-mode',
-    '@nuxt/ui'
+    '@nuxt/ui',
+    '@nuxtjs/robots'
   ],
   css: ['~/assets/css/tailwind.css'],
   postcss: {
