@@ -4,8 +4,11 @@ useHead({
   titleTemplate: '%s %separator %siteName',
   templateParams: { separator: '|', siteName: 'Aidan Hibbard' },
   meta: [
-  { name: 'description', content: 'Blog, projects, and more.' }
-  ]
+    { name: 'description', content: 'Blog, projects, and more.' },
+  ],
+  htmlAttrs: {
+    lang: 'en'
+  }
 })
 </script>
 
