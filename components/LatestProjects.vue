@@ -30,7 +30,7 @@ const { data } = await useAsyncData(
             <div class="flex items-center gap-x-4 text-xs">
               <span class="text-gray-500">Started <time datetime="2020-03-16">Mar 16, 2020</time></span>
               <NuxtLink
-                v-for="t in p.tags"
+                v-for="t in p.tags.slice(0, 2)"
                 :key="t"
                 :to="`/projects?tag=${t.toLowerCase()}`"
                 class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
