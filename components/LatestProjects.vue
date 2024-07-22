@@ -9,7 +9,7 @@ const { data } = await useAsyncData(
 
 <template>
   <div class="sm:mt-0 md:mt-2">
-    <div class="pt-8 pb-16">
+    <div class="pt-8 sm:pb-0 md:pb-4 lg:pb-16">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:mx-0">
           <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">

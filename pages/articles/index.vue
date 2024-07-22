@@ -1,82 +1,32 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+const { data } = await useAsyncData(
+  'articles',
+  () => queryContent('articles')
+    .sort({ publishedAt: -1 })
+    .limit(15)
+    .find()
+)
 
 const state = reactive({
   query: '',
+  perPage: 15,
+  page: 1,
+  foundContent: data,
 });
-const people = [
 
-
-  {
-    id: 1,
-    name: 'Wade Cooper',
-    avatar:
-      'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 2,
-    name: 'Arlene Mccoy',
-    avatar:
-      'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 3,
-    name: 'Devon Webb',
-    avatar:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80',
-  },
-  {
-    id: 4,
-    name: 'Tom Cook',
-    avatar:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 5,
-    name: 'Tanya Fox',
-    avatar:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 6,
-    name: 'Hellen Schmidt',
-    avatar:
-      'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 7,
-    name: 'Caroline Schultz',
-    avatar:
-      'https://images.unsplash.com/photo-1568409938619-12e139227838?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 8,
-    name: 'Mason Heaney',
-    avatar:
-      'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 9,
-    name: 'Claudie Smitham',
-    avatar:
-      'https://images.unsplash.com/photo-1584486520270-19eca1efcce5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  {
-    id: 10,
-    name: 'Emil Schaefer',
-    avatar:
-      'https://images.unsplash.com/photo-1561505457-3bcad021f8ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-]
-
-const selected = ref(people[3])
+watch(() => state.query, async () => {
+  if (state.query) {
+    const found = await queryContent('articles')
+      .where({ title: { $icontains: state.query } })
+      .limit(state.perPage)
+      .find();
+    state.foundContent = found;
+  }
+});
 </script>
 
 <template>
   <div class="max-w-4xl mx-auto p-4">
-    <!-- Search Bar -->
     <div class="mb-4">
       <input
         v-model="state.query"
@@ -85,71 +35,39 @@ const selected = ref(people[3])
         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900"
       >
     </div>
-    <div class="flex">
-      <Listbox
-        v-model="selected"
-        as="div"
+    <ul class="flex flex-col py-8">
+      <li
+        v-for="a in data"
+        :key="a.title"
       >
-        <ListboxLabel class="block text-sm font-medium leading-6 text-gray-900">
-          Tags
-        </ListboxLabel>
-        <div class="relative mt-2">
-          <ListboxButton class="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
-            <span class="flex items-center">
-              <img
-                :src="selected.avatar"
-                alt=""
-                class="h-5 w-5 flex-shrink-0 rounded-full"
-              >
-              <span class="ml-3 block truncate">{{ selected.name }}</span>
-            </span>
-            <span class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-              <ChevronUpDownIcon
-                class="h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
-            </span>
-          </ListboxButton>
-
-          <transition
-            leave-active-class="transition ease-in duration-100"
-            leave-from-class="opacity-100"
-            leave-to-class="opacity-0"
-          >
-            <ListboxOptions class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              <ListboxOption
-                v-for="person in people"
-                :key="person.id"
-                v-slot="{ active }"
-                as="template"
-                :value="person"
-              >
-                <li :class="[active ? 'bg-indigo-600 text-white' : 'text-gray-900', 'relative cursor-default select-none py-2 pl-3 pr-9']">
-                  <div class="flex items-center">
-                    <img
-                      :src="person.avatar"
-                      alt=""
-                      class="h-5 w-5 flex-shrink-0 rounded-full"
-                    >
-                    <span :class="[selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate']">{{ person.name }}</span>
-                  </div>
-
-                  <span
-                    v-if="selected"
-                    :class="[active ? 'text-white' : 'text-indigo-600', 'absolute inset-y-0 right-0 flex items-center pr-4']"
-                  >
-                    <CheckIcon
-                      class="h-5 w-5"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </li>
-              </ListboxOption>
-            </ListboxOptions>
-          </transition>
-        </div>
-      </Listbox>
-    </div>
+        <article
+          class="flex max-w-xl flex-col items-start justify-between py-4"
+        >
+          <div class="flex items-center gap-x-4 text-xs">
+            <span class="text-gray-500">Started <time datetime="2020-03-16">Mar 16, 2020</time></span>
+            <NuxtLink
+              v-for="t in a.tags.slice(0, 3)"
+              :key="t"
+              :to="`/projects?tag=${t.toLowerCase()}`"
+              class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
+            >
+              {{ t }}
+            </NuxtLink>
+          </div>
+          <div class="group relative">
+            <h3 class="mt-3 text-xl font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+              <a href="#">
+                <span class="absolute inset-0" />
+                {{ a.title }}
+              </a>
+            </h3>
+            <p class="mt-5 line-clamp-3 text-md leading-6 text-gray-600">
+              {{ a.desc }}
+            </p>
+          </div>
+        </article>
+      </li>
+    </ul>
     <AppPagination />
   </div>
 </template>

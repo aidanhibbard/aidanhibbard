@@ -24,7 +24,7 @@ const sections = [
     </h2>
     <div class="mb-16">
       <hr class="mt-10 border-t border-zinc-100">
-      <div class="mt-10 flex justify-around">
+      <div class="mt-10 flex sm:justify-center md:justify-evenly sm:flex-col md:flex-row">
         <div
           v-for="s in sections"
           .key="s.title"
