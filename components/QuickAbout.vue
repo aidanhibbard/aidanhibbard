@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon } from '@heroicons/vue/20/solid';
+import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon, ClockIcon } from '@heroicons/vue/20/solid';
 </script>
 
 <template>
@@ -9,7 +9,7 @@ import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon } from '@heroicons/
         <div class="lg:pr-4">
           <div class="lg:max-w-lg">
             <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Building services to meet user needs.
+              Building services to meet user needs. 
             </h1>
             <p class="mt-6 text-xl leading-8 text-gray-700">
               Whether it's public facing, or internal, software shouldn't feel difficult to use.
@@ -27,7 +27,12 @@ import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon } from '@heroicons/
       <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
         <div class="lg:pr-4">
           <div class="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
-            <p>Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id.</p>
+            <p>
+              Being a full-stack developer means crafting the user expierence from start to finish. However, launching a project isn't only writing lines of code. 
+              Setting up Jira, Slack, and onboarding users in workspaces can all be part of the technical process. 
+              When launching a new project, new developers are always a top consideration after a MVP. 
+              Setting up deployment procedures, disaster recovery processes, and standards are all requirements for a smoothly running team. 
+            </p>
             <ul class="mt-8 space-y-8 text-gray-600">
               <li class="flex gap-x-3">
                 <SparklesIcon
@@ -41,14 +46,14 @@ import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon } from '@heroicons/
                   class="mt-1 h-5 w-5 flex-none text-indigo-600"
                   aria-hidden="true"
                 />
-                <span><strong class="font-semibold text-gray-900">Scalable Backend Solutions.</strong> Using SSO, Pusher, background processing, Pub/Sub, and more to build apps that are meant to last.</span>
+                <span><strong class="font-semibold text-gray-900">Scalable Backend Solutions.</strong> Using SSO, Pusher, background processing, Kubernetes, and more to handle production workloads.</span>
               </li>
               <li class="flex gap-x-3">
                 <WrenchIcon
                   class="mt-1 h-5 w-5 flex-none text-indigo-600"
                   aria-hidden="true"
                 />
-                <span><strong class="font-semibold text-gray-900">Tooling and DevOps.</strong> Developing CLIs to standardize team processes. Deploying applications with Kubernetes, Cloud Run, App Engine, and platforms such as Vercel. Using Docker and creating CI/CD pipelines with GitHub Actions, Google Cloud Build, CodeFresh, and more.</span>
+                <span><strong class="font-semibold text-gray-900">Tooling and DevOps.</strong> Developing CLIs to standardize team processes. Deploying applications with Cloud Run, App Engine, and platforms such as Vercel. Using Docker and creating CI/CD pipelines with GitHub Actions, Google Cloud Build, CodeFresh, and more.</span>
               </li>
               <li class="flex gap-x-3">
                 <ArrowPathIcon
@@ -57,15 +62,24 @@ import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon } from '@heroicons/
                 />
                 <span><strong class="font-semibold text-gray-900">Battle Tested.</strong> Ensuring bugs stay squashed is crucial, using crossbrowser testing with Selenium, and BrowserStack keeps regressions minimal. Maintaining a unit test suite for services with Vitest, RSpec, and more ensures new features don't break the old ones.</span>
               </li>
+              <li class="flex gap-x-3">
+                <ClockIcon
+                  class="mt-1 h-5 w-5 flex-none text-indigo-600"
+                  aria-hidden="true"
+                />
+                <span><strong class="font-semibold text-gray-900">Legacy Code.</strong> Still have frontend apps using JavaScript? Running up security alerts on GitHub? Upgrading apps, their spec suites, and infastructure dependencies are familiarities.</span>
+              </li>
             </ul>
             <p class="mt-8">
-              Et vitae blandit facilisi magna lacus commodo. Vitae sapien duis odio id et. Id blandit molestie auctor fermentum dignissim. Lacus diam tincidunt ac cursus in vel. Mauris varius vulputate et ultrices hac adipiscing egestas. Iaculis convallis ac tempor et ut. Ac lorem vel integer orci.
+              test
             </p>
             <h2 class="mt-16 text-2xl font-bold tracking-tight text-gray-900">
-              No server? No problem.
+              No code? No problem.
             </h2>
             <p class="mt-6">
-              Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam consequat in. Convallis arcu ipsum urna nibh. Pharetra, euismod vitae interdum mauris enim, consequat vulputate nibh. Maecenas pellentesque id sed tellus mauris, ultrices mauris. Tincidunt enim cursus ridiculus mi. Pellentesque nam sed nullam sed diam turpis ipsum eu a sed convallis diam.
+              Comapnies nowadays want to launch faster than ever before retool, webflow, and wordpress allow for a MVP to be spunup almost instantly. 
+              However, long running queries, and bloated wordpress projects are all to prevelant. 
+              Always happy to help reduce page speed, and lower server response times.
             </p>
           </div>
         </div>
