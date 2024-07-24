@@ -27,7 +27,7 @@ watch(() => state.query, async () => {
   <Disclosure
     v-slot="{ open }"
     as="nav"
-    class="sticky top-0 bg-white z-[100] border-b"
+    class="sticky top-0 z-[100] border-b"
   >
     <header class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
@@ -117,6 +117,7 @@ watch(() => state.query, async () => {
               v-model="state.dark"
               :class="state.dark ? 'bg-white' : 'bg-gray-900'"
               class="relative inline-flex h-6 w-11 items-center rounded-full mt-1 lg:mt-1.5 outline outline-1"
+              @click="$colorMode.preference = state.dark ? 'dark' : 'light'"
             >
               <span class="sr-only">dark mode</span>
               <span

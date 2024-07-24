@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   },
   // https://color-mode.nuxtjs.org/#tailwindcss
   colorMode: {
-    classSuffix: 'light',
+    classSuffix: '',
   },
   compatibilityDate: '2024-07-05',
 });
