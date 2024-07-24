@@ -27,7 +27,7 @@ watch(() => state.query, async () => {
   <Disclosure
     v-slot="{ open }"
     as="nav"
-    class="sticky top-0 z-[100] border-b"
+    class="sticky top-0 z-[100] border-b dark:bg-gray-800 bg-white"
   >
     <header class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
@@ -65,7 +65,7 @@ watch(() => state.query, async () => {
                 v-for="item in navigation"
                 :key="item.name"
                 :href="item.href"
-                :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-900 hover:bg-gray-900 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium']"
+                :class="['rounded-md px-3 py-2 text-sm font-medium']"
                 :aria-current="item.current ? 'page' : undefined"
               >{{ item.name }}</a>
             </div>
@@ -87,7 +87,7 @@ watch(() => state.query, async () => {
               >
               <ul
                 v-if="state.foundItems.length > 0 && state.query"
-                class="mt-4 bg-white shadow-lg rounded-md absolute bottom-[-1] w-full"
+                class="mt-4 shadow-lg rounded-md absolute bottom-[-1] w-full"
               >
                 <li
                   v-for="item in state.foundItems"

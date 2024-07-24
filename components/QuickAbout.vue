@@ -8,10 +8,10 @@ import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon, ClockIcon } from '
       <div class="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
         <div class="lg:pr-4">
           <div class="lg:max-w-lg">
-            <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h1 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
               Building services to meet user needs. 
             </h1>
-            <p class="mt-6 text-xl leading-8 text-gray-700">
+            <p class="mt-6 text-xl leading-8">
               Whether it's public facing, or internal, software shouldn't feel difficult to use.
             </p>
           </div>
@@ -28,54 +28,54 @@ import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon, ClockIcon } from '
       </div>
       <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
         <div class="lg:pr-4">
-          <div class="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
+          <div class="max-w-xl text-base leading-7 lg:max-w-lg">
             <p>
               Being a full-stack developer means crafting the user expierence from start to finish. However, launching a project isn't only writing lines of code. 
               Setting up Jira, Slack, and onboarding users in workspaces can all be part of the technical process. 
               When launching a new project, new developers are always a top consideration after a MVP. 
               Setting up deployment procedures, disaster recovery processes, and standards are all requirements for a smoothly running team. 
             </p>
-            <ul class="mt-8 space-y-8 text-gray-600">
+            <ul class="mt-8 space-y-8">
               <li class="flex gap-x-3">
                 <SparklesIcon
                   class="mt-1 h-5 w-5 flex-none text-indigo-600"
                   aria-hidden="true"
                 />
-                <span><strong class="font-semibold text-gray-900">Beautiful UIs.</strong> Working with designers, and analysts to build user interfaces with the latest in design, such as Tailwind, Vuetify, Styled Components, and more.</span>
+                <span><strong class="font-semibold">Beautiful UIs.</strong> Working with designers, and analysts to build user interfaces with the latest in design, such as Tailwind, Vuetify, Styled Components, and more.</span>
               </li>
               <li class="flex gap-x-3">
                 <ServerIcon
                   class="mt-1 h-5 w-5 flex-none text-indigo-600"
                   aria-hidden="true"
                 />
-                <span><strong class="font-semibold text-gray-900">Scalable Backend Solutions.</strong> Using SSO, Pusher, background processing, Kubernetes, and more to handle production workloads.</span>
+                <span><strong class="font-semibold">Scalable Backend Solutions.</strong> Using SSO, Pusher, background processing, Kubernetes, and more to handle production workloads.</span>
               </li>
               <li class="flex gap-x-3">
                 <WrenchIcon
                   class="mt-1 h-5 w-5 flex-none text-indigo-600"
                   aria-hidden="true"
                 />
-                <span><strong class="font-semibold text-gray-900">Tooling and DevOps.</strong> Developing CLIs to standardize team processes. Deploying applications with Cloud Run, App Engine, and platforms such as Vercel. Using Docker and creating CI/CD pipelines with GitHub Actions, Google Cloud Build, CodeFresh, and more.</span>
+                <span><strong class="font-semibold">Tooling and DevOps.</strong> Developing CLIs to standardize team processes. Deploying applications with Cloud Run, App Engine, and platforms such as Vercel. Using Docker and creating CI/CD pipelines with GitHub Actions, Google Cloud Build, CodeFresh, and more.</span>
               </li>
               <li class="flex gap-x-3">
                 <ArrowPathIcon
                   class="mt-1 h-5 w-5 flex-none text-indigo-600"
                   aria-hidden="true"
                 />
-                <span><strong class="font-semibold text-gray-900">Battle Tested.</strong> Ensuring bugs stay squashed is crucial, using crossbrowser testing with Selenium, and BrowserStack keeps regressions minimal. Maintaining a unit test suite for services with Vitest, RSpec, and more ensures new features don't break the old ones.</span>
+                <span><strong class="font-semibold">Battle Tested.</strong> Ensuring bugs stay squashed is crucial, using crossbrowser testing with Selenium, and BrowserStack keeps regressions minimal. Maintaining a unit test suite for services with Vitest, RSpec, and more ensures new features don't break the old ones.</span>
               </li>
               <li class="flex gap-x-3">
                 <ClockIcon
                   class="mt-1 h-5 w-5 flex-none text-indigo-600"
                   aria-hidden="true"
                 />
-                <span><strong class="font-semibold text-gray-900">Legacy Code.</strong> Still have frontend apps using JavaScript? Running up security alerts on GitHub? Upgrading apps, their spec suites, and infastructure dependencies are familiarities.</span>
+                <span><strong class="font-semibold">Legacy Code.</strong> Still have frontend apps using JavaScript? Running up security alerts on GitHub? Upgrading apps, their spec suites, and infastructure dependencies are familiarities.</span>
               </li>
             </ul>
             <p class="mt-8">
               With years expierence working across tech stacks, I'm always looking for a new challenge.
             </p>
-            <h2 class="mt-16 text-2xl font-bold tracking-tight text-gray-900">
+            <h2 class="mt-16 text-2xl font-bold tracking-tight">
               No code? No problem.
             </h2>
             <p class="mt-6">

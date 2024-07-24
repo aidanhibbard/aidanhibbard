@@ -30,7 +30,7 @@ const sections = [
           .key="s.title"
           class="flex-1 max-w-xs text-center"
         >
-          <h3 class="text-sm/6 font-semibold text-gray-900">
+          <h3 class="text-sm/6 font-semibold ">
             {{ s.title }}
           </h3>
           <ul class="mt-4 space-y-4">
@@ -41,7 +41,7 @@ const sections = [
             >
               <NuxtLink
                 :to="l.href"
-                class="text-sm/6 text-gray-600 hover:text-gray-900"
+                class="text-sm/6 text-gray-600 hover:"
               >
                 {{ l.title }}
               </NuxtLink>

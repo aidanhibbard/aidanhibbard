@@ -39,12 +39,12 @@ function formatDate(dateString: string): string {
             <p>
               Tags:
               <NuxtLink
-                v-for="(t, idx) in (page.tags as string).split(',')"
+                v-for="(t, idx) in page.tags"
                 :key="t"
                 :to="`/articles?tag=${t.trim()}`"
                 class="text-gray-900 hover:underline"
               >
-                {{ t.trim() }}<span v-if="idx !== (page.tags as string).split(',').length - 1">, </span>
+                {{ t.trim() }}<span v-if="idx !== page.tags.length - 1">, </span>
               </NuxtLink>
             </p>
           </div>

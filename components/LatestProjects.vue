@@ -12,10 +12,10 @@ const { data } = await useAsyncData(
     <div class="pt-8 sm:pb-0 md:pb-4 lg:pb-16">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:mx-0">
-          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
             What I'm working on
           </h2>
-          <p class="mt-2 text-lg leading-8 text-gray-600">
+          <p class="mt-2 text-lg leading-8">
             <NuxtLink to="/projects">
               Browse all projects <span aria-hidden="true">→</span>
             </NuxtLink>
@@ -28,7 +28,7 @@ const { data } = await useAsyncData(
             class="flex max-w-xl flex-col items-start justify-between"
           >
             <div class="flex items-center gap-x-4 text-xs">
-              <span class="text-gray-500">Started <time datetime="2020-03-16">Mar 16, 2020</time></span>
+              <span class="text-sm">Started <time datetime="2020-03-16">Mar 16, 2020</time></span>
               <NuxtLink
                 v-for="t in p.tags.slice(0, 2)"
                 :key="t"
@@ -39,7 +39,7 @@ const { data } = await useAsyncData(
               </NuxtLink>
             </div>
             <div class="group relative">
-              <h3 class="mt-3 text-xl font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+              <h3 class="mt-3 text-xl font-semibold leading-6">
                 <a href="#">
                   <span class="absolute inset-0" />
                   {{ p.title }}
