@@ -15,7 +15,7 @@ const sections = [
 </script>
 
 <template>
-  <footer class="mx-auto mt-8 w-full max-w-container px-4 sm:px-6 lg:px-8">
+  <footer class="mx-auto mt-8 w-full max-w-container">
     <h2
       id="footer-heading"
       class="sr-only"
@@ -41,7 +41,7 @@ const sections = [
             >
               <NuxtLink
                 :to="l.href"
-                class="text-sm/6 text-gray-600 hover:"
+                class="text-sm/6"
               >
                 {{ l.title }}
               </NuxtLink>
@@ -50,14 +50,18 @@ const sections = [
         </div>
       </div>
     </div>
-    <div class="items-center flex flex-col md:flex-row justify-around gap-4 border-t border-b border-gray-100 py-6">
-      <p class="text-sm/6 text-slate-600 max-md:text-center">
+    <div class="items-center flex flex-col md:flex-row justify-around gap-4 border-t border-gray-100 py-6">
+      <p class="text-sm/6 max-md:text-center">
         © 2024 Aidan Hibbard. All rights reserved.
       </p>
-      <div class="flex items-center justify-center space-x-4 text-sm/6 font-semibold text-slate-900 md:justify-end">
-        <a href="/privacy-policy">Contact</a>
+      <div class="flex items-center justify-center space-x-4 text-sm/6 font-semibold md:justify-end">
+        <NuxtLink href="/privacy-policy">
+          Contact
+        </NuxtLink>
         <div class="h-4 w-px bg-slate-200" />
-        <a href="/changelog">GitHub</a>
+        <NuxtLink href="/changelog">
+          GitHub
+        </NuxtLink>
       </div>
     </div>
   </footer>
