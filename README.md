@@ -15,16 +15,13 @@ interface Aidan extends Person {
     'TypeScript',
     'Ruby',
     'Java',
-    'PHP',
   ];
   frameworks: [
     'Angular',
     'Nuxt',
     'Next',
     'Express',
-    'H3',
     'Rails',
-    'Laravel'
   ];
   processors: [
     'BullMQ',
