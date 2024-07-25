@@ -29,7 +29,8 @@ interface Aidan extends Person {
   ];
   platforms: [
     'Google Cloud',
-    'Vercel'
+    'Vercel',
+    'Digital Ocean'
   ];
 }
 ```
