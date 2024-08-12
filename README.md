@@ -30,7 +30,9 @@ interface Aidan extends Person {
   platforms: [
     'Google Cloud',
     'Vercel',
-    'Digital Ocean'
+    'Digital Ocean',
+    'Cloudflare',
+    'Firebase',
   ];
 }
 ```
