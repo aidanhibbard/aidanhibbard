@@ -1,6 +1,6 @@
 <h1> Hi, I'm Aidan</h1>
 <p>
-  <em>Software Developer at <a href="https://www.realpage.com/">RealPage</a>
+  <em>Senior developer at <a href="https://www.legalnature.com/">LegalNature</a>
   </em>
 </p>
 
