@@ -1,7 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   appConfig: {
-    baseUrl: process.env.BASE_URL || '',
+    baseUrl: process.env.BASE_URL ?? '',
+  },
+  runtimeConfig: {
+    public: {
+      honeyBadger: {
+        apiKey: process.env.PUBLIC_HONEY_BADGER_API_KEY ?? '',
+        environment: process.env.HONEY_BADGER_ENVIRONMENT ?? ''
+      }
+    }
   },
   modules: [
     '@nuxt/content',

@@ -4,6 +4,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, Switch } from '@he
 import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
 import type { ParsedContent } from '@nuxt/content';
 const { navigation } = useNav();
+const colorMode = useColorMode()
 
 const state = reactive({
   query: '',
@@ -14,7 +15,7 @@ const state = reactive({
 watch(() => state.query, async () => {
   if (state.query) {
     const found = await queryContent('articles')
-      .where({ title: { $contains: state.query } })
+      .where({ title: { $icontains: state.query } })
       .only(['title', '_path'])
       .limit(5)
       .find();
@@ -74,7 +75,7 @@ watch(() => state.query, async () => {
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           <Menu
             as="div"
-            class="relative ml-3 flex space-x-4 justify-between"
+            class="relative ml-3 flex space-x-4 justify-between z-50"
           >
             <div class="relative shadow-sm hidden lg:block relative">
               <input 
@@ -87,7 +88,7 @@ watch(() => state.query, async () => {
               >
               <ul
                 v-if="state.foundItems.length > 0 && state.query"
-                class="mt-4 shadow-lg rounded-md absolute bottom-[-1] w-full"
+                class="mt-4 shadow-lg absolute bottom-[-1] w-full"
               >
                 <li
                   v-for="item in state.foundItems"
@@ -95,7 +96,7 @@ watch(() => state.query, async () => {
                 >
                   <NuxtLink
                     :to="item._path"
-                    class="block h-full px-4 py-2 border-b border-gray-200 hover:bg-gray-100 bg-none"
+                    class="block h-full px-4 py-2 border-b border-gray-200 hover:bg-gray-100 bg-white"
                   >
                     {{ item.title }}
                   </NuxtLink>
@@ -117,7 +118,7 @@ watch(() => state.query, async () => {
               v-model="state.dark"
               :class="state.dark ? 'bg-white' : 'bg-gray-900'"
               class="relative inline-flex h-6 w-11 items-center rounded-full mt-1 lg:mt-1.5 outline outline-1"
-              @update:model-value="$colorMode.preference = state.dark ? 'dark' : 'light'"
+              @update:model-value="colorMode.preference = state.dark ? 'dark' : 'light'"
             >
               <span class="sr-only">dark mode</span>
               <span
@@ -146,7 +147,3 @@ watch(() => state.query, async () => {
     </DisclosurePanel>
   </Disclosure>
 </template>
-
-<style scoped>
-
-</style>

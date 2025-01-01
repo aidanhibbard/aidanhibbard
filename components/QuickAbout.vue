@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon, ClockIcon } from '@heroicons/vue/20/solid';
+import { SparklesIcon, ServerIcon, WrenchIcon, ArrowPathIcon, ClockIcon } from '@heroicons/vue/20/solid'
 </script>
 
 <template>

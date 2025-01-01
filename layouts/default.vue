@@ -15,7 +15,6 @@ useHead({
 
 <template>
   <div class="h-full antialiased">
-    <MaintnenceBanner />
     <NavBar />
     <main>
       <slot />
@@ -23,7 +22,3 @@ useHead({
     <AppFooter />
   </div>
 </template>
-
-<style scoped>
-
-</style>

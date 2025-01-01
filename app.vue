@@ -11,6 +11,6 @@
   box-sizing: border-box;
 }
 html, body, #__nuxt {
-  min-height: 100vh;
+  height: 100vh;
 }
 </style>
