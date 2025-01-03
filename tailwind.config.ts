@@ -18,6 +18,12 @@ export default {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      dropShadow: {
+        glow: [
+          "0 0px 20px rgba(77, 255, 243, 0.17)",
+          "0 0px 65px rgba(0, 255, 204, 0.2)"
+        ]
+      }
     },
   },
   plugins: [
