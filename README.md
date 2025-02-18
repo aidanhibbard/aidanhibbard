@@ -20,6 +20,7 @@ interface Aidan extends Person {
     'Angular',
     'Nuxt',
     'Next',
+    'NestJS',
     'Express',
     'Rails',
   ];
