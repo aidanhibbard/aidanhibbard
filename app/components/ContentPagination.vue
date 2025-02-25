@@ -42,7 +42,6 @@ const fetchContent = async () => {
     .select('title', 'tags', 'publishedAt', 'desc')
     .order('publishedAt', 'DESC')
     .all()
-  console.log(response)
   data.value = response
   state.loading = false
 }
