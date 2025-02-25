@@ -4,6 +4,9 @@ import { PopoverGroup } from '@headlessui/vue'
 import NavDrawer from './DrawerBar.vue'
 
 const drawer = useDrawer()
+const state = reactive({
+  query: '',
+})
 </script>
 
 <template>
@@ -14,7 +17,7 @@ const drawer = useDrawer()
         aria-label="Global"
       >
         <!-- Left Section -->
-        <div class="flex flex-1">
+        <div class="flex">
           <NuxtLink
             href="/"
             class="text-2xl text-[#76ABAE] transition-all duration-300 hover:opacity-75"
@@ -59,7 +62,10 @@ const drawer = useDrawer()
         </PopoverGroup>
 
         <!-- Search Bar (Desktop) -->
-        <SharedSearchInput class="hidden lg:flex lg:flex-1 lg:justify-end relative" />
+        <SharedSearchInput
+          v-model="state.query"
+          class="hidden lg:flex lg:flex-1 lg:justify-end relative max-w-72"
+        />
       </nav>
 
       <NavDrawer />

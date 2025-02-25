@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { MagnifyingGlassIcon, XCircleIcon } from '@heroicons/vue/24/outline'
 import type { ArticlesCollectionItem, ProjectsCollectionItem } from '@nuxt/content'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/20/solid'
 
@@ -48,10 +47,6 @@ const fetchContent = async () => {
   state.loading = false
 }
 
-const clearQuery = () => {
-  state.query = ''
-}
-
 watch(() => state.query, async () => {
   await fetchContent()
 })
@@ -71,20 +66,10 @@ onMounted(async () => {
 
 <template>
   <div class="flex flex-col mx-auto max-w-xl h-full p-4">
-    <div class="flex flex-1 justify-end relative w-full">
-      <input
-        v-model="state.query"
-        type="text"
-        class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm shadow-sm focus:ring-2 focus:ring-[#76ABAE] focus:outline-none"
-        :placeholder="`Search ${props.type}...`"
-      >
-      <MagnifyingGlassIcon class="absolute right-3 top-2.5 size-5 text-gray-400" />
-      <XCircleIcon
-        v-if="state.query"
-        class="absolute right-9 top-2.5 size-5 cursor-pointer text-gray-400 hover:text-red-500"
-        @click="clearQuery"
-      />
-    </div>
+    <SharedSearchInput
+      v-model="state.query"
+      class="w-full"
+    />
     <div v-if="state.loading">
       Loading...
     </div>
