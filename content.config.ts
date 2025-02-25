@@ -11,12 +11,12 @@ const schema = z.object({
 export default defineContentConfig({
   collections: {
     articles: defineCollection({
-      type: 'page',
+      type: 'data',
       source: 'articles/**/*.md',
       schema,
     }),
     projects: defineCollection({
-      type: 'page',
+      type: 'data',
       source: 'projects/**/*.md',
       schema,
     }),

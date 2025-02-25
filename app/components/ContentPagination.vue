@@ -30,35 +30,20 @@ const state: {
 })
 
 const data = ref<
-  Pick<ArticlesCollectionItem | ProjectsCollectionItem, 'title' | 'path' | 'description' | 'publishedAt' | 'tags'>[]
+  Pick<ArticlesCollectionItem | ProjectsCollectionItem, 'title' | 'publishedAt' | 'tags' | 'desc'>[]
   |
   null
->([
-  {
-    title: 'Test test test',
-    path: 'This is the test',
-    description: 'A post description',
-    publishedAt: '10-20-2024',
-    tags: ['test'],
-  },
-  {
-    title: 'Test test testing',
-    path: 'This is the test',
-    description: 'A post description',
-    publishedAt: '10-20-2024',
-    tags: ['test'],
-  },
-])
+>(null)
 
 const fetchContent = async () => {
   state.loading = true
   const response = await queryCollection(props.type)
-    .where('title', 'LIKE', state.query)
     .limit(state.limit)
     .skip(state.page * state.limit)
-    .select('path', 'title', 'description', 'tags', 'publishedAt')
+    .select('title', 'tags', 'publishedAt', 'desc')
     .order('publishedAt', 'DESC')
     .all()
+  console.log(response)
   data.value = response
   state.loading = false
 }
@@ -112,16 +97,29 @@ onMounted(async () => {
         :key="d.title"
         class="flex justify-between gap-x-6 py-5"
       >
-        <div class="flex min-w-0 gap-x-4">
+        <NuxtLink
+          to="/"
+          class="flex min-w-0 gap-x-4 w-full h-full"
+        >
           <div class="min-w-0 flex-auto">
             <p class="text-sm/6 font-semibold text-gray-900">
               {{ d.title }}
             </p>
-            <p class="mt-1 truncate text-xs/5 text-gray-500">
-              {{ d.description }}
+            <time class="block mb-2 text-sm font-normal leading-none text-gray-600">{{ d.publishedAt }}</time>
+            <p class="mt-1 truncate text-md text-gray-500">
+              {{ d.desc }}
             </p>
+            <ul class="flex flex-wrap gap-2">
+              <li
+                v-for="t in d.tags"
+                :key="t"
+                class="px-3 py-1 text-sm bg-gray-200 rounded-full"
+              >
+                {{ t }}
+              </li>
+            </ul>
           </div>
-        </div>
+        </NuxtLink>
       </li>
     </ul>
     <div
