@@ -1,8 +1,8 @@
-<h1> Hi, I'm Aidan</h1>
-<p>
-  <em>Senior developer at <a href="https://www.legalnature.com/">LegalNature</a>
-  </em>
-</p>
+# Hi, I'm Aidan
+
+_Senior developer at_ [LegalNature](https://www.legalnature.com/)
+
+Passionate about building scalable, high-performance web applications. I love working with modern frameworks, optimizing cloud infrastructure, and crafting seamless user experiences. Working primarily with Rails, Nuxt, Vue, Tailwind and TypeScript. Developing across the stack to build MVPs 🚀
 
 [![Instagram: aidan_hibbard](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/aidan_hibbard/)
 [![Linkedin: aidanhibbard](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aidan-hibbard/)
@@ -20,9 +20,10 @@ interface Aidan extends Person {
     'Angular',
     'Nuxt',
     'Next',
-    'NestJS',
     'Express',
     'Rails',
+    'Vue',
+    'React'
   ];
   processors: [
     'BullMQ',
@@ -37,4 +38,3 @@ interface Aidan extends Person {
   ];
 }
 ```
-
