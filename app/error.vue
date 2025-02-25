@@ -1,28 +1,60 @@
 <script setup lang="ts">
+const messaging = {
+  notFound: 'Sorry that page couldn\'t be found.',
+  unexpectedError: 'An unexpected error ocurred.',
+}
 
+const error = useError()
+
+const displayMessage: ComputedRef<keyof typeof messaging> = computed(() => {
+  switch (error.value?.statusCode) {
+    case 404: {
+      return 'notFound'
+    }
+    case 500: {
+      return 'unexpectedError'
+    }
+    default: {
+      return 'unexpectedError'
+    }
+  }
+})
+
+const issueTitle = computed(() => `[${error.value?.statusCode}] ${error.value?.message}`)
+const issueBody = computed(() => `${JSON.stringify(error.value?.toJSON())}`)
+
+const handleClear = () => {
+  clearError({ redirect: '/' })
+}
 </script>
 
 <template>
   <div class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
     <div class="text-center">
       <p class="text-base font-semibold text-indigo-600">
-        404
+        {{ error?.statusCode }}
       </p>
       <h1 class="mt-4 text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">
-        Page not found
+        {{ error?.message }}
       </h1>
       <p class="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
-        Sorry, we couldn’t find the page you’re looking for.
+        {{ messaging[displayMessage] }}
       </p>
       <div class="mt-10 flex items-center justify-center gap-x-6">
-        <a
+        <button
           href="#"
           class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >Go back home</a>
-        <a
-          href="#"
+          @click="handleClear"
+        >
+          Go back home
+        </button>
+        <NuxtLink
+          :to="`https://github.com/aidanHibbard/aidanhibbard/issues/new?title=${issueTitle}&body=${issueBody}&labels=bug&assignees=aidanhibbard`"
+          external
+          target="_blank"
+          rel="noopener noreferrer"
           class="text-sm font-semibold text-gray-900"
-        >Contact support <span aria-hidden="true">&rarr;</span></a>
+        >Open an issue <span aria-hidden="true">&rarr;</span></NuxtLink>
       </div>
     </div>
   </div>
