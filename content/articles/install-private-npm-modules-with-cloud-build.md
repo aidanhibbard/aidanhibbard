@@ -41,7 +41,7 @@ Per the NPM docs this "will leave no trace after npm dependency installation is 
 
 (Note: mounting secrets in a dockerfile will require enabling BuildKit)
 
-::ContentCode{name="ci" type="yaml"}
+::ContentCode{}
 
 ```yml
   - name: 'gcr.io/cloud-builders/docker'
