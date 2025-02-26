@@ -33,7 +33,7 @@ const fileName = computed(() => (props.type ? `${props.name}.${props.type}` : pr
 
 <template>
   <div
-    class="mx-auto w-full rounded-lg border border-gray-300 flex flex-col overflow-hidden bg-white relative"
+    class="mx-auto w-full rounded-lg border border-gray-300 flex flex-col overflow-hidden bg-white relative my-4"
   >
     <button
       class="hover:text-gray-600 absolute top-2 right-2"
