@@ -5,6 +5,8 @@ defineProps<{
   content?: ArticlesCollectionItem
 }>()
 
+const commentsContainer = ref<HTMLDivElement | null>(null)
+
 const formatDate = (dateString?: string | Date) => {
   if (!dateString) return ''
   return new Intl.DateTimeFormat('en-US', {
@@ -13,6 +15,18 @@ const formatDate = (dateString?: string | Date) => {
     day: 'numeric',
   }).format(new Date(dateString))
 }
+
+onMounted(() => {
+  // Only add Utterances if we're on an article page
+  const script = document.createElement('script')
+  script.src = 'https://utteranc.es/client.js'
+  script.setAttribute('repo', 'aidanhibbard/aidanhibbard')
+  script.setAttribute('issue-term', 'og:title')
+  script.setAttribute('theme', 'github-light')
+  script.setAttribute('crossorigin', 'anonymous')
+  script.setAttribute('async', 'true')
+  commentsContainer.value?.appendChild(script)
+})
 </script>
 
 <template>
@@ -54,6 +68,11 @@ const formatDate = (dateString?: string | Date) => {
     <ContentRenderer
       class="my-4"
       :value="content.meta"
+    />
+
+    <div
+      ref="commentsContainer"
+      class="mt-8"
     />
   </article>
 </template>

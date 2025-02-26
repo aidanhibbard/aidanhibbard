@@ -17,8 +17,9 @@ const codeRef = ref<HTMLElement | null>(null)
 const copyToClipboard = async () => {
   if (codeRef.value) {
     try {
-      console.log(codeRef.value.innerText)
-      await navigator.clipboard.writeText(codeRef.value.innerText)
+      await navigator.clipboard.writeText(codeRef.value.innerText.split('\n') // Split into an array of lines
+        .filter(line => line.trim() !== '') // Remove empty lines
+        .join('\n'))
       state.copyMsg = 'Copied to clipboard!'
     }
     catch {
