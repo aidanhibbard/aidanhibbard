@@ -6,6 +6,7 @@ const schema = z.object({
   publishedAt: z.date(),
   lastEditedAt: z.date(),
   tags: z.array(z.string()),
+  path: z.string(),
 })
 
 export default defineContentConfig({

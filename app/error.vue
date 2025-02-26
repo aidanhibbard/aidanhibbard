@@ -21,7 +21,6 @@ const displayMessage: ComputedRef<keyof typeof messaging> = computed(() => {
 })
 
 const issueTitle = computed(() => `[${error.value?.statusCode}] ${error.value?.message}`)
-const issueBody = computed(() => `${JSON.stringify(error.value?.toJSON())}`)
 
 const handleClear = () => {
   clearError({ redirect: '/' })
@@ -49,7 +48,7 @@ const handleClear = () => {
           Go back home
         </button>
         <NuxtLink
-          :to="`https://github.com/aidanHibbard/aidanhibbard/issues/new?title=${issueTitle}&body=${issueBody}&labels=bug&assignees=aidanhibbard`"
+          :to="`https://github.com/aidanHibbard/aidanhibbard/issues/new?title=${issueTitle}&labels=bug&assignees=aidanhibbard`"
           external
           target="_blank"
           rel="noopener noreferrer"

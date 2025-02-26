@@ -29,7 +29,7 @@ const state: {
 })
 
 const data = ref<
-  Pick<ArticlesCollectionItem | ProjectsCollectionItem, 'title' | 'publishedAt' | 'tags' | 'desc'>[]
+  Pick<ArticlesCollectionItem | ProjectsCollectionItem, 'title' | 'publishedAt' | 'tags' | 'desc' | 'stem'>[]
   |
   null
 >(null)
@@ -39,7 +39,7 @@ const fetchContent = async () => {
   const response = await queryCollection(props.type)
     .limit(state.limit)
     .skip(state.page * state.limit)
-    .select('title', 'tags', 'publishedAt', 'desc')
+    .select('title', 'tags', 'publishedAt', 'desc', 'stem')
     .order('publishedAt', 'DESC')
     .all()
   data.value = response
@@ -82,7 +82,7 @@ onMounted(async () => {
         class="flex justify-between gap-x-6 py-5"
       >
         <NuxtLink
-          to="/"
+          :to="d.stem"
           class="flex min-w-0 gap-x-4 w-full h-full"
         >
           <div class="min-w-0 flex-auto">

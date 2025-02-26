@@ -20,7 +20,7 @@ const state = reactive({
         <div class="flex">
           <NuxtLink
             href="/"
-            class="text-2xl text-[#76ABAE] transition-all duration-300 hover:opacity-75"
+            class="text-2xl text-gray-900 transition-all duration-300 hover:opacity-75"
           >
             Aidan Hibbard
           </NuxtLink>
