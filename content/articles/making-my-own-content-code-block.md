@@ -1,5 +1,5 @@
 ---
-title: 'Making My Own Content Code Block'
+title: 'Making my own content code block'
 desc: 'Why pay someone for components when you can make something slightly worse for free?'
 publishedAt: 02-25-25
 lastEditedAt: 02-25-25
