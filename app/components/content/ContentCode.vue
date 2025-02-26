@@ -13,11 +13,11 @@ const state = reactive({
   copyMsg: defaultMsg,
 })
 
-const codeRef = ref<HTMLElement | null>(null)
+const codeWrapper = ref<HTMLElement | null>(null)
 const copyToClipboard = async () => {
-  if (codeRef.value) {
+  if (codeWrapper.value) {
     try {
-      await navigator.clipboard.writeText(codeRef.value.innerText.split('\n') // Split into an array of lines
+      await navigator.clipboard.writeText(codeWrapper.value.innerText.split('\n') // Split into an array of lines
         .filter(line => line.trim() !== '') // Remove empty lines
         .join('\n'))
       state.copyMsg = 'Copied to clipboard!'
@@ -59,7 +59,7 @@ const copyToClipboard = async () => {
       </div>
     </div>
     <div
-      ref="codeRef"
+      ref="codeWrapper"
       class="p-4 text-md bg-gray-50 text-gray-800 overflow-x-scroll"
     >
       <slot
