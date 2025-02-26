@@ -6,19 +6,15 @@ const { data: article } = await useAsyncData(() => queryCollection('articles')
   .first(),
 )
 
-console.log(article.value)
-
 useSeoMeta({
   title: article.value?.title,
   ogTitle: article.value?.title,
   description: article.value?.desc,
   ogDescription: article.value?.desc,
-  ogImage: 'https://example.com/image.png',
+  ogImage: article.value?.desc,
 })
 </script>
 
 <template>
-  <article v-if="article">
-    <ContentRenderer :value="article" />
-  </article>
+  <SharedContentArticle :content="article" />
 </template>

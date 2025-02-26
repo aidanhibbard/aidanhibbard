@@ -2,7 +2,14 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxt/content', '@nuxt/eslint'],
+  modules: [
+    '@nuxt/content',
+    '@nuxt/eslint',
+    '@nuxtjs/mdc',
+    '@nuxt/icon',
+    'floating-vue/nuxt',
+    '@nuxt/image',
+  ],
   devtools: { enabled: true },
   app: {
     head: {

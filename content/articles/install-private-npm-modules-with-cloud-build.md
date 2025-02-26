@@ -11,7 +11,7 @@ tags:
   - 'npm'
 ---
 
-## [Introduction]{.block .mb-6 .prose .prose-xl .text-gray-900 .h-full .hover:text-green-300 .transition .duration-50 .no-underline}
+## Introduction
 
 Recently I was tasked with creating a new pipelines from app repositories in GitHub to Cloud Run deployments. One of our apps used private modules not hosted in our own artifact registry (BullMQ Pro), and we needed a secure way to pull the secrets without leaking them into the docker image.
 
@@ -25,16 +25,22 @@ Per the NPM docs this "will leave no trace after npm dependency installation is 
 
 (Note: mounting secrets in a dockerfile will require enabling BuildKit)
 
-```yaml
+::ContentCode{name="ci" type="yaml"}
+
+```yml
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'your-registry-domain', '.']
     env:
       - 'DOCKER_BUILDKIT=1'
 ```
 
+::
+
 So I added our needed NPM tokens to cloud secrets, and made them available to cloudbuild VIA the availableSecrets key in the cloudbuild.yaml
 
-```yaml
+::ContentCode{name="ci" type="yaml"}
+
+```yml
 availableSecrets:
   secretManager:
     - versionName: projects/YOUR_PROJECT_ID/secrets/NPM_TOKEN/versions/latest
@@ -43,9 +49,13 @@ availableSecrets:
       env: 'NPM_TASKFORCESH_TOKEN'
 ```
 
+::
+
 Generating the .npmrc for the docker image needs to be done as a bash step before your docker build step
 
-```yaml
+::ContentCode{name="ci" type="yaml"}
+
+```yml
 steps:
   - name: bash
     args:
@@ -59,11 +69,17 @@ steps:
     secretEnv: ['NPM_TOKEN', 'NPM_TASKFORCESH_TOKEN']
 ```
 
+::
+
 Now that the npmrc is created mount it as a secret in your docker image
+
+::ContentCode{name="ci" type="yaml"}
 
 ```bash
 RUN --mount=type=secret,id=npmrc,target=YOUR_APP_DIR/.npmrc npm install
 RUN npm run build
 ```
+
+::
 
 That's it! You should be able to add multiple private module sources to your cloud build pipeline.
