@@ -46,7 +46,7 @@ I was already in to deep to turn back at this point, and really didn't feel up t
 ::ContentParagraph
 Getting started everything seemed pretty simple to build:
 
-- A header for the code
+- A header for the code file name
 
 - A button to copy the code
 
