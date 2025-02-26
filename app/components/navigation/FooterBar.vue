@@ -23,7 +23,7 @@ const sections = [
       Footer
     </h2>
     <div class="mb-16">
-      <hr class="mt-10 border-t border-zinc-100">
+      <hr class="mt-10 border-t border-gray-200">
       <div class="mt-10 flex sm:justify-center md:justify-evenly sm:flex-col md:flex-row">
         <div
           v-for="s in sections"
@@ -50,7 +50,7 @@ const sections = [
         </div>
       </div>
     </div>
-    <div class="items-center flex flex-col md:flex-row justify-around gap-4 border-t border-gray-100 py-6">
+    <div class="items-center flex flex-col md:flex-row justify-around gap-4 border-t border-gray-200 py-6">
       <p class="text-sm/6 max-md:text-center">
         © {{ new Date().getFullYear() }} Aidan Hibbard. All rights reserved.
       </p>

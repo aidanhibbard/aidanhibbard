@@ -4,6 +4,15 @@ import type { ArticlesCollectionItem } from '@nuxt/content'
 defineProps<{
   content?: ArticlesCollectionItem
 }>()
+
+const formatDate = (dateString?: string | Date) => {
+  if (!dateString) return ''
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(new Date(dateString))
+}
 </script>
 
 <template>
@@ -22,6 +31,9 @@ defineProps<{
       {{ content.title }}
     </h1>
 
+    <!-- Published At -->
+    <time class="block mb-2 text-sm font-normal leading-none">Published {{ formatDate(content.publishedAt) }}</time>
+
     <!-- Description -->
     <p class="text-gray-700 mb-4">
       {{ content.desc }}
@@ -37,6 +49,6 @@ defineProps<{
         {{ tag }}
       </span>
     </div>
-    <ContentRenderer :value="content.meta" />
+    <ContentRenderer class="my-4" :value="content.meta" />
   </article>
 </template>

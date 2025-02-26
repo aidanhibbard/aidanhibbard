@@ -28,6 +28,7 @@
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@iconify-json/catppuccin": "^1.2.9",
     "@nuxt/test-utils": "^3.17.0",
     "@vue/test-utils": "^2.4.6",
     "happy-dom": "^17.1.8",
