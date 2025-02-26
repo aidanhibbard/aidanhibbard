@@ -17,6 +17,7 @@ const codeRef = ref<HTMLElement | null>(null)
 const copyToClipboard = async () => {
   if (codeRef.value) {
     try {
+      console.log(codeRef.value.innerText)
       await navigator.clipboard.writeText(codeRef.value.innerText)
       state.copyMsg = 'Copied to clipboard!'
     }
@@ -58,10 +59,10 @@ const fileName = computed(() => (props.type ? `${props.name}.${props.type}` : pr
       </div>
     </div>
     <div
+      ref="codeRef"
       class="p-4 text-md bg-gray-50 text-gray-800 overflow-x-scroll"
     >
       <slot
-        ref="codeRef"
         mdc-unwrap="code"
       />
     </div>
