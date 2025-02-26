@@ -4,7 +4,7 @@ import { DocumentDuplicateIcon } from '@heroicons/vue/20/solid'
 
 const props = defineProps<{
   name?: string
-  type?: string
+  icon?: string
 }>()
 
 const defaultMsg = 'Copy to clipboard'
@@ -30,7 +30,6 @@ const copyToClipboard = async () => {
     }
   }
 }
-const fileName = computed(() => (props.type ? `${props.name}.${props.type}` : props.name))
 </script>
 
 <template>
@@ -47,16 +46,16 @@ const fileName = computed(() => (props.type ? `${props.name}.${props.type}` : pr
       />
     </button>
     <div
-      v-if="props.name && props.type"
+      v-if="props.name || props.icon"
       class="flex items-center justify-between p-2 border-b border-gray-300 bg-gray-100 text-gray-800 text-sm font-mono"
     >
       <div class="flex items-center gap-2 pl-2">
         <Icon
-          v-if="props.type"
-          :name="`catppuccin:${props.type}`"
+          v-if="props.icon"
+          :name="`catppuccin:${props.icon}`"
           class="w-6 h-6 text-gray-600"
         />
-        <span class="font-semibold text-gray-700">{{ fileName }}</span>
+        <span class="font-semibold text-gray-700">{{ name }}</span>
       </div>
     </div>
     <div

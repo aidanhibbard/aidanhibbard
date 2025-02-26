@@ -42,21 +42,21 @@ const state = reactive({
         </div>
 
         <!-- Desktop Navigation -->
-        <PopoverGroup class="hidden lg:flex lg:gap-x-8 text-md font-medium text-gray-900">
+        <PopoverGroup class="hidden lg:flex lg:gap-x-8 text-md font-medium text-gray-900 mx-auto">
           <NuxtLink
-            href="articles"
+            href="/articles"
             class="hover:text-[#76ABAE]"
           >Articles</NuxtLink>
           <NuxtLink
-            href="projects"
+            href="/projects"
             class="hover:text-[#76ABAE]"
           >Projects</NuxtLink>
           <NuxtLink
-            href="about"
+            href="/about"
             class="hover:text-[#76ABAE]"
           >About</NuxtLink>
           <NuxtLink
-            href="resume"
+            href="/resume"
             class="hover:text-[#76ABAE]"
           >Resume</NuxtLink>
         </PopoverGroup>
