@@ -1,13 +1,17 @@
 <script setup lang="ts">
+import type { NuxtError } from '#app'
+
+const props = defineProps<{
+  error: NuxtError
+}>()
+
 const messaging = {
   notFound: 'Sorry that page couldn\'t be found.',
   unexpectedError: 'An unexpected error ocurred.',
 }
 
-const error = useError()
-
 const displayMessage: ComputedRef<keyof typeof messaging> = computed(() => {
-  switch (error.value?.statusCode) {
+  switch (props.error.statusCode) {
     case 404: {
       return 'notFound'
     }
@@ -20,7 +24,7 @@ const displayMessage: ComputedRef<keyof typeof messaging> = computed(() => {
   }
 })
 
-const issueTitle = computed(() => `[${error.value?.statusCode}] ${error.value?.message}`)
+const issueTitle = computed(() => `[${props.error.statusCode}] ${props.error.message}`)
 
 const handleClear = () => {
   clearError({ redirect: '/' })
