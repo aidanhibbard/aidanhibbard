@@ -8,7 +8,7 @@ const sections = [
   ] },
   { title: 'Personal Info', links: [
     { title: 'About', href: '/about' },
-    { title: 'Contact', href: '/contact' },
+    { title: 'Contact', href: '/about#contact' },
     { title: 'Resume', href: '/resume' },
   ] },
 ]
@@ -55,11 +55,14 @@ const sections = [
         © {{ new Date().getFullYear() }} Aidan Hibbard. All rights reserved.
       </p>
       <div class="flex items-center justify-center space-x-4 text-sm/6 font-semibold md:justify-end">
-        <NuxtLink href="/privacy-policy">
+        <NuxtLink href="/about#contact">
           Contact
         </NuxtLink>
         <div class="h-4 w-px bg-slate-200" />
-        <NuxtLink href="/changelog">
+        <NuxtLink
+          href="github.com/aidanhibbard"
+          external
+        >
           GitHub
         </NuxtLink>
       </div>
