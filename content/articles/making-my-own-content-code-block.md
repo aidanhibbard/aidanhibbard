@@ -49,7 +49,7 @@ There's a few instances where Catppuccin differed from my file types, where I no
 
 We'll start by creating a component in the `/components/content/` directory so that Nuxt will autoload these components later when we add it to our content.
 
-```vue [components/content/BaseCode.vue]
+```vue [components/content/BaseCode.vue] 
 <script setup lang="ts">
 const props = defineProps<{
   name?: string

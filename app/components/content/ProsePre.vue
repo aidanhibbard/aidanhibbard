@@ -2,6 +2,7 @@
 import { DocumentDuplicateIcon } from '@heroicons/vue/20/solid'
 import { codeToHtml } from 'shiki'
 
+// https://content.nuxt.com/docs/components/prose#prosepre
 const props = defineProps<{
   code?: string
   language?: string
@@ -38,9 +39,9 @@ const copyToClipboard = async () => {
 }
 
 watchEffect(async () => {
-  if (props.code && props.language) {
+  if (props.code) {
     const html = await codeToHtml(props.code, {
-      lang: props.language,
+      lang: props.language ?? '',
       theme: 'github-light',
     })
     state.highlightedCode = html
@@ -67,7 +68,7 @@ watchEffect(async () => {
     >
       <div class="flex items-center gap-2 pl-2">
         <Icon
-          :name="`catppuccin:${props.language}`"
+          name="catppuccin:vue"
           class="w-6 h-6"
         />
         <span
