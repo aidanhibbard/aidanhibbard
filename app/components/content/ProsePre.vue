@@ -30,7 +30,9 @@ const copyToClipboard = async () => {
       state.copyMsg = 'Failed to copy'
     }
     finally {
-      state.copyMsg = defaultMsg
+      setTimeout(() => {
+        state.copyMsg = defaultMsg
+      }, 1500)
     }
   }
 }
@@ -61,34 +63,35 @@ watchEffect(async () => {
     </button>
     <div
       v-if="props.filename || props.language"
-      class="flex items-center justify-between p-2 border-b border-gray-300 bg-gray-100 text-gray-800 text-sm font-mono"
+      class="flex items-center justify-between p-2 border-b border-gray-300 bg-gray-100 text-sm font-mono"
     >
       <div class="flex items-center gap-2 pl-2">
         <Icon
-          v-if="props.language"
           :name="`catppuccin:${props.language}`"
-          class="w-6 h-6 text-gray-600"
+          class="w-6 h-6"
         />
         <span
           v-if="props.filename"
-          class="font-semibold text-gray-700"
+          class="font-semibold hover:cursor-pointer text-gray-700 hover:text-teal-500 transition-colors duration-300"
         >
           {{ props.filename }}
         </span>
       </div>
     </div>
+    <!-- eslint-disable vue/no-v-html -->
     <div
       v-if="state.highlightedCode"
       ref="codeWrapper"
-      class="p-4 text-md bg-gray-50 text-gray-800 overflow-x-scroll"
+      class="p-4 text-md bg-gray-50 overflow-x-scroll"
       v-html="state.highlightedCode"
     />
+    <!-- eslint-enable vue/no-v-html -->
   </div>
 </template>
 
 <style>
 /* style can't be scoped or it'll fail to target shiki  */
-pre {
+pre.shiki {
   background: transparent !important;
 }
 </style>

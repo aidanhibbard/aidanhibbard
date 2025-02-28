@@ -33,7 +33,7 @@ Getting started everything seemed pretty simple to build:
 
 - A nice icon to display the code type
 
-My biggest focus was finding an icon set that supported the languages I wanted to work with. This ended up being a pretty short task, Nuxt Icon already supported a wide range of icon sets. Through Icones I found Catppuccin which had all the icons I needed to make this work.
+My biggest focus was finding an icon set that supported the languages I wanted to work with. This ended up being a pretty short task, Nuxt Icon already supported a wide range of icon sets. Through Icones I found [Catppuccin](https://google.com) which had all the icons I needed to make this work.
 
 Next step was to write some actual code.
 
