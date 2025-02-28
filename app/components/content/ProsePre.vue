@@ -66,7 +66,7 @@ watchEffect(async () => {
       <div class="flex items-center gap-2 pl-2">
         <Icon
           v-if="props.language"
-          :name="`catppuccin:vue`"
+          :name="`catppuccin:${props.language}`"
           class="w-6 h-6 text-gray-600"
         />
         <span
@@ -87,6 +87,7 @@ watchEffect(async () => {
 </template>
 
 <style>
+/* style can't be scoped or it'll fail to target shiki  */
 pre {
   background: transparent !important;
 }

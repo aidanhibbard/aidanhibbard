@@ -28,7 +28,7 @@ const copyToClipboard = async () => {
   <span
     ref="codeWrapper"
     v-tooltip="state.copyMsg"
-    class="relative inline-block cursor-pointer rounded-md border border-gray-300 bg-gray-100 px-1.5 py-0.5 text-sm font-mono text-gray-900 transition-colors hover:border-teal-500 hover:bg-gray-200"
+    class="relative inline-block cursor-pointer rounded-md border border-gray-300 bg-gray-100 px-1.5 py-0.5 text-sm font-mono text-gray-900 transition-colors duration-300 hover:border-teal-500 hover:bg-gray-200"
     @click="copyToClipboard"
   >
     <slot mdc-unwrap="code" />
