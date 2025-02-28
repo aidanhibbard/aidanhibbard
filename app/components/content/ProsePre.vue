@@ -68,7 +68,7 @@ watchEffect(async () => {
     >
       <div class="flex items-center gap-2 pl-2">
         <Icon
-          name="catppuccin:vue"
+          :name="`vscode-icons:file-type-${props.language}`"
           class="w-6 h-6"
         />
         <span
@@ -83,7 +83,7 @@ watchEffect(async () => {
     <div
       v-if="state.highlightedCode"
       ref="codeWrapper"
-      class="p-4 text-md bg-gray-50 overflow-x-scroll"
+      class="p-4 text-md bg-gray-50 overflow-x-auto"
       v-html="state.highlightedCode"
     />
     <!-- eslint-enable vue/no-v-html -->

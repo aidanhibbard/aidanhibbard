@@ -46,15 +46,7 @@ const fetchContent = async () => {
   state.loading = false
 }
 
-watch(() => state.query, async () => {
-  await fetchContent()
-})
-
-watch(() => state.page, async () => {
-  await fetchContent()
-})
-
-watch(() => state.limit, async () => {
+watch(() => [state.query, state.page, state.limit], async () => {
   await fetchContent()
 })
 
