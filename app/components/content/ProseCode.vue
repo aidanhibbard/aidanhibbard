@@ -18,7 +18,9 @@ const copyToClipboard = async () => {
       state.copyMsg = 'Failed to copy'
     }
     finally {
-      state.copyMsg = defaultMsg
+      setTimeout(() => {
+        state.copyMsg = defaultMsg
+      }, 1500)
     }
   }
 }
