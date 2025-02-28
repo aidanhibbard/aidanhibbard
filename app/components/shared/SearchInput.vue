@@ -21,7 +21,7 @@ const clearQuery = () => emit('update:modelValue', '')
     <MagnifyingGlassIcon class="absolute right-3 top-2 size-5 text-gray-400" />
     <XCircleIcon
       v-if="modelValue"
-      class="absolute right-9 top-2.5 size-5 cursor-pointer text-gray-400 hover:text-red-500"
+      class="absolute right-9 top-2 size-5 cursor-pointer text-gray-400 hover:text-red-500"
       @click="clearQuery"
     />
   </div>

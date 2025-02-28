@@ -1,6 +1,6 @@
 ---
 title: 'Making my own content code block'
-desc: 'Why pay someone for components when you can make something slightly worse for free?'
+desc: 'Why pay someone for components when you can make something for free?'
 publishedAt: 02-25-25
 lastEditedAt: 02-25-25
 path: '/articles/making-my-own-content-code-block'
