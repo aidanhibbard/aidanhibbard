@@ -17,7 +17,6 @@ const formatDate = (dateString?: string | Date) => {
 }
 
 onMounted(() => {
-  // Only add Utterances if we're on an article page
   const script = document.createElement('script')
   script.src = 'https://utteranc.es/client.js'
   script.setAttribute('repo', 'aidanhibbard/aidanhibbard')

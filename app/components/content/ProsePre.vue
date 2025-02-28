@@ -1,16 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { DocumentDuplicateIcon } from '@heroicons/vue/20/solid'
+import { codeToHtml } from 'shiki'
 
 const props = defineProps<{
-  name?: string
-  icon?: string
+  code?: string
+  language?: string
+  filename?: string
+  highlights?: number[]
+  meta?: string
 }>()
 
 const defaultMsg = 'Copy to clipboard'
 
 const state = reactive({
   copyMsg: defaultMsg,
+  highlightedCode: '',
 })
 
 const codeWrapper = ref<HTMLElement | null>(null)
@@ -30,6 +34,16 @@ const copyToClipboard = async () => {
     }
   }
 }
+
+watchEffect(async () => {
+  if (props.code && props.language) {
+    const html = await codeToHtml(props.code, {
+      lang: props.language,
+      theme: 'github-light',
+    })
+    state.highlightedCode = html
+  }
+})
 </script>
 
 <template>
@@ -46,25 +60,34 @@ const copyToClipboard = async () => {
       />
     </button>
     <div
-      v-if="props.name || props.icon"
+      v-if="props.filename || props.language"
       class="flex items-center justify-between p-2 border-b border-gray-300 bg-gray-100 text-gray-800 text-sm font-mono"
     >
       <div class="flex items-center gap-2 pl-2">
         <Icon
-          v-if="props.icon"
-          :name="`catppuccin:${props.icon}`"
+          v-if="props.language"
+          :name="`catppuccin:vue`"
           class="w-6 h-6 text-gray-600"
         />
-        <span class="font-semibold text-gray-700">{{ name }}</span>
+        <span
+          v-if="props.filename"
+          class="font-semibold text-gray-700"
+        >
+          {{ props.filename }}
+        </span>
       </div>
     </div>
     <div
+      v-if="state.highlightedCode"
       ref="codeWrapper"
       class="p-4 text-md bg-gray-50 text-gray-800 overflow-x-scroll"
-    >
-      <slot
-        mdc-unwrap="code"
-      />
-    </div>
+      v-html="state.highlightedCode"
+    />
   </div>
 </template>
+
+<style>
+pre {
+  background: transparent !important;
+}
+</style>

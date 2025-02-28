@@ -1,6 +1,6 @@
 ---
 title: 'Making my own content code block'
-desc: 'Why pay someone for components when you can make something for free?'
+desc: 'Wrapping the '
 publishedAt: 02-25-25
 lastEditedAt: 02-25-25
 path: '/articles/making-my-own-content-code-block'
@@ -11,39 +11,20 @@ tags:
   - 'TypeScript'
 ---
 
-::ContentHeader
-
 ## Introduction
 
-::
-
-::ContentParagraph
 When I took on the upgrade from Nuxt 2 -> Nuxt 3 I expected lots of complexity, what I didn't expect though was the cost.
-::
 
-::ContentParagraph
 My personal sites have always used some kind of static site generator that converts markdown, and most if not all come with some free tools to render your page. These are typically redundencies such as a table of contents, code blocks, headers, etc.
-::
 
-::ContentParagraph
 I was excited to see what new components, and tools I'd get to work with in the new version of content. Everything was using Tailwind, and the Nuxt UI so it seemed to be a perfect fit for the task.
-::
 
-::ContentParagraph
 Picture my dismay when I saw the price to access these components was $249, and the price doubles for every few team members you need.
-::
 
-::ContentParagraph
 I was already in to deep to turn back at this point, and really didn't feel up to paying for Tailwind UI or Nuxt UI to make life easier.
-::
-
-::ContentHeader
 
 ## A slightly worse adaptation
 
-::
-
-::ContentParagraph
 Getting started everything seemed pretty simple to build:
 
 - A header for the code file name
@@ -52,40 +33,23 @@ Getting started everything seemed pretty simple to build:
 
 - A nice icon to display the code type
 
-::
-
-::ContentParagraph
 My biggest focus was finding an icon set that supported the languages I wanted to work with. This ended up being a pretty short task, Nuxt Icon already supported a wide range of icon sets. Through Icones I found Catppuccin which had all the icons I needed to make this work.
-::
 
-::ContentParagraph
 Next step was to write some actual code.
-::
 
-::ContentParagraph
 In order to make this work I needed to pass two props to this component
 
 - A filename for the code (if applicable)
 
 - A file type for the code (if applicable)
 
-::
-
-::ContentParagraph
 Why do we need a seperate file type from the file name? That sounds like code duplication, and that's bad right?
-::
 
-::ContentParagraph
 There's a few instances where Catppuccin differed from my file types, where I noticed it first was that my config files were `something.yml` and their icon was `yaml`.
-::
 
-::ContentParagraph
 We'll start by creating a component in the `/components/content/` directory so that Nuxt will autoload these components later when we add it to our content.
-::
 
-::ContentCode{name="~/components/content/ContentCode.vue" icon="vue"}
-
-```vue
+```vue [components/content/BaseCode.vue]
 <script setup lang="ts">
 const props = defineProps<{
   name?: string
@@ -98,15 +62,9 @@ const props = defineProps<{
 </template>
 ```
 
-::
-
-::ContentParagraph
 Now we need a simple code block header to display this data.
-::
 
-::ContentCode{name="~/components/content/ContentCode.vue" icon="vue"}
-
-```vue
+```vue [components/content/BaseCode.vue] icon=vue
 <template>
   <div
     class="mx-auto w-full rounded-lg border border-gray-300 flex flex-col overflow-hidden bg-white relative my-4"
@@ -142,15 +100,9 @@ Now we need a simple code block header to display this data.
 </template>
 ```
 
-::
-
-::ContentParagraph
 Now that we've got a column layout setup, we can unwrap the content code section into our own component.
-::
 
-::ContentCode{name="~/components/content/ContentCode.vue" icon="vue"}
-
-```vue
+```vue [components/content/BaseCode.vue] meta-info=vue
 <template>
   <div
     class="mx-auto w-full rounded-lg border border-gray-300 flex flex-col overflow-hidden bg-white relative my-4"
@@ -195,19 +147,11 @@ Now that we've got a column layout setup, we can unwrap the content code section
 </template>
 ```
 
-::
-
-::ContentParagraph
 If you look through the code you'll notice a ref on the code wrapper, and that's to grab the code content, and copy it to the clipboard.
-::
 
-::ContentParagraph
 To add the copy functionality we just need to add a click method to the button holding our copy icon.
-::
 
-::ContentCode{name="~/components/content/ContentCode.vue" icon="vue"}
-
-```vue
+```vue [components/content/BaseCode.vue] icon=vue
 <script setup lang="ts">
 // ...
 
@@ -251,21 +195,11 @@ const copyToClipboard = async () => {
 </template>
 ```
 
-::
-
-::ContentHeader
-
 ## Component code
 
-::
-
-::ContentParagraph
 If you've been following along your code should look similar to this.
-::
 
-::ContentCode{name="~/components/content/ContentCode.vue" icon="vue"}
-
-```vue
+```vue [components/content/BaseCode.vue] icon=vue
 <script setup lang="ts">
 import { ref } from 'vue'
 import { DocumentDuplicateIcon } from '@heroicons/vue/20/solid'
@@ -339,36 +273,10 @@ const copyToClipboard = async () => {
 
 ```
 
-::
-
-::ContentParagraph
 Now we can wrap our code blocks in our component like so:
-::
-
-::ContentCode{name="~/content/blog/post.md" icon="markdown"}
-
-```md
-
-::ContentCode{name="" icon=""}
-
-... code block
-
-::
-
-```
-
-::
-
-::ContentHeader
 
 ## Closing thoughts
 
-::
+This solution is not perfect by any means, but it's a working component. Some problems I still have are even though some blocks don't need scrolling but because of the overflow-x-scroll on the code, browsers will still apply a horizontal scroll bar 
 
-::ContentParagraph
-This solution is not perfect by any means, but it's a working component. Some problems I still have are even though some blocks don't need scrolling but because of the overflow-x-scroll on the code, browsers will still apply a horizontal scroll bar even if there's nothing pushing the code block container.
-::
-
-::ContentParagraph
 Maybe for Pt 2 I'll find a solution, but I would like to handle previewing code in the blocks, so I'll update this article with a link when that part comes out.
-::
