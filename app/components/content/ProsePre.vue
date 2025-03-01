@@ -64,12 +64,12 @@ watchEffect(async () => {
     </button>
     <div
       v-if="props.filename || props.language"
-      class="flex items-center justify-between p-2 border-b border-gray-300 bg-gray-100 text-sm font-mono"
+      class="flex items-center justify-between p-2 border-b border-gray-300 bg-gray-100 text-gray-800 text-sm font-mono"
     >
       <div class="flex items-center gap-2 pl-2">
         <Icon
-          :name="`vscode-icons:file-type-${props.language}`"
-          class="w-6 h-6"
+          :name="`catppuccin:${props.language}`"
+          class="w-6 h-6 text-gray-600"
         />
         <span
           v-if="props.filename"
@@ -83,7 +83,7 @@ watchEffect(async () => {
     <div
       v-if="state.highlightedCode"
       ref="codeWrapper"
-      class="p-4 text-md bg-gray-50 overflow-x-auto"
+      class="text-md"
       v-html="state.highlightedCode"
     />
     <!-- eslint-enable vue/no-v-html -->
@@ -93,6 +93,8 @@ watchEffect(async () => {
 <style>
 /* style can't be scoped or it'll fail to target shiki  */
 pre.shiki {
-  background: transparent !important;
+  padding: 1rem;
+  width: 100%;
+  overflow-x: auto;
 }
 </style>
