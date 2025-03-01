@@ -68,10 +68,8 @@ watchEffect(async () => {
       class="flex items-center justify-between p-2 border-b border-gray-300 bg-gray-100 text-gray-800 text-sm font-mono"
     >
       <div class="flex items-center gap-2 pl-2">
-        <Icon
-          v-if="props.language"
-          :name="`catppuccin:${props.language}`"
-          class="w-6 h-6 text-gray-600"
+        <Icon 
+          name="catppuccin:vue"
         />
         <span
           v-if="props.filename"
