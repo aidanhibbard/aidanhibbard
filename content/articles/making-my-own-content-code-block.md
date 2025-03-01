@@ -27,6 +27,10 @@ I was already in to deep to turn back at this point, and really didn't feel up t
 
 Getting started everything seemed pretty simple to build:
 
+1. Hello
+
+2. Hi
+
 - A header for the code file name
 
 - A button to copy the code
@@ -49,7 +53,7 @@ There's a few instances where Catppuccin differed from my file types, where I no
 
 We'll start by creating a component in the `/components/content/` directory so that Nuxt will autoload these components later when we add it to our content.
 
-```vue [components/content/BaseCode.vue] 
+```vue [components/content/BaseCode.vue]
 <script setup lang="ts">
 const props = defineProps<{
   name?: string
