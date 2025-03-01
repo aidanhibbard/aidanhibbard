@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     'floating-vue/nuxt',
     '@nuxt/image',
+    '@nuxt/scripts',
   ],
   devtools: { enabled: true },
   app: {
@@ -31,5 +32,12 @@ export default defineNuxtConfig({
   },
   icon: {
     collections: ['catppuccin'],
+  },
+  scripts: {
+    registry: {
+      googleAnalytics: {
+        id: process.env.GOOGLE_ANALYTICS_ID ?? '',
+      },
+    },
   },
 })

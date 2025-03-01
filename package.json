@@ -18,6 +18,7 @@
     "@nuxt/eslint": "latest",
     "@nuxt/icon": "latest",
     "@nuxt/image": "latest",
+    "@nuxt/scripts": "^0.10.5",
     "@nuxtjs/mdc": "latest",
     "@tailwindcss/vite": "latest",
     "@unhead/vue": "latest",

@@ -19,7 +19,7 @@ const state = reactive({
   theme: 'github-dark',
 })
 
-const codeWrapper = ref<HTMLElement | null>(null)
+const codeWrapper = ref<HTMLDivElement | null>(null)
 const copyToClipboard = async () => {
   if (codeWrapper.value) {
     try {
@@ -68,8 +68,9 @@ watchEffect(async () => {
       class="flex items-center justify-between p-2 border-b border-gray-300 bg-gray-100 text-gray-800 text-sm font-mono"
     >
       <div class="flex items-center gap-2 pl-2">
-        <Icon 
+        <Icon
           name="catppuccin:vue"
+          class="h-6 w-6"
         />
         <span
           v-if="props.filename"
@@ -94,7 +95,6 @@ watchEffect(async () => {
 /* style can't be scoped or it'll fail to target shiki  */
 pre.shiki {
   padding: 1rem;
-  width: 100%;
   overflow-x: auto;
 }
 </style>

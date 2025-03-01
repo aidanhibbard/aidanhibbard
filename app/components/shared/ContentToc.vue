@@ -18,13 +18,19 @@ const toggleSection = (index: number) => {
 const togglePosition = () => {
   activePosition.value = activePosition.value === 'left' ? 'right' : 'left'
 }
+
+const containerClasses = computed(() => ({
+  'left-0 border-r': activePosition.value === 'left',
+  'right-0 border-l': activePosition.value === 'right',
+}))
 </script>
 
 <template>
   <nav>
     <!-- Desktop TOC -->
     <div
-      class="hidden lg:block fixed top-16 left-0 w-64 p-4 border-r h-full border-gray-200 transition-all bg-white"
+      class="hidden lg:block fixed top-16 w-64 p-4 h-full border-gray-200 transition-all bg-white"
+      :class="[containerClasses]"
     >
       <!-- Position Switch -->
       <div class="flex justify-between items-center mb-4">
