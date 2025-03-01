@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { ArticlesCollectionItem, ProjectsCollectionItem } from '@nuxt/content'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/20/solid'
 
 const props = defineProps<{
@@ -29,7 +28,7 @@ const state: {
 })
 
 const data = ref<
-  Pick<ArticlesCollectionItem | ProjectsCollectionItem, 'title' | 'publishedAt' | 'tags' | 'desc' | 'stem'>[]
+  Pick<ContentType, 'title' | 'publishedAt' | 'tags' | 'desc' | 'stem'>[]
   |
   null
 >(null)

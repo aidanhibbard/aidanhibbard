@@ -1,0 +1,1 @@
+type ContentType = ArticlesCollectionItem | ProjectsCollectionItem
