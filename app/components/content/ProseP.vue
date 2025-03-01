@@ -1,5 +1,5 @@
 <template>
-  <div class="prose lg:prose-lg py-2 text-gray-800 leading-relaxed transition-all duration-300">
+  <p class="prose lg:prose-lg py-2 text-gray-800 leading-relaxed transition-all duration-300">
     <slot mdc-unwrap="p" />
-  </div>
+  </p>
 </template>

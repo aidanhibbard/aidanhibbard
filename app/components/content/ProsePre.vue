@@ -16,6 +16,7 @@ const defaultMsg = 'Copy to clipboard'
 const state = reactive({
   copyMsg: defaultMsg,
   highlightedCode: '',
+  theme: 'github-dark',
 })
 
 const codeWrapper = ref<HTMLElement | null>(null)
@@ -42,7 +43,7 @@ watchEffect(async () => {
   if (props.code) {
     const html = await codeToHtml(props.code, {
       lang: props.language ?? '',
-      theme: 'github-light',
+      theme: state.theme,
     })
     state.highlightedCode = html
   }
@@ -68,6 +69,7 @@ watchEffect(async () => {
     >
       <div class="flex items-center gap-2 pl-2">
         <Icon
+          v-if="props.language"
           :name="`catppuccin:${props.language}`"
           class="w-6 h-6 text-gray-600"
         />
