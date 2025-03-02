@@ -5,6 +5,12 @@
   --font-sans: InterVariable, sans-serif;
 }
 
+@theme {
+  
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 html, body, #__nuxt {
   height: 100%
 }

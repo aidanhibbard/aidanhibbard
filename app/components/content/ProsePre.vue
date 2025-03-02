@@ -94,6 +94,8 @@ watchEffect(async () => {
 <style>
 /* style can't be scoped or it'll fail to target shiki  */
 pre.shiki {
+  margin: 0;
+  border-radius: 0;
   padding: 1rem;
   overflow-x: auto;
 }

@@ -4,7 +4,7 @@
 
 <template>
   <div class="h-full">
-    <ContentPagination
+    <SharedContentPagination
       :type="'articles'"
     />
   </div>

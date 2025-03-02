@@ -28,7 +28,7 @@ onMounted(() => {
       :content="content"
     />
     <ContentRenderer
-      class="my-4"
+      class="my-4 prose"
       :value="content.meta"
     />
     <div

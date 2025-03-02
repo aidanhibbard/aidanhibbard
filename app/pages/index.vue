@@ -1,3 +1,7 @@
 <template>
-  <div />
+  <div>
+    <HomeIntroSection />
+    <HomeBlogSection />
+    <HomeProjectsSection />
+  </div>
 </template>

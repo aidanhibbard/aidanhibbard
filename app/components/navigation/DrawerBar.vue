@@ -7,6 +7,7 @@ const drawer = useDrawer()
 
 <template>
   <Dialog
+    v-if="drawer"
     class="lg:hidden"
     :open="drawer"
   >
