@@ -4,7 +4,6 @@ import ContentHeader from './ContentHeader.vue'
 defineProps<{
   content?: ContentType
 }>()
-
 const commentsContainer = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
@@ -12,7 +11,7 @@ onMounted(() => {
   script.src = 'https://utteranc.es/client.js'
   script.setAttribute('repo', 'aidanhibbard/aidanhibbard')
   script.setAttribute('issue-term', 'og:title')
-  script.setAttribute('theme', 'github-light')
+  script.setAttribute('theme', 'github-dark')
   script.setAttribute('crossorigin', 'anonymous')
   script.setAttribute('async', 'true')
   commentsContainer.value?.appendChild(script)
@@ -27,17 +26,22 @@ onMounted(() => {
     <ContentHeader
       :content="content"
     />
+
+    <!-- TOC Sticking to the Right -->
     <SharedContentToc
-      class="fixed mx-auto bottom-5 max-w-2xl"
+      class="absolute top-20 right-0 max-w-xs hidden lg:block"
       :links="content.meta.body.toc.links"
     />
+
     <ContentRenderer
       class="my-4 prose mx-auto"
       :value="content.meta"
     />
+
     <div
       ref="commentsContainer"
       class="mt-8"
     />
   </article>
 </template>
+

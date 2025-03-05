@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-full">
+  <div class="min-h-full bg-white dark:bg-[#222222]">
     <NavigationHeaderBar />
-    <main class="relative h-full bg-white dark:bg-[#1b1b1f]">
+    <main class="relative h-full">
       <slot />
     </main>
     <NavigationFooterBar />

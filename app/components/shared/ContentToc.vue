@@ -27,8 +27,8 @@ const state = ref<Record<string, boolean>>({})
 </script>
 
 <template>
-  <nav class="p-4 bg-white rounded-lg shadow-md overflow-y-auto max-h-screen">
-    <ul class="space-y-4">
+  <nav class="px-4 border-l border-gray-500 overflow-y-auto max-h-screen">
+    <ul class="space-y-2">
       <!-- Recursive call for each link -->
       <li
         v-for="link in links"

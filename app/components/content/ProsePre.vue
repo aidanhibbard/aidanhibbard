@@ -52,7 +52,7 @@ watchEffect(async () => {
 
 <template>
   <div
-    class="mx-auto w-full rounded-lg border border-gray-300 flex flex-col overflow-hidden bg-white relative my-4"
+    class="mx-auto w-full rounded-lg border border-gray-300 dark:border-gray-600 flex flex-col overflow-hidden relative my-4"
   >
     <button
       class="hover:text-gray-600 absolute top-2 right-2"
@@ -65,7 +65,7 @@ watchEffect(async () => {
     </button>
     <div
       v-if="props.filename || props.language"
-      class="flex items-center justify-between p-2 border-b border-gray-300 bg-gray-100 text-gray-800 text-sm font-mono"
+      class="flex items-center justify-between p-2 border-b border-gray-600 dark:border-gray-600 bg-gray-100 dark:bg-[#020618] text-gray-800 dark:text-[#F3F4ED] text-sm font-mono"
     >
       <div class="flex items-center gap-2 pl-2">
         <Icon

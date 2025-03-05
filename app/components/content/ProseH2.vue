@@ -1,17 +1,20 @@
+<script setup lang="ts">
+const { headings } = useRuntimeConfig().public.mdc
+
+const props = defineProps<{ id?: string }>()
+
+const generate = computed(() => props.id && ((typeof headings?.anchorLinks === 'boolean' && headings?.anchorLinks === true) || (typeof headings?.anchorLinks === 'object' && headings?.anchorLinks?.h2)))
+</script>
+
 <template>
-  <NuxtLink
-    class="relative hover:cursor-pointer text-gray-900 hover:text-teal-600 font-bold text-2xl no-underline transition-all duration-300 inline-flex items-center gap-2 py-2"
-  >
-    <!-- The hash is hidden by default and only shown on hover -->
-    <span class="absolute left-0 top-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-      #
-    </span>
-    <!-- Use a default slot and wrap the content inside an h2 -->
-    <h2
-      ref="h2"
-      class="text-2xl"
+  <h2 :id="props.id">
+    <NuxtLink
+      v-if="props.id && generate"
+      :href="`#${props.id}`"
+      class="text-2xl text-gray-900 dark:text-[#F3F4ED] hover:text-teal-600 font-bold no-underline transition-all duration-300 inline-flex items-center"
     >
       <slot md-unwrap="h2" />
-    </h2>
-  </NuxtLink>
+    </NuxtLink>
+    <slot v-else />
+  </h2>
 </template>

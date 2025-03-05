@@ -39,45 +39,45 @@ const techStack = [
 </script>
 
 <template>
-  <div class="bg-white text-gray-900 p-8 max-w-4xl mx-auto space-y-12">
+  <div class="p-8 max-w-4xl mx-auto space-y-12 text-gray-900 dark:text-gray-100">
     <!-- Contact Info Section -->
-    <section class="flex flex-col md:flex-row items-center justify-between mb-6">
+    <section class="flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center space-x-4">
-        <PhoneIcon class="h-6 w-6 text-gray-600" />
-        <p class="text-sm text-gray-600">
+        <PhoneIcon class="h-6 w-6 text-teal-500" />
+        <p class="text-sm text-gray-600 dark:text-gray-300">
           +1 555 555 5555
         </p>
       </div>
       <div class="flex items-center space-x-4">
-        <EnvelopeIcon class="h-6 w-6 text-gray-600" />
-        <p class="text-sm text-gray-600">
+        <EnvelopeIcon class="h-6 w-6 text-teal-500" />
+        <p class="text-sm text-gray-600 dark:text-gray-300">
           aidan@example.com
         </p>
       </div>
       <div class="flex items-center space-x-4">
-        <GitHubIcon class="h-6 w-6 text-gray-600" />
+        <GitHubIcon class="h-6 w-6 text-teal-500" />
         <a
           href="https://github.com/yourusername"
-          class="text-sm text-gray-600 hover:underline"
+          class="text-sm text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300"
         >GitHub</a>
       </div>
       <div class="flex items-center space-x-4">
-        <LinkedInIcon class="h-6 w-6 text-gray-600" />
+        <LinkedInIcon class="h-6 w-6 text-teal-500" />
         <a
           href="https://linkedin.com/in/yourusername"
-          class="text-sm text-gray-600 hover:underline"
+          class="text-sm text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300"
         >LinkedIn</a>
       </div>
     </section>
 
     <!-- Name and Summary -->
     <div class="text-center">
-      <h1 class="text-4xl font-bold text-gray-900 mb-4">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
         Aidan Hibbard
       </h1>
-      <div class="w-20 mx-auto border-t-2 border-gray-300 mb-6" />
-      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-        A passionate software engineer with experience in frontend and backend development, specializing in Vue.js, Nuxt.js, and building scalable, user-centric web applications. I strive to create clean, efficient code and collaborate with teams to deliver seamless solutions.
+      <div class="w-20 mx-auto border-t-2 border-gray-300 dark:border-gray-700 mb-6 transition-all duration-300" />
+      <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        A passionate software engineer with experience in frontend and backend development, specializing in Vue.js, Nuxt.js, and building scalable, user-centric web applications.
       </p>
     </div>
 
@@ -90,18 +90,18 @@ const techStack = [
         <li
           v-for="w in workHistory"
           :key="w.company"
-          class="flex flex-col space-y-2"
+          class="flex flex-col space-y-2 p-4 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 transition-all duration-300"
         >
           <div class="flex items-center space-x-2">
-            <BriefcaseIcon class="h-6 w-6 text-gray-600" />
-            <h3 class="text-lg font-semibold text-gray-900">
+            <BriefcaseIcon class="h-6 w-6 text-teal-500" />
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
               {{ w.company }}
             </h3>
           </div>
-          <p class="text-sm text-gray-500">
-            {{ w.role }} - <span class="text-gray-400">{{ w.period }}</span>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            {{ w.role }} - <span class="text-gray-400 dark:text-gray-500">{{ w.period }}</span>
           </p>
-          <p class="text-base text-gray-700">
+          <p class="text-base text-gray-700 dark:text-gray-300">
             {{ w.description }}
           </p>
         </li>
@@ -113,11 +113,12 @@ const techStack = [
       <h2 class="text-2xl font-bold mb-4">
         Tech Stack
       </h2>
-      <div class="flex flex-wrap gap-2">
+      <div class="flex flex-wrap gap-3">
         <span
           v-for="tech in techStack"
           :key="tech"
-          class="px-4 py-2 bg-gray-200 rounded-full text-sm text-gray-800"
+          class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-800 dark:text-gray-200 
+                 hover:bg-teal-500 hover:text-white dark:hover:bg-teal-400 dark:hover:text-gray-900 transition-colors duration-300"
         >
           {{ tech }}
         </span>
@@ -126,11 +127,3 @@ const techStack = [
   </div>
 </template>
 
-<style scoped>
-@media (max-width: 768px) {
-  .contact-info {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-</style>

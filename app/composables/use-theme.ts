@@ -4,15 +4,17 @@ export function useTheme() {
   const applyTheme = (newTheme?: ThemeType) => {
     if (newTheme) theme.value = newTheme
 
-    const selectedTheme
-      = theme.value === 'dark' || (theme.value === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
-        ? 'dark'
-        : 'light'
+    if (import.meta.client) {
+      const selectedTheme
+        = theme.value === 'dark' || (theme.value === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+          ? 'dark'
+          : 'light'
 
-    document.documentElement.setAttribute('data-theme', selectedTheme)
+      document.documentElement.setAttribute('data-theme', selectedTheme)
+    }
   }
 
-  watchEffect(() => applyTheme())
+  onMounted(() => applyTheme())
 
   return { theme, applyTheme }
 }
