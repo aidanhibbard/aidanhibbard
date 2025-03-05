@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/vue/24/solid'
 
 const props = defineProps<{
-  label: string
+  label?: string
   options: { value: string, label: string }[]
   modelValue: string
 }>()
@@ -15,7 +15,7 @@ const selectId = computed(() => `dropdown-${Math.random().toString(36).substr(2,
 </script>
 
 <template>
-  <div class="w-full">
+  <div>
     <!-- Properly Associated Label -->
     <label
       :for="selectId"
@@ -33,7 +33,7 @@ const selectId = computed(() => `dropdown-${Math.random().toString(36).substr(2,
       >
         <!-- Selected Option -->
         <span class="flex-1">
-          {{ props.options.find((o) => o.value === props.modelValue)?.label || 'Select an option' }}
+          {{ props.label ?? 'Select an option' }}
         </span>
 
         <!-- Chevron Icon -->

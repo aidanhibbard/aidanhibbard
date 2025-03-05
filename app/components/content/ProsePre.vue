@@ -16,7 +16,7 @@ const defaultMsg = 'Copy to clipboard'
 const state = reactive({
   copyMsg: defaultMsg,
   highlightedCode: '',
-  theme: 'github-dark',
+  theme: 'slack-dark',
 })
 
 const codeWrapper = ref<HTMLDivElement | null>(null)

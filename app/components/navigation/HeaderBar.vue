@@ -22,7 +22,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <header class="bg-white dark:bg-[#171719] sticky top-0 z-50 border-b border-gray-200">
+  <header class="bg-white/30 dark:bg-[#0f172a]/30 backdrop-blur-md sticky top-0 z-50 border-b border-gray-300 dark:border-gray-700">
     <div class="relative">
       <nav
         class="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-6"
