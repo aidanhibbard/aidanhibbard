@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Bars3Icon } from '@heroicons/vue/24/outline'
 import { PopoverGroup } from '@headlessui/vue'
-import NavDrawer from './DrawerBar.vue'
 import { MoonIcon, SunIcon } from '@heroicons/vue/24/solid'
+import NavDrawer from './DrawerBar.vue'
 
 const drawer = useDrawer()
 const { applyTheme } = useTheme()
@@ -22,7 +22,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <header class="bg-white sticky top-0 z-50 border-b border-gray-200">
+  <header class="bg-white dark:bg-[#171719] sticky top-0 z-50 border-b border-gray-200">
     <div class="relative">
       <nav
         class="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-6"
@@ -32,7 +32,7 @@ watchEffect(() => {
         <div class="flex">
           <NuxtLink
             href="/"
-            class="text-2xl text-gray-900 transition-all duration-300 hover:opacity-75"
+            class="text-2xl hover:opacity-75 transition-all duration-300 text-gray-900 dark:text-[#F3F4ED] hover:text-teal-500"
           >
             Aidan Hibbard
           </NuxtLink>
@@ -54,22 +54,22 @@ watchEffect(() => {
         </div>
 
         <!-- Desktop Navigation -->
-        <PopoverGroup class="hidden lg:flex lg:gap-x-8 text-md font-medium text-gray-900 mx-auto">
+        <PopoverGroup class="hidden lg:flex lg:gap-x-8 text-md font-medium transition-all duration-300 text-gray-900 dark:text-[#F3F4ED] mx-auto">
           <NuxtLink
             href="/articles"
-            class="hover:text-[#76ABAE]"
+            class="hover:text-teal-500"
           >Articles</NuxtLink>
           <NuxtLink
             href="/projects"
-            class="hover:text-[#76ABAE]"
+            class="hover:text-teal-500"
           >Projects</NuxtLink>
           <NuxtLink
             href="/about"
-            class="hover:text-[#76ABAE]"
+            class="hover:text-teal-500"
           >About</NuxtLink>
           <NuxtLink
             href="/resume"
-            class="hover:text-[#76ABAE]"
+            class="hover:text-teal-500"
           >Resume</NuxtLink>
         </PopoverGroup>
 

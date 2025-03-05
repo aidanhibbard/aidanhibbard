@@ -15,7 +15,7 @@ const sections = [
 </script>
 
 <template>
-  <footer class="mx-auto mt-8 w-full max-w-container absolute bottom-0 left-0 right-0">
+  <footer class="mx-auto mt-8 w-full max-w-container">
     <h2
       id="footer-heading"
       class="sr-only"

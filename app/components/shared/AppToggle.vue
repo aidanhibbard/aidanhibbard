@@ -15,7 +15,7 @@ const emits = defineEmits<{
     for="toggleTheme"
     class="flex items-center cursor-pointer select-none p-1 transition"
   >
-    <div class="relative w-14 h-8">
+    <div class="relative w-12 h-6">
       <input
         id="toggleTheme"
         type="checkbox"
@@ -28,7 +28,7 @@ const emits = defineEmits<{
         :class="modelValue ? 'bg-black' : 'bg-white border-2 rounded-2xl'"
       />
       <div
-        class="absolute top-1 left-1 w-6 h-6 flex items-center justify-center rounded-full transition-transform transform
+        class="absolute top-0.5 left-1 w-5 h-5 flex items-center justify-center rounded-full transition-transform transform
         peer-checked:translate-x-6"
         :class="modelValue ? 'bg-white' : 'bg-black'"
       >
