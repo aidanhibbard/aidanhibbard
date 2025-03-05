@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-full">
     <NavigationHeaderBar />
-    <main class="h-full">
+    <main class="relative h-full">
       <slot />
     </main>
     <NavigationFooterBar />

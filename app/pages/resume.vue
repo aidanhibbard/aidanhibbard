@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BriefcaseIcon } from '@heroicons/vue/20/solid'
+import { BriefcaseIcon, PhoneIcon, EnvelopeIcon } from '@heroicons/vue/24/solid'
 
 const workHistory = [
   {
@@ -7,39 +7,34 @@ const workHistory = [
     role: 'Senior Software Engineer',
     period: 'Aug 2024 - Present',
     type: 'Full-Time',
-    links: [],
-    description: '',
+    description: 'Worked on building scalable software solutions for legal services.',
   },
   {
     company: 'Ability Hub',
     role: 'Lead Developer',
     period: 'Oct 2024 - Present',
     type: 'Contract',
-    links: [],
-    description: '',
+    description: 'Led the development of web applications for accessibility tools.',
   },
   {
     company: 'Climate Art Collection',
     role: 'Lead Developer',
     period: 'Jun 2024 - Present',
     type: 'Contract',
-    links: [],
-    description: '',
+    description: 'Created web-based applications for managing art collections and sustainability projects.',
   },
   {
     company: 'G5 / RealPage',
     role: 'Software Developer',
     period: 'Dec 2020 - Aug 2024',
     type: 'Full-Time',
-    links: [],
-    description: '',
+    description: 'Developed real estate marketing solutions and optimized backend systems.',
   },
 ]
 
 const socialLinks = [
   { name: 'GitHub', url: 'https://github.com/yourusername' },
   { name: 'LinkedIn', url: 'https://linkedin.com/in/yourusername' },
-  { name: 'Instagram', url: 'https://instagram.com/yourusername' },
 ]
 
 const techStack = [
@@ -50,61 +45,75 @@ const techStack = [
 
 <template>
   <div class="bg-white text-gray-900 p-8 max-w-4xl mx-auto space-y-12">
-    <div class="text-center space-y-4">
-      <p class="text-lg text-gray-600">
-        Developer | UI Enthusiast
+    <!-- Contact Info Section -->
+    <section class="flex flex-col md:flex-row items-center justify-between mb-6">
+      <div class="flex items-center space-x-4">
+        <PhoneIcon class="h-6 w-6 text-gray-600" />
+        <p class="text-sm text-gray-600">
+          +1 555 555 5555
+        </p>
+      </div>
+      <div class="flex items-center space-x-4">
+        <EnvelopeIcon class="h-6 w-6 text-gray-600" />
+        <p class="text-sm text-gray-600">
+          aidan@example.com
+        </p>
+      </div>
+      <div class="flex items-center space-x-4">
+        <GitHubIcon class="h-6 w-6 text-gray-600" />
+        <a
+          href="https://github.com/yourusername"
+          class="text-sm text-gray-600 hover:underline"
+        >GitHub</a>
+      </div>
+      <div class="flex items-center space-x-4">
+        <LinkedInIcon class="h-6 w-6 text-gray-600" />
+        <a
+          href="https://linkedin.com/in/yourusername"
+          class="text-sm text-gray-600 hover:underline"
+        >LinkedIn</a>
+      </div>
+    </section>
+
+    <!-- Name and Summary -->
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">
+        Aidan Hibbard
+      </h1>
+      <div class="w-20 mx-auto border-t-2 border-gray-300 mb-6" />
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        A passionate software engineer with experience in frontend and backend development, specializing in Vue.js, Nuxt.js, and building scalable, user-centric web applications. I strive to create clean, efficient code and collaborate with teams to deliver seamless solutions.
       </p>
     </div>
 
-    <!-- Work History -->
+    <!-- Work History Section -->
     <section>
       <h2 class="text-2xl font-bold mb-4">
         Work History
       </h2>
-      <ol class="relative border-s dark:border-gray-700 flex flex-col gap-y-4">
+      <ol class="space-y-6">
         <li
           v-for="w in workHistory"
           :key="w.company"
-          class="ms-6"
+          class="flex flex-col space-y-2"
         >
-          <span class="absolute flex items-center justify-center w-6 h-6 bg-white rounded-full -start-3 ring-2 ring-black">
-            <BriefcaseIcon />
-          </span>
-          <div class="flex flex-col p-4 bg-white border border-gray-200 rounded-lg shadow-xs dark:bg-gray-700 dark:border-gray-600">
-            <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+          <div class="flex items-center space-x-2">
+            <BriefcaseIcon class="h-6 w-6 text-gray-600" />
+            <h3 class="text-lg font-semibold text-gray-900">
               {{ w.company }}
             </h3>
-            <time class="block mb-2 text-sm font-normal leading-none text-[#eeeeee]">{{ w.period }}</time>
-            <p class="text-base font-normal text-gray-500 dark:text-gray-400">
-              {{ w.type }}
-            </p>
-            <p class="text-base font-normal text-gray-500 dark:text-gray-400">
-              {{ w.description }}
-            </p>
           </div>
+          <p class="text-sm text-gray-500">
+            {{ w.role }} - <span class="text-gray-400">{{ w.period }}</span>
+          </p>
+          <p class="text-base text-gray-700">
+            {{ w.description }}
+          </p>
         </li>
       </ol>
     </section>
 
-    <!-- Social Links -->
-    <section>
-      <h2 class="text-2xl font-bold mb-4">
-        Personal Links
-      </h2>
-      <div class="flex flex-wrap gap-4">
-        <a
-          v-for="link in socialLinks"
-          :key="link.name"
-          :href="link.url"
-          target="_blank"
-          class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-all text-lg font-medium"
-        >
-          {{ link.name }}
-        </a>
-      </div>
-    </section>
-
-    <!-- Tech Stack -->
+    <!-- Tech Stack Section -->
     <section>
       <h2 class="text-2xl font-bold mb-4">
         Tech Stack
@@ -113,7 +122,7 @@ const techStack = [
         <span
           v-for="tech in techStack"
           :key="tech"
-          class="px-3 py-1 text-sm bg-gray-200 rounded-full"
+          class="px-4 py-2 bg-gray-200 rounded-full text-sm text-gray-800"
         >
           {{ tech }}
         </span>
@@ -121,3 +130,12 @@ const techStack = [
     </section>
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 768px) {
+  .contact-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>

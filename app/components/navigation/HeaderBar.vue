@@ -2,10 +2,22 @@
 import { Bars3Icon } from '@heroicons/vue/24/outline'
 import { PopoverGroup } from '@headlessui/vue'
 import NavDrawer from './DrawerBar.vue'
+import { MoonIcon, SunIcon } from '@heroicons/vue/24/solid'
 
 const drawer = useDrawer()
+const { applyTheme } = useTheme()
+
 const state = reactive({
-  query: '',
+  theme: false,
+})
+
+watchEffect(() => {
+  if (state.theme) {
+    applyTheme('light')
+  }
+  else {
+    applyTheme('dark')
+  }
 })
 </script>
 
@@ -62,10 +74,16 @@ const state = reactive({
         </PopoverGroup>
 
         <!-- Search Bar (Desktop) -->
-        <SharedSearchInput
-          v-model="state.query"
-          class="hidden lg:flex lg:flex-1 lg:justify-end relative max-w-72"
-        />
+        <SharedAppToggle
+          v-model="state.theme"
+        >
+          <template #icon-left>
+            <SunIcon class="w-4 h-4 text-yellow-500" />
+          </template>
+          <template #icon-right>
+            <MoonIcon class="w-4 h-4 text-gray-500" />
+          </template>
+        </SharedAppToggle>
       </nav>
 
       <NavDrawer />

@@ -46,8 +46,5 @@ const formatDate = (dateString?: string | Date) => {
         {{ tag }}
       </span>
     </div>
-    <SharedContentToc
-      :content="content.meta"
-    />
   </section>
 </template>
