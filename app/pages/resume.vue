@@ -32,11 +32,6 @@ const workHistory = [
   },
 ]
 
-const socialLinks = [
-  { name: 'GitHub', url: 'https://github.com/yourusername' },
-  { name: 'LinkedIn', url: 'https://linkedin.com/in/yourusername' },
-]
-
 const techStack = [
   'Vue.js', 'Nuxt.js', 'TypeScript', 'Tailwind CSS', 'Ruby on Rails',
   'PostgreSQL', 'Google Cloud', 'Docker', 'CI/CD', 'Three.js',
