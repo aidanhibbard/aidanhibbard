@@ -26,7 +26,7 @@ watchEffect(() => {
         aria-label="Global"
       >
         <!-- Left Section -->
-        <div class="flex">
+        <div class="flex flex-1">
           <NuxtLink
             href="/"
             class="text-2xl hover:opacity-75 transition-all duration-300 text-gray-900 dark:text-[#F3F4ED] hover:text-teal-500"
@@ -36,32 +36,34 @@ watchEffect(() => {
         </div>
 
         <!-- Desktop Navigation -->
-        <PopoverGroup class="hidden lg:flex lg:gap-x-8 text-md font-medium transition-all duration-300 text-gray-900 dark:text-[#F3F4ED] mx-auto">
-          <NuxtLink
-            href="/articles"
-            class="hover:text-teal-500"
-          >Articles</NuxtLink>
-          <NuxtLink
-            href="/projects"
-            class="hover:text-teal-500"
-          >Projects</NuxtLink>
-          <NuxtLink
-            href="/resume"
-            class="hover:text-teal-500"
-          >Resume</NuxtLink>
-        </PopoverGroup>
+        <div class="hidden lg:flex flex-1 justify-center">
+          <PopoverGroup class="flex gap-x-8 text-md font-medium transition-all duration-300 text-gray-900 dark:text-[#F3F4ED]">
+            <NuxtLink
+              href="/articles"
+              class="hover:text-teal-500"
+            >Articles</NuxtLink>
+            <NuxtLink
+              href="/projects"
+              class="hover:text-teal-500"
+            >Projects</NuxtLink>
+            <NuxtLink
+              href="/resume"
+              class="hover:text-teal-500"
+            >Resume</NuxtLink>
+          </PopoverGroup>
+        </div>
 
         <!-- Search Bar (Desktop) -->
-        <SharedAppToggle
-          v-model="state.theme"
-        >
-          <template #icon-left>
-            <SunIcon class="w-4 h-4 text-yellow-500" />
-          </template>
-          <template #icon-right>
-            <MoonIcon class="w-4 h-4 text-gray-500" />
-          </template>
-        </SharedAppToggle>
+        <div class="flex flex-1 justify-end">
+          <SharedAppToggle v-model="state.theme">
+            <template #icon-left>
+              <SunIcon class="w-4 h-4 text-yellow-500" />
+            </template>
+            <template #icon-right>
+              <MoonIcon class="w-4 h-4 text-gray-500" />
+            </template>
+          </SharedAppToggle>
+        </div>
       </nav>
     </div>
   </header>
