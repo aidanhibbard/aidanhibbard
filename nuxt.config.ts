@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/scripts',
   ],
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   app: {
     head: {
       // https://tailwindui.com/documentation

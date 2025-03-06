@@ -1,14 +1,5 @@
-import type { ThemeRegistrationAny, StringLiteralUnion, BundledTheme } from 'shiki'
-
-type ThemeType = ThemeRegistrationAny | StringLiteralUnion<BundledTheme, string>
-
-interface ThemeOption {
-  label: string
-  value: ThemeType
-}
-
 export function useTheme() {
-  const codeThemeOptions: ThemeOption[] = [
+  const codeThemeOptions: CodeThemeOption[] = [
     { label: 'Catppuccin Latte', value: 'catppuccin-latte' },
     { label: 'Everforest Light', value: 'everforest-light' },
     { label: 'GitHub Light', value: 'github-light' },
@@ -66,7 +57,7 @@ export function useTheme() {
   ]
 
   const theme = useCookie<ThemeType>('theme', { default: () => 'system' })
-  const codeTheme = useState('code-theme', (): ThemeOption => ({
+  const codeTheme = useState('code-theme', (): CodeThemeOption => ({
     label: 'Github Dark',
     value: 'github-dark',
   }))
@@ -84,7 +75,7 @@ export function useTheme() {
     }
   }
 
-  const applyCodeTheme = (newTheme: ThemeOption) => {
+  const applyCodeTheme = (newTheme: CodeThemeOption) => {
     codeTheme.value = newTheme
   }
 

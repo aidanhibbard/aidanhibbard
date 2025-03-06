@@ -8,10 +8,12 @@ const props = defineProps<{
   modelValue: string
 }>()
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits<{
+  'update:modelValue': [value: { value: string, label: string }]
+}>()
 
 const isOpen = ref(false)
-const selectId = computed(() => `dropdown-${Math.random().toString(36).substr(2, 9)}`)
+const selectId = computed(() => `dropdown-${Math.random().toString(36)}`)
 </script>
 
 <template>
@@ -52,7 +54,7 @@ const selectId = computed(() => `dropdown-${Math.random().toString(36).substr(2,
         :id="selectId"
         class="absolute inset-0 w-full h-full opacity-0"
         :value="modelValue"
-        @change="emit('update:modelValue', ($event.target as HTMLSelectElement).value)"
+        @change="emit('update:modelValue', ($event.target as HTMLSelectElement))"
         @blur="isOpen = false"
       >
         <option
@@ -73,7 +75,7 @@ const selectId = computed(() => `dropdown-${Math.random().toString(36).substr(2,
           v-for="option in options"
           :key="option.value"
           class="px-3 py-2 text-gray-900 dark:text-gray-100 hover:bg-teal-500 hover:text-white cursor-pointer"
-          @click="emit('update:modelValue', option.value); isOpen = false"
+          @click="emit('update:modelValue', option); isOpen = false"
         >
           {{ option.label }}
         </div>

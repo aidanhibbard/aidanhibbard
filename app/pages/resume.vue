@@ -126,4 +126,3 @@ const techStack = [
     </section>
   </div>
 </template>
-

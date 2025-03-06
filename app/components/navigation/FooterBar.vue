@@ -7,8 +7,6 @@ const sections = [
     { title: 'Instagram', href: 'https://www.instagram.com/aidan_hibbard/' },
   ] },
   { title: 'Personal Info', links: [
-    { title: 'About', href: '/about' },
-    { title: 'Contact', href: '/about#contact' },
     { title: 'Resume', href: '/resume' },
   ] },
 ]
@@ -16,10 +14,15 @@ const sections = [
 
 <template>
   <footer class="mx-auto mt-8 w-full max-w-container px-6">
-    <h2 id="footer-heading" class="sr-only">Footer</h2>
+    <h2
+      id="footer-heading"
+      class="sr-only"
+    >
+      Footer
+    </h2>
 
     <div class="mb-16">
-      <hr class="mt-10 border-t border-gray-300 dark:border-gray-700 transition-colors duration-300" />
+      <hr class="mt-10 border-t border-gray-300 dark:border-gray-700 transition-colors duration-300">
       <div class="mt-10 flex flex-col md:flex-row md:justify-evenly">
         <div
           v-for="s in sections"
@@ -52,12 +55,6 @@ const sections = [
         © {{ new Date().getFullYear() }} Aidan Hibbard. All rights reserved.
       </p>
       <div class="flex items-center space-x-4 text-sm font-semibold">
-        <NuxtLink 
-          to="/about#contact"
-          class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
-        >
-          Contact
-        </NuxtLink>
         <div class="h-4 w-px bg-gray-300 dark:bg-gray-700 transition-colors duration-300" />
         <NuxtLink
           to="https://github.com/aidanhibbard"

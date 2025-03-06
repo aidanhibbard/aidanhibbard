@@ -24,10 +24,6 @@ import { BriefcaseIcon } from '@heroicons/vue/24/solid'
       </p>
       <div class="mt-4 flex space-x-4">
         <NuxtLink
-          to="/about"
-          class="text-teal-600 font-medium hover:underline no-underline"
-        >Read more about me</NuxtLink>
-        <NuxtLink
           to="/resume"
           class="text-teal-600 font-medium hover:underline no-underline"
         >View my experience</NuxtLink>
