@@ -25,7 +25,6 @@ watchEffect(() => {
         class="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-6"
         aria-label="Global"
       >
-        <!-- Left Section -->
         <div class="flex flex-1">
           <NuxtLink
             href="/"
@@ -35,8 +34,7 @@ watchEffect(() => {
           </NuxtLink>
         </div>
 
-        <!-- Desktop Navigation -->
-        <div class="hidden lg:flex flex-1 justify-center">
+        <div class="flex flex-1 justify-center">
           <PopoverGroup class="flex gap-x-8 text-md font-medium transition-all duration-300 text-gray-900 dark:text-[#F3F4ED]">
             <NuxtLink
               href="/articles"

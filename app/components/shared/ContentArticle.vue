@@ -27,7 +27,6 @@ onMounted(() => {
       :content="content"
     />
 
-    <!-- TOC Sticking to the Right -->
     <SharedContentToc
       class="absolute top-20 right-0 max-w-xs hidden lg:block"
       :links="content.meta.body.toc.links"
