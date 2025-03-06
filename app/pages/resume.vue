@@ -117,7 +117,7 @@ const techStack = [
         <span
           v-for="tech in techStack"
           :key="tech"
-          class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-800 dark:text-gray-200 
+          class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-800 dark:text-gray-200
                  hover:bg-teal-500 hover:text-white dark:hover:bg-teal-400 dark:hover:text-gray-900 transition-colors duration-300"
         >
           {{ tech }}

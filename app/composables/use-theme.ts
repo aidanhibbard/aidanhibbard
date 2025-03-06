@@ -64,10 +64,13 @@ export function useTheme() {
 
   const applyTheme = (newTheme?: ThemeType) => {
     if (newTheme) theme.value = newTheme
-    if (import.meta.client && newTheme) {
-      document.documentElement.setAttribute('data-theme', newTheme)
-    }
   }
+
+  watchEffect(() => {
+    if (import.meta.client) {
+      document.documentElement.setAttribute('data-theme', theme.value)
+    }
+  })
 
   const applyCodeTheme = (newTheme: CodeThemeOption) => {
     codeTheme.value = newTheme
