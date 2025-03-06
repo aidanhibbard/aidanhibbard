@@ -51,7 +51,6 @@ watchEffect(() => {
           </PopoverGroup>
         </div>
 
-        <!-- Search Bar (Desktop) -->
         <div class="flex flex-1 justify-end">
           <SharedAppToggle v-model="state.theme">
             <template #icon-left>

@@ -19,7 +19,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="sticky inset-x-0 bottom-0 z-50 bg-white dark:bg-[#0f172a] border-b border-gray-300 dark:border-gray-700">
+  <div class="fixed inset-x-0 bottom-0 z-50 bg-white dark:bg-[#0f172a] border-b border-gray-300 dark:border-gray-700">
     <!-- Desktop Navigation (Hidden on sm-) -->
     <nav
       class="mx-auto sm:flex md:hidden max-w-7xl items-center justify-between p-4 lg:px-6"
