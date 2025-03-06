@@ -64,22 +64,14 @@ export function useTheme() {
 
   const applyTheme = (newTheme?: ThemeType) => {
     if (newTheme) theme.value = newTheme
-
-    if (import.meta.client) {
-      const selectedTheme
-        = theme.value === 'dark' || (theme.value === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
-          ? 'dark'
-          : 'light'
-
-      document.documentElement.setAttribute('data-theme', selectedTheme)
+    if (import.meta.client && newTheme) {
+      document.documentElement.setAttribute('data-theme', newTheme)
     }
   }
 
   const applyCodeTheme = (newTheme: CodeThemeOption) => {
     codeTheme.value = newTheme
   }
-
-  onMounted(() => applyTheme())
 
   return { theme, applyTheme, codeTheme, applyCodeTheme, codeThemeOptions }
 }
