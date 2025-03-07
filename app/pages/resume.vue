@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BriefcaseIcon, PhoneIcon, EnvelopeIcon } from '@heroicons/vue/24/solid'
+import { BriefcaseIcon, EnvelopeIcon } from '@heroicons/vue/24/solid'
 
 const workHistory = [
   {
