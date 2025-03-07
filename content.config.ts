@@ -1,4 +1,5 @@
 import { defineContentConfig, defineCollection, z } from '@nuxt/content'
+import { asRobotsCollection } from '@nuxtjs/robots/content'
 
 const schema = z.object({
   title: z.string(),
@@ -11,15 +12,19 @@ const schema = z.object({
 
 export default defineContentConfig({
   collections: {
-    articles: defineCollection({
-      type: 'data',
-      source: 'articles/**/*.md',
-      schema,
-    }),
-    projects: defineCollection({
-      type: 'data',
-      source: 'projects/**/*.md',
-      schema,
-    }),
+    articles: defineCollection(
+      asRobotsCollection({
+        type: 'data',
+        source: 'articles/**/*.md',
+        schema,
+      }),
+    ),
+    projects: defineCollection(
+      asRobotsCollection({
+        type: 'data',
+        source: 'projects/**/*.md',
+        schema,
+      }),
+    ),
   },
 })
