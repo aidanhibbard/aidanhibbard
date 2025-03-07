@@ -19,7 +19,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="mx-auto max-w-11/12 fixed bottom-4 left-0 right-0 z-50 bg-white dark:bg-[#0f172a] border-b border-gray-300 dark:border-gray-700 rounded-full">
+  <div class="mx-auto max-w-11/12 fixed bottom-4 left-0 right-0 z-50 bg-white/30 dark:bg-[#0f172a]/30 backdrop-blur-lg border-b border-gray-300 dark:border-gray-700 rounded-full">
     <!-- Desktop Navigation (Hidden on sm-) -->
     <nav
       class="mx-auto sm:flex md:hidden max-w-7xl items-center justify-between lg:px-6"
