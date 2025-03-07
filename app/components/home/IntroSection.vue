@@ -68,16 +68,10 @@ import { BriefcaseIcon } from '@heroicons/vue/24/solid'
               :position="[3, 3, 3]"
               :look-at="[0, 0, 0]"
             />
-
-            <!-- Low Poly Planet -->
             <TresMesh>
-              <TresSphereGeometry :args="[1, 8, 8]" /> <!-- Low poly by using fewer segments -->
-              <TresMeshBasicMaterial
-                color="blue"
-                wireframe
-              /> <!-- Wireframe for low poly effect -->
+              <TresTorusGeometry :args="[1, 0.5, 16, 32]" />
+              <TresMeshBasicMaterial color="orange" />
             </TresMesh>
-
             <TresAmbientLight :intensity="1" />
           </TresCanvas>
         </section>
