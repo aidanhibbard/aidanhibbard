@@ -20,6 +20,7 @@
     "@nuxt/image": "latest",
     "@nuxt/scripts": "^0.10.5",
     "@nuxtjs/mdc": "latest",
+    "@nuxtjs/seo": "^2.2.0",
     "@tailwindcss/vite": "latest",
     "@unhead/vue": "latest",
     "floating-vue": "latest",

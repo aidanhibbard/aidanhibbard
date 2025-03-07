@@ -43,12 +43,6 @@ const techStack = [
     <!-- Contact Info Section -->
     <section class="flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center space-x-4">
-        <PhoneIcon class="h-6 w-6 text-teal-500" />
-        <p class="text-sm text-gray-600 dark:text-gray-300">
-          +1 555 555 5555
-        </p>
-      </div>
-      <div class="flex items-center space-x-4">
         <EnvelopeIcon class="h-6 w-6 text-teal-500" />
         <p class="text-sm text-gray-600 dark:text-gray-300">
           aidan@example.com

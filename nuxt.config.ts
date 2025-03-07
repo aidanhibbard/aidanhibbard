@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     'floating-vue/nuxt',
     '@nuxt/image',
     '@nuxt/scripts',
+    '@nuxtjs/seo',
   ],
   devtools: { enabled: false },
   app: {
