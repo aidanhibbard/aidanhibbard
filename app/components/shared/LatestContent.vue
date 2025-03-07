@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { formatDate } from '#imports'
+
 const props = defineProps<{
   type: 'articles' | 'projects'
   title: string

@@ -5,9 +5,8 @@ import { BriefcaseIcon } from '@heroicons/vue/24/solid'
 <template>
   <div class="container mx-auto px-6 pt-16">
     <div class="lg:flex justify-between gap-10">
-      <!-- Left Section (Current Content) -->
       <div class="flex-1 flex flex-col justify-center items-start">
-        <h2 class="prose text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-indigo-500 to-pink-500 animate-gradient-x">
+        <h2 class="prose mx-auto text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-indigo-500 to-pink-500 animate-gradient-x text-center sm:text-left">
           Hi, I'm Aidan
         </h2>
 
@@ -31,7 +30,7 @@ import { BriefcaseIcon } from '@heroicons/vue/24/solid'
               I'm passionate about building efficient, scalable, and maintainable software. I love working on open-source projects that solve real problems.
             </p>
             <p class="mt-2">
-              If you're interested in learning more about me or my work, feel free to explore further.
+              Focusing on data driven solutions, climate impact, and building accessible interfaces.
             </p>
             <div class="mt-4 flex space-x-4">
               <NuxtLink
@@ -61,16 +60,30 @@ import { BriefcaseIcon } from '@heroicons/vue/24/solid'
         </article>
       </div>
 
-      <!-- Right Section (New Section) -->
-      <div class="lg:w-1/3 mt-10 lg:mt-0">
-        <!-- You can add your new content here -->
-        <section class="p-6 bg-gray-100 rounded-lg dark:bg-gray-800 dark:text-white">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            New Section Title
-          </h3>
-          <p class="mt-2">
-            This is a new section that will appear on the right side of the screen. On smaller screens, this section will appear below the content.
-          </p>
+      <div class="hidden lg:block lg:w-1/3 mt-10 lg:mt-0">
+        <section class="p-6 h-full">
+          <TresCanvas
+            class="w-full h-full rounded-lg"
+            clear
+            preset="realistic"
+            render-mode="on-demand"
+          >
+            <TresPerspectiveCamera
+              :position="[3, 3, 3]"
+              :look-at="[0, 0, 0]"
+            />
+
+            <!-- Low Poly Planet -->
+            <TresMesh>
+              <TresSphereGeometry :args="[1, 8, 8]" /> <!-- Low poly by using fewer segments -->
+              <TresMeshBasicMaterial
+                color="blue"
+                wireframe
+              /> <!-- Wireframe for low poly effect -->
+            </TresMesh>
+
+            <TresAmbientLight :intensity="1" />
+          </TresCanvas>
         </section>
       </div>
     </div>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ArticlesCollectionItem, ProjectsCollectionItem } from '@nuxt/content'
+import { formatDate } from '#imports'
 
 defineProps<{
   content: ArticlesCollectionItem | ProjectsCollectionItem
