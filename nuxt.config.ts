@@ -3,7 +3,6 @@ import tailwindcss from '@tailwindcss/vite'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-    '@nuxt/content',
     '@nuxt/eslint',
     '@nuxtjs/mdc',
     '@nuxt/icon',
@@ -11,6 +10,8 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/scripts',
     '@nuxtjs/seo',
+    '@nuxt/content',
+    '@tresjs/nuxt',
   ],
   devtools: { enabled: false },
   app: {

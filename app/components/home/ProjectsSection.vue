@@ -8,10 +8,10 @@ const { data: articles } = await useAsyncData('articles', async () =>
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="mx-auto max-w-2xl lg:mx-0">
         <h2 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl">
-          Latest Posts
+          What I'm working on
         </h2>
         <p class="mt-2 text-lg text-gray-600 dark:text-gray-400">
-          Stay updated with our latest insights and stories.
+          Projects ranging from utils, to entire templates.
         </p>
       </div>
       <div

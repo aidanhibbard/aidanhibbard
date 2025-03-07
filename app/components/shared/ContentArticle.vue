@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import ContentHeader from './ContentHeader.vue'
 
-defineProps<{
+const props = defineProps<{
   content?: ContentType
 }>()
+
+useSeoMeta(props.content.value?.seo || {})
 const commentsContainer = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
