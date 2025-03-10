@@ -12,7 +12,7 @@ const { data } = await useAsyncData(props.type, async () =>
 </script>
 
 <template>
-  <div class="sm:pt-12 sm:pb-8 md:pt-24 md:pb-16">
+  <div class="py-8 sm:py-12 md:py-24">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="mx-auto max-w-2xl lg:mx-0">
         <h2 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl">
@@ -62,3 +62,4 @@ const { data } = await useAsyncData(props.type, async () =>
     </div>
   </div>
 </template>
+
