@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "aidanhibbard",
   "private": true,
   "type": "module",
   "scripts": {
@@ -18,9 +18,9 @@
     "@nuxt/eslint": "latest",
     "@nuxt/icon": "latest",
     "@nuxt/image": "latest",
-    "@nuxt/scripts": "^0.10.5",
+    "@nuxt/scripts": "latest",
     "@nuxtjs/mdc": "latest",
-    "@nuxtjs/seo": "^2.2.0",
+    "@nuxtjs/seo": "latest",
     "@tailwindcss/vite": "latest",
     "@tresjs/nuxt": "^3.0.8",
     "@unhead/vue": "latest",

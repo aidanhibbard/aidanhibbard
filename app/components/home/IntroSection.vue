@@ -58,22 +58,7 @@ import { BriefcaseIcon } from '@heroicons/vue/24/solid'
 
       <div class="hidden lg:block lg:w-1/3 mt-10 lg:mt-0">
         <section class="p-6 h-full">
-          <TresCanvas
-            class="w-full h-full rounded-lg"
-            clear
-            preset="realistic"
-            render-mode="on-demand"
-          >
-            <TresPerspectiveCamera
-              :position="[3, 3, 3]"
-              :look-at="[0, 0, 0]"
-            />
-            <TresMesh>
-              <TresTorusGeometry :args="[1, 0.5, 16, 32]" />
-              <TresMeshBasicMaterial color="orange" />
-            </TresMesh>
-            <TresAmbientLight :intensity="1" />
-          </TresCanvas>
+
         </section>
       </div>
     </div>

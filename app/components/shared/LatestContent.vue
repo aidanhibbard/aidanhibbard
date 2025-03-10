@@ -59,4 +59,3 @@ const { data } = await useAsyncData(props.type, async () =>
     </div>
   </div>
 </template>
-

@@ -18,6 +18,10 @@ export default defineNuxtConfig({
     head: {
       // https://tailwindui.com/documentation
       link: [{ rel: 'stylesheet', href: 'https://rsms.me/inter/inter.css' }],
+      templateParams: {
+        // https://nuxtseo.com/learn/mastering-meta/titles#vue-title-best-practices
+        siteName: 'Aidan Hibbard',
+      },
     },
     pageTransition: {
       name: 'page',
@@ -40,6 +44,24 @@ export default defineNuxtConfig({
       googleAnalytics: {
         id: process.env.GOOGLE_ANALYTICS_ID ?? '',
       },
+    },
+  },
+  // https://nuxtseo.com/docs/seo-utils/guides/nuxt-config-seo-meta#usage
+  seo: {
+    meta: {
+      description: 'My portfolio.',
+      author: 'Aidan Hibbard',
+      colorScheme: 'dark light',
+      applicationName: 'Aidan Hibbard',
+
+      ogSiteName: 'Aidan Hibbard',
+      ogLocale: 'en_US',
+      ogType: 'website',
+      ogUrl: 'https://aidanhibbard.dev',
+      ogTitle: 'Aidan Hibbard',
+
+      ogImage: 'https://example.com/my-og-image.png',
+      robots: 'index, follow',
     },
   },
 })
