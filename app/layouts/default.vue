@@ -24,6 +24,7 @@
           This site is currently being rebuilt with Tailwind and Nuxt 3
         </p>
       </div>
+      <div class="flex flex-1 justify-end" />
     </div>
     <NavigationDesktopBar class="hidden md:block" />
     <NavigationMobileBar class="md:hidden sm:block" />
