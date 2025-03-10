@@ -1,6 +1,6 @@
 # Hi, I'm Aidan
 
-🖥️ [LegalNature](https://www.legalnature.com/)
+🖥️ Senior Developer at [LegalNature](https://www.legalnature.com/)
 
 Passionate about building scalable, high-performance web applications. I love working with modern frameworks, optimizing cloud infrastructure, and crafting seamless UX. Working primarily with Rails, Vue, JSX, Tailwind and TypeScript. Developing across the stack to ship MVPs 🚀
 
@@ -30,6 +30,7 @@ interface Aidan extends Person {
     'SideKiq'
   ];
   platforms: [
+    'AWS',
     'Google Cloud',
     'Vercel',
     'Digital Ocean',

@@ -28,9 +28,9 @@ const { data } = await useAsyncData(props.type, async () =>
         <article
           v-for="c in data"
           :key="c.title"
-          class="flex max-w-xl flex-col items-start justify-between space-y-4 h-full"
+          class="flex flex-col max-w-xl h-full space-y-4"
         >
-          <div class="group relative flex flex-col h-full">
+          <div class="group relative flex flex-col flex-grow">
             <h3 class="mt-3 text-xl font-semibold text-gray-900 dark:text-gray-100 group-hover:text-teal-500 dark:group-hover:text-teal-300 transition-colors">
               <NuxtLink :to="c.stem">
                 <span class="absolute inset-0" />
@@ -38,20 +38,23 @@ const { data } = await useAsyncData(props.type, async () =>
               </NuxtLink>
             </h3>
             <div class="flex items-center gap-x-4 text-sm text-gray-500 dark:text-gray-400">
-              <time>{{ formatDate(c.publishedAt) }}</time>
+              {{ props.type === 'articles' ? 'Published' : 'Started' }} on <time>{{ formatDate(c.publishedAt) }}</time>
             </div>
-            <p class="mt-4 line-clamp-3 text-base text-gray-600 dark:text-gray-400">
-              {{ c.desc }}
-            </p>
-            <div class="mt-4 flex flex-wrap gap-2 justify-start flex-grow">
-              <!-- Display only the first 4 tags, aligned at the bottom -->
-              <span
-                v-for="tag in c.tags"
-                :key="tag"
-                class="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium text-gray-800 dark:text-gray-200 bg-gray-200 dark:bg-gray-700 hover:bg-teal-100 dark:hover:bg-teal-600 transition-colors"
-              >
-                {{ tag }}
-              </span>
+
+            <!-- This div ensures description and tags stay at the bottom -->
+            <div class="mt-auto">
+              <p class="mb-4 line-clamp-3 text-base text-gray-600 dark:text-gray-400">
+                {{ c.desc }}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  v-for="tag in c.tags"
+                  :key="tag"
+                  class="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium text-gray-800 dark:text-gray-200 bg-gray-200 dark:bg-gray-700 hover:bg-teal-100 dark:hover:bg-teal-600 transition-colors"
+                >
+                  {{ tag }}
+                </span>
+              </div>
             </div>
           </div>
         </article>

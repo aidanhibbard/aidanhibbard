@@ -37,7 +37,7 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
   icon: {
-    collections: ['catppuccin'],
+    collections: ['catppuccin', 'mdi'],
   },
   scripts: {
     registry: {
