@@ -28,22 +28,23 @@ const { data } = await useAsyncData(props.type, async () =>
         <article
           v-for="c in data"
           :key="c.title"
-          class="flex flex-col max-w-xl h-full space-y-4"
+          class="flex flex-col max-w-xl h-full space-y-3"
         >
-          <div class="group relative flex flex-col flex-grow">
-            <h3 class="mt-3 text-xl font-semibold text-gray-900 dark:text-gray-100 group-hover:text-teal-500 dark:group-hover:text-teal-300 transition-colors">
+          <div class="group relative flex flex-col flex-grow space-y-4">
+            <h3 class="text-2xl font-semibold leading-tight text-gray-900 dark:text-gray-100 group-hover:text-teal-500 dark:group-hover:text-teal-300 transition-colors">
               <NuxtLink :to="c.stem">
                 <span class="absolute inset-0" />
                 {{ c.title }}
               </NuxtLink>
             </h3>
-            <div class="flex items-center gap-x-4 text-sm text-gray-500 dark:text-gray-400">
-              {{ props.type === 'articles' ? 'Published' : 'Started' }} on <time>{{ formatDate(c.publishedAt) }}</time>
+            <div class="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+              <span>{{ props.type === 'articles' ? 'Published' : 'Started on' }}</span>
+              <time class="font-medium text-gray-700 dark:text-gray-300">{{ formatDate(c.publishedAt) }}</time>
             </div>
 
-            <!-- This div ensures description and tags stay at the bottom -->
+            <!-- This ensures description and tags stay aligned at the bottom -->
             <div class="mt-auto">
-              <p class="mb-4 line-clamp-3 text-base text-gray-600 dark:text-gray-400">
+              <p class="mb-3 line-clamp-3 text-base text-gray-700 dark:text-gray-300">
                 {{ c.desc }}
               </p>
               <div class="flex flex-wrap gap-2">
@@ -62,4 +63,3 @@ const { data } = await useAsyncData(props.type, async () =>
     </div>
   </div>
 </template>
-
