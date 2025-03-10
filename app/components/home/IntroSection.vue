@@ -27,7 +27,7 @@ import { BriefcaseIcon } from '@heroicons/vue/24/solid'
             </p>
           </div>
 
-          <section class="prose lg:prose-xl transition-all duration-300 mt-4 text-gray-700 dark:text-[#eeeeee]">
+          <section class="prose-lg lg:prose-xl transition-all duration-300 mt-4 text-gray-700 dark:text-[#eeeeee]">
             <p>
               I'm passionate about building efficient, scalable, and maintainable software. I love working on open-source projects that solve real problems.
             </p>
@@ -66,7 +66,7 @@ import { BriefcaseIcon } from '@heroicons/vue/24/solid'
             </h3>
             <div class="flex space-x-8">
               <NuxtLink
-                to="https://www.linkedin.com/in/your-profile"
+                to="https://www.linkedin.com/in/aidan-hibbard"
                 target="_blank"
                 external
                 class="text-gray-700 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition duration-300 transform hover:scale-125"
@@ -78,7 +78,7 @@ import { BriefcaseIcon } from '@heroicons/vue/24/solid'
                 />
               </NuxtLink>
               <a
-                href="https://github.com/your-profile"
+                href="https://github.com/aidanhibbard"
                 target="_blank"
                 class="text-gray-700 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition duration-300 transform hover:scale-125"
                 aria-label="GitHub"
@@ -89,7 +89,7 @@ import { BriefcaseIcon } from '@heroicons/vue/24/solid'
                 />
               </a>
               <a
-                href="https://www.instagram.com/your-profile"
+                href="https://www.instagram.com/aidan_hibbard"
                 target="_blank"
                 class="text-gray-700 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition duration-300 transform hover:scale-125"
                 aria-label="Instagram"
@@ -100,7 +100,7 @@ import { BriefcaseIcon } from '@heroicons/vue/24/solid'
                 />
               </a>
               <a
-                href="https://codepen.io/your-profile"
+                href="https://codepen.io/aidanhibbard"
                 target="_blank"
                 class="text-gray-700 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition duration-300 transform hover:scale-125"
                 aria-label="CodePen"
