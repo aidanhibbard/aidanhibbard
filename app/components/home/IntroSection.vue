@@ -57,9 +57,7 @@ import { BriefcaseIcon } from '@heroicons/vue/24/solid'
       </div>
 
       <div class="hidden lg:block lg:w-1/3 mt-10 lg:mt-0">
-        <section class="p-6 h-full">
-
-        </section>
+        <section class="p-6 h-full" />
       </div>
     </div>
   </div>
