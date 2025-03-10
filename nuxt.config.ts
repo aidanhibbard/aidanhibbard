@@ -11,7 +11,6 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxtjs/seo',
     '@nuxt/content',
-    '@tresjs/nuxt',
   ],
   devtools: { enabled: false },
   app: {

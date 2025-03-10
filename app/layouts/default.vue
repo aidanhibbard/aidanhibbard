@@ -24,18 +24,6 @@
           This site is currently being rebuilt with Tailwind and Nuxt 3
         </p>
       </div>
-      <div class="flex flex-1 justify-end">
-        <button
-          type="button"
-          class="-m-3 p-3 focus-visible:outline-offset-[-4px]"
-        >
-          <span class="sr-only">Dismiss</span>
-          <XMarkIcon
-            class="size-5 text-gray-900"
-            aria-hidden="true"
-          />
-        </button>
-      </div>
     </div>
     <NavigationDesktopBar class="hidden md:block" />
     <NavigationMobileBar class="md:hidden sm:block" />
