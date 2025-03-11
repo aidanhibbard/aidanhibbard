@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     },
   },
   css: ['~/assets/css/main.css'],
+  unhead: { legacy: true },
   future: {
     compatibilityVersion: 4,
   },

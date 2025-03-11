@@ -24,7 +24,7 @@
     "@tailwindcss/vite": "latest",
     "@unhead/vue": "latest",
     "floating-vue": "latest",
-    "nuxt": "latest",
+    "nuxt": "3.15.0",
     "tailwindcss": "latest",
     "vue": "latest",
     "vue-router": "latest"
