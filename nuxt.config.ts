@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     },
   },
   css: ['~/assets/css/main.css'],
+  // https://github.com/harlan-zw/nuxt-seo/issues/401#issuecomment-2712432045 REMOVE THIS SOME DAY
   unhead: { legacy: true },
   future: {
     compatibilityVersion: 4,

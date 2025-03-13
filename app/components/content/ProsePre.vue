@@ -2,6 +2,8 @@
 import { DocumentDuplicateIcon } from '@heroicons/vue/20/solid'
 import { codeToHtml } from 'shiki'
 
+const { theme } = useTheme()
+
 // https://content.nuxt.com/docs/components/prose#prosepre
 const props = defineProps<{
   code?: string
@@ -16,7 +18,6 @@ const defaultMsg = 'Copy to clipboard'
 const state = reactive({
   copyMsg: defaultMsg,
   highlightedCode: '',
-  theme: 'slack-dark',
 })
 
 const codeWrapper = ref<HTMLDivElement | null>(null)
@@ -43,7 +44,7 @@ watchEffect(async () => {
   if (props.code) {
     const html = await codeToHtml(props.code, {
       lang: props.language ?? '',
-      theme: state.theme,
+      theme: theme.value === 'dark' ? 'slack-dark' : 'github-light',
     })
     state.highlightedCode = html
   }
@@ -65,7 +66,7 @@ watchEffect(async () => {
     </button>
     <div
       v-if="props.filename || props.language"
-      class="flex items-center justify-between p-2 border-b border-gray-600 dark:border-gray-600 bg-gray-100 dark:bg-[#020618] text-gray-800 dark:text-[#F3F4ED] text-sm font-mono"
+      class="flex items-center justify-between p-2 border-b border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-[#020618] text-gray-800 dark:text-[#F3F4ED] text-sm font-mono"
     >
       <div class="flex items-center gap-2 pl-2">
         <Icon

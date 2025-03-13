@@ -8,7 +8,7 @@ const props = defineProps<{
 useSeoMeta(props.content.value?.seo || {})
 const commentsContainer = ref<HTMLDivElement | null>(null)
 
-watchEffect(() => {
+onMounted(() => {
   const script = document.createElement('script')
   script.src = 'https://utteranc.es/client.js'
   script.setAttribute('repo', 'aidanhibbard/aidanhibbard')
