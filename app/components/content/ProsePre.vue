@@ -66,19 +66,20 @@ watchEffect(async () => {
     </button>
     <div
       v-if="props.filename || props.language"
-      class="flex items-center justify-between p-2 border-b border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-[#020618] text-gray-800 dark:text-[#F3F4ED] text-sm font-mono"
+      class="flex items-center justify-between p-2 border-b border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-[#0c0e14] text-gray-800 dark:text-[#F3F4ED] text-sm font-mono"
     >
       <div class="flex items-center gap-2 pl-2">
         <Icon
           name="catppuccin:vue"
-          class="h-6 w-6"
+          size="12"
         />
-        <span
+        <div
           v-if="props.filename"
-          class="font-semibold hover:cursor-pointer text-gray-700 hover:text-teal-500 transition-colors duration-300"
+          v-tooltip="state.copyMsg"
+          class="font-semibold hover:cursor-pointer text-gray-900 dark:text-[#eeeeee] hover:text-teal-500 transition-colors duration-300"
         >
           {{ props.filename }}
-        </span>
+        </div>
       </div>
     </div>
     <!-- eslint-disable vue/no-v-html -->

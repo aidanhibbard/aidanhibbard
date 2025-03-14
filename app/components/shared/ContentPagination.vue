@@ -71,7 +71,7 @@ onMounted(fetchContent)
             :to="d.stem"
             class="block space-y-2 p-4 rounded-lg transition"
           >
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-[#eeeeee]">{{ d.title }}</h3>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-[#eeeeee] hover:text-teal-500 transition-colors duration-300">{{ d.title }}</h3>
             <span class="text-sm text-gray-400">Published on: <time>{{ new Date(d.publishedAt).toLocaleDateString() }}</time></span>
             <p class="text-md text-gray-800 dark:text-[#eeeeee]">{{ d.desc }}</p>
             <ul class="flex flex-wrap gap-2 mt-2">
