@@ -33,7 +33,7 @@ const workHistory = [
 ]
 
 const techStack = [
-  'Vue.js', 'Nuxt.js', 'TypeScript', 'Tailwind CSS', 'Ruby on Rails',
+  'Vue.js', 'Nuxt.js', 'React', 'Next.js', 'NestJS', 'JSX', 'TypeScript', 'Tailwind CSS', 'Ruby on Rails',
   'PostgreSQL', 'Google Cloud', 'Docker', 'CI/CD', 'Three.js',
 ]
 </script>
@@ -64,14 +64,11 @@ const techStack = [
       </div>
     </section>
 
-    <!-- Name and Summary -->
+    <!-- Summary -->
     <div class="text-center">
-      <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-        Aidan Hibbard
-      </h1>
       <div class="w-20 mx-auto border-t-2 border-gray-300 dark:border-gray-700 mb-6 transition-all duration-300" />
       <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-        A passionate software engineer with experience in frontend and backend development, specializing in Vue.js, Nuxt.js, and building scalable, user-centric web applications.
+        Experienced software engineer skilled in full-stack development, building scalable, performant, and user-centric applications across various frameworks and technologies.
       </p>
     </div>
 
@@ -111,11 +108,8 @@ const techStack = [
         <span
           v-for="tech in techStack"
           :key="tech"
-          class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-800 dark:text-gray-200
-                 hover:bg-teal-500 hover:text-white dark:hover:bg-teal-400 dark:hover:text-gray-900 transition-colors duration-300"
-        >
-          {{ tech }}
-        </span>
+          class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-800 dark:text-gray-200 hover:bg-teal-500 hover:text-white dark:hover:bg-teal-400 dark:hover:text-gray-900 transition-colors duration-300"
+        >{{ tech }}</span>
       </div>
     </section>
   </div>
