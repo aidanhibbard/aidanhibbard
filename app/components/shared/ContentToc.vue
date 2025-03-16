@@ -18,7 +18,13 @@ const toggleSection = (id: string) => {
 
 // **SEARCH**: Filter TOC based on query
 const filteredLinks = computed(() => {
-  if (!query.value.trim()) return props.links
+  const links = [...props.links]
+  if (topLevel.value) links.push({
+    id: 'comments',
+    text: 'Comments',
+    depth: 2,
+  } as TocLink)
+  if (!query.value.trim()) return links
 
   const filter = (links: TocLink[]): TocLink[] =>
     links
@@ -28,7 +34,7 @@ const filteredLinks = computed(() => {
       }))
       .filter(l => l.text.toLowerCase().includes(query.value.toLowerCase()) || (l.children && l.children.length > 0))
 
-  return filter(props.links)
+  return filter(links)
 })
 
 onMounted(() => {
@@ -71,7 +77,7 @@ onMounted(() => {
           class="w-4.5 h-4.5 text-gray-500 dark:text-gray-400"
         />
         <NuxtLink
-          class="text-sm/6 truncate transition-colors duration-300"
+          class="text-md/6 truncate transition-colors duration-300"
           :to="`#${l.id}`"
           :class="{ 'text-teal-500': activeSection === l.id, 'hover:text-teal-500': true }"
         >

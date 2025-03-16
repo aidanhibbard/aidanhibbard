@@ -65,6 +65,7 @@ watchEffect(() => {
 
       <!-- Comments Section (Visible Below Content) -->
       <div
+        id="comments"
         ref="commentsContainer"
         class="mt-8 mx-auto w-full max-w-xl"
       />
