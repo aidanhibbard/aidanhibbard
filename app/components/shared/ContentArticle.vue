@@ -21,22 +21,39 @@ onMounted(() => {
 </script>
 
 <template>
-  <article
-    v-if="content"
-    class="max-w-4xl mx-auto p-6 relative"
-  >
-    <ContentHeader
-      :content="content"
-    />
+  <div class="relative flex justify-center w-full">
+    <!-- Table of Contents (Sticky, Floating Left) -->
+    <div class="hidden lg:block w-64 fixed left-10 top-20">
+      <SharedContentToc
+        v-if="content?.meta?.body?.toc?.links"
+        :links="content.meta.body.toc.links"
+      />
+    </div>
 
-    <ContentRenderer
-      class="my-4 prose mx-auto"
-      :value="content.meta"
-    />
+    <!-- Main Content (Centered) -->
+    <article
+      v-if="content"
+      class="max-w-4xl w-full p-6 relative flex flex-col items-center"
+    >
+      <!-- Ensure Content Header Renders First -->
+      <template v-if="content.meta">
+        <ContentHeader
+          :content="content"
+          class="w-full max-w-3xl"
+        />
 
-    <div
-      ref="commentsContainer"
-      class="mt-8"
-    />
-  </article>
+        <ContentRenderer
+          v-if="content.meta.body"
+          class="my-4 prose w-full max-w-3xl"
+          :value="content.meta"
+        />
+      </template>
+
+      <!-- Comments Section (Visible Below Content) -->
+      <div
+        ref="commentsContainer"
+        class="mt-8 w-full max-w-3xl"
+      />
+    </article>
+  </div>
 </template>

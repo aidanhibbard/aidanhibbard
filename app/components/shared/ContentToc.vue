@@ -1,120 +1,132 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { FolderIcon, ChevronUpIcon, ChevronDownIcon } from '@heroicons/vue/24/solid'
+import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/vue/20/solid'
+import { FolderIcon } from '@heroicons/vue/24/solid'
+import type { TocLink } from '@nuxtjs/mdc'
 
-// Define the props interface for the links
-interface Link {
-  id: string
-  depth: number
-  text: string
-  links?: Link[] // Optional recursive property for nested links
+const props = defineProps<{ links: TocLink[] }>()
+
+const query = ref('')
+const openSections = ref<Record<string, boolean>>({})
+const activeSection = ref<string | null>(null)
+
+const topLevel = computed(() => props.links[0]?.depth === 2)
+
+// Toggle section visibility
+const toggleSection = (id: string) => {
+  openSections.value[id] = !openSections.value[id]
 }
 
-defineProps({
-  links: {
-    type: Array as () => Link[],
-    required: true,
-  },
+// **SEARCH**: Filter TOC based on query
+const filteredLinks = computed(() => {
+  if (!query.value.trim()) return props.links
+
+  const filter = (links: TocLink[]): TocLink[] =>
+    links
+      .map(l => ({
+        ...l,
+        children: l.children ? filter(l.children) : undefined,
+      }))
+      .filter(l => l.text.toLowerCase().includes(query.value.toLowerCase()) || (l.children && l.children.length > 0))
+
+  return filter(props.links)
 })
 
-// A recursive function to handle the state of each folder (open/close)
-const toggleState = (id: string) => {
-  state[id] = !state[id]
-}
+// **INTERSECTION OBSERVER**: Highlight active section & auto-open folders
+watchEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id')
+          if (id) {
+            activeSection.value = id
+            autoExpandFolders(id)
+          }
+        }
+      }
+    },
+    { rootMargin: '-50% 0px -50% 0px', threshold: 0.1 },
+  )
 
-// Define a reactive state to track the open/close state of each section
-const state = ref<Record<string, boolean>>({})
+  document.querySelectorAll('h2, h3, h4, h5, h6').forEach((section) => {
+    observer.observe(section)
+  })
+})
+
+// **AUTO-EXPAND FOLDERS**: Open all necessary sections to reveal the current section
+const autoExpandFolders = (id: string) => {
+  const openRecursively = (links: TocLink[], path: string[] = []) => {
+    for (const link of links) {
+      if (link.id === id) {
+        path.forEach(p => (openSections.value[p] = true))
+        return true
+      }
+      if (link.children && openRecursively(link.children, [...path, link.id])) {
+        return true
+      }
+    }
+    return false
+  }
+  openRecursively(props.links)
+}
 </script>
 
 <template>
-  <nav class="px-4 border-l border-gray-500 overflow-y-auto max-h-screen">
-    <ul class="space-y-2">
-      <!-- Recursive call for each link -->
-      <li
-        v-for="link in links"
-        :key="link.id"
-        class="transition-all duration-300 ease-in-out hover:bg-gray-100 rounded-lg"
+  <ul class="px-4 text-gray-900 dark:text-gray-200 flex flex-col gap-y-2">
+    <SharedSearchInput
+      v-if="topLevel"
+      v-model:model-value="query"
+      placeholder="Search sections"
+    />
+
+    <li
+      v-for="l in filteredLinks"
+      :key="l.id"
+      class="relative"
+    >
+      <div
+        class="flex items-center gap-x-2 cursor-pointer"
+        @click="l.children && toggleSection(l.id)"
       >
-        <div class="flex items-center space-x-3 p-2">
-          <!-- Folder icon -->
-          <FolderIcon
-            v-if="link.links"
-            class="w-5 h-5 text-gray-600"
-          />
-
-          <!-- Clickable section name -->
-          <button
-            class="text-gray-900 font-semibold hover:text-gray-700 transition duration-200 ease-in-out"
-            @click="toggleState(link.id)"
-          >
-            {{ link.text }}
-          </button>
-
-          <!-- Chevron icon to toggle open/close state -->
-          <button
-            v-if="link.links"
-            class="ml-auto text-gray-600 hover:text-gray-800 transition duration-200 ease-in-out"
-            @click="toggleState(link.id)"
-          >
-            <ChevronDownIcon
-              v-if="!state[link.id]"
-              class="w-5 h-5"
-            />
-            <ChevronUpIcon
-              v-else
-              class="w-5 h-5"
-            />
-          </button>
-        </div>
-
-        <!-- Nested links (if any) -->
-        <ul
-          v-if="state[link.id]"
-          class="ml-6 space-y-3 pl-4"
+        <FolderIcon
+          v-if="l.children"
+          class="w-4.5 h-4.5 text-gray-500 dark:text-gray-400"
+        />
+        <NuxtLink
+          class="text-sm/6 truncate transition-colors duration-300"
+          :to="`#${l.id}`"
+          :class="{ 'text-teal-500 font-semibold': activeSection === l.id, 'hover:text-teal-500': true }"
         >
-          <li
-            v-for="nestedLink in link.links || []"
-            :key="nestedLink.id"
-            class="transition-all duration-300 ease-in-out hover:bg-gray-100 rounded-lg"
-          >
-            <div class="flex items-center space-x-3 p-2">
-              <!-- Folder icon for nested sections -->
-              <FolderIcon class="w-5 h-5 text-gray-600" />
+          {{ l.text }}
+        </NuxtLink>
+        <ChevronRightIcon
+          v-if="l.children && !openSections[l.id]"
+          class="w-6 h-6 transition-transform duration-300 text-gray-600 dark:text-gray-400"
+        />
+        <ChevronDownIcon
+          v-if="l.children && openSections[l.id]"
+          class="w-6 h-6 transition-transform duration-300 text-gray-600 dark:text-gray-400"
+        />
+      </div>
 
-              <!-- Clickable nested section name -->
-              <button
-                class="text-gray-900 font-semibold hover:text-gray-700 transition duration-200 ease-in-out"
-                @click="toggleState(nestedLink.id)"
-              >
-                {{ nestedLink.text }}
-              </button>
-
-              <!-- Chevron icon for nested sections -->
-              <button
-                class="ml-auto text-gray-600 hover:text-gray-800 transition duration-200 ease-in-out"
-                @click="toggleState(nestedLink.id)"
-              >
-                <ChevronDownIcon
-                  v-if="!state[nestedLink.id]"
-                  class="w-5 h-5"
-                />
-                <ChevronUpIcon
-                  v-else
-                  class="w-5 h-5"
-                />
-              </button>
-            </div>
-
-            <!-- Recursively render nested links -->
-            <ul
-              v-if="nestedLink.links?.length"
-              class="ml-6 space-y-3 pl-4"
-            >
-              <ContentToc :links="nestedLink.links" />
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
+      <transition name="fade">
+        <ContentToc
+          v-if="l.children && openSections[l.id]"
+          :links="l.children"
+          class="ml-2 border-l border-gray-300 dark:border-gray-600"
+        />
+      </transition>
+    </li>
+  </ul>
 </template>
+
+<style scoped>
+/* Smooth fade in/out for nested lists */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+</style>
