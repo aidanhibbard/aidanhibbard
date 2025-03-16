@@ -1,22 +1,36 @@
 <script setup lang="ts">
 import ContentHeader from './ContentHeader.vue'
 
+const { theme } = useTheme()
 const props = defineProps<{
   content?: ContentType
 }>()
 
-useSeoMeta(props.content.value?.seo || {})
+useSeoMeta(props.content?.seo || {})
+
 const commentsContainer = ref<HTMLDivElement | null>(null)
 
-onMounted(() => {
+const loadComments = () => {
+  if (!commentsContainer.value) return
+
+  // Remove existing Utterances iframe if present
+  commentsContainer.value.innerHTML = ''
+
   const script = document.createElement('script')
   script.src = 'https://utteranc.es/client.js'
   script.setAttribute('repo', 'aidanhibbard/aidanhibbard')
   script.setAttribute('issue-term', 'og:title')
-  script.setAttribute('theme', 'github-dark')
+  script.setAttribute('theme', theme.value === 'dark' ? 'github-dark' : 'github-light')
   script.setAttribute('crossorigin', 'anonymous')
   script.setAttribute('async', 'true')
-  commentsContainer.value?.appendChild(script)
+  commentsContainer.value.appendChild(script)
+}
+
+onMounted(loadComments)
+
+// Watch for theme changes and reload comments
+watchEffect(() => {
+  loadComments()
 })
 </script>
 
@@ -52,7 +66,7 @@ onMounted(() => {
       <!-- Comments Section (Visible Below Content) -->
       <div
         ref="commentsContainer"
-        class="mt-8 w-full max-w-3xl"
+        class="mt-8 mx-auto w-full max-w-xl"
       />
     </article>
   </div>

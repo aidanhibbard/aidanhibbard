@@ -31,44 +31,22 @@ const filteredLinks = computed(() => {
   return filter(props.links)
 })
 
-// **INTERSECTION OBSERVER**: Highlight active section & auto-open folders
-watchEffect(() => {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id')
-          if (id) {
-            activeSection.value = id
-            autoExpandFolders(id)
-          }
-        }
+onMounted(() => {
+  const sections = document.querySelectorAll('h2, h3, h4, h5, h6')
+  const options = {
+    threshold: 0.5,
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        activeSection.value = entry.target.id
       }
-    },
-    { rootMargin: '-50% 0px -50% 0px', threshold: 0.1 },
-  )
-
-  document.querySelectorAll('h2, h3, h4, h5, h6').forEach((section) => {
+    })
+  }, options)
+  sections.forEach((section) => {
     observer.observe(section)
   })
 })
-
-// **AUTO-EXPAND FOLDERS**: Open all necessary sections to reveal the current section
-const autoExpandFolders = (id: string) => {
-  const openRecursively = (links: TocLink[], path: string[] = []) => {
-    for (const link of links) {
-      if (link.id === id) {
-        path.forEach(p => (openSections.value[p] = true))
-        return true
-      }
-      if (link.children && openRecursively(link.children, [...path, link.id])) {
-        return true
-      }
-    }
-    return false
-  }
-  openRecursively(props.links)
-}
 </script>
 
 <template>
@@ -95,7 +73,7 @@ const autoExpandFolders = (id: string) => {
         <NuxtLink
           class="text-sm/6 truncate transition-colors duration-300"
           :to="`#${l.id}`"
-          :class="{ 'text-teal-500 font-semibold': activeSection === l.id, 'hover:text-teal-500': true }"
+          :class="{ 'text-teal-500': activeSection === l.id, 'hover:text-teal-500': true }"
         >
           {{ l.text }}
         </NuxtLink>

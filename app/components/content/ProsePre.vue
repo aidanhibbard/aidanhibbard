@@ -44,7 +44,7 @@ watchEffect(async () => {
   if (props.code) {
     const html = await codeToHtml(props.code, {
       lang: props.language ?? '',
-      theme: theme.value === 'dark' ? 'slack-dark' : 'github-light',
+      theme: theme.value === 'dark' ? 'slack-dark' : 'github-dark-dimmed',
     })
     state.highlightedCode = html
   }
