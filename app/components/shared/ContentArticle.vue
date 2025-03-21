@@ -37,7 +37,7 @@ watchEffect(() => {
 <template>
   <div class="relative flex justify-center w-full">
     <!-- Table of Contents (Sticky, Floating Left) -->
-    <div class="hidden lg:block w-64 fixed left-10 top-20">
+    <div class="hidden xl:block w-64 fixed left-10 top-20">
       <SharedContentToc
         v-if="content?.meta?.body?.toc?.links"
         :links="content.meta.body.toc.links"
