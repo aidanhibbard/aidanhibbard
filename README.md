@@ -2,7 +2,7 @@
 
 🖥️ Senior Developer at [LegalNature](https://www.legalnature.com/)
 
-Passionate about building scalable, high-performance web applications. I love working with modern frameworks, optimizing cloud infrastructure, and crafting seamless UX. Working primarily with Rails, Vue, JSX, Tailwind and TypeScript. Developing across the stack to ship MVPs 🚀
+Passionate about building scalable, high-performance web applications. I love working with modern frameworks, optimizing cloud infrastructure, and crafting seamless UX. Working primarily with Rails, Vue, JSX, Tailwind and TypeScript.
 
 [![Portfolio: aidanhibbard](https://img.shields.io/badge/Portfolio-20B2AA?style=for-the-badge&logo=nuxt)](https://aidanhibbard.dev/)
 [![Instagram: aidan_hibbard](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/aidan_hibbard/)
