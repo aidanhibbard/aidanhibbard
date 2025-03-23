@@ -14,7 +14,7 @@
   "dependencies": {
     "@headlessui/vue": "latest",
     "@heroicons/vue": "latest",
-    "@nuxt/content": "latest",
+    "@nuxt/content": "^3.4.0",
     "@nuxt/eslint": "latest",
     "@nuxt/icon": "latest",
     "@nuxt/image": "latest",

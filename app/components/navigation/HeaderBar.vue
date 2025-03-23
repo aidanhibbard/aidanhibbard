@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PopoverGroup } from '@headlessui/vue'
-import { MoonIcon, SunIcon } from '@heroicons/vue/24/solid'
+import { MoonIcon, SunIcon, Bars3Icon } from '@heroicons/vue/24/solid'
 
 const { applyTheme } = useTheme()
 
@@ -19,7 +19,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <header class="sticky inset-x-0 top-0 z-50 bg-white/30 dark:bg-[#0f172a]/30 backdrop-blur-md border-b border-gray-300 dark:border-gray-700">
+  <header class="sticky inset-x-0 top-0 z-50 bg-white/30 dark:bg-[#000000]/30 backdrop-blur-md border-b border-gray-300 dark:border-gray-700">
     <div class="relative">
       <nav
         class="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-6"
@@ -28,39 +28,50 @@ watchEffect(() => {
         <div class="flex flex-1">
           <NuxtLink
             href="/"
-            class="text-2xl hover:opacity-75 transition-all duration-300 text-gray-900 dark:text-[#F3F4ED] hover:text-teal-500"
+            class="text-2xl hover:opacity-75 transition-all duration-300 text-gray-900 dark:text-white hover:text-teal-500"
           >
             Aidan Hibbard
           </NuxtLink>
         </div>
 
-        <div class="flex flex-1 justify-center">
-          <PopoverGroup class="flex gap-x-8 text-md font-medium transition-all duration-300 text-gray-900 dark:text-[#F3F4ED]">
+        <!-- Hide links on small & medium screens -->
+        <div class="hidden md:flex flex-1 justify-center">
+          <PopoverGroup class="flex gap-x-8 text-md font-medium transition-all duration-300 text-gray-900 dark:text-white">
             <NuxtLink
-              href="/articles"
+              to="/articles"
               class="hover:text-teal-500"
             >Articles</NuxtLink>
             <NuxtLink
-              href="/projects"
+              to="/projects"
               class="hover:text-teal-500"
             >Projects</NuxtLink>
             <NuxtLink
-              href="/resume"
+              to="/talks"
+              class="hover:text-teal-500"
+            >Talks</NuxtLink>
+            <NuxtLink
+              to="/resume"
               class="hover:text-teal-500"
             >Resume</NuxtLink>
           </PopoverGroup>
         </div>
 
-        <div class="flex flex-1 justify-end">
+        <!-- Hide toggle on small & medium screens -->
+        <div class="hidden md:flex flex-1 justify-end">
           <SharedAppToggle v-model="state.theme">
-            <template #icon-left>
+            <template #checked>
               <SunIcon class="w-4 h-4 text-yellow-500" />
             </template>
-            <template #icon-right>
+            <template #unchecked>
               <MoonIcon class="w-4 h-4 text-gray-500" />
             </template>
           </SharedAppToggle>
         </div>
+
+        <!-- Show menu icon on small & medium screens -->
+        <button class="md:hidden text-gray-900 dark:text-white">
+          <Bars3Icon class="w-6 h-6" />
+        </button>
       </nav>
     </div>
   </header>

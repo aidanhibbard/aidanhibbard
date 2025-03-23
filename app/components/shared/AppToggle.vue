@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { Switch } from '@headlessui/vue'
+
 defineProps<{
   modelValue: boolean
   disabled?: boolean
   label?: string
-  size?: 'sm' | 'md' | 'lg' // Allow sizes to be passed as props
 }>()
 
 const emits = defineEmits<{
@@ -12,55 +13,30 @@ const emits = defineEmits<{
 </script>
 
 <template>
-  <label
-    class="flex items-center cursor-pointer select-none p-1 transition"
-    :for="label"
+  <!-- Use the `checked` state to conditionally style the button. -->
+  <Switch
+    v-slot="{ checked }"
+    as="template"
+    @click="emits('update:modelValue', !modelValue)"
   >
-    <div
-      class="relative"
-      :class="{
-        'w-10 h-5': size === 'sm',
-        'w-12 h-6': size === 'md' || !size,
-        'w-14 h-7': size === 'lg',
-      }"
+    <button
+      class="relative inline-flex h-6 w-11 items-center rounded-full"
+      :class="checked ? 'bg-blue-600' : 'bg-gray-200'"
     >
-      <input
-        id="toggleTheme"
-        type="checkbox"
-        class="peer sr-only"
-        :checked="modelValue"
-        :disabled="disabled"
-        @change="emits('update:modelValue', !modelValue)"
-      >
-      <div
-        class="block w-full h-full rounded-full transition-all ease-in-out"
-        :class="{
-          'bg-gray-200': modelValue,
-          'bg-gray-300 dark:bg-gray-600': !modelValue,
-          'cursor-not-allowed opacity-50': disabled,
-        }"
-      />
-      <div
-        class="absolute top-0.5 left-0.5 w-5 h-5 flex items-center justify-center rounded-full transition-transform transform
-        peer-checked:translate-x-full"
-        :class="{
-          'bg-white': modelValue,
-          'bg-gray-800': !modelValue,
-        }"
+      <span class="sr-only">{{ label }}</span>
+      <span
+        :class="checked ? 'translate-x-6' : 'translate-x-1'"
+        class="inline-block h-4 w-4 transform rounded-full bg-white transition"
       >
         <slot
-          v-if="modelValue"
-          name="icon-left"
+          v-if="checked"
+          name="checked"
         />
         <slot
           v-else
-          name="icon-right"
+          name="unchecked"
         />
-      </div>
-    </div>
-    <span
-      v-if="label"
-      class="ml-3 text-sm text-gray-900 dark:text-gray-200"
-    >{{ label }}</span>
-  </label>
+      </span>
+    </button>
+  </Switch>
 </template>

@@ -26,8 +26,6 @@ const loadComments = () => {
   commentsContainer.value.appendChild(script)
 }
 
-onMounted(loadComments)
-
 // Watch for theme changes and reload comments
 watchEffect(() => {
   loadComments()
@@ -35,21 +33,23 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="relative flex justify-center w-full">
-    <!-- Table of Contents (Sticky, Floating Left) -->
-    <div class="hidden xl:block w-64 fixed left-10 top-20">
+  <div class="relative w-full flex flex-col xl:flex-row max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-4">
+    <!-- Table of Contents (Sticky on Desktop) -->
+    <aside
+      class="hidden xl:block xl:w-64 sticky top-20 self-start"
+    >
       <SharedContentToc
         v-if="content?.meta?.body?.toc?.links"
         :links="content.meta.body.toc.links"
       />
-    </div>
+    </aside>
 
-    <!-- Main Content (Centered) -->
+    <!-- Main Content Area -->
     <article
       v-if="content"
-      class="max-w-4xl w-full p-6 relative flex flex-col items-center"
+      class="w-full flex-1 max-w-4xl mx-auto xl:pl-8"
     >
-      <!-- Ensure Content Header Renders First -->
+      <!-- Content Header -->
       <template v-if="content.meta">
         <ContentHeader
           :content="content"
@@ -58,12 +58,12 @@ watchEffect(() => {
 
         <ContentRenderer
           v-if="content.meta.body"
-          class="my-4 prose w-full max-w-3xl"
+          class="my-6 prose w-full max-w-3xl"
           :value="content.meta"
         />
       </template>
 
-      <!-- Comments Section (Visible Below Content) -->
+      <!-- Comments Section -->
       <div
         id="comments"
         ref="commentsContainer"

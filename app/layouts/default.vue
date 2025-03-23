@@ -31,8 +31,7 @@ import { ExclamationCircleIcon } from '@heroicons/vue/24/solid'
         </p>
       </div>
     </div>
-    <NavigationDesktopBar class="hidden md:block" />
-    <NavigationMobileBar class="md:hidden sm:block" />
+    <NavigationHeaderBar />
     <main class="relative h-full">
       <slot />
     </main>
