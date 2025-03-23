@@ -3,7 +3,7 @@ import { ExclamationCircleIcon } from '@heroicons/vue/24/solid'
 </script>
 
 <template>
-  <div class="min-h-full bg-white dark:bg-[#1c1f24]">
+  <div class="min-h-full bg-white dark:bg-black">
     <div class="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
       <div
         class="absolute top-1/2 left-[max(-7rem,calc(50%-52rem))] -z-10 -translate-y-1/2 transform-gpu blur-2xl"

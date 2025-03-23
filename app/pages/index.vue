@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HomeIntroSection />
+    <HomeCtaSection />
     <SharedLatestContent
       type="articles"
       title="Latest Articles"
