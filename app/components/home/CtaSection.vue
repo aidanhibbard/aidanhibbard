@@ -11,9 +11,6 @@ import { PresentationChartBarIcon, DocumentTextIcon, CodeBracketIcon } from '@he
     <div class="relative mx-auto max-w-6xl px-6 sm:px-12 lg:px-16 py-20">
       <div class="text-center space-y-6">
         <!-- Dynamic Intro -->
-        <h1 class="text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-          Crafting Digital Experiences with Precision & Creativity
-        </h1>
         <p class="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
           I'm Aidan, a software developer passionate about creating elegant and high-performance applications.
           My expertise spans front-end and back-end technologies, ensuring seamless user experiences.
