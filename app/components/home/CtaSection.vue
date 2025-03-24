@@ -24,7 +24,9 @@ import { PresentationChartBarIcon, DocumentTextIcon, CodeBracketIcon } from '@he
           <div class="absolute -top-5 -left-5 bg-teal-500 dark:bg-teal-400 p-4 rounded-full">
             <PresentationChartBarIcon class="h-8 w-8 text-white" />
           </div>
-          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">Latest Talk</h3>
+          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">
+            Latest Talk
+          </h3>
           <p class="mt-3 text-gray-700 dark:text-gray-300">
             Catch up on my most recent talk featuring innovative web development insights.
           </p>
@@ -35,7 +37,9 @@ import { PresentationChartBarIcon, DocumentTextIcon, CodeBracketIcon } from '@he
           <div class="absolute -top-5 -left-5 bg-blue-600 dark:bg-blue-400 p-4 rounded-full">
             <DocumentTextIcon class="h-8 w-8 text-white" />
           </div>
-          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">Latest Article</h3>
+          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">
+            Latest Article
+          </h3>
           <p class="mt-3 text-gray-700 dark:text-gray-300">
             Read my latest article on modern web development and design methodologies.
           </p>
@@ -46,7 +50,9 @@ import { PresentationChartBarIcon, DocumentTextIcon, CodeBracketIcon } from '@he
           <div class="absolute -top-5 -left-5 bg-purple-600 dark:bg-purple-400 p-4 rounded-full">
             <CodeBracketIcon class="h-8 w-8 text-white" />
           </div>
-          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">Latest Project</h3>
+          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">
+            Latest Project
+          </h3>
           <p class="mt-3 text-gray-700 dark:text-gray-300">
             Explore my latest project where I merge creativity with cutting-edge technology.
           </p>
