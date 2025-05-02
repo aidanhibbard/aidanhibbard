@@ -35,9 +35,7 @@ useSeoMeta({
         <ContentRenderer :value="article!.meta" />
       </article>
       <aside class="sticky self-start">
-        <div class="overflow-auto pl-2">
-
-        </div>
+        <div class="overflow-auto pl-2"/>
       </aside>
     </div>
   </UContainer>
