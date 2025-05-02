@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { DocumentDuplicateIcon } from '@heroicons/vue/20/solid'
 import { codeToHtml } from 'shiki'
-
-const { theme } = useTheme()
 
 // https://content.nuxt.com/docs/components/prose#prosepre
 const props = defineProps<{
@@ -44,7 +41,7 @@ watchEffect(async () => {
   if (props.code) {
     const html = await codeToHtml(props.code, {
       lang: props.language ?? '',
-      theme: theme.value === 'dark' ? 'slack-dark' : 'github-dark-dimmed',
+      theme: 'github-dark-dimmed',
     })
     state.highlightedCode = html
   }

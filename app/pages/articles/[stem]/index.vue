@@ -18,22 +18,12 @@ useSeoMeta({
   description: article.value!.description,
   ogDescription: article.value!.description,
 })
-
-const items = computed(() => {
-  const toc = article.value!.meta.body.toc
-  // Only top‑level (depth ≤ toc.depth) for simplicity; you can nest further if needed.
-  return toc.links
-    .filter(link => link.depth <= toc.depth)
-    .map(link => ({
-      label: link.text,
-      value: link.id,              // so we know which heading to scroll to
-      // defaultExpanded: link.depth < toc.searchDepth  // optionally expand up to a certain level
-    }))
-})
 </script>
 
 <template>
-  <UContainer>
-    <UTree :items />
-  </UContainer>
+  <div>
+    <UContainer>
+      <ContentRenderer :value="article!.meta" />
+    </UContainer>
+  </div>
 </template>
