@@ -1,15 +1,6 @@
-import { createConfigForNuxt } from '@nuxt/eslint-config'
+// @ts-check
+import withNuxt from './.nuxt/eslint.config.mjs'
 
-export default createConfigForNuxt({
-  features: {
-    stylistic: true,
-  },
-}).overrideRules({
-  'vue/block-lang': ['error',
-    {
-      script: {
-        lang: 'ts',
-      },
-    },
-  ],
-})
+export default withNuxt(
+  // Your custom configs here
+)

@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <SharedContentList content-type="articles" />
+  <SharedContentList content-type="talks" />
 </template>

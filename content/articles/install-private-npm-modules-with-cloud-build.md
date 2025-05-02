@@ -1,16 +1,14 @@
 ---
 title: 'Installing private NPM modules with Cloud Build'
-desc: 'Learn how to secretly mount a .npmrc in your docker image to avoid leaking keys.'
+description: 'Learn how to secretly mount a .npmrc in your docker image to avoid leaking keys.'
 publishedAt: 06-17-24
 lastEditedAt: 06-17-24
-path: '/articles/install-private-npm-modules-with-cloud-build'
 tags:
   - 'Tutorial'
   - 'Docker'
   - 'Google Cloud Build'
   - 'npm'
 ---
-
 
 ## Introduction
 

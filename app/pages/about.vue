@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <SharedContentList content-type="articles" />
+    <div/>
 </template>

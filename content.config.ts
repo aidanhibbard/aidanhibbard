@@ -3,11 +3,10 @@ import { asRobotsCollection } from '@nuxtjs/robots/content'
 
 const schema = z.object({
   title: z.string(),
-  desc: z.string(),
+  description: z.string(),
   publishedAt: z.date(),
   lastEditedAt: z.date(),
   tags: z.array(z.string()),
-  path: z.string(),
 })
 
 export default defineContentConfig({
@@ -23,6 +22,13 @@ export default defineContentConfig({
       asRobotsCollection({
         type: 'data',
         source: 'projects/**/*.md',
+        schema,
+      }),
+    ),
+    talks: defineCollection(
+      asRobotsCollection({
+        type: 'data',
+        source: 'talks/**/*.md',
         schema,
       }),
     ),

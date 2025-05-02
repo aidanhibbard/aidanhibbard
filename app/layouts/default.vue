@@ -1,40 +1,23 @@
-<script setup lang="ts">
-import { ExclamationCircleIcon } from '@heroicons/vue/24/solid'
-</script>
-
 <template>
-  <div class="min-h-full bg-white dark:bg-black">
-    <div class="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
-      <div
-        class="absolute top-1/2 left-[max(-7rem,calc(50%-52rem))] -z-10 -translate-y-1/2 transform-gpu blur-2xl"
-        aria-hidden="true"
-      >
-        <div
-          class="aspect-577/310 w-[36.0625rem] bg-linear-to-r from-[#ff80b5] to-[#9089fc] opacity-30"
-          style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"
-        />
-      </div>
-      <div
-        class="absolute top-1/2 left-[max(45rem,calc(50%+8rem))] -z-10 -translate-y-1/2 transform-gpu blur-2xl"
-        aria-hidden="true"
-      >
-        <div
-          class="aspect-577/310 w-[36.0625rem] bg-linear-to-r from-[#ff80b5] to-[#9089fc] opacity-30"
-          style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"
-        />
-      </div>
-      <div class="flex flex-wrap w-full justify-center text-center">
-        <p class="text-sm/6 text-gray-900 flex items-center justify-center text-center gap-2">
-          <ExclamationCircleIcon class="h-6 w-6 text-yellow-500" />
-          This site is currently being re-built with Nuxt content, missing articles, and features will be added back.
-          <ExclamationCircleIcon class="h-6 w-6 text-yellow-500" />
-        </p>
-      </div>
+  <UApp class="flex flex-col flex-1">
+    <section
+      class="flex items-center justify-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white"
+      aria-label="Site upgrade notice"
+    >
+
+      <Icon name="mdi:information-outline" class="text-xl" />
+
+      <p class="prose-md font-medium py-2">
+        This site is currently being upgraded from Nuxt 2 → Nuxt 3
+      </p>
+    </section>
+    <NavigationHeaderMenu />
+    <div class="flex flex-col flex-1">
+      <NavigationAsideMenu />
+      <main class="flex flex-col flex-1">
+        <slot />
+      </main>
     </div>
-    <NavigationHeaderBar />
-    <main class="relative h-full">
-      <slot />
-    </main>
-    <NavigationFooterBar />
-  </div>
+    <NavigationFooterMenu />
+  </UApp>
 </template>
