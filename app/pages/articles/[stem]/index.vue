@@ -22,6 +22,9 @@ useSeoMeta({
 
 <template>
   <div>
+    <div>
+      <UTree vertical color="neutral" :items="tocToItems(article!.meta.body?.toc)" />
+    </div>
     <UContainer>
       <ContentRenderer :value="article!.meta" />
     </UContainer>

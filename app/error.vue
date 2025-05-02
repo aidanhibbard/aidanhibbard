@@ -3,7 +3,5 @@ const error = useError()
 </script>
 
 <template>
-  <div>
-    {{ error }}
-  </div>
+  <UContainer/>
 </template>

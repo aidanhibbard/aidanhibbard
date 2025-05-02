@@ -40,6 +40,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@vueuse/nuxt',
     'nuxt-llms',
+    'floating-vue/nuxt'
   ],
   typescript: {
     strict: true

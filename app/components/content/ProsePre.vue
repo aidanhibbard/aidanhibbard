@@ -55,12 +55,7 @@ watchEffect(async () => {
     <button
       class="hover:text-gray-600 absolute top-2 right-2"
       @click="copyToClipboard"
-    >
-      <DocumentDuplicateIcon
-        v-tooltip="state.copyMsg"
-        class="w-5 h-5 text-gray-500 hover:text-gray-700 transition-colors"
-      />
-    </button>
+    />
     <div
       v-if="props.filename || props.language"
       class="flex items-center justify-between p-2 border-b border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-[#0c0e14] text-gray-800 dark:text-[#F3F4ED] text-sm font-mono"
