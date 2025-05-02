@@ -1,4 +1,12 @@
 <script setup lang='ts'>
+import type { Toc } from '@nuxt/content'
+
+interface Meta {
+  body: {
+    toc: Toc
+  }
+}
+
 const { params } = useRoute()
 const { data: article } = await useAsyncData(
   'article',
@@ -18,6 +26,12 @@ useSeoMeta({
   description: article.value!.description,
   ogDescription: article.value!.description,
 })
+
+const items = computed(() =>
+  tocToItems(
+    (article.value!.meta as unknown as Meta).body.toc
+  )
+)
 </script>
 
 <template>
@@ -27,7 +41,7 @@ useSeoMeta({
         <UTree
           vertical
           color="neutral"
-          :items="tocToItems(article!.meta.body?.toc)"
+          :items
           class="overflow-auto pr-2 mt-8"
         />
       </aside>
