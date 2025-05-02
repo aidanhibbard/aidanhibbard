@@ -45,5 +45,8 @@
     "happy-dom": "^17.4.6",
     "playwright-core": "^1.52.0",
     "vitest": "^3.1.2"
+  },
+  "engines": {
+    "node": "23.x"
   }
 }
