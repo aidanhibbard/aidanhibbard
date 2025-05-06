@@ -67,7 +67,7 @@ watchEffect(async () => {
         <div
           v-if="props.filename"
           v-tooltip="state.copyMsg"
-          class="font-semibold hover:cursor-pointer text-gray-900 dark:text-[#eeeeee] hover:text-teal-500 transition-colors duration-300"
+          class="font-semibold hover:cursor-pointer text-gray-900 dark:text-[#eeeeee] hover:text-teal-300 transition-colors duration-300"
         >
           {{ props.filename }}
         </div>

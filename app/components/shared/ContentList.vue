@@ -192,7 +192,7 @@ onMounted(fetchContent);
         <div class="p-4 flex flex-col h-full">
           <section class="flex-1">
             <h3
-              class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2 hover:text-teal-500 transition-colors"
+              class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2 hover:text-teal-300 transition-colors"
             >
               {{ item.title }}
             </h3>

@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    class="text-teal-500 transition-colors duration-300 hover:text-teal-700"
+    class="text-teal-300 transition-colors duration-300 hover:text-teal-700"
   >
     <slot mdc-unwrap="a" />
   </NuxtLink>
