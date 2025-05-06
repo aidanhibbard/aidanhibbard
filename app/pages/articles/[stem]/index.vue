@@ -45,15 +45,12 @@ useSeoMeta({
         class="w-full sm:max-w-md rounded-lg"
       />
       <div class="prose max-w-none w-full sm:max-w-prose mx-auto">
-        <!-- Published Date -->
-        <div class="text-gray-700 dark:text-white text-sm md:text-base mb-4">
-          <UIcon name="mdi:calendar" /> Published on 
-          <time>
-            {{ new Date(article!.publishedAt).toLocaleDateString() }} 
-          </time>
+        <div class="flex items-center space-x-1 text-gray-700 dark:text-white text-sm md:text-base mb-4">
+          <UIcon name="mdi:calendar" size="20" />
+          <span>Published on</span>
+          <time>{{ new Date(article!.publishedAt).toLocaleDateString() }}</time>
         </div>
 
-        <!-- Tags -->
         <div class="mt-2 w-full sm:max-w-prose mx-auto">
           <div class="flex flex-wrap gap-2">
             <NuxtLink
@@ -63,7 +60,7 @@ useSeoMeta({
               class="inline-flex items-center space-x-1 text-sm no-underline dark:text-white"
             >
               <UIcon :name="`catppuccin:${t.toLowerCase()}`" size="24" />
-              <span>{{ t }}{{ i === article!.tags.length - 1 ? '' : ',' }}</span>
+              <span>{{ t }}<span v-if="i < article!.tags.length - 1">,</span></span>
             </NuxtLink>
           </div>
         </div>
