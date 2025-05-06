@@ -35,11 +35,8 @@ useSeoMeta({
 </script>
 
 <template>
-  <!-- 1. add some side‑padding; don’t center until sm: -->
   <UContainer class="px-4 sm:flex sm:justify-center">
-    <!-- 2. full‑width by default, sm: cap to a max width: -->
     <article class="prose py-8 w-full sm:max-w-3xl">
-      <!-- 3. image: fill container on mobile, then cap it at sm: -->
       <CldImage
         src="private-npm-modules-docker_zzohul"
         alt="My Awesome Image"
@@ -48,7 +45,6 @@ useSeoMeta({
         class="w-full sm:max-w-md rounded-lg"
       />
 
-      <!-- 4. same for your rendered content -->
       <ContentRenderer
         :value="article!.meta"
         class="mt-8 w-full sm:max-w-prose mx-auto"
