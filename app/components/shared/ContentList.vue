@@ -88,7 +88,7 @@ onMounted(fetchContent);
     <UForm
       :schema
       :state="formState"
-      class="p-4 rounded-2xl mx-auto flex-col flex w-full"
+      class="py-4 rounded-2xl mx-auto flex-col flex w-full"
       @submit="handleSubmit"
     >
       <div class="flex flex-col gap-y-4 relative justify-between">
