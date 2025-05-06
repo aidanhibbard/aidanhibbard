@@ -45,6 +45,13 @@ const items = computed(() =>
         />
       </aside>
       <article class="prose max-w-none prose-lg">
+        <CldImage
+          src="private-npm-modules-docker_zzohul"
+          alt="My Awesome Image"
+          width="800"
+          height="450"
+          class="w-full h-auto rounded-lg"
+        />
         <ContentRenderer :value="article!.meta" />
       </article>
       <aside class="sticky self-start">
