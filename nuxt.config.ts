@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   app: {
     head: {
+      titleTemplate: '%s | Aidan Hibbard',
       htmlAttrs: {
         class: 'h-full flex-col flex',
       },
@@ -45,5 +46,21 @@ export default defineNuxtConfig({
   ],
   typescript: {
     strict: true
+  },
+  seo: {
+    meta: {
+      description: 'My portfolio.',
+      author: 'Aidan Hibbard',
+      colorScheme: 'dark light',
+      applicationName: 'Aidan Hibbard',
+
+      ogSiteName: 'Aidan Hibbard',
+      ogLocale: 'en_US',
+      ogType: 'website',
+      ogUrl: 'https://aidanhibbard.dev',
+      ogTitle: 'Aidan Hibbard',
+
+      robots: 'index, follow',
+    },
   },
 })
