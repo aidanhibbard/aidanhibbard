@@ -62,8 +62,8 @@ watchEffect(async () => {
     >
       <div class="flex items-center gap-2 pl-2">
         <Icon
-          name="catppuccin:vue"
-          size="12"
+          name="mdi:ab-testing"
+          class="text-xl"
         />
         <div
           v-if="props.filename"

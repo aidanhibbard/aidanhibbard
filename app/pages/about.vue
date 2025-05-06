@@ -1,7 +1,6 @@
-<script setup lang='ts'>
-
-</script>
-
 <template>
-    <div/>
+  <UContainer class="py-12">
+    <AboutShortIntro />
+    <AboutWorkHistory />
+  </UContainer>
 </template>

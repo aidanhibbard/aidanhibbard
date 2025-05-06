@@ -42,17 +42,14 @@
       <hr class="border-gray-300 dark:border-gray-600" >
       <p>
         I love working with tons of technologies, lately I've been using — Vue,
-        Nuxt, React, TypeScript, Tailwind CSS, and Ruby on Rails. From crafting
-        sleek, responsive UIs to architecting resilient backend services, I
-        choose the right tool for the job and delight in exploring new
-        frameworks and patterns that drive results.
+        Nuxt, React, TypeScript, Tailwind CSS, and Ruby on Rails. From building UIs that feel nice to use, to designing resilient systems
+        I love working across the stack to create solutions.
       </p>
       <p>
         I believe in clean, maintainable code and developer experience:
         accessible interfaces, testing, and thoughtful documentation. By
         embracing open standards, progressive enhancement, and performance-first
-        practices, I aim to build software that's not only powerful but
-        inclusive and sustainable for years to come.
+        practices, I aim to build software that's not only powerful but reliable for the future.
       </p>
     </article>
   </UContainer>

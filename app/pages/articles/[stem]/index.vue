@@ -39,7 +39,6 @@ const items = computed(() =>
     <div class="grid grid-cols-1 md:grid-cols-[220px_1fr_220px] gap-x-12 gap-y-8">
       <aside class="sticky self-start">
         <UTree
-          vertical
           color="neutral"
           :items
           class="overflow-auto pr-2 mt-8"
