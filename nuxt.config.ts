@@ -5,6 +5,7 @@ export default defineNuxtConfig({
       titleTemplate: '%s | Aidan Hibbard',
       htmlAttrs: {
         class: 'h-full flex-col flex',
+        lang: 'en-us',
       },
       bodyAttrs: {
         class: 'flex flex-col flex-1',
