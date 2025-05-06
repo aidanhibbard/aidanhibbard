@@ -51,7 +51,6 @@ export default defineNuxtConfig({
     meta: {
       description: 'My portfolio.',
       author: 'Aidan Hibbard',
-      colorScheme: 'dark light',
       applicationName: 'Aidan Hibbard',
 
       ogSiteName: 'Aidan Hibbard',
