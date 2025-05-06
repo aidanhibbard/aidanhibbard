@@ -35,29 +35,24 @@ const items = computed(() =>
 </script>
 
 <template>
-  <UContainer class="px-4 md:px-8 lg:px-16">
-    <div class="grid grid-cols-1 md:grid-cols-[220px_1fr_220px] gap-x-12 gap-y-8">
-      <aside class="sticky self-start">
-        <UTree
-          color="neutral"
-          :items
-          class="overflow-auto pr-2 mt-8"
-        />
-      </aside>
-      <article class="prose max-w-none prose-lg">
-        <CldImage
-          src="private-npm-modules-docker_zzohul"
-          alt="My Awesome Image"
-          width="800"
-          height="450"
-          class="w-full h-auto rounded-lg"
-        />
-        <ContentRenderer :value="article!.meta" />
-      </article>
-      <aside class="sticky self-start">
-        <div class="overflow-auto pl-2"/>
-      </aside>
-    </div>
+  <!-- 1. add some side‑padding; don’t center until sm: -->
+  <UContainer class="px-4 sm:flex sm:justify-center">
+    <!-- 2. full‑width by default, sm: cap to a max width: -->
+    <article class="prose py-8 w-full sm:max-w-3xl">
+      <!-- 3. image: fill container on mobile, then cap it at sm: -->
+      <CldImage
+        src="private-npm-modules-docker_zzohul"
+        alt="My Awesome Image"
+        width="800"
+        height="450"
+        class="w-full sm:max-w-md rounded-lg"
+      />
+
+      <!-- 4. same for your rendered content -->
+      <ContentRenderer
+        :value="article!.meta"
+        class="mt-8 w-full sm:max-w-prose mx-auto"
+      />
+    </article>
   </UContainer>
 </template>
-
