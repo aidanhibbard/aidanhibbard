@@ -14,15 +14,19 @@ const experiences: Experience[] = [
     period: 'August 2024 - Present',
     location: 'Remote',
     description:
-      'Developing features in an API-first architecture with Nuxt and Rails. Refactored applications for maintainability and test coverage. Led TypeScript adoption, introduced unit testing, and mentored developers on front‑end best practices.',
+      'Developing features in an API-first architecture with Nuxt and Rails. Refactored applications for maintainability and test coverage. Led TypeScript adoption, introduced unit testing, and mentored developers on front-end best practices.',
   },
   {
     companyRole: 'Lead Developer / Central Oregon Community College',
     contractType: 'Contract',
     period: 'March 2025 - June 2025',
-    location: 'Remote',
+    location: 'Bend Oregon',
     description:
-      'Developing features in an API-first architecture with Nuxt and Rails. Refactored applications for maintainability and test coverage. Led TypeScript adoption, introduced unit testing, and mentored developers on front-end best practices.',
+      `Developed schools first front end widget using Vue and Tailwind. Created a UI to filter degrees, awards, and pathways using URL bound data so advisors could share with students. 
+      Built a public facing chat service using oepnai with NitroJS and BullMQ for the backend to communicate with users over websockets.
+      Helped introduce best practices, guidelines, testing, and CI to keep future development in check.
+      Created a custom Vite build process to ensure generated files could be drag-and-dropped into the schools CMS.
+      `,
   },
   {
     companyRole: 'Lead Developer / Ability Hub',
