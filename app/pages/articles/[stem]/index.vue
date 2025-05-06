@@ -1,11 +1,11 @@
 <script setup lang='ts'>
-import type { Toc } from '@nuxt/content'
+// import type { Toc } from '@nuxt/content'
 
-interface Meta {
-  body: {
-    toc: Toc
-  }
-}
+// interface Meta {
+//   body: {
+//     toc: Toc
+//   }
+// }
 
 const { params } = useRoute()
 const { data: article } = await useAsyncData(
@@ -27,11 +27,11 @@ useSeoMeta({
   ogDescription: article.value!.description,
 })
 
-const items = computed(() =>
-  tocToItems(
-    (article.value!.meta as unknown as Meta).body.toc
-  )
-)
+// const items = computed(() =>
+//   tocToItems(
+//     (article.value!.meta as unknown as Meta).body.toc
+//   )
+// )
 </script>
 
 <template>
