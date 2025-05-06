@@ -85,6 +85,7 @@ const isDark = computed({
               checked-icon="material-symbols-light:moon-stars"
               unchecked-icon="material-symbols:sunny-rounded"
               size="xl"
+              aria-label="dark light toggle"
             />
           </ClientOnly>
         </div>
@@ -98,6 +99,7 @@ const isDark = computed({
               unchecked-icon="material-symbols:sunny-rounded"
               size="xl"
               color="neutral"
+              aria-label="dark light toggle"
             />
           </ClientOnly>
           <UButton color="neutral" variant="ghost" aria-label="Open menu" @click="drawer = !drawer">
