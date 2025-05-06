@@ -23,8 +23,8 @@ const isDark = computed({
         <div class="flex flex-1">
           <NuxtLink
             href="/"
-            class="text-2xl hover:opacity-75 transition-all duration-300 text-gray-900 dark:text-white hover:text-teal-300"
-            active-class="text-teal-300 dark:text-teal-300"
+            class="text-2xl hover:opacity-75 transition-all duration-300 text-gray-900 dark:text-white hover:text-teal-500"
+            active-class="text-teal-500 dark:text-teal-500"
           >
             Aidan Hibbard
           </NuxtLink>
@@ -35,23 +35,23 @@ const isDark = computed({
           <div class="flex gap-x-8 text-md font-medium transition-all duration-300">
             <NuxtLink
               to="/articles"
-              class="hover:text-teal-300"
-              active-class="text-teal-300 dark:text-teal-300"
+              class="hover:text-teal-500"
+              active-class="text-teal-500 dark:text-teal-500"
             >Articles</NuxtLink>
             <NuxtLink
               to="/projects"
-              class="hover:text-teal-300"
-              active-class="text-teal-300 dark:text-teal-300"
+              class="hover:text-teal-500"
+              active-class="text-teal-500 dark:text-teal-500"
             >Projects</NuxtLink>
             <NuxtLink
               to="/talks"
-              class="hover:text-teal-300"
-              active-class="text-teal-300 dark:text-teal-300"
+              class="hover:text-teal-500"
+              active-class="text-teal-500 dark:text-teal-500"
             >Talks</NuxtLink>
             <NuxtLink
               to="/about"
-              class="hover:text-teal-300"
-              active-class="text-teal-300 dark:text-teal-300"
+              class="hover:text-teal-500"
+              active-class="text-teal-500 dark:text-teal-500"
             >About</NuxtLink>
           </div>
         </div>
