@@ -4,7 +4,11 @@
 
 /* https://ui.nuxt.com/getting-started/theme#tailwind-css */
 @theme static {
+  --ui-bg: #fffffff;
+}
 
+.dark {
+  --ui-bg: #000000;
 }
 
 .page-enter-active,

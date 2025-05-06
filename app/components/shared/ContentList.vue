@@ -185,7 +185,7 @@ onMounted(fetchContent);
         v-for="item in content"
         :key="item.stem"
         :to="`/${item.stem}`"
-        class="block bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200"
+        class="block bg-none border border-gray-200 dark:border-gray-700 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200"
       >
         <div class="p-4 flex flex-col h-full">
           <section class="flex-1">

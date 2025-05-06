@@ -74,6 +74,11 @@ const experiences: Experience[] = [
         <!-- Title & Badge -->
         <h3 class="flex items-center text-lg font-semibold text-gray-900 dark:text-white">
           {{ exp.companyRole }}
+        </h3>
+
+        <!-- Date & Location -->
+        <time class="block mb-2 text-sm leading-none text-gray-500 dark:text-gray-400">
+          {{ exp.period }}, {{ exp.location }}
           <template v-if="exp.contractType">
             <span
               class="ml-2 rounded bg-blue-100 px-2 py-0.5 text-sm font-medium text-blue-800"
@@ -81,11 +86,6 @@ const experiences: Experience[] = [
               {{ exp.contractType }}
             </span>
           </template>
-        </h3>
-
-        <!-- Date & Location -->
-        <time class="block mb-2 text-sm leading-none text-gray-500 dark:text-gray-400">
-          {{ exp.period }}, {{ exp.location }}
         </time>
 
         <!-- Description -->

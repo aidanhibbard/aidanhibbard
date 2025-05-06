@@ -43,7 +43,7 @@
       <p>
         I love working with tons of technologies, lately I've been using — Vue,
         Nuxt, React, TypeScript, Tailwind CSS, and Ruby on Rails. From building UIs that feel nice to use, to designing resilient systems
-        I love working across the stack to create solutions.
+        I enjoy working across the stack to create solutions.
       </p>
       <p>
         I believe in clean, maintainable code and developer experience:
