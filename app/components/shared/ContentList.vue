@@ -185,7 +185,7 @@ onMounted(fetchContent);
         v-for="item in content"
         :key="item.stem"
         :to="`/${item.stem}`"
-        class="block bg-none border border-gray-200 dark:border-gray-700 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200"
+        class="block bg-none border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200"
       >
         <div class="p-4 flex flex-col h-full">
           <section class="flex-1">
@@ -194,12 +194,15 @@ onMounted(fetchContent);
             >
               {{ item.title }}
             </h3>
+            <p>
+              {{ item.description }}
+            </p>
           </section>
           <footer
             class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mt-4"
           >
             <time :datetime="String(item.publishedAt)">
-              {{
+              Published {{
                 new Date(item.publishedAt).toLocaleDateString(undefined, {
                   year: "numeric",
                   month: "short",
