@@ -39,7 +39,7 @@
       </div>
 
       <!-- Divider -->
-      <hr class="border-gray-300 dark:border-gray-600" >
+      <hr class="border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white" >
       <p>
         I love working with tons of technologies, lately I've been using — Vue,
         Nuxt, React, TypeScript, Tailwind CSS, and Ruby on Rails. From building UIs that feel nice to use, to designing resilient systems
