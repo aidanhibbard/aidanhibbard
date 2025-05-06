@@ -58,22 +58,22 @@ const isDark = computed({
 
         <!-- Tablet and greater -->
         <div class="hidden md:flex flex-1 justify-end items-center gap-x-4 h-full">
-          <UButton external to="https://www.instagram.com/aidan_hibbard/" color="neutral" variant="ghost">
+          <UButton external to="https://www.instagram.com/aidan_hibbard/" color="neutral" variant="ghost" aria-label="linkedin">
             <template #default>
               <UIcon name="mdi:instagram" class="text-2xl" />
             </template>
           </UButton>
-          <UButton external to="https://github.com/AidanHibbard" color="neutral" variant="ghost">
+          <UButton external to="https://github.com/AidanHibbard" color="neutral" variant="ghost" aria-label="github">
             <template #default>
               <UIcon name="mdi:github" class="text-2xl" />
             </template>
           </UButton>
-          <UButton external to="https://www.linkedin.com/in/aidan-hibbard/" color="neutral" variant="ghost">
+          <UButton external to="https://www.linkedin.com/in/aidan-hibbard/" color="neutral" variant="ghost" aria-label="linkedin">
             <template #default>
               <UIcon name="mdi:linkedin" class="text-2xl" />
             </template>
           </UButton>
-          <UButton external to="https://codepen.io/aidanhibbard" color="neutral" variant="ghost">
+          <UButton external to="https://codepen.io/aidanhibbard" color="neutral" variant="ghost" aria-label="codepen">
             <template #default>
               <UIcon name="mdi:codepen" class="text-2xl" />
             </template>
@@ -100,7 +100,7 @@ const isDark = computed({
               color="neutral"
             />
           </ClientOnly>
-          <UButton color="neutral" variant="ghost" @click="drawer = !drawer">
+          <UButton color="neutral" variant="ghost" aria-label="Open menu" @click="drawer = !drawer">
             <template #default>
               <UIcon name="mdi:menu" class="text-2xl" />
             </template>
