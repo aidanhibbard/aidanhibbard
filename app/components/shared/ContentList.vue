@@ -103,6 +103,7 @@ onMounted(fetchContent);
             leading-icon="mdi:magnify"
             placeholder="Enter query..."
             color="neutral"
+            variant="outline"
           />
         </UFormField>
         <div class="flex gap-x-4 items-center">
@@ -116,6 +117,7 @@ onMounted(fetchContent);
               size="xl"
               placeholder="Select tags"
               color="neutral"
+              variant="outline"
             />
           </UFormField>
 
