@@ -4,7 +4,6 @@ description: 'Learn how to secretly mount a .npmrc in your docker image to avoid
 publishedAt: 06-17-24
 lastEditedAt: 06-17-24
 tags:
-  - 'Tutorial'
   - 'Docker'
   - 'npm'
 ---

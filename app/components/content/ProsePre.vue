@@ -61,9 +61,8 @@ watchEffect(async () => {
       class="flex items-center justify-between p-2 border-b border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-[#0c0e14] text-gray-800 dark:text-[#F3F4ED] text-sm font-mono"
     >
       <div class="flex items-center gap-2 pl-2">
-        <Icon
+        <UIcon
           name="mdi:ab-testing"
-          class="text-xl"
         />
         <div
           v-if="props.filename"
