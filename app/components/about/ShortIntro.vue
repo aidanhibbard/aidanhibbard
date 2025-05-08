@@ -14,7 +14,7 @@
       Deploying with Kubernetes, and various cloud providers I've built internal tools, infastrcuture as code, and pipelines to support teams.
     </p>
     <p>
-      More than comfortable with the latest in the web, frameworks, SSR, and orms. Love working with TypeScript, 
+      More than comfortable with the latest in the web, frameworks, SSR, and orms.
     </p>
     <p>
       Outside of that, I love mountain biking, running, and being out in nature. I often give talks, and enjoy being part of the local tech scene. One of my beliefs is working with others makes us better.
