@@ -12,7 +12,7 @@ definePageMeta({
       <h1 class="text-5xl font-extrabold">Hi, I'm Aidan</h1>
 
       <p class="prose-xl">
-        I'm passionate about building software that scales, and drives
+        Passionate about building software that scales, and drives
         engagement.
       </p>
 
