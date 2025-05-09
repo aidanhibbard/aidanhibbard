@@ -22,7 +22,7 @@ const experiences: Experience[] = [
     period: 'March 2025 - June 2025',
     location: 'Bend Oregon',
     description:
-      `Developed schools first front end widget using Vue and Tailwind. Created a UI to filter degrees, awards, and pathways using URL bound data so advisors could share with students. 
+      `Developed schools first front end widgets using Vue and Tailwind. Created a UI to filter degrees, awards, and pathways using URL bound data so advisors could share with students. 
       Built a public facing chat service using oepnai with NitroJS and BullMQ for the backend to communicate with users over websockets.
       Helped introduce best practices, guidelines, testing, and CI to keep future development in check.
       Created a custom Vite build process to ensure generated files could be drag-and-dropped into the schools CMS.
