@@ -51,6 +51,7 @@ export default defineNuxtConfig({
         commaDangle: 'always',
       },
     },
+    checker: true
   },
   llms: {
     domain: 'https://aidanhibbard.dev',
