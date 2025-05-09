@@ -1,10 +1,10 @@
 <script setup lang="ts">
 interface Experience {
-  companyRole: string
-  contractType?: string
-  period: string
-  location: string
-  description: string
+  companyRole: string;
+  contractType?: string;
+  period: string;
+  location: string;
+  description: string;
 }
 
 const experiences: Experience[] = [
@@ -51,24 +51,29 @@ const experiences: Experience[] = [
     description:
       'Developed data-processing services with NitroJS and BullMQ. Created interactive Nuxt + D3 dashboards, researched Energy Star integrations, built Postman collections, and managed Google Cloud infra.',
   },
-]
+];
 </script>
 
 <template>
   <div class="mx-auto max-w-3xl">
-    <h2 class="text-2xl font-semibold mb-6">Experience</h2>
+    <h2 class="text-2xl font-semibold mb-6">
+      Experience
+    </h2>
     <ul class="relative border-l-2 border-gray-200 dark:border-gray-700">
       <li
         v-for="(exp, idx) in experiences"
         :key="idx"
-        :class="['ml-6', idx < experiences.length - 1 ? 'mb-10' : '']"
+        :class="['ml-6', idx < experiences.length - 1 ? 'mb-10' : '',]"
       >
         <!-- Pin -->
         <span
-          class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full 
+          class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full
                  bg-blue-500 ring-8 ring-white dark:ring-gray-900"
         >
-          <Icon name="mdi:code-braces" class="text-white" />
+          <Icon
+            name="mdi:code-braces"
+            class="text-white"
+          />
         </span>
 
         <!-- Title & Badge -->

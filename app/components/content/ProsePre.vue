@@ -1,51 +1,51 @@
 <script setup lang="ts">
-import { codeToHtml } from 'shiki'
+import { codeToHtml, } from 'shiki';
 
 // https://content.nuxt.com/docs/components/prose#prosepre
 const props = defineProps<{
-  code?: string
-  language?: string
-  filename?: string
-  highlights?: number[]
-  meta?: string
-}>()
+  code?: string;
+  language?: string;
+  filename?: string;
+  highlights?: number[];
+  meta?: string;
+}>();
 
-const defaultMsg = 'Copy to clipboard'
+const defaultMsg = 'Copy to clipboard';
 
 const state = reactive({
   copyMsg: defaultMsg,
   highlightedCode: '',
-})
+},);
 
-const codeWrapper = ref<HTMLDivElement | null>(null)
+const codeWrapper = ref<HTMLDivElement | null>(null,);
 const copyToClipboard = async () => {
   if (codeWrapper.value) {
     try {
-      await navigator.clipboard.writeText(codeWrapper.value.innerText.split('\n') // Split into an array of lines
-        .filter(line => line.trim() !== '') // Remove empty lines
-        .join('\n'))
-      state.copyMsg = 'Copied to clipboard!'
+      await navigator.clipboard.writeText(codeWrapper.value.innerText.split('\n',) // Split into an array of lines
+        .filter(line => line.trim() !== '',) // Remove empty lines
+        .join('\n',),);
+      state.copyMsg = 'Copied to clipboard!';
     }
     catch {
-      state.copyMsg = 'Failed to copy'
+      state.copyMsg = 'Failed to copy';
     }
     finally {
       setTimeout(() => {
-        state.copyMsg = defaultMsg
-      }, 1500)
+        state.copyMsg = defaultMsg;
+      }, 1500,);
     }
   }
-}
+};
 
 watchEffect(async () => {
   if (props.code) {
     const html = await codeToHtml(props.code, {
       lang: props.language ?? '',
       theme: 'github-dark-dimmed',
-    })
-    state.highlightedCode = html
+    },);
+    state.highlightedCode = html;
   }
-})
+},);
 </script>
 
 <template>

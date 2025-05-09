@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@nuxt/ui'
+import type { NavigationMenuItem, } from '@nuxt/ui';
 
-const drawer = useDrawer()
+const drawer = useDrawer();
 
 const items = ref<NavigationMenuItem[][]>([
   [
@@ -28,15 +28,16 @@ const items = ref<NavigationMenuItem[][]>([
       label: 'About',
       icon: 'i-lucide-user',
       to: '/about',
-    }
+    },
   ],
-])
+],);
 </script>
 
 <template>
   <UDrawer
     v-model:open="drawer"
-    dismissible direction="left"
+    dismissible
+    direction="left"
     :handle="false"
     class="rounded-none"
   >
@@ -44,11 +45,12 @@ const items = ref<NavigationMenuItem[][]>([
       <UNavigationMenu
         variant="pill"
         color="neutral"
-        size="xl" orientation="vertical" 
+        size="xl"
+        orientation="vertical"
         :items="items"
         class="data-[orientation=vertical]:w-48 p-4"
       >
-        <template #item-label="{ item }">
+        <template #item-label="{ item, }">
           <span class="text-lg">{{ item.label }}</span>
         </template>
       </UNavigationMenu>

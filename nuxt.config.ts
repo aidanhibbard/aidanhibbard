@@ -1,5 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  modules: [
+    '@nuxt/content',
+    '@nuxt/eslint',
+    '@nuxt/icon',
+    '@nuxt/fonts',
+    '@nuxt/image',
+    '@nuxt/scripts',
+    '@nuxt/test-utils',
+    '@nuxtjs/seo',
+    '@nuxt/ui',
+    '@vueuse/nuxt',
+    'nuxt-llms',
+    'floating-vue/nuxt',
+    '@nuxtjs/cloudinary',
+  ],
+  devtools: { enabled: true, },
   app: {
     head: {
       titleTemplate: '%s | Aidan Hibbard',
@@ -17,36 +33,29 @@ export default defineNuxtConfig({
     },
     rootAttrs: {
       class: 'flex flex-col flex-1',
-    }
+    },
   },
-  compatibilityDate: '2025-04-28',
-  css: ['~/assets/styles/main.css'],
-  devtools: { enabled: true },
+  css: ['~/assets/styles/main.css',],
   future: {
     compatibilityVersion: 4,
+  },
+  compatibilityDate: '2025-04-28',
+  typescript: {
+    strict: true,
+  },
+  eslint: {
+    config: {
+      stylistic: {
+        semi: true,
+        quotes: 'single',
+        commaDangle: 'always',
+      },
+    },
   },
   llms: {
     domain: 'https://aidanhibbard.dev',
     title: 'Aidan Hibbard',
     description: 'My portfolio',
-  },
-  modules: [
-    '@nuxt/content',
-    '@nuxt/eslint',
-    '@nuxt/icon',
-    '@nuxt/fonts',
-    '@nuxt/image',
-    '@nuxt/scripts',
-    '@nuxt/test-utils',
-    '@nuxtjs/seo',
-    '@nuxt/ui',
-    '@vueuse/nuxt',
-    'nuxt-llms',
-    'floating-vue/nuxt',
-    '@nuxtjs/cloudinary'
-  ],
-  typescript: {
-    strict: true
   },
   seo: {
     meta: {
@@ -63,4 +72,4 @@ export default defineNuxtConfig({
       robots: 'index, follow',
     },
   },
-})
+},);

@@ -1,17 +1,16 @@
 <script setup lang="ts">
-const colorMode = useColorMode()
-const drawer = useDrawer()
+const colorMode = useColorMode();
+const drawer = useDrawer();
 
 const isDark = computed({
   get() {
-    return colorMode.value === 'dark'
+    return colorMode.value === 'dark';
   },
-  set(_isDark) {
-    colorMode.preference = _isDark ? 'dark' : 'light'
-  }
-})
+  set(_isDark,) {
+    colorMode.preference = _isDark ? 'dark' : 'light';
+  },
+},);
 </script>
-
 
 <template>
   <header class="sticky inset-x-0 top-0 z-50 bg-white/30 dark:bg-[#000000]/30 backdrop-blur-md border-b border-gray-300 dark:border-gray-700">
@@ -58,24 +57,60 @@ const isDark = computed({
 
         <!-- Tablet and greater -->
         <div class="hidden md:flex flex-1 justify-end items-center gap-x-4 h-full">
-          <UButton external to="https://www.instagram.com/aidan_hibbard/" color="neutral" variant="ghost" aria-label="linkedin">
+          <UButton
+            external
+            to="https://www.instagram.com/aidan_hibbard/"
+            color="neutral"
+            variant="ghost"
+            aria-label="linkedin"
+          >
             <template #default>
-              <UIcon name="mdi:instagram" class="text-2xl" />
+              <UIcon
+                name="mdi:instagram"
+                class="text-2xl"
+              />
             </template>
           </UButton>
-          <UButton external to="https://github.com/AidanHibbard" color="neutral" variant="ghost" aria-label="github">
+          <UButton
+            external
+            to="https://github.com/AidanHibbard"
+            color="neutral"
+            variant="ghost"
+            aria-label="github"
+          >
             <template #default>
-              <UIcon name="mdi:github" class="text-2xl" />
+              <UIcon
+                name="mdi:github"
+                class="text-2xl"
+              />
             </template>
           </UButton>
-          <UButton external to="https://www.linkedin.com/in/aidan-hibbard/" color="neutral" variant="ghost" aria-label="linkedin">
+          <UButton
+            external
+            to="https://www.linkedin.com/in/aidan-hibbard/"
+            color="neutral"
+            variant="ghost"
+            aria-label="linkedin"
+          >
             <template #default>
-              <UIcon name="mdi:linkedin" class="text-2xl" />
+              <UIcon
+                name="mdi:linkedin"
+                class="text-2xl"
+              />
             </template>
           </UButton>
-          <UButton external to="https://codepen.io/aidanhibbard" color="neutral" variant="ghost" aria-label="codepen">
+          <UButton
+            external
+            to="https://codepen.io/aidanhibbard"
+            color="neutral"
+            variant="ghost"
+            aria-label="codepen"
+          >
             <template #default>
-              <UIcon name="mdi:codepen" class="text-2xl" />
+              <UIcon
+                name="mdi:codepen"
+                class="text-2xl"
+              />
             </template>
           </UButton>
           <ClientOnly v-if="!colorMode?.forced">
@@ -102,9 +137,17 @@ const isDark = computed({
               aria-label="dark light toggle"
             />
           </ClientOnly>
-          <UButton color="neutral" variant="ghost" aria-label="Open menu" @click="drawer = !drawer">
+          <UButton
+            color="neutral"
+            variant="ghost"
+            aria-label="Open menu"
+            @click="drawer = !drawer"
+          >
             <template #default>
-              <UIcon name="mdi:menu" class="text-2xl" />
+              <UIcon
+                name="mdi:menu"
+                class="text-2xl"
+              />
             </template>
           </UButton>
         </div>

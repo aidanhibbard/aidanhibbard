@@ -1,6 +1,8 @@
 <template>
   <div class="prose prose-lg mx-auto mb-16 text-gray-900 dark:text-[#eeeeee]">
-    <h1 class="text-5xl font-extrabold text-gray-900 dark:text-[#eeeeee]">About</h1>
+    <h1 class="text-5xl font-extrabold text-gray-900 dark:text-[#eeeeee]">
+      About
+    </h1>
     <p>
       Experienced in building sleek, and resilient services, I've worked with analysts and designers to create solutions that meet user needs.
       I'm passionate about working across the stack, from building ETL pipelines with data driven dashboards, to maintaining internal modules and libraries.

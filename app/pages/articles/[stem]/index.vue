@@ -7,25 +7,25 @@
 //   }
 // }
 
-const { params } = useRoute()
-const { data: article } = await useAsyncData(
+const { params, } = useRoute();
+const { data: article, } = await useAsyncData(
   'article',
   () =>
-    queryCollection('articles')
-    .where('stem', '=', `articles/${params.stem}`)
-    .first()
-)
+    queryCollection('articles',)
+      .where('stem', '=', `articles/${params.stem}`,)
+      .first(),
+);
 if (!article)
   throw createError({
     statusCode: 404,
-    message: 'Could not find given article'
-  })
+    message: 'Could not find given article',
+  },);
 useSeoMeta({
   title: article.value!.title,
   ogTitle: article.value!.title,
   description: article.value!.description,
   ogDescription: article.value!.description,
-})
+},);
 
 // const items = computed(() =>
 //   tocToItems(
@@ -46,9 +46,12 @@ useSeoMeta({
       />
       <div class="prose max-w-none w-full sm:max-w-prose mx-auto">
         <div class="flex items-center space-x-1 text-gray-700 dark:text-white text-sm md:text-base mb-4">
-          <UIcon name="mdi:calendar" size="20" />
+          <UIcon
+            name="mdi:calendar"
+            size="20"
+          />
           <span>Published on</span>
-          <time>{{ new Date(article!.publishedAt).toLocaleDateString() }}</time>
+          <time>{{ new Date(article!.publishedAt,).toLocaleDateString() }}</time>
         </div>
 
         <div class="mt-2 w-full sm:max-w-prose mx-auto">
@@ -59,7 +62,10 @@ useSeoMeta({
               :to="`/articles?tags=${t}`"
               class="inline-flex items-center space-x-1 text-sm no-underline dark:text-white"
             >
-              <UIcon :name="`catppuccin:${t.toLowerCase()}`" size="24" />
+              <UIcon
+                :name="`catppuccin:${t.toLowerCase()}`"
+                size="24"
+              />
               <span>{{ t }}<span v-if="i < article!.tags.length - 1">,</span></span>
             </NuxtLink>
           </div>

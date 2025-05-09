@@ -12,39 +12,41 @@ interface Project {
 const projects = ref<Project[]>([
   {
     id: 1,
-    title: "US Historical Wilfire Map",
+    title: 'US Historical Wilfire Map',
     subtitle:
-      "A map built with D3 showing the boundries of fires sourced from the NIFC. Data processed using ogr2ogr and topojson-server. Dashboard built with Vue and PrimeVue.",
-    link: "https://github.com/AidanHibbard/historical-oregon-fires",
+      'A map built with D3 showing the boundries of fires sourced from the NIFC. Data processed using ogr2ogr and topojson-server. Dashboard built with Vue and PrimeVue.',
+    link: 'https://github.com/AidanHibbard/historical-oregon-fires',
     visitText: 'View the writeup on GitHub',
-    image: 'https://raw.githubusercontent.com/AidanHibbard/historical-oregon-fires/main/image.png'
+    image: 'https://raw.githubusercontent.com/AidanHibbard/historical-oregon-fires/main/image.png',
   },
   {
     id: 2,
-    title: "Olallie",
+    title: 'Olallie',
     subtitle:
-      "TypeSafe state mechanism for framework-less projects to use for simple reactivity.",
-    link: "https://github.com/AidanHibbard/Olallie/",
+      'TypeSafe state mechanism for framework-less projects to use for simple reactivity.',
+    link: 'https://github.com/AidanHibbard/Olallie/',
     visitText: 'View the writeup on GitHub',
-    image: '/images/projects/olallie.png'
+    image: '/images/projects/olallie.png',
   },
   {
     id: 3,
-    title: "ElevationTool",
+    title: 'ElevationTool',
     subtitle:
-      "A dashboard using Google Maps to display the elevation change along a given trail, road, or feature.",
-    link: "https://github.com/AidanHibbard/Olallie/",
+      'A dashboard using Google Maps to display the elevation change along a given trail, road, or feature.',
+    link: 'https://github.com/AidanHibbard/Olallie/',
     visitText: 'View the writeup on GitHub',
-    image: '/images/projects/olallie.png'
+    image: '/images/projects/olallie.png',
   },
-]);
+],);
 </script>
 
 <template>
   <UContainer class="my-4">
     <!-- Header -->
     <section class="text-center my-12">
-      <h1 class="text-5xl font-extrabold">My Projects</h1>
+      <h1 class="text-5xl font-extrabold">
+        My Projects
+      </h1>
       <p class="mt-2 text-lg text-gray-600 dark:text-gray-300">
         A collection of everything from utilities to dashboards.
       </p>

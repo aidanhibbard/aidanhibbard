@@ -1,9 +1,9 @@
 <script setup lang="ts">
-const { headings } = useRuntimeConfig().public.mdc
+const { headings, } = useRuntimeConfig().public.mdc;
 
-const props = defineProps<{ id?: string }>()
+const props = defineProps<{ id?: string }>();
 
-const generate = computed(() => props.id && ((typeof headings?.anchorLinks === 'boolean' && headings?.anchorLinks === true) || (typeof headings?.anchorLinks === 'object' && headings?.anchorLinks?.h5)))
+const generate = computed(() => props.id && ((typeof headings?.anchorLinks === 'boolean' && headings?.anchorLinks === true) || (typeof headings?.anchorLinks === 'object' && headings?.anchorLinks?.h5)),);
 </script>
 
 <template>
