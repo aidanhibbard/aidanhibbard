@@ -1,7 +1,7 @@
 ---
 title: 'Installing private NPM modules with Docker'
 description: 'Learn how to secretly mount a .npmrc in your docker image to avoid leaking keys.'
-publishedAt: 06-17-24
+publishedAt: 2024-06-17
 lastEditedAt: 06-17-24
 tags:
   - 'docker'
