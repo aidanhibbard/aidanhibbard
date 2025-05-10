@@ -56,7 +56,7 @@ export default defineNuxtConfig({
   llms: {
     domain: 'https://aidanhibbard.dev',
     title: 'Aidan Hibbard',
-    description: 'My portfolio'
+    description: 'Software developer writing, and talking about stuff.'
   },
   seo: {
     meta: {
