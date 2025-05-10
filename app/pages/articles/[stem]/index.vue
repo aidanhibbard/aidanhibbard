@@ -1,11 +1,11 @@
 <script setup lang='ts'>
-// import type { Toc } from '@nuxt/content'
+import type { Toc } from '@nuxt/content';
 
-// interface Meta {
-//   body: {
-//     toc: Toc
-//   }
-// }
+interface Meta {
+  body: {
+    toc: Toc;
+  };
+}
 
 const { params } = useRoute();
 const { data: article } = await useAsyncData(
@@ -27,55 +27,98 @@ useSeoMeta({
   ogDescription: article.value!.description
 });
 
-// const items = computed(() =>
-//   tocToItems(
-//     (article.value!.meta as unknown as Meta).body.toc
-//   )
-// )
+const items = computed(() =>
+  tocToItems(
+    (article.value!.meta as unknown as Meta).body.toc
+  )
+);
 </script>
 
 <template>
-  <UContainer class="px-4 sm:flex sm:justify-center">
-    <article class="prose py-8 w-full sm:max-w-3xl">
-      <CldImage
-        src="private-npm-modules-docker_zzohul"
-        alt="My Awesome Image"
-        width="800"
-        height="450"
-        class="w-full sm:max-w-md rounded-lg"
-      />
-      <div class="prose max-w-none w-full sm:max-w-prose mx-auto">
-        <div class="flex items-center space-x-1 text-gray-700 dark:text-white text-sm md:text-base mb-4">
-          <UIcon
-            name="mdi:calendar"
-            size="20"
-          />
-          <span>Published on</span>
-          <time>{{ new Date(article!.publishedAt).toLocaleDateString() }}</time>
-        </div>
+  <UContainer class="px-4 py-6 mx-auto md:max-w-screen-xl">
+    <div
+      class="
+        grid
+        grid-cols-1
+        lg:grid-cols-[200px_minmax(0,1fr)_200px]
+        gap-6
+        items-start
+      "
+    >
+      <!-- Left sidebar (hidden below lg) -->
+      <aside
+        class="hidden lg:block h-full"
+        aria-label="related content"
+      >
+        <nav class="space-y-4">
+          <!-- Example related links or widgets -->
+          <h2 class="text-lg font-semibold mb-2">
+            Related
+          </h2>
+          <ul class="space-y-1 text-sm">
+            <li><NuxtLink to="/something">Link One</NuxtLink></li>
+            <li><NuxtLink to="/something-else">Link Two</NuxtLink></li>
+            <li><NuxtLink to="/another">Link Three</NuxtLink></li>
+          </ul>
+        </nav>
+      </aside>
 
-        <div class="mt-2 w-full sm:max-w-prose mx-auto">
-          <div class="flex flex-wrap gap-2">
+      <!-- Main article -->
+      <article class="prose max-w-none mx-auto py-6 w-full min-w-[40ch]">
+        <!-- Featured image -->
+        <CldImage
+          src="private-npm-modules-docker_zzohul"
+          alt="My Awesome Image"
+          width="800"
+          height="450"
+          class="w-full rounded-xl shadow-md"
+        />
+
+        <!-- Meta info -->
+        <div class="mt-8 space-y-4">
+          <div class="flex flex-wrap items-center text-gray-700 dark:text-gray-300 text-xs sm:text-sm">
+            <UIcon
+              name="mdi:calendar"
+              size="18"
+              class="mr-1"
+            />
+            <time>{{ new Date(article!.publishedAt).toLocaleDateString() }}</time>
+          </div>
+
+          <div class="flex flex-wrap gap-2 text-xs sm:text-sm">
             <NuxtLink
-              v-for="(t, i) in article?.tags"
+              v-for="(t, i) in article!.tags"
               :key="t"
               :to="`/articles?tags=${t}`"
-              class="inline-flex items-center space-x-1 text-sm no-underline dark:text-white"
+              class="inline-flex items-center space-x-1 no-underline text-blue-600 dark:text-blue-400 hover:underline"
             >
               <UIcon
                 :name="`catppuccin:${t.toLowerCase()}`"
-                size="24"
+                size="20"
               />
               <span>{{ t }}<span v-if="i < article!.tags.length - 1">,</span></span>
             </NuxtLink>
           </div>
         </div>
-      </div>
 
-      <ContentRenderer
-        :value="article!.meta"
-        class="mt-8 w-full sm:max-w-prose mx-auto"
-      />
-    </article>
+        <!-- Content -->
+        <div class="mt-6">
+          <ContentRenderer :value="article!.meta" />
+        </div>
+      </article>
+
+      <!-- Right sidebar (hidden below lg) -->
+      <aside
+        class="hidden lg:block relative h-full"
+        aria-label="table of content"
+      >
+        <UTree
+          :items="items"
+          class="sticky top-20 border-l pl-4 text-sm text-gray-600 dark:text-gray-400"
+          color="neutral"
+          variant="ghost"
+        />
+      </aside>
+    </div>
   </UContainer>
 </template>
