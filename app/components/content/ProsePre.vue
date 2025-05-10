@@ -52,17 +52,26 @@ onMounted(async () => {
   <div
     class="mx-auto w-full rounded-lg border border-gray-300 dark:border-gray-600 flex flex-col overflow-hidden relative my-4"
   >
-    <button
+    <UButton
       class="hover:text-gray-600 absolute top-2 right-2"
+      color="neutral"
       @click="copyToClipboard"
-    />
+    >
+      <template #default>
+        <UIcon
+          name="mdi:ab-testing"
+          class="h-4 w-4"
+        />
+      </template>
+    </UButton>
     <div
       v-if="props.filename || props.language"
       class="flex items-center justify-between p-2 border-b border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-[#0c0e14] text-gray-800 dark:text-[#F3F4ED] text-sm font-mono"
     >
       <div class="flex items-center gap-2 pl-2">
         <UIcon
-          name="mdi:ab-testing"
+          :name="`catppuccin:vue`"
+          size="24"
         />
         <div
           v-if="props.filename"

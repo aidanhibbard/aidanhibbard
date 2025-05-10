@@ -3,8 +3,7 @@ title: 'Making my own content code block'
 description: 'Wrapping the mdc pre component with a custom code display.'
 publishedAt: 02-25-25
 tags:
-  - 'Nuxt 3'
-  - 'Nuxt Content'
+  - 'Nuxt'
   - 'Tailwind'
   - 'TypeScript'
 ---
