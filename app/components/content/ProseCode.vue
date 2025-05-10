@@ -2,16 +2,16 @@
 const defaultMsg = 'Click to copy';
 
 const state = reactive({
-  copyMsg: defaultMsg,
-},);
+  copyMsg: defaultMsg
+});
 
-const codeWrapper = ref<HTMLElement | null>(null,);
+const codeWrapper = ref<HTMLElement | null>(null);
 const copyToClipboard = async () => {
   if (codeWrapper.value) {
     try {
-      await navigator.clipboard.writeText(codeWrapper.value.innerText.split('\n',) // Split into an array of lines
-        .filter(line => line.trim() !== '',) // Remove empty lines
-        .join('\n',),);
+      await navigator.clipboard.writeText(codeWrapper.value.innerText.split('\n') // Split into an array of lines
+        .filter(line => line.trim() !== '') // Remove empty lines
+        .join('\n'));
       state.copyMsg = 'Copied to clipboard!';
     }
     catch {
@@ -20,7 +20,7 @@ const copyToClipboard = async () => {
     finally {
       setTimeout(() => {
         state.copyMsg = defaultMsg;
-      }, 1500,);
+      }, 1500);
     }
   }
 };

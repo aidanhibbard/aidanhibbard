@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NavigationMenuItem, } from '@nuxt/ui';
+import type { NavigationMenuItem } from '@nuxt/ui';
 
 const drawer = useDrawer();
 
@@ -7,30 +7,30 @@ const items = ref<NavigationMenuItem[][]>([
   [
     {
       label: 'Home',
-      icon: 'mdi:home',
+      icon: 'mdi:home'
     },
     {
       label: 'Articles',
       icon: 'i-lucide-file-text',
-      to: '/articles',
+      to: '/articles'
     },
     {
       label: 'Projects',
       icon: 'i-lucide-box',
-      to: '/projects',
+      to: '/projects'
     },
     {
       label: 'Talks',
       icon: 'i-lucide-message-square-code',
-      to: '/talks',
+      to: '/talks'
     },
     {
       label: 'About',
       icon: 'i-lucide-user',
-      to: '/about',
-    },
-  ],
-],);
+      to: '/about'
+    }
+  ]
+]);
 </script>
 
 <template>
@@ -50,7 +50,7 @@ const items = ref<NavigationMenuItem[][]>([
         :items="items"
         class="data-[orientation=vertical]:w-48 p-4"
       >
-        <template #item-label="{ item, }">
+        <template #item-label="{ item }">
           <span class="text-lg">{{ item.label }}</span>
         </template>
       </UNavigationMenu>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { codeToHtml, } from 'shiki';
+import { codeToHtml } from 'shiki';
 
 // https://content.nuxt.com/docs/components/prose#prosepre
 const props = defineProps<{
@@ -14,16 +14,16 @@ const defaultMsg = 'Copy to clipboard';
 
 const state = reactive({
   copyMsg: defaultMsg,
-  highlightedCode: '',
-},);
+  highlightedCode: ''
+});
 
-const codeWrapper = ref<HTMLDivElement | null>(null,);
+const codeWrapper = ref<HTMLDivElement | null>(null);
 const copyToClipboard = async () => {
   if (codeWrapper.value) {
     try {
-      await navigator.clipboard.writeText(codeWrapper.value.innerText.split('\n',) // Split into an array of lines
-        .filter(line => line.trim() !== '',) // Remove empty lines
-        .join('\n',),);
+      await navigator.clipboard.writeText(codeWrapper.value.innerText.split('\n') // Split into an array of lines
+        .filter(line => line.trim() !== '') // Remove empty lines
+        .join('\n'));
       state.copyMsg = 'Copied to clipboard!';
     }
     catch {
@@ -32,7 +32,7 @@ const copyToClipboard = async () => {
     finally {
       setTimeout(() => {
         state.copyMsg = defaultMsg;
-      }, 1500,);
+      }, 1500);
     }
   }
 };
@@ -41,11 +41,11 @@ onMounted(async () => {
   if (props.code) {
     const html = await codeToHtml(props.code, {
       lang: props.language ?? '',
-      theme: 'github-dark-dimmed',
-    },);
+      theme: 'github-dark-dimmed'
+    });
     state.highlightedCode = html;
   }
-},);
+});
 </script>
 
 <template>

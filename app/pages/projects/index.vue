@@ -17,7 +17,7 @@ const projects = ref<Project[]>([
       'A map built with D3 showing the boundries of fires sourced from the NIFC. Data processed using ogr2ogr and topojson-server. Dashboard built with Vue and PrimeVue.',
     link: 'https://github.com/AidanHibbard/historical-oregon-fires',
     visitText: 'View the writeup on GitHub',
-    image: 'https://raw.githubusercontent.com/AidanHibbard/historical-oregon-fires/main/image.png',
+    image: 'https://raw.githubusercontent.com/AidanHibbard/historical-oregon-fires/main/image.png'
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const projects = ref<Project[]>([
       'TypeSafe state mechanism for framework-less projects to use for simple reactivity.',
     link: 'https://github.com/AidanHibbard/Olallie/',
     visitText: 'View the writeup on GitHub',
-    image: '/images/projects/olallie.png',
+    image: '/images/projects/olallie.png'
   },
   {
     id: 3,
@@ -35,9 +35,9 @@ const projects = ref<Project[]>([
       'A dashboard using Google Maps to display the elevation change along a given trail, road, or feature.',
     link: 'https://github.com/AidanHibbard/Olallie/',
     visitText: 'View the writeup on GitHub',
-    image: '/images/projects/olallie.png',
-  },
-],);
+    image: '/images/projects/olallie.png'
+  }
+]);
 </script>
 
 <template>

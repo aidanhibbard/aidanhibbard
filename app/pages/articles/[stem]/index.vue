@@ -7,25 +7,25 @@
 //   }
 // }
 
-const { params, } = useRoute();
-const { data: article, } = await useAsyncData(
+const { params } = useRoute();
+const { data: article } = await useAsyncData(
   'article',
   () =>
-    queryCollection('articles',)
-      .where('stem', '=', `articles/${params.stem}`,)
-      .first(),
+    queryCollection('articles')
+      .where('stem', '=', `articles/${params.stem}`)
+      .first()
 );
 if (!article)
   throw createError({
     statusCode: 404,
-    message: 'Could not find given article',
-  },);
+    message: 'Could not find given article'
+  });
 useSeoMeta({
   title: article.value!.title,
   ogTitle: article.value!.title,
   description: article.value!.description,
-  ogDescription: article.value!.description,
-},);
+  ogDescription: article.value!.description
+});
 
 // const items = computed(() =>
 //   tocToItems(
@@ -51,7 +51,7 @@ useSeoMeta({
             size="20"
           />
           <span>Published on</span>
-          <time>{{ new Date(article!.publishedAt,).toLocaleDateString() }}</time>
+          <time>{{ new Date(article!.publishedAt).toLocaleDateString() }}</time>
         </div>
 
         <div class="mt-2 w-full sm:max-w-prose mx-auto">

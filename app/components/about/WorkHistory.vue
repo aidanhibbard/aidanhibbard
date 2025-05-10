@@ -14,7 +14,7 @@ const experiences: Experience[] = [
     period: 'August 2024 - Present',
     location: 'Remote',
     description:
-      'Developing features in an API-first architecture with Nuxt and Rails. Refactored applications for maintainability and test coverage. Led TypeScript adoption, introduced unit testing, and mentored developers on front-end best practices.',
+      'Developing features in an API-first architecture with Nuxt and Rails. Refactored applications for maintainability and test coverage. Led TypeScript adoption, introduced unit testing, and mentored developers on front-end best practices.'
   },
   {
     companyRole: 'Lead Developer / Central Oregon Community College',
@@ -26,7 +26,7 @@ const experiences: Experience[] = [
       Built a public facing chat service using oepnai with NitroJS and BullMQ for the backend to communicate with users over websockets.
       Helped introduce best practices, guidelines, testing, and CI to keep future development in check.
       Created a custom Vite build process to ensure generated files could be drag-and-dropped into the schools CMS.
-      `,
+      `
   },
   {
     companyRole: 'Lead Developer / Ability Hub',
@@ -34,14 +34,14 @@ const experiences: Experience[] = [
     period: 'September 2024 - April 2025',
     location: 'Remote',
     description:
-      'Built a learning platform for climate regulations and sustainability resources using Nuxt and Tailwind. Implemented CI, testing architecture, Stripe payments, and an AI document search with OpenAI on DigitalOcean.',
+      'Built a learning platform for climate regulations and sustainability resources using Nuxt and Tailwind. Implemented CI, testing architecture, Stripe payments, and an AI document search with OpenAI on DigitalOcean.'
   },
   {
     companyRole: 'Software Developer / RealPage',
     period: 'May 2022 - August 2024',
     location: 'Remote',
     description:
-      'Built and maintained ETL pipelines between vendor CRMs and internal inventory with Rails. Developed real-time WebSocket services, optimized queries, and maintained Kubernetes-deployed microservices with pub/sub communication.',
+      'Built and maintained ETL pipelines between vendor CRMs and internal inventory with Rails. Developed real-time WebSocket services, optimized queries, and maintained Kubernetes-deployed microservices with pub/sub communication.'
   },
   {
     companyRole: 'Lead Developer / GreenT Climate',
@@ -49,8 +49,8 @@ const experiences: Experience[] = [
     period: 'July 2023 - May 2024',
     location: 'Remote',
     description:
-      'Developed data-processing services with NitroJS and BullMQ. Created interactive Nuxt + D3 dashboards, researched Energy Star integrations, built Postman collections, and managed Google Cloud infra.',
-  },
+      'Developed data-processing services with NitroJS and BullMQ. Created interactive Nuxt + D3 dashboards, researched Energy Star integrations, built Postman collections, and managed Google Cloud infra.'
+  }
 ];
 </script>
 
@@ -63,7 +63,7 @@ const experiences: Experience[] = [
       <li
         v-for="(exp, idx) in experiences"
         :key="idx"
-        :class="['ml-6', idx < experiences.length - 1 ? 'mb-10' : '',]"
+        :class="['ml-6', idx < experiences.length - 1 ? 'mb-10' : '']"
       >
         <!-- Pin -->
         <span

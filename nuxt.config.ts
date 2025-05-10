@@ -13,50 +13,50 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-llms',
     'floating-vue/nuxt',
-    '@nuxtjs/cloudinary',
+    '@nuxtjs/cloudinary'
   ],
-  devtools: { enabled: true, },
+  devtools: { enabled: true },
   app: {
     head: {
       titleTemplate: '%s | Aidan Hibbard',
       htmlAttrs: {
         class: 'h-full flex-col flex',
-        lang: 'en-us',
+        lang: 'en-us'
       },
       bodyAttrs: {
-        class: 'flex flex-col flex-1',
-      },
+        class: 'flex flex-col flex-1'
+      }
     },
     pageTransition: {
       name: 'page',
-      mode: 'out-in',
+      mode: 'out-in'
     },
     rootAttrs: {
-      class: 'flex flex-col flex-1',
-    },
+      class: 'flex flex-col flex-1'
+    }
   },
-  css: ['~/assets/styles/main.css',],
+  css: ['~/assets/styles/main.css'],
   future: {
-    compatibilityVersion: 4,
+    compatibilityVersion: 4
   },
   compatibilityDate: '2025-04-28',
   typescript: {
-    strict: true,
+    strict: true
   },
   eslint: {
     config: {
       stylistic: {
         semi: true,
         quotes: 'single',
-        commaDangle: 'always',
-      },
+        commaDangle: 'never'
+      }
     },
-    checker: true,
+    checker: true
   },
   llms: {
     domain: 'https://aidanhibbard.dev',
     title: 'Aidan Hibbard',
-    description: 'My portfolio',
+    description: 'My portfolio'
   },
   seo: {
     meta: {
@@ -70,7 +70,7 @@ export default defineNuxtConfig({
       ogUrl: 'https://aidanhibbard.dev',
       ogTitle: 'Aidan Hibbard',
 
-      robots: 'index, follow',
-    },
-  },
-},);
+      robots: 'index, follow'
+    }
+  }
+});
