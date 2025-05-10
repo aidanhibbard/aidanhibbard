@@ -5,7 +5,6 @@ const schema = z.object({
   title: z.string(),
   description: z.string(),
   publishedAt: z.date(),
-  lastEditedAt: z.date(),
   tags: z.array(z.string(),),
 },);
 

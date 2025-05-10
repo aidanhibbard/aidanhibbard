@@ -1,10 +1,10 @@
 ---
-title: 'Installing private NPM modules with Docker'
-description: 'Learn how to secretly mount a .npmrc in your docker image to avoid leaking keys.'
-publishedAt: 06-17-24
+title: 'Getting started with Nuxt v4'
+description: 'Stay ahead of the curve by tuning into the v4 changes before the release.'
+publishedAt: 05-09-2025
 tags:
-  - 'docker'
-  - 'npm'
+  - 'nuxt'
+  - ''
 ---
 
 ## Introduction

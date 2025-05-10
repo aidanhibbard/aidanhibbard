@@ -37,7 +37,7 @@ const copyToClipboard = async () => {
   }
 };
 
-watchEffect(async () => {
+onMounted(async () => {
   if (props.code) {
     const html = await codeToHtml(props.code, {
       lang: props.language ?? '',
