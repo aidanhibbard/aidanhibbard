@@ -39,7 +39,7 @@ This will enable the new features for you, however you can use the [the codemod 
 
 ## New directory structure
 
-The [new directory structure](https://nuxt.com/docs/getting-started/upgrade#new-directory-structure) is likely the best part of the version four upgrade, and to be quite honest I'm pretty dissapointed we didn't get it originally with version three.
+The [new directory structure](https://nuxt.com/docs/getting-started/upgrade#new-directory-structure) is likely the best part of the version four upgrade, and to be quite honest I'm pretty disappointed we didn't get it originally with version three.
 
 This splits your app into two directories `server` and `app` which right off the bat you can tell what belongs in each. Your `app.vue`, pages, composables and other front end will live in the `app` directory. While all your server logic will live comfortably in the `server` directory still with little, to no changes required.
 
@@ -56,6 +56,6 @@ Now if you want to access that payload using the Nuxt app directly you can use `
 
 However this utility provides a far more powerful feature [multi-app support](https://nuxt.com/docs/getting-started/upgrade#removal-of-window__nuxt__-object).
 
-Nuxt has had layers, and these are powerful themselves, there's a really good article by [Dave Stewart](https://davestewart.co.uk/blog/nuxt-layers/) on using layers to split up applications by domain. This makes breaking up parts of your app more defined, such as an "admin" section being it's own layer of components, pages, logic, etc.
+Nuxt has had layers, and these are powerful themselves, there's a really good article by [Dave Stewart](https://davestewart.co.uk/blog/nuxt-layers/) on using layers to split up applications by domain. This makes breaking up parts of your app more defined, such as an "admin" section being its own layer of components, pages, logic, etc.
 
-However multi-app support is an _experimental_, runtime feature enabling multiple independent Nuxt applications to coexist and interoperate. You can pass a namespace to useNuxtApp such as `useNuxtApp('checkout')` to create [micro-frontends](https://micro-frontends.org/). For very large organizations with independant teams working on features that need to be treated as seperate apps this will be a major feature to help avoid monoliths where everything is a layer of one app.
+However multi-app support is an _experimental_, runtime feature enabling multiple independent Nuxt applications to coexist and interoperate. You can pass a namespace to useNuxtApp such as `useNuxtApp('checkout')` to create [micro-frontends](https://micro-frontends.org/). For very large organizations with independent teams working on features that need to be treated as seperate apps this will be a major feature to help avoid monoliths where everything is a layer of one app.
