@@ -116,7 +116,7 @@ const items = computed(() =>
       >
         <UTree
           :items="items"
-          class="sticky top-20 border-l pl-4 text-sm text-gray-600 dark:text-gray-400"
+          class="sticky top-20 pl-4 text-sm text-gray-600 dark:text-gray-400"
           color="neutral"
           variant="ghost"
         />
