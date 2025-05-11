@@ -71,7 +71,7 @@ const items = computed(() =>
           alt="My Awesome Image"
           width="800"
           height="450"
-          class="w-full rounded-xl shadow-md"
+          class="w-full rounded-xl shadow-md mx-auto"
         />
 
         <!-- Meta info -->
@@ -90,7 +90,7 @@ const items = computed(() =>
               v-for="(t, i) in article!.tags"
               :key="t"
               :to="`/articles?tags=${t}`"
-              class="inline-flex items-center space-x-1 no-underline text-blue-600 dark:text-blue-400 hover:underline"
+              class="inline-flex items-center space-x-2 no-underline hover:underline dark:text-white text-gray-900"
             >
               <UIcon
                 :name="`catppuccin:${t.toLowerCase()}`"
@@ -102,8 +102,10 @@ const items = computed(() =>
         </div>
 
         <!-- Content -->
-        <div class="mt-6">
-          <ContentRenderer :value="article!.meta" />
+        <div class="mt-6 mx-auto">
+          <ContentRenderer
+            :value="article!.meta"
+          />
         </div>
       </article>
 

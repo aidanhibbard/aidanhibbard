@@ -4,62 +4,36 @@ description: 'Stay ahead of the curve by tuning into the v4 changes before the r
 publishedAt: 05-09-2025
 tags:
   - 'nuxt'
-  - ''
 ---
 
 ## Introduction
 
-Recently I was tasked with creating a new pipelines from app repositories in GitHub to Cloud Run deployments. One of our apps used private modules not hosted in our own artifact registry (BullMQ Pro), and we needed a secure way to pull the secrets without leaking them into the docker image.
+Whenever I create a new project I typically like to look at the beta, or "nightly" build for the frameworks / tools I'm planning to use.
+I'm not a big fan of starting with tech debt, so even if it comes with a few bumps along the way it saves time when the next upgrade hits.
 
-Cloud build has the ability to pull secrets directly from Cloud Secrets so I wanted our NPM tokens for various vendors to live there. That way we had the benefits of versioning, and security not offered by GitHub secrets in actions.
+Lately when I've been creating a new Nuxt project, I've been starting with the upgrade to [version four](https://nuxt.com/docs/getting-started/upgrade#opting-in-to-nuxt-4) right away. [It's simple to upgrade](https://nuxt.com/docs/getting-started/upgrade#migrating-using-codemods), [has a cleaner directory structure](https://nuxt.com/docs/getting-started/upgrade#new-directory-structure), and the removal of [the nuxt window object](https://nuxt.com/docs/getting-started/upgrade#removal-of-window__nuxt__-object).
 
-I saw many people using pipelines where they generated a .npmrc file, or added private tokens to the NPM configs during install, then removed them at the end. NPMs docs has a different way of going about this by mounting the npmrc as a secret.
+Getting started with the next version of Nuxt is pretty straightforward:
 
-Per the NPM docs this "will leave no trace after npm dependency installation is done."
+1. Start a new project with the create-nuxt command `npm init nuxt@latest`
 
-## Setup
+2. Go through the steps to add what you need
 
-(Note: mounting secrets in a dockerfile will require enabling BuildKit)
+3. Run the dev server to generate your .nuxt directory
 
-```yml [file.yml]{2} meta-info=val
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'your-registry-domain', '.']
-    env:
-      - 'DOCKER_BUILDKIT=1'
+Now you can opt into the next version by setting the "future" options compatibilityDate to `4` in the nuxt config (note: if you're doing this with an existing project [it's recommended to be on the latest version.](https://nuxt.com/docs/getting-started/upgrade#opting-in-to-nuxt-4))
+
+```ts
+// nuxt.config.ts
+...
+future: {
+  compatibilityVersion: 4,
+},
+...
 ```
 
-So I added our needed NPM tokens to cloud secrets, and made them available to cloudbuild VIA the availableSecrets key in the cloudbuild.yaml
+Now you can run [the codemod tool](https://nuxt.com/docs/getting-started/upgrade#migrating-using-codemods) to implement the version four changes you're after with `npx codemod@latest nuxt/4/migration-recipe`. This will allow you to choose what features of version four that you're after, and will apply the necessary changes for you.
 
-```yml
-availableSecrets:
-  secretManager:
-    - versionName: projects/YOUR_PROJECT_ID/secrets/NPM_TOKEN/versions/latest
-      env: 'NPM_TOKEN'
-    - versionName: projects/YOUR_PROJECT_ID/secrets/NPM_TASKFORCESH_TOKEN/versions/latest
-      env: 'NPM_TASKFORCESH_TOKEN'
-```
+## New directory structure
 
-Generating the .npmrc for the docker image needs to be done as a bash step before your docker build step
-
-```yml
-steps:
-  - name: bash
-    args:
-      - '-c'
-      - |
-        echo "@taskforcesh:registry=https://npm.taskforce.sh/" > .npmrc
-        echo "//npm.taskforce.sh/:_authToken=$$NPM_TASKFORCESH_TOKEN" >> .npmrc
-        echo "always-auth=true" >> .npmrc
-        echo "@your-org:registry=https://registry.npmjs.org/" >> .npmrc
-        echo "//registry.npmjs.org/:_authToken=$$NPM_TOKEN" >> .npmrc
-    secretEnv: ['NPM_TOKEN', 'NPM_TASKFORCESH_TOKEN']
-```
-
-Now that the npmrc is created mount it as a secret in your docker image
-
-```bash
-RUN --mount=icon=secret,id=npmrc,target=YOUR_APP_DIR/.npmrc npm install
-RUN npm run build
-```
-
-That's it! You should be able to add multiple private module sources to your cloud build pipeline.
+The [new directory structure](https://nuxt.com/docs/getting-started/upgrade#new-directory-structure) is likely the best part of the version four upgrade, and to be quite honest I'm pretty dissapointed we didn't get it originally with version three.
