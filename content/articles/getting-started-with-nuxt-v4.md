@@ -28,6 +28,7 @@ Now you can opt into the next version by setting the "future" options compatibil
 ```ts
 // nuxt.config.ts
 ...
+compatibilityVersion: 'your-current-date'
 future: {
   compatibilityVersion: 4,
 },
