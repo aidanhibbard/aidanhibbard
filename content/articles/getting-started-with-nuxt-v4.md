@@ -35,7 +35,7 @@ future: {
 ...
 ```
 
-Now you can run [the codemod tool](https://nuxt.com/docs/getting-started/upgrade#migrating-using-codemods) to implement the version four changes you're after with `npx codemod@latest nuxt/4/migration-recipe`. This will allow you to choose what features of version four that you're after, and will apply the necessary changes for you.
+This will enable the new features for you, however you can use the [the codemod tool](https://nuxt.com/docs/getting-started/upgrade#migrating-using-codemods) to implement the version four changes you're after with `npx codemod@latest nuxt/4/migration-recipe`. This will allow you to choose what features of version four that you're after, and will apply the necessary changes for you. Great for migrating existing projects, or swiftly making needed changes after starting a new project.
 
 ## New directory structure
 
