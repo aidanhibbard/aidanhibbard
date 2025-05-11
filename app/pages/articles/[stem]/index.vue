@@ -47,7 +47,7 @@ const items = computed(() =>
     >
       <!-- Left sidebar (hidden below lg) -->
       <aside
-        class="hidden lg:block h-full"
+        class="hidden lg:block"
         aria-label="related content"
       >
         <nav class="space-y-4">
@@ -64,7 +64,7 @@ const items = computed(() =>
       </aside>
 
       <!-- Main article -->
-      <article class="prose max-w-none mx-auto py-6 w-full min-w-[40ch]">
+      <article class="prose max-w-none mx-auto w-full min-w-[40ch]">
         <!-- Featured image -->
         <CldImage
           src="private-npm-modules-docker_zzohul"
@@ -109,7 +109,7 @@ const items = computed(() =>
 
       <!-- Right sidebar (hidden below lg) -->
       <aside
-        class="hidden lg:block relative h-full"
+        class="hidden lg:block relative"
         aria-label="table of content"
       >
         <UTree
