@@ -5,6 +5,7 @@ publishedAt: 06-17-24
 tags:
   - 'docker'
   - 'npm'
+image: 'private-npm-modules-docker_zzohul'
 ---
 
 ## Introduction

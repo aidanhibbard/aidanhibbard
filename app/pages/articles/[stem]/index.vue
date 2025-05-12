@@ -38,13 +38,7 @@ const items = computed(() =>
 <template>
   <UContainer class="px-4 py-6 mx-auto md:max-w-screen-xl">
     <div
-      class="
-        grid
-        grid-cols-1
-        lg:grid-cols-[200px_minmax(0,1fr)_200px]
-        gap-6
-        items-start
-      "
+      class="grid grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)_200px] gap-6 items-start"
     >
       <!-- Left sidebar (hidden below lg) -->
       <aside
@@ -52,7 +46,6 @@ const items = computed(() =>
         aria-label="related content"
       >
         <nav class="space-y-4">
-          <!-- Example related links or widgets -->
           <h2 class="text-lg font-semibold mb-2">
             Related
           </h2>
@@ -66,17 +59,23 @@ const items = computed(() =>
 
       <!-- Main article -->
       <article class="prose max-w-none mx-auto w-full min-w-[40ch]">
-        <!-- Featured image -->
+        <!-- Title -->
+        <h1 class="text-3xl font-bold mb-4 dark:text-white text-gray-900">
+          {{ article!.title }}
+        </h1>
+
+        <!-- Conditional Featured Image -->
         <CldImage
-          src="private-npm-modules-docker_zzohul"
-          alt="My Awesome Image"
+          v-if="article!.image"
+          :src="article!.image"
+          :alt="article!.title"
           width="800"
           height="450"
-          class="w-full rounded-xl shadow-md mx-auto"
+          class="w-full rounded-xl shadow-md mb-8 mx-auto"
         />
 
         <!-- Meta info -->
-        <div class="mt-8 space-y-4">
+        <div class="space-y-4">
           <div class="flex flex-wrap items-center text-gray-700 dark:text-gray-300 text-xs sm:text-sm">
             <UIcon
               name="mdi:calendar"
@@ -88,25 +87,25 @@ const items = computed(() =>
 
           <div class="flex flex-wrap gap-2 text-xs sm:text-sm">
             <NuxtLink
-              v-for="(t, i) in article!.tags"
-              :key="t"
-              :to="`/articles?tags=${t}`"
+              v-for="(tag, index) in article!.tags"
+              :key="tag"
+              :to="`/articles?tags=${tag}`"
               class="inline-flex items-center space-x-2 no-underline hover:underline dark:text-white text-gray-900"
             >
               <UIcon
-                :name="`catppuccin:${t.toLowerCase()}`"
+                :name="`catppuccin:${tag.toLowerCase()}`"
                 size="20"
               />
-              <span>{{ t }}<span v-if="i < article!.tags.length - 1">,</span></span>
+              <span>
+                {{ tag }}<span v-if="index < article!.tags.length - 1">,</span>
+              </span>
             </NuxtLink>
           </div>
         </div>
 
         <!-- Content -->
-        <div class="mt-6 mx-auto">
-          <ContentRenderer
-            :value="article!.meta"
-          />
+        <div class="mt-6">
+          <ContentRenderer :value="article!.meta" />
         </div>
       </article>
 
@@ -122,7 +121,7 @@ const items = computed(() =>
           variant="ghost"
         >
           <template #item="{ item }">
-            <NuxtLink :to="'#' + slugify(item.label!).toLowerCase()">
+            <NuxtLink :to="`#${slugify(item.label!).toLowerCase()}`">
               {{ item.label }}
             </NuxtLink>
           </template>

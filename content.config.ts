@@ -5,7 +5,8 @@ const schema = z.object({
   title: z.string(),
   description: z.string(),
   publishedAt: z.date(),
-  tags: z.array(z.string())
+  tags: z.array(z.string()),
+  image: z.string()
 });
 
 export default defineContentConfig({
