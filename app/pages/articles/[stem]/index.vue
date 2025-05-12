@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import type { Toc } from '@nuxt/content';
+import slugify from 'slugify';
 
 interface Meta {
   body: {
@@ -111,7 +112,7 @@ const items = computed(() =>
 
       <!-- Right sidebar (hidden below lg) -->
       <aside
-        class="hidden lg:block relative"
+        class="hidden lg:block relative h-full"
         aria-label="table of content"
       >
         <UTree
@@ -119,7 +120,13 @@ const items = computed(() =>
           class="sticky top-20 pl-4 text-sm text-gray-600 dark:text-gray-400"
           color="neutral"
           variant="ghost"
-        />
+        >
+          <template #item="{ item }">
+            <NuxtLink :to="'#' + slugify(item.label!).toLowerCase()">
+              {{ item.label }}
+            </NuxtLink>
+          </template>
+        </UTree>
       </aside>
     </div>
   </UContainer>
