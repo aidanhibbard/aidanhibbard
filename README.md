@@ -1,6 +1,6 @@
 # Hi, I'm Aidan
 
-🖥️ Senior Developer at [LegalNature](https://www.legalnature.com/)
+🖥️ Hacking away at [Niche](https://www.nicheandleads.com/)
 
 Passionate about building scalable, high-performance web applications. I love working with modern frameworks, optimizing cloud infrastructure, and crafting seamless UX. Working primarily with Rails, Vue, JSX, Tailwind and TypeScript.
 
