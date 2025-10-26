@@ -2,5 +2,10 @@
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
-  // Your custom configs here
+  {
+    name: 'vue-override',
+    rules: {
+      'vue/multi-word-component-names': 'off',
+    },
+  },
 )
