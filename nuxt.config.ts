@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   ],
   devtools: { enabled: true },
   css: [
-    '~/assets/styles/css/main.css',
+    '~/assets/styles/css/tailwind.css',
     '~/assets/styles/css/main.css',
   ],
   compatibilityDate: '2025-10-26',
@@ -41,9 +41,5 @@ export default defineNuxtConfig({
   llms: {
     domain: 'aidanhibbard.dev',
     title: 'Aidan Hibbard',
-  },
-  shadcn: {
-    prefix: '',
-    componentDir: './app/shadcn/components/ui',
   },
 })

@@ -13,10 +13,10 @@ import {
   Settings2,
   SquareTerminal,
 } from 'lucide-vue-next'
-import NavMain from '@/components/NavMain.vue'
-import NavProjects from '@/components/NavProjects.vue'
-import NavUser from '@/components/NavUser.vue'
-import TeamSwitcher from '@/components/TeamSwitcher.vue'
+import NavMain from '@/components/navigation/sidebar/NavMain.vue'
+import NavProjects from '@/components/navigation/sidebar/NavProjects.vue'
+import NavUser from '@/components/navigation/sidebar/NavUser.vue'
+import TeamSwitcher from '@/components/navigation/sidebar/TeamSwitcher.vue'
 
 import {
   Sidebar,
