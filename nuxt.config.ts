@@ -39,7 +39,7 @@ export default defineNuxtConfig({
     checker: true,
   },
   llms: {
-    domain: process.env.DOMAIN ?? 'aidanhibbard.dev',
+    domain: 'aidanhibbard.dev',
     title: 'Aidan Hibbard',
   },
   shadcn: {
