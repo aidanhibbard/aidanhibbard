@@ -40,7 +40,8 @@ function setOpenMobile(value: boolean) {
 
 // Helper to toggle the sidebar.
 function toggleSidebar() {
-  return isMobile.value ? setOpenMobile(!openMobile.value) : setOpen(!open.value)
+  // eslint-disable-next-line
+  isMobile.value ? setOpenMobile(!openMobile.value) : setOpen(!open.value)
 }
 
 useEventListener('keydown', (event: KeyboardEvent) => {

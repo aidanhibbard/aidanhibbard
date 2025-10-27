@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     '~/assets/styles/css/main.css',
     '~/assets/styles/css/main.css',
   ],
-  compatibilityDate: '2025-07-15',
+  compatibilityDate: '2025-10-26',
   vite: {
     plugins: [
       tailwindcss(),
@@ -37,6 +37,10 @@ export default defineNuxtConfig({
       },
     },
     checker: true,
+  },
+  llms: {
+    domain: process.env.DOMAIN ?? 'aidanhibbard.dev',
+    title: 'Aidan Hibbard',
   },
   shadcn: {
     prefix: '',
