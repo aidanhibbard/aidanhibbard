@@ -4,13 +4,15 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/shadcn/components/ui/breadcrumb'
 import { Separator } from '@/shadcn/components/ui/separator'
 import {
   SidebarTrigger,
 } from '@/shadcn/components/ui/sidebar'
+import { NuxtLink } from '#components'
+
+const items = useBreadcrumbItems()
 </script>
 
 <template>
@@ -23,15 +25,20 @@ import {
       />
       <Breadcrumb>
         <BreadcrumbList>
-          <BreadcrumbItem class="hidden md:block">
-            <BreadcrumbLink href="#">
-              Building Your Application
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator class="hidden md:block" />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-          </BreadcrumbItem>
+          <template
+            v-for="(item, index) in items"
+            :key="item.label"
+          >
+            <BreadcrumbItem class="hidden md:block">
+              <BreadcrumbLink
+                :as="NuxtLink"
+                :to="item.href"
+              >
+                {{ item.label }}
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator v-if="index < items.length - 1" />
+          </template>
         </BreadcrumbList>
       </Breadcrumb>
     </div>
