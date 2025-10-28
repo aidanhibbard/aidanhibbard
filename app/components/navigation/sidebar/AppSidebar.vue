@@ -15,13 +15,10 @@ import {
 } from 'lucide-vue-next'
 import NavMain from '@/components/navigation/sidebar/NavMain.vue'
 import NavProjects from '@/components/navigation/sidebar/NavProjects.vue'
-import NavUser from '@/components/navigation/sidebar/NavUser.vue'
-import TeamSwitcher from '@/components/navigation/sidebar/TeamSwitcher.vue'
 
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarRail,
 } from '@/shadcn/components/ui/sidebar'
@@ -164,15 +161,12 @@ const data = {
 <template>
   <Sidebar v-bind="props">
     <SidebarHeader>
-      <TeamSwitcher :teams="data.teams" />
+      hello
     </SidebarHeader>
     <SidebarContent>
       <NavMain :items="data.navMain" />
       <NavProjects :projects="data.projects" />
     </SidebarContent>
-    <SidebarFooter>
-      <NavUser :user="data.user" />
-    </SidebarFooter>
     <SidebarRail />
   </Sidebar>
 </template>
