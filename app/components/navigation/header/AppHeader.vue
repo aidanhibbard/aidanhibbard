@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { SidebarTrigger } from '@/shadcn/components/ui/sidebar'
 import { Moon, Sun } from 'lucide-vue-next'
 
 const { theme, toggleTheme } = useTheme()
@@ -13,17 +12,16 @@ const { theme, toggleTheme } = useTheme()
       class="flex w-full items-center px-4 md:px-12"
     >
       <div class="flex items-center gap-2 md:w-1/3">
-        <SidebarTrigger class="md:hidden" />
         <NuxtLink
           to="/"
-          class="hidden md:inline-flex items-center font-semibold"
+          class="inline-flex items-center font-semibold"
         >
           <span>Aidan Hibbard</span>
         </NuxtLink>
       </div>
 
       <nav
-        class="hidden md:flex w-1/3 items-center justify-center gap-6 text-sm"
+        class="flex w-1/3 items-center justify-center gap-6 text-sm"
       >
         <NuxtLink
           to="/about"
