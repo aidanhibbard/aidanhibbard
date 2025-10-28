@@ -7,3 +7,7 @@
 .page-leave-to {
   opacity: 0;
 }
+
+* {
+  cursor: none;
+}

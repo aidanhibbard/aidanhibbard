@@ -2,6 +2,7 @@
 import AppHeader from '@/components/navigation/header/AppHeader.vue'
 import AppSidebar from '@/components/navigation/sidebar/AppSidebar.vue'
 import SidebarProvider from '@/shadcn/components/ui/sidebar/SidebarProvider.vue'
+import CustomCursor from '~/components/navigation/mouse/CustomCursor.vue'
 import { SidebarInset } from '@/shadcn/components/ui/sidebar'
 import { useMediaQuery } from '@vueuse/core'
 
@@ -10,6 +11,7 @@ const isMobile = useMediaQuery('(max-width: 768px)')
 
 <template>
   <SidebarProvider>
+    <CustomCursor />
     <AppSidebar v-if="isMobile" />
     <SidebarInset>
       <AppHeader />
