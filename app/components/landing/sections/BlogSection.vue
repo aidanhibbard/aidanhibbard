@@ -62,7 +62,7 @@ const blogPosts: BlogPost[] = [
             :while-in-view="{ opacity: 1, y: 0 }"
             :viewport="{ once: true }"
             :transition="{ duration: 0.5, delay: index * 0.1 }"
-            class="space-y-3"
+            class="space-y-4"
           >
             <div class="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
               <time>{{ post.date }}</time>

@@ -38,16 +38,16 @@ import { Separator } from '~/shadcn/components/ui/separator'
               push the boundaries of web technology.
             </p>
             <div class="flex flex-wrap gap-2 pt-2">
-              <Badge variant="secondary">
+              <Badge>
                 React
               </Badge>
-              <Badge variant="secondary">
+              <Badge>
                 Three.js
               </Badge>
-              <Badge variant="secondary">
+              <Badge>
                 GLSL
               </Badge>
-              <Badge variant="secondary">
+              <Badge>
                 Next.js
               </Badge>
             </div>
@@ -72,13 +72,13 @@ import { Separator } from '~/shadcn/components/ui/separator'
               practices.
             </p>
             <div class="flex flex-wrap gap-2 pt-2">
-              <Badge variant="secondary">
+              <Badge>
                 TypeScript
               </Badge>
-              <Badge variant="secondary">
+              <Badge>
                 Vue.js
               </Badge>
-              <Badge variant="secondary">
+              <Badge>
                 Tailwind CSS
               </Badge>
             </div>

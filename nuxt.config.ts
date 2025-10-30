@@ -19,6 +19,14 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
   ],
   devtools: { enabled: true },
+  app: {
+    head: {
+      title: 'Aidan Hibbard',
+      htmlAttrs: {
+        lang: 'en',
+      },
+    },
+  },
   css: [
     '~/assets/styles/css/tailwind.css',
     '~/assets/styles/css/main.css',
