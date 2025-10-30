@@ -2,11 +2,24 @@
 import { Moon, Sun } from 'lucide-vue-next'
 
 const { theme, toggleTheme } = useTheme()
+
+const links = [
+  { name: 'About', href: '#about' },
+  { name: 'Blog', href: '#blog' },
+  { name: 'Resume', href: '#resume' },
+]
+
+const scrollToSection = (href: string) => {
+  const element = document.querySelector(href)
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' })
+  }
+}
 </script>
 
 <template>
   <header
-    class="flex h-16 shrink-0 items-center transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
+    class="flex h-16 shrink-0 z-50 bg-background/80 backdrop-blur-md items-center fixed top-0 left-0 right-0 border border-b border-border transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
   >
     <div
       class="flex w-full items-center px-4 md:px-12"
@@ -14,33 +27,21 @@ const { theme, toggleTheme } = useTheme()
       <div class="flex items-center gap-2 md:w-1/3">
         <NuxtLink
           to="/"
-          class="inline-flex items-center font-semibold"
+          class="inline-flex items-center font-serif text-2xl font-semibold tracking-tight"
         >
           <span>Aidan Hibbard</span>
         </NuxtLink>
       </div>
 
-      <nav
-        class="flex w-1/3 items-center justify-center gap-6 text-sm"
-      >
-        <NuxtLink
-          to="/about"
-          class="hover:text-foreground/90 text-foreground/70"
+      <nav className="hidden md:flex items-center gap-8">
+        <button
+          v-for="link in links"
+          :key="link.name"
+          class="text-sm font-medium hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-current after:transition-all hover:after:w-full"
+          @click="scrollToSection(link.href)"
         >
-          About
-        </NuxtLink>
-        <NuxtLink
-          to="/blog"
-          class="hover:text-foreground/90 text-foreground/70"
-        >
-          Blog
-        </NuxtLink>
-        <NuxtLink
-          to="/resume"
-          class="hover:text-foreground/90 text-foreground/70"
-        >
-          Resume
-        </NuxtLink>
+          {{ link.name }}
+        </button>
       </nav>
 
       <div

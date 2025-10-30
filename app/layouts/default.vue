@@ -4,6 +4,7 @@ import CustomCursor from '~/components/navigation/mouse/CustomCursor.vue'
 
 <template>
   <div>
+    <NavigationHeaderAppHeader />
     <CustomCursor />
     <slot />
   </div>

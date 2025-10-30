@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Minus } from 'lucide-vue-next'
 import { motion } from 'motion-v'
 </script>
 
@@ -20,6 +21,14 @@ import { motion } from 'motion-v'
         Crafting beautiful digital experiences at the intersection of design and technology. Specializing in
         interactive web applications, shader art, and minimalist interfaces.
       </p>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
+        <div class="flex items-center gap-2">
+          <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+          Available for hire
+        </div>
+        <Minus />
+        <div>Based in the Pacific Time Zone</div>
+      </div>
     </motion.div>
   </section>
 </template>
