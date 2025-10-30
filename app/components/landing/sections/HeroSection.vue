@@ -22,7 +22,7 @@ import { motion } from 'motion-v'
       </p>
       <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
         <div class="flex items-center gap-2">
-          <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+          <div class="w-2 h-2 bg-green-700 rounded-full animate-pulse" />
           Available for hire
         </div>
         <Minus />
