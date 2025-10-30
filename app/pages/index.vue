@@ -4,6 +4,7 @@ import { motion } from 'motion-v'
 import { Badge } from '~/shadcn/components/ui/badge'
 import { Separator } from '~/shadcn/components/ui/separator'
 import { ArrowRight } from 'lucide-vue-next'
+import SectionIndicator from '~/components/landing/navigation/SectionIndicator.vue'
 
 type BlogPost = {
   title: string
@@ -43,6 +44,7 @@ onMounted(() => {
 
 <template>
   <div class="relative">
+    <SectionIndicator />
     <!-- Landing Section -->
     <section
       id="about"
