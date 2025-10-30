@@ -22,7 +22,7 @@ const scrollToSection = (href: string) => {
     class="flex h-16 shrink-0 z-50 bg-background/80 backdrop-blur-md items-center fixed top-0 left-0 right-0 border border-b border-border transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
   >
     <div
-      class="flex w-full justify-evenly px-4 md:px-12"
+      class="flex w-full justify-between px-4 md:px-12"
     >
       <div class="flex items-center gap-2 md:w-1/3">
         <NuxtLink
