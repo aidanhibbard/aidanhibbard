@@ -1,12 +1,24 @@
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, reactive, ref } from 'vue'
-import { Vector2 } from 'three'
+import { onMounted, onBeforeUnmount, reactive, ref, watch } from 'vue'
+import { Vector2, Vector3 } from 'three'
+import useTheme from '~/composables/use-theme'
 
 const rafId = ref<number | null>(null)
 const startAtMs = ref<number | null>(null)
-const uniforms = reactive<{ u_time: { value: number }, u_resolution: { value: Vector2 } }>({
+type ShaderUniforms = {
+  u_time: { value: number }
+  u_resolution: { value: Vector2 }
+  u_cBase1: { value: Vector3 }
+  u_cBase2: { value: Vector3 }
+  u_cAccent: { value: Vector3 }
+}
+
+const uniforms = reactive<ShaderUniforms>({
   u_time: { value: 0 },
   u_resolution: { value: new Vector2(1, 1) },
+  u_cBase1: { value: new Vector3(1, 1, 1) },
+  u_cBase2: { value: new Vector3(1, 1, 1) },
+  u_cAccent: { value: new Vector3(1, 1, 1) },
 })
 
 const vertexShader = /* glsl */ `
@@ -23,11 +35,14 @@ precision highp float;
 
 uniform float u_time;
 uniform vec2 u_resolution;
+uniform vec3 u_cBase1;
+uniform vec3 u_cBase2;
+uniform vec3 u_cAccent;
 varying vec2 vUv;
 
 // Simple layered trigonometric pattern for a flowy gradient look
 float wave(vec2 p, float freq, float speed, float phase) {
-  return sin(p.x * freq + u_time * speed + phase) * 0.5 + 0.5;
+  return sin(p.x * freq + (u_time * 0.5) * speed + phase) * 0.5 + 0.5;
 }
 
 void main() {
@@ -47,15 +62,10 @@ void main() {
 
   float field = (w1 + w2 + w3) / 3.0;
 
-  // Palette: soft purple → blue → warm highlight
-  vec3 c1 = vec3(0.76, 0.62, 0.98);
-  vec3 c2 = vec3(0.53, 0.74, 0.98);
-  vec3 c3 = vec3(0.98, 0.90, 0.78);
-
-  // Animate blend weight slowly for living feel
-  float t = 0.5 + 0.5 * sin(u_time * 0.15);
-  vec3 base = mix(c1, c2, field);
-  vec3 mixed = mix(base, c3, smoothstep(0.35, 0.85, field) * t);
+  // Palette from uniforms; animate blend weight slowly for living feel
+  float t = 0.5 + 0.5 * sin(u_time * 0.08);
+  vec3 base = mix(u_cBase1, u_cBase2, field);
+  vec3 mixed = mix(base, u_cAccent, smoothstep(0.35, 0.85, field) * t);
 
   // Apply subtle radial vignette
   vec3 col = mixed * (0.85 + 0.15 * radial);
@@ -66,6 +76,37 @@ void main() {
   gl_FragColor = vec4(col, 1.0);
 }
 `
+
+function hexToVec3(hex: string): Vector3 {
+  const h = hex.replace('#', '')
+  const bigint = parseInt(h, 16)
+  const r = ((bigint >> 16) & 255) / 255
+  const g = ((bigint >> 8) & 255) / 255
+  const b = (bigint & 255) / 255
+  return new Vector3(r, g, b)
+}
+
+const { theme } = useTheme()
+
+function applyIcePalette(current: 'light' | 'dark') {
+  // Ice palette
+  const dark1 = hexToVec3('#222831')
+  const dark2 = hexToVec3('#31363F')
+  const accent = hexToVec3('#76ABAE')
+  const light1 = hexToVec3('#EEEEEE')
+
+  if (current === 'dark') {
+    uniforms.u_cBase1.value = dark1
+    uniforms.u_cBase2.value = dark2
+    uniforms.u_cAccent.value = accent
+  }
+  else {
+    // Light mode uses a light base with a soft teal tint and a subtle dark accent mix
+    uniforms.u_cBase1.value = light1
+    uniforms.u_cBase2.value = accent
+    uniforms.u_cAccent.value = dark2
+  }
+}
 
 const setResolution = () => {
   if (!import.meta.client) return
@@ -83,12 +124,17 @@ onMounted(() => {
   setResolution()
   window.addEventListener('resize', setResolution, { passive: true })
   rafId.value = requestAnimationFrame(frame)
+  applyIcePalette(theme.value)
 })
 
 onBeforeUnmount(() => {
   if (!import.meta.client) return
   window.removeEventListener('resize', setResolution)
   if (rafId.value !== null) cancelAnimationFrame(rafId.value)
+})
+
+watch(theme, (next) => {
+  applyIcePalette(next)
 })
 </script>
 

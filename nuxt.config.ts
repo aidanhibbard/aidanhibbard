@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     'motion-v/nuxt',
     '@tresjs/nuxt',
+    '@nuxtjs/google-fonts',
   ],
   devtools: { enabled: true },
   css: [

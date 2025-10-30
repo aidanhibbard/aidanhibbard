@@ -19,7 +19,7 @@ const scrollToSection = (href: string) => {
 
 <template>
   <header
-    class="flex h-16 shrink-0 z-50 bg-background/80 backdrop-blur-md items-center fixed top-0 left-0 right-0 border border-b border-border transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
+    class="flex h-16 shrink-0 z-50 items-center transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
   >
     <div
       class="flex w-full justify-between px-4 md:px-12"
@@ -27,7 +27,7 @@ const scrollToSection = (href: string) => {
       <div class="flex items-center gap-2 md:w-1/3">
         <NuxtLink
           to="/"
-          class="inline-flex items-center font-serif text-2xl font-semibold tracking-tight"
+          class="inline-flex items-center font-[cursive] text-2xl font-semibold tracking-tight"
         >
           <span>Aidan Hibbard</span>
         </NuxtLink>
