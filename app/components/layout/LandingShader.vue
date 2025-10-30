@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, reactive } from 'vue'
+import { onMounted, onBeforeUnmount, reactive, ref } from 'vue'
 import { Vector2 } from 'three'
 
+const rafId = ref<number | null>(null)
+const startAtMs = ref<number | null>(null)
 const uniforms = reactive<{ u_time: { value: number }, u_resolution: { value: Vector2 } }>({
   u_time: { value: 0 },
   u_resolution: { value: new Vector2(1, 1) },
@@ -65,36 +67,90 @@ void main() {
 }
 `
 
-function setResolution() {
+const setResolution = () => {
   if (!import.meta.client) return
   uniforms.u_resolution.value.set(window.innerWidth, window.innerHeight)
 }
 
-let rafId: number | null = null
-let startAtMs: number | null = null
-
-function frame(nowMs: number) {
-  if (startAtMs === null) startAtMs = nowMs
-  const elapsed = (nowMs - startAtMs) / 1000
+const frame = (nowMs: number) => {
+  if (startAtMs.value === null) startAtMs.value = nowMs
+  const elapsed = (nowMs - startAtMs.value) / 1000
   uniforms.u_time.value = elapsed
-  rafId = requestAnimationFrame(frame)
+  rafId.value = requestAnimationFrame(frame)
 }
 
 onMounted(() => {
   setResolution()
   window.addEventListener('resize', setResolution, { passive: true })
-  rafId = requestAnimationFrame(frame)
+  rafId.value = requestAnimationFrame(frame)
 })
 
 onBeforeUnmount(() => {
   if (!import.meta.client) return
   window.removeEventListener('resize', setResolution)
-  if (rafId !== null) cancelAnimationFrame(rafId)
+  if (rafId.value !== null) cancelAnimationFrame(rafId.value)
 })
 </script>
 
 <template>
   <div class="relative">
+    <svg
+      class="absolute inset-0 w-0 h-0"
+      aria-hidden="true"
+    >
+      <defs>
+        <filter
+          id="glass-effect"
+          x="-50%"
+          y="-50%"
+          width="200%"
+          height="200%"
+        >
+          <feTurbulence
+            baseFrequency="0.005"
+            numOctaves="1"
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="0.3"
+          />
+          <feColorMatrix
+            type="matrix"
+            values="1 0 0 0 0.02
+                    0 1 0 0 0.02
+                    0 0 1 0 0.05
+                    0 0 0 0.9 0"
+            result="tint"
+          />
+        </filter>
+        <filter
+          id="gooey-filter"
+          x="-50%"
+          y="-50%"
+          width="200%"
+          height="200%"
+        >
+          <feGaussianBlur
+            in="SourceGraphic"
+            stdDeviation="4"
+            result="blur"
+          />
+          <feColorMatrix
+            in="blur"
+            type="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+            result="gooey"
+          />
+          <feComposite
+            in="SourceGraphic"
+            in2="gooey"
+            operator="atop"
+          />
+        </filter>
+      </defs>
+    </svg>
     <div class="absolute inset-0 -z-10 pointer-events-none">
       <TresCanvas
         :alpha="true"
