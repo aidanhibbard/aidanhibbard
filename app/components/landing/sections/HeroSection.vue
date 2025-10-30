@@ -15,11 +15,10 @@ import { motion } from 'motion-v'
       class="max-w-2xl text-center md:text-left"
     >
       <h2 class="font-serif text-5xl md:text-7xl font-bold mb-6 text-balance">
-        Creative Developer <span class="block md:inline">& Designer</span>
+        Creative Developer <span class="block md:inline">& Engineer</span>
       </h2>
       <p class="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-        Crafting beautiful digital experiences at the intersection of design and technology. Specializing in
-        interactive web applications, shader art, and minimalist interfaces.
+        Using technology to delight; focused on elegant systems, thoughtful UX, and resilient architecture.
       </p>
       <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
         <div class="flex items-center gap-2">
