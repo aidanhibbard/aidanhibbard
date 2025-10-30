@@ -54,7 +54,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div>
+  <div class="hidden md:block">
     <div
       ref="outerRef"
       class="pointer-events-none fixed left-0 top-0 z-50 mix-blend-difference will-change-transform"
