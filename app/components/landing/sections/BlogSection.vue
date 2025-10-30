@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ArrowRight } from 'lucide-vue-next'
 import { motion } from 'motion-v'
+import { Badge } from '~/shadcn/components/ui/badge'
 
 type BlogPost = {
   title: string
