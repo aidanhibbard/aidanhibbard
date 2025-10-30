@@ -41,6 +41,13 @@ export default defineNuxtConfig({
     },
     checker: true,
   },
+  googleFonts: {
+    families: {
+      'Dancing Script': [400, 600, 700],
+    },
+    display: 'swap',
+    preconnect: true,
+  },
   llms: {
     domain: 'aidanhibbard.dev',
     title: 'Aidan Hibbard',

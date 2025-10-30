@@ -18,7 +18,7 @@ import { motion } from 'motion-v'
         Creative Developer <span class="block md:inline">& Engineer</span>
       </h2>
       <p class="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-        Using technology to delight; focused on elegant systems, thoughtful UX, and resilient architecture.
+        Using technology to delight; focusing on elegant systems, thoughtful UX, and resilient architecture.
       </p>
       <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
         <div class="flex items-center gap-2">

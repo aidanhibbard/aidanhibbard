@@ -27,7 +27,7 @@ const scrollToSection = (href: string) => {
       <div class="flex items-center gap-2 md:w-1/3">
         <NuxtLink
           to="/"
-          class="inline-flex items-center font-[cursive] text-2xl font-semibold tracking-tight"
+          class="inline-flex items-center font-brand text-3xl md:text-4xl font-normal tracking-tight"
         >
           <span>Aidan Hibbard</span>
         </NuxtLink>
