@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, reactive, ref, watch } from 'vue'
 import { Vector2, Vector3 } from 'three'
-import useTheme from '~/composables/use-theme'
+import type { Theme } from '~/types/theme'
+
+const { theme } = useTheme()
 
 const rafId = ref<number | null>(null)
 const startAtMs = ref<number | null>(null)
@@ -83,7 +84,7 @@ void main() {
 }
 `
 
-function hexToVec3(hex: string): Vector3 {
+const hexToVec3 = (hex: string): Vector3 => {
   const h = hex.replace('#', '')
   const bigint = parseInt(h, 16)
   const r = ((bigint >> 16) & 255) / 255
@@ -92,17 +93,15 @@ function hexToVec3(hex: string): Vector3 {
   return new Vector3(r, g, b)
 }
 
-const { theme } = useTheme()
-
-function applyIcePalette(current: 'light' | 'dark') {
+const applyIcePalette = (current: Theme) => {
   // Accessible palettes tuned for foreground contrast
   // Dark theme: keep background very dark; accent remains dark to avoid bright patches
   const dark1 = hexToVec3('#0B0F14') // very dark blue-gray ~ #0b0f14
   const dark2 = hexToVec3('#111827') // slate-900
   const accent = hexToVec3('#0E1F2B') // deep cyan/teal-950
   // Light theme: keep background very light; accent is pastel to avoid mid-tones
-  const light1 = hexToVec3('#F9FAFB') // gray-50
-  const light2 = hexToVec3('#EEF2FF') // indigo-50
+  const light1 = hexToVec3('#FFFFFF') // gray-50
+  const light2 = hexToVec3('#EEEEEE') // indigo-50
   const lightAccent = hexToVec3('#E0F2FE') // sky-100
 
   if (current === 'dark') {
@@ -209,8 +208,8 @@ watch(theme, (next) => {
     </svg>
     <div class="absolute inset-0 -z-10 pointer-events-none">
       <TresCanvas
-        :alpha="true"
-        :antialias="true"
+        alpha
+        antialias
       >
         <TresOrthographicCamera :position="[0, 0, 1]" />
         <TresMesh>

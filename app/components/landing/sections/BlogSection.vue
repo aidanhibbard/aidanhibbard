@@ -71,7 +71,6 @@ const blogPosts: BlogPost[] = [
                 <Badge
                   v-for="tag in post.tags"
                   :key="tag"
-                  variant="outline"
                   class="text-xs"
                 >
                   {{ tag }}

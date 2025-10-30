@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { motion } from 'motion-v'
 
 const sections = ['about', 'blog', 'resume'] as const

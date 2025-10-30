@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Badge } from '~/shadcn/components/ui/badge'
 import { motion } from 'motion-v'
+import { Separator } from '~/shadcn/components/ui/separator'
 </script>
 
 <template>
