@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-
-const outerRef = ref<HTMLDivElement | null>(null)
-const innerRef = ref<HTMLDivElement | null>(null)
-const position = reactive({ x: 0, y: 0 })
-const targetPosition = reactive({ x: 0, y: 0 })
-const isPointer = ref(false)
-const animationFrameId = ref<null | number>(null)
+const
+  outerRef = ref<HTMLDivElement | null>(null),
+  innerRef = ref<HTMLDivElement | null>(null),
+  position = reactive({ x: 0, y: 0 }),
+  targetPosition = reactive({ x: 0, y: 0 }),
+  isPointer = ref(false),
+  animationFrameId = ref<null | number>(null)
 
 const lerp = (start: number, end: number, factor: number) => {
   return start + (end - start) * factor

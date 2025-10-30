@@ -14,6 +14,8 @@ export default defineNuxtConfig({
     'nuxt-llms',
     '@nuxtjs/seo',
     'shadcn-nuxt',
+    'motion-v/nuxt',
+    '@tresjs/nuxt'
   ],
   devtools: { enabled: true },
   css: [
