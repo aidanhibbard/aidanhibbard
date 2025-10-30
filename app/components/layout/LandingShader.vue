@@ -62,10 +62,16 @@ void main() {
 
   float field = (w1 + w2 + w3) / 3.0;
 
-  // Palette from uniforms; animate blend weight slowly for living feel
+  // Palette dynamics: subtly time-lerp the palette for a living feel
+  float shiftA = 0.12 * (sin(u_time * 0.05) * 0.5 + 0.5); // 0..0.12
+  float shiftB = 0.10 * (cos(u_time * 0.04) * 0.5 + 0.5); // 0..0.10
+  vec3 base1Animated = mix(u_cBase1, u_cAccent, shiftA);
+  vec3 base2Animated = mix(u_cBase2, u_cAccent, shiftB);
+
+  // Spatial gradient then accent infusion that also oscillates slowly
   float t = 0.5 + 0.5 * sin(u_time * 0.08);
-  vec3 base = mix(u_cBase1, u_cBase2, field);
-  vec3 mixed = mix(base, u_cAccent, smoothstep(0.35, 0.85, field) * t);
+  vec3 base = mix(base1Animated, base2Animated, field);
+  vec3 mixed = mix(base, u_cAccent, smoothstep(0.35, 0.85, field) * t * 0.8);
 
   // Apply subtle radial vignette
   vec3 col = mixed * (0.85 + 0.15 * radial);
