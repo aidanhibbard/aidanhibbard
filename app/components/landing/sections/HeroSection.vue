@@ -6,7 +6,7 @@ import { motion } from 'motion-v'
 <template>
   <section
     id="about"
-    class="min-h-screen flex items-end md:items-center justify-center md:justify-start px-4 md:px-16 pb-32 md:pb-0"
+    class="min-h-screen flex items-end md:items-center justify-center md:justify-start px-4 md:px-16 pb-32 md:pb-0 relative"
   >
     <motion.div
       :initial="{ opacity: 0, y: 30 }"
@@ -29,5 +29,13 @@ import { motion } from 'motion-v'
         <div>Based in the Pacific Time Zone</div>
       </div>
     </motion.div>
+    <div class="absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-2">
+      <NuxtLink
+        to="#blog"
+        class="font-mono text-xs text-foreground/80"
+      >
+        Scroll to explore
+      </NuxtLink>
+    </div>
   </section>
 </template>
