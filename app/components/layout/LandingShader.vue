@@ -89,11 +89,15 @@ function hexToVec3(hex: string): Vector3 {
 const { theme } = useTheme()
 
 function applyIcePalette(current: 'light' | 'dark') {
-  // Ice palette
-  const dark1 = hexToVec3('#222831')
-  const dark2 = hexToVec3('#31363F')
-  const accent = hexToVec3('#76ABAE')
-  const light1 = hexToVec3('#EEEEEE')
+  // Accessible palettes tuned for foreground contrast
+  // Dark theme: keep background very dark; accent remains dark to avoid bright patches
+  const dark1 = hexToVec3('#0B0F14') // very dark blue-gray ~ #0b0f14
+  const dark2 = hexToVec3('#111827') // slate-900
+  const accent = hexToVec3('#0E1F2B') // deep cyan/teal-950
+  // Light theme: keep background very light; accent is pastel to avoid mid-tones
+  const light1 = hexToVec3('#F9FAFB') // gray-50
+  const light2 = hexToVec3('#EEF2FF') // indigo-50
+  const lightAccent = hexToVec3('#E0F2FE') // sky-100
 
   if (current === 'dark') {
     uniforms.u_cBase1.value = dark1
@@ -101,10 +105,10 @@ function applyIcePalette(current: 'light' | 'dark') {
     uniforms.u_cAccent.value = accent
   }
   else {
-    // Light mode uses a light base with a soft teal tint and a subtle dark accent mix
+    // Light mode: very light base with soft pastel accent; avoid introducing dark bands
     uniforms.u_cBase1.value = light1
-    uniforms.u_cBase2.value = accent
-    uniforms.u_cAccent.value = dark2
+    uniforms.u_cBase2.value = light2
+    uniforms.u_cAccent.value = lightAccent
   }
 }
 
