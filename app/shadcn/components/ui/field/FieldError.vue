@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from "vue"
-import { computed } from "vue"
-import { cn } from "@/lib/utils"
+import type { HTMLAttributes } from 'vue'
+import { computed } from 'vue'
+import { cn } from '@/lib/utils'
 
 const props = defineProps<{
-  class?: HTMLAttributes["class"]
+  class?: HTMLAttributes['class']
   errors?: Array<{ message?: string } | undefined>
 }>()
 
@@ -35,8 +35,14 @@ const content = computed(() => {
       {{ content }}
     </template>
 
-    <ul v-else-if="Array.isArray(content)" class="ml-4 flex list-disc flex-col gap-1">
-      <li v-for="(error, index) in content" :key="index">
+    <ul
+      v-else-if="Array.isArray(content)"
+      class="ml-4 flex list-disc flex-col gap-1"
+    >
+      <li
+        v-for="(error, index) in content"
+        :key="index"
+      >
         {{ error?.message }}
       </li>
     </ul>
