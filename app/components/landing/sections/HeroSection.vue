@@ -6,7 +6,7 @@ import { motion } from 'motion-v'
 <template>
   <section
     id="about"
-    class="min-h-screen flex flex-col md:flex-row items-end md:items-center justify-center md:justify-between gap-10 md:gap-16 px-4 md:px-16 pb-32 md:pb-0 relative"
+    class="min-h-screen flex flex-col md:flex-row items-end md:items-center justify-center md:justify-between gap-8 md:gap-16 px-4 md:px-16 pb-32 md:pb-0 relative"
   >
     <motion.div
       :initial="{ opacity: 0, y: 30 }"
@@ -22,7 +22,7 @@ import { motion } from 'motion-v'
       </p>
       <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
         <div class="flex items-center gap-2">
-          <div class="w-2 h-2 bg-green-700 rounded-full animate-pulse" />
+          <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
           Available for hire
         </div>
         <Minus />

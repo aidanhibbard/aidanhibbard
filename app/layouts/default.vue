@@ -4,10 +4,10 @@ import CustomCursor from '~/components/navigation/mouse/CustomCursor.vue'
 </script>
 
 <template>
-  <LayoutLandingShader>
+  <div>
     <NavigationHeaderAppHeader />
     <CustomCursor />
     <slot />
     <AppFooter />
-  </LayoutLandingShader>
+  </div>
 </template>

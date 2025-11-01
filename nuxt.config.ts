@@ -31,6 +31,16 @@ export default defineNuxtConfig({
     '~/assets/styles/css/tailwind.css',
     '~/assets/styles/css/main.css',
   ],
+  routeRules: {
+    '/**': {
+      headers: {
+        // https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-CH-Prefers-Color-Scheme#using_sec-ch-prefers-color-scheme
+        'Accept-CH': 'Sec-CH-Prefers-Color-Scheme',
+        'Critical-CH': 'Sec-CH-Prefers-Color-Scheme',
+        'Vary': 'Sec-CH-Prefers-Color-Scheme',
+      },
+    },
+  },
   compatibilityDate: '2025-10-26',
   vite: {
     plugins: [

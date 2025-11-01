@@ -38,7 +38,7 @@ const blogPosts: BlogPost[] = [
 <template>
   <section
     id="blog"
-    class="min-h-screen py-8 px-4 md:px-16"
+    class="min-h-screen py-24 px-4 md:px-16"
   >
     <div class="container mx-auto max-w-5xl">
       <motion.div
