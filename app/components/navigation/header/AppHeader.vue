@@ -19,7 +19,7 @@ const scrollToSection = (href: string) => {
 
 <template>
   <header
-    class="flex h-16 shrink-0 z-50 items-center transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
+    class="flex h-16 shrink-0 z-50 fixed top-0 right-0 left-0 items-center transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 bg-background/60 backdrop-blur-md"
   >
     <div
       class="flex w-full justify-between px-4 md:px-12"

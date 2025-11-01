@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Minus } from 'lucide-vue-next'
+// import { Minus } from 'lucide-vue-next'
 import { motion } from 'motion-v'
 </script>
 
@@ -20,19 +20,15 @@ import { motion } from 'motion-v'
       <p class="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
         Using technology to delight; focusing on elegant systems, thoughtful UX, and resilient architecture.
       </p>
-      <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
+      <!-- <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
         <div class="flex items-center gap-2">
           <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
           Available for hire
         </div>
         <Minus />
         <div>Based in the Pacific Time Zone</div>
-      </div>
+      </div> -->
     </motion.div>
-
-    <div class="md:w-1/2">
-      <!-- Landing animation -->
-    </div>
 
     <div class="absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-2">
       <NuxtLink

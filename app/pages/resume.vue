@@ -85,22 +85,57 @@ import { ArrowRight } from 'lucide-vue-next'
             </div>
           </div>
 
-          <motion.div
-            :initial="{ opacity: 0, y: 20 }"
-            :while-in-view="{ opacity: 1, y: 0 }"
-            :viewport="{ once: true }"
-            :transition="{ duration: 0.5, delay: 0.3 }"
-            class="mt-12 flex justify-center"
-          >
-            <NuxtLink
-              to="/resume"
-              class="group inline-flex items-center gap-2 text-lg font-medium hover:text-foreground transition-colors"
-            >
-              View my full expierence
-              <ArrowRight class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </NuxtLink>
-          </motion.div>
+          <Separator />
+
+          <!-- Skills -->
+          <div class="space-y-4 pt-8">
+            <h3 class="font-serif text-2xl font-semibold">
+              Skills & Technologies
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div>
+                <h4 class="font-medium mb-2">
+                  Frontend
+                </h4>
+                <p class="text-sm text-muted-foreground leading-relaxed">
+                  React, Next.js, Vue, TypeScript, HTML/CSS
+                </p>
+              </div>
+              <div>
+                <h4 class="font-medium mb-2">
+                  Creative
+                </h4>
+                <p class="text-sm text-muted-foreground leading-relaxed">
+                  Three.js, WebGL, GLSL, Canvas API, Framer Motion
+                </p>
+              </div>
+              <div>
+                <h4 class="font-medium mb-2">
+                  Tools
+                </h4>
+                <p class="text-sm text-muted-foreground leading-relaxed">
+                  Git, Figma, Blender, Adobe Creative Suite
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+      </motion.div>
+
+      <motion.div
+        :initial="{ opacity: 0, y: 20 }"
+        :while-in-view="{ opacity: 1, y: 0 }"
+        :viewport="{ once: true }"
+        :transition="{ duration: 0.5, delay: 0.3 }"
+        class="mt-12 flex justify-center"
+      >
+        <NuxtLink
+          to="/resume"
+          class="group inline-flex items-center gap-2 text-lg font-medium hover:text-foreground transition-colors"
+        >
+          View my full expierence
+          <ArrowRight class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </NuxtLink>
       </motion.div>
     </div>
   </section>

@@ -1,16 +1,9 @@
 <script setup lang="ts">
 import { ArrowRight } from 'lucide-vue-next'
 import { motion } from 'motion-v'
-import { Badge } from '~/shadcn/components/ui/badge'
+import ArticleCard from '~/components/articles/ArticleCard.vue'
 
-type BlogPost = {
-  title: string
-  date: string
-  tags: string[]
-  description: string
-}
-
-const blogPosts: BlogPost[] = [
+const blogPosts = [
   {
     title: 'Building Immersive WebGL Experiences',
     date: 'January 15, 2025',
@@ -48,42 +41,18 @@ const blogPosts: BlogPost[] = [
         :transition="{ duration: 0.6 }"
       >
         <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">
-          Recent Writing
+          Recent Writings
         </h2>
         <p class="text-muted-foreground text-lg mb-12">
           Thoughts on design, development, and creative technology
         </p>
 
         <div class="space-y-12">
-          <motion.article
-            v-for="(post, index) in blogPosts"
+          <ArticleCard
+            v-for="(post, idx) in blogPosts"
             :key="post.title"
-            :initial="{ opacity: 0, y: 20 }"
-            :while-in-view="{ opacity: 1, y: 0 }"
-            :viewport="{ once: true }"
-            :transition="{ duration: 0.5, delay: index * 0.1 }"
-            class="space-y-4"
-          >
-            <div class="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-              <time>{{ post.date }}</time>
-              <span class="hidden md:inline">•</span>
-              <div class="flex flex-wrap gap-2">
-                <Badge
-                  v-for="tag in post.tags"
-                  :key="tag"
-                  class="text-xs"
-                >
-                  {{ tag }}
-                </Badge>
-              </div>
-            </div>
-            <h3 class="font-serif text-2xl md:text-3xl font-semibold">
-              {{ post.title }}
-            </h3>
-            <p class="text-muted-foreground leading-relaxed">
-              {{ post.description }}
-            </p>
-          </motion.article>
+            :post="{ ...post, index: idx }"
+          />
         </div>
 
         <motion.div
