@@ -17,6 +17,12 @@ onMounted(() => {
       <Separator />
     </div>
 
+    <LandingSectionsAboutSection />
+
+    <div class="container mx-auto px-4">
+      <Separator />
+    </div>
+
     <LandingSectionsBlogSection />
 
     <div class="container mx-auto px-4">

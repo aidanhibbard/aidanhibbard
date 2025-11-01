@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { motion } from 'motion-v'
 
-const sections = ['about', 'blog', 'resume'] as const
+const sections = ['hero', 'about', 'blog', 'resume'] as const
 const activeSection = ref(0)
 
 const handleScroll = () => {

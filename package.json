@@ -24,6 +24,7 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/seo": "^3.2.2",
     "@tailwindcss/vite": "^4.1.16",
+    "@tanstack/vue-table": "^8.21.3",
     "@tresjs/nuxt": "^5.1.0",
     "@unhead/vue": "^2.0.19",
     "@vueuse/core": "^14.0.0",

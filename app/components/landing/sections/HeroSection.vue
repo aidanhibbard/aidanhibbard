@@ -5,7 +5,7 @@ import { motion } from 'motion-v'
 
 <template>
   <section
-    id="about"
+    id="hero"
     class="min-h-screen flex flex-col md:flex-row items-end md:items-center justify-center md:justify-between gap-8 md:gap-16 px-4 md:px-16 pb-32 md:pb-0 relative"
   >
     <motion.div
@@ -30,21 +30,13 @@ import { motion } from 'motion-v'
       </div>
     </motion.div>
 
-    <div class="md:w-1/2 max-w-xl text-muted-foreground text-sm md:text-base leading-relaxed">
-      <p class="mb-4 md:mb-5">
-        <strong class="text-foreground">Scaling</strong> distributed systems is a core part of my work. I've designed and built microservices architectures with container orchestrators and Kubernetes. I deliver reliable background processing pipelines and event-driven workflows. My approach emphasizes sound systems design, observability, and graceful failure modes.
-      </p>
-      <p class="mb-4 md:mb-5">
-        <strong class="text-foreground">Frameworks</strong> are my playground. I love building with Vite and Nitro, shipping apps in Nuxt and Next. I write React and Vue comfortably, and reach for Rails when it accelerates product delivery. Whatever the stack, I pick modern tooling that balances DX with long-term maintainability.
-      </p>
-      <p>
-        <strong class="text-foreground">Experience</strong> spans originating greenfield repos and joining mature codebases mid-flight. I've led first commits, shaping conventions and CI from day one. I also help teams adopt web best practices, stronger type safety, and pragmatic testing. Upgrades and migrations are part of my routine to keep systems current and secure.
-      </p>
+    <div class="md:w-1/2">
+      <!-- Landing animation -->
     </div>
 
     <div class="absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-2">
       <NuxtLink
-        to="#blog"
+        to="#about"
         class="font-mono text-xs text-foreground/80"
       >
         Scroll to explore
