@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { motion } from 'motion-v'
+import ArticleCard from '~/components/articles/ArticleCard.vue'
 
 const route = useRoute()
 const state = reactive({
@@ -14,8 +15,7 @@ const formState = reactive({
 const { data: articles, status, error } = await useAsyncData(
   route.path,
   async () => queryCollection('articles')
-    .path(route.path)
-    .first(),
+    .all(),
   {
     watch: [
       () => state.page,
@@ -28,7 +28,7 @@ const { data: articles, status, error } = await useAsyncData(
 
 <template>
   <section
-    id="blog"
+    id="articles"
     class="min-h-screen py-24 px-4 md:px-16"
   >
     <ul class="container mx-auto max-w-5xl">
@@ -38,7 +38,16 @@ const { data: articles, status, error } = await useAsyncData(
         :viewport="{ once: true }"
         :transition="{ duration: 0.6 }"
       >
-        <div class="space-y-12" />
+        <div class="space-y-12">
+          <ArticleCard
+            v-for="(a, idx) in articles"
+            :key="a.title"
+            :post="{
+              ...a,
+              index: idx,
+            }"
+          />
+        </div>
       </motion.li>
     </ul>
   </section>

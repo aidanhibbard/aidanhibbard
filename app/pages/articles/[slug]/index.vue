@@ -1,6 +1,14 @@
-<script srtup lang="ts">
+<script setup lang="ts">
+const { path } = useRoute()
+
+const { data: page, pending, error } = await useAsyncData(path, () => {
+  return queryCollection('articles').path(path).first()
+})
 </script>
 
 <template>
-  <div />
+  <ContentRenderer
+    v-if="page"
+    :value="page"
+  />
 </template>

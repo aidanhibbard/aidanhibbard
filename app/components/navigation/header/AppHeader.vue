@@ -5,7 +5,7 @@ const { theme, toggleTheme } = useTheme()
 
 const links = [
   { name: 'About', href: '#about' },
-  { name: 'Blog', href: '#blog' },
+  { name: 'Articles', href: '#articles' },
   { name: 'Resume', href: '#resume' },
 ]
 
