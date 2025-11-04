@@ -21,7 +21,7 @@ Welcome to a stress-test of the content pipeline. This page intentionally includ
 
 Add the Vite plugin and a basic preset:
 
-```ts [vite.config.ts] {1,5-11}
+```typescript [vite.config.ts] {1,5-11}
 import { defineConfig } from 'vite'
 import { nitro } from 'nitro/vite'
 
@@ -39,7 +39,7 @@ export default defineConfig({
 
 Minimal file-based route:
 
-```ts [routes/hello.ts] filename="routes/hello.ts"
+```typescript [routes/hello.ts] filename="routes/hello.ts"
 import { defineHandler } from 'nitro/h3'
 
 export default defineHandler(({ req }) => {
@@ -49,7 +49,7 @@ export default defineHandler(({ req }) => {
 
 #### Using H3 (H4)
 
-```ts [server.ts] filename="server.ts" {1,5}
+```typescript [server.ts] filename="server.ts" {1,5}
 import { H3 } from 'h3'
 
 const app = new H3()
@@ -61,7 +61,7 @@ export default app
 
 ##### Using Hono (H5)
 
-```ts [server.ts] filename="server.ts"
+```typescript [server.ts] filename="server.ts"
 import { Hono } from 'hono'
 
 const app = new Hono()
@@ -73,7 +73,7 @@ export default app
 
 ###### Using Elysia (H6)
 
-```ts [server.ts] filename="server.ts"
+```typescript [server.ts] filename="server.ts"
 import { Elysia } from 'elysia'
 
 const app = new Elysia()
@@ -138,7 +138,7 @@ An image (may be a placeholder in your project):
 pnpm add -D nitro nitro/vite
 ```
 
-```ts [server.ts] filename="server.ts" class="rounded-lg" {2,6}
+```typescript [server.ts] filename="server.ts" class="rounded-lg" {2,6}
 export default {
   async fetch(req: Request): Promise<Response> {
     return new Response(`Hello world! (${req.url})`)
@@ -146,7 +146,7 @@ export default {
 }
 ```
 
-```ts [dev-notes.ts]
+```typescript [dev-notes.ts]
 // Demonstrate multi-line highlighted code with faux logic
 type Framework = 'h3' | 'hono' | 'elysia'
 

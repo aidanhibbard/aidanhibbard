@@ -20,6 +20,43 @@ import { Separator } from '~/components/shadcn/ui/separator'
           Experience
         </h2>
 
+        <Separator />
+
+        <!-- Skills -->
+        <div class="space-y-4 pt-8">
+          <h3 class="font-serif text-2xl font-semibold">
+            Skills & Technologies
+          </h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div>
+              <h4 class="font-medium mb-2">
+                Frontend
+              </h4>
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                React, Next.js, Vue, TypeScript, HTML/CSS
+              </p>
+            </div>
+            <div>
+              <h4 class="font-medium mb-2">
+                Creative
+              </h4>
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                Three.js, WebGL, GLSL, Canvas API, Framer Motion
+              </p>
+            </div>
+            <div>
+              <h4 class="font-medium mb-2">
+                Tools
+              </h4>
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                Git, Figma, Blender, Adobe Creative Suite
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <Separator class="my-12" />
+
         <div class="space-y-12">
           <!-- Experience Item -->
           <div class="space-y-4">
@@ -81,41 +118,6 @@ import { Separator } from '~/components/shadcn/ui/separator'
               <Badge>
                 Tailwind CSS
               </Badge>
-            </div>
-          </div>
-
-          <Separator />
-
-          <!-- Skills -->
-          <div class="space-y-4 pt-8">
-            <h3 class="font-serif text-2xl font-semibold">
-              Skills & Technologies
-            </h3>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div>
-                <h4 class="font-medium mb-2">
-                  Frontend
-                </h4>
-                <p class="text-sm text-muted-foreground leading-relaxed">
-                  React, Next.js, Vue, TypeScript, HTML/CSS
-                </p>
-              </div>
-              <div>
-                <h4 class="font-medium mb-2">
-                  Creative
-                </h4>
-                <p class="text-sm text-muted-foreground leading-relaxed">
-                  Three.js, WebGL, GLSL, Canvas API, Framer Motion
-                </p>
-              </div>
-              <div>
-                <h4 class="font-medium mb-2">
-                  Tools
-                </h4>
-                <p class="text-sm text-muted-foreground leading-relaxed">
-                  Git, Figma, Blender, Adobe Creative Suite
-                </p>
-              </div>
             </div>
           </div>
         </div>

@@ -56,8 +56,15 @@ async function onCopy() {
       v-if="hasHeader"
       class="flex items-center justify-between bg-muted/60 px-4 py-2 border-b border-border"
     >
-      <div class="text-xs font-medium text-foreground/80 truncate">
-        {{ props.filename }}
+      <div class="flex flex-row items-center gap-x-4">
+        <Icon
+          v-if="props.language"
+          :name="'catppuccin:' + props.language"
+          class="w-12 h-12"
+        />
+        <div class="text-xs font-medium text-foreground/80 truncate">
+          {{ props.filename }}
+        </div>
       </div>
       <motion.button
         type="button"
@@ -73,7 +80,7 @@ async function onCopy() {
       </motion.button>
     </div>
 
-    <div class="relative">
+    <div class="relative box">
       <motion.button
         v-if="!hasHeader"
         type="button"
