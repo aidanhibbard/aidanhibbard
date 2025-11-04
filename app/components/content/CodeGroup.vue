@@ -14,7 +14,7 @@ const rawChildren = computed(() => slots.default?.() ?? [])
 const panes = computed<Pane[]>(() => {
   return rawChildren.value.map((vnode: any, idx: number) => {
     const props = vnode?.props ?? {}
-    const label = props.filename || props.language || `Tab ${idx + 1}`
+    const label = props.filename ?? props.language ?? `Tab ${idx + 1}`
     return {
       label,
       code: props.code,
@@ -79,12 +79,10 @@ const renderedChildren = computed(() => {
 
     <div>
       <component
-        v-for="(child, i) in renderedChildren"
         :is="child"
+        v-for="(child, i) in renderedChildren"
         :key="`pane-${i}`"
       />
     </div>
   </div>
 </template>
-
-

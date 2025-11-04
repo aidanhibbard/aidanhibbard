@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { Copy, Check } from 'lucide-vue-next'
+import { motion } from 'motion-v'
 
 const props = defineProps({
   code: {
@@ -63,9 +64,10 @@ onMounted(() => {
       <div class="text-xs font-medium text-foreground/80 truncate">
         {{ props.filename }}
       </div>
-      <button
+      <motion.button
         type="button"
         class="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-md border border-border hover:bg-muted transition-colors"
+        :while-tap="{ scale: 0.96 }"
         @click="onCopy"
       >
         <component
@@ -73,14 +75,15 @@ onMounted(() => {
           class="w-3.5 h-3.5"
         />
         <span>{{ copied ? 'Copied' : 'Copy' }}</span>
-      </button>
+      </motion.button>
     </div>
 
     <div class="relative">
-      <button
+      <motion.button
         v-if="!hasHeader"
         type="button"
         class="absolute right-2 top-2 z-10 inline-flex items-center gap-1 text-xs px-2 py-1 rounded-md border border-border bg-background/70 backdrop-blur hover:bg-muted transition-colors"
+        :while-tap="{ scale: 0.96 }"
         @click="onCopy"
       >
         <component
@@ -88,7 +91,7 @@ onMounted(() => {
           class="w-3.5 h-3.5"
         />
         <span class="sr-only">Copy</span>
-      </button>
+      </motion.button>
 
       <pre
         ref="preEl"

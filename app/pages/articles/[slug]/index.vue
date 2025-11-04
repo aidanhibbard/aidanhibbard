@@ -3,7 +3,6 @@ import { motion } from 'motion-v'
 import { Button } from '~/components/shadcn/ui/button'
 import { Separator } from '~/components/shadcn/ui/separator'
 import { Calendar, Clock, Twitter, Linkedin, Link2 } from 'lucide-vue-next'
-import ArticleScrollIndicator from '~/components/articles/ArticleScrollIndicator.vue'
 
 const { path } = useRoute()
 
@@ -66,7 +65,6 @@ async function copyLink() {
     v-if="page"
     class="container mx-auto px-4 py-16 max-w-3xl"
   >
-    <ArticleScrollIndicator />
     <motion.h1
       :initial="{ opacity: 0, y: 20 }"
       :animate="{ opacity: 1, y: 0 }"
