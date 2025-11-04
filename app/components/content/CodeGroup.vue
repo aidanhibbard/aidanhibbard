@@ -29,7 +29,7 @@ const panes = computed<Pane[]>(() => {
 const activeIndex = ref(0)
 const copied = ref(false)
 
-async function onCopy() {
+const onCopy = async () => {
   const text = panes.value[activeIndex.value]?.code ?? ''
   try {
     await navigator.clipboard.writeText(text)

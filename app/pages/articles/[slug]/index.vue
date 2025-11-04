@@ -43,20 +43,20 @@ const tags = computed(() => {
 const requestUrl = useRequestURL()
 const pageUrl = computed(() => new URL(path, requestUrl).toString())
 
-function shareTwitter() {
+const shareTwitter = () => {
   const text = encodeURIComponent(page.value?.title || '')
   const url = encodeURIComponent(pageUrl.value)
   const share = `https://twitter.com/intent/tweet?text=${text}&url=${url}`
   window.open(share, '_blank', 'noopener,noreferrer')
 }
 
-function shareLinkedIn() {
+const shareLinkedIn = () => {
   const url = encodeURIComponent(pageUrl.value)
   const share = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
   window.open(share, '_blank', 'noopener,noreferrer')
 }
 
-async function copyLink() {
+const copyLink = async () => {
   try {
     await navigator.clipboard.writeText(pageUrl.value)
   }
