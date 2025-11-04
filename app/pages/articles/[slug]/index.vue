@@ -6,13 +6,18 @@ import { Separator } from '~/components/shadcn/ui/separator'
 import { Calendar, Clock, Twitter, Linkedin, Link2 } from 'lucide-vue-next'
 
 const { path } = useRoute()
+const requestUrl = useRequestURL()
 
-const { data: page } = await useAsyncData(path, () => {
+const { data: page, error } = await useAsyncData(path, () => {
   return queryCollection('articles').path(path).first()
 })
 
+if (!page.value) throw createError({ statusCode: 404 })
+
+if (error.value) throw createError(error.value)
+
 // https://nuxtseo.com/docs/nuxt-seo/guides/nuxt-content
-useSeoMeta(page.value!.seo ?? {}) // <-- Nuxt Robots
+useSeoMeta(page.value!.seo ?? {})
 
 const readableDate = computed(() => {
   const d = page.value?.date
@@ -40,7 +45,6 @@ const tags = computed(() => {
   return Array.isArray(t) ? (t as string[]).filter(Boolean) : []
 })
 
-const requestUrl = useRequestURL()
 const pageUrl = computed(() => new URL(path, requestUrl).toString())
 
 const shareTwitter = () => {
