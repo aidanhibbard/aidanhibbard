@@ -109,4 +109,11 @@ async function onCopy() {
 pre code .line {
   display: block;
 }
+
+pre.shiki {
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  overflow-x: auto;
+}
 </style>

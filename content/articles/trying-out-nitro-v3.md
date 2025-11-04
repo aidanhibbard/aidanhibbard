@@ -146,6 +146,11 @@ export default {
 }
 ```
 
+
+```typescript
+const test = 'test'
+```
+
 ```typescript [dev-notes.ts]
 // Demonstrate multi-line highlighted code with faux logic
 type Framework = 'h3' | 'hono' | 'elysia'
