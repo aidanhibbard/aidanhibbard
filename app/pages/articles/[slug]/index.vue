@@ -8,13 +8,9 @@ import { Calendar, Clock, Twitter, Linkedin, Link2 } from 'lucide-vue-next'
 const { path } = useRoute()
 const requestUrl = useRequestURL()
 
-const { data: page, error } = await useAsyncData(path, () => {
+const { data: page } = await useAsyncData(path, () => {
   return queryCollection('articles').path(path).first()
 })
-
-if (!page.value) throw createError({ statusCode: 404 })
-
-if (error.value) throw createError(error.value)
 
 // https://nuxtseo.com/docs/nuxt-seo/guides/nuxt-content
 useSeoMeta(page.value!.seo ?? {})
@@ -38,11 +34,6 @@ const readingTime = computed(() => {
   if (!mins) return null
   const rounded = Math.max(1, Math.round(mins))
   return `${rounded} min read`
-})
-
-const tags = computed(() => {
-  const t = (page.value as unknown as { tags?: unknown })?.tags
-  return Array.isArray(t) ? (t as string[]).filter(Boolean) : []
 })
 
 const pageUrl = computed(() => new URL(path, requestUrl).toString())
@@ -116,11 +107,11 @@ const copyLink = async () => {
           <span>{{ readingTime }}</span>
         </div>
         <div
-          v-if="tags.length"
+          v-if="page.tags.length"
           class="flex flex-wrap items-center gap-2"
         >
           <Badge
-            v-for="tag in tags"
+            v-for="tag in page.tags"
             :key="tag"
             variant="secondary"
           >
