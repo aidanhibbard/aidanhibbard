@@ -4,7 +4,7 @@ import { motion } from 'motion-v'
 
 <template>
   <motion.ul
-    class="space-y-3 text-lg text-foreground/90 mb-6 list-disc list-inside"
+    class="space-y-4 text-lg text-foreground/90 mb-8 list-disc list-inside"
     :initial="{ opacity: 0 }"
     :while-in-view="{ opacity: 1 }"
     :transition="{ duration: 0.3 }"

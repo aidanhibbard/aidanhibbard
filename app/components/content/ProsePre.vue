@@ -56,17 +56,17 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative rounded-lg border border-border bg-background overflow-hidden">
+  <div class="relative rounded-lg border border-border bg-background overflow-hidden mb-8">
     <div
       v-if="hasHeader"
-      class="flex items-center justify-between bg-muted/60 px-3 py-2 border-b border-border"
+      class="flex items-center justify-between bg-muted/60 px-4 py-2 border-b border-border"
     >
       <div class="text-xs font-medium text-foreground/80 truncate">
         {{ props.filename }}
       </div>
       <motion.button
         type="button"
-        class="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-md border border-border hover:bg-muted transition-colors"
+        class="inline-flex items-center gap-2 text-xs px-2 py-2 rounded-md border border-border hover:bg-muted transition-colors"
         :while-tap="{ scale: 0.96 }"
         @click="onCopy"
       >

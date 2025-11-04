@@ -1,23 +1,26 @@
 <script setup lang="ts">
-import { useSlots, computed, ref, cloneVNode } from 'vue'
+import { useSlots, computed, ref, cloneVNode, type VNode } from 'vue'
 import { Copy, Check } from 'lucide-vue-next'
 
 type Pane = {
   label: string
   code?: string
-  vnode: any
+  vnode: VNode
 }
 
 const slots = useSlots()
-const rawChildren = computed(() => slots.default?.() ?? [])
+const rawChildren = computed<VNode[]>(() => (slots.default?.() ?? []) as VNode[])
 
 const panes = computed<Pane[]>(() => {
-  return rawChildren.value.map((vnode: any, idx: number) => {
-    const props = vnode?.props ?? {}
-    const label = props.filename ?? props.language ?? `Tab ${idx + 1}`
+  return rawChildren.value.map((vnode: VNode, idx: number) => {
+    const props = (vnode?.props ?? {}) as Record<string, unknown>
+    const filename = typeof props['filename'] === 'string' ? (props['filename'] as string) : undefined
+    const language = typeof props['language'] === 'string' ? (props['language'] as string) : undefined
+    const code = typeof props['code'] === 'string' ? (props['code'] as string) : undefined
+    const label = filename ?? language ?? `Tab ${idx + 1}`
     return {
       label,
-      code: props.code,
+      code,
       vnode,
     }
   })
@@ -58,7 +61,7 @@ const renderedChildren = computed(() => {
           type="button"
           class="px-2 py-1 text-xs rounded-md border transition-colors"
           :class="i === activeIndex ? 'bg-background border-border text-foreground' : 'bg-transparent border-transparent text-foreground/70 hover:bg-muted'"
-          @click="activeIndex = i as any"
+          @click="activeIndex = i"
         >
           {{ pane.label }}
         </button>
