@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-vue-next'
 import { motion } from 'motion-v'
 import ArticleCard from '~/components/articles/ArticleCard.vue'
 
-const { data: articles, pending, error } = await useAsyncData(
+const { data: articles } = await useAsyncData(
   'articles',
   () =>
     queryCollection('articles')

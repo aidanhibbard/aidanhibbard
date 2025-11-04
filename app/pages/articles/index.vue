@@ -12,7 +12,7 @@ const formState = reactive({
   tags: [],
 })
 
-const { data: articles, status, error } = await useAsyncData(
+const { data: articles } = await useAsyncData(
   route.path,
   async () => queryCollection('articles')
     .all(),
