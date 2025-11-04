@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { Copy, Check } from 'lucide-vue-next'
+import { Copy } from 'lucide-vue-next'
 import { motion } from 'motion-v'
+import { toast } from 'vue-sonner'
 
 const props = defineProps({
   code: {
@@ -30,22 +31,18 @@ const props = defineProps({
 })
 
 const hasHeader = computed(() => Boolean(props.filename))
-const copied = ref(false)
 const preEl = ref<HTMLElement | null>(null)
 
-async function onCopy() {
-  const text = props.code && props.code.trim().length > 0
-    ? props.code
-    : (preEl.value?.innerText ?? '')
+const onCopy = async () => {
+  const text = preEl.value?.innerText?.trim() ?? ''
+  if (!text)
+    return
   try {
     await navigator.clipboard.writeText(text)
-    copied.value = true
-    setTimeout(() => {
-      copied.value = false
-    }, 1500)
+    toast.success('Copied to clipboard')
   }
-  catch (err) {
-    void err
+  catch {
+    toast.error('Copy failed')
   }
 }
 </script>
@@ -73,14 +70,14 @@ async function onCopy() {
         @click="onCopy"
       >
         <component
-          :is="copied ? Check : Copy"
+          :is="Copy"
           class="w-3.5 h-3.5"
         />
-        <span>{{ copied ? 'Copied' : 'Copy' }}</span>
+        <span>Copy</span>
       </motion.button>
     </div>
 
-    <div class="relative box">
+    <div class="relative">
       <motion.button
         v-if="!hasHeader"
         type="button"
@@ -89,7 +86,7 @@ async function onCopy() {
         @click="onCopy"
       >
         <component
-          :is="copied ? Check : Copy"
+          :is="Copy"
           class="w-3.5 h-3.5"
         />
         <span class="sr-only">Copy</span>
@@ -97,7 +94,8 @@ async function onCopy() {
 
       <pre
         ref="preEl"
-        :class="['m-0 p-0', $props.class]"
+        :class="[$props.class]"
+        v-bind="$attrs"
       >
         <slot />
       </pre>
@@ -108,12 +106,5 @@ async function onCopy() {
 <style>
 pre code .line {
   display: block;
-}
-
-pre.shiki {
-  margin: 0;
-  border-radius: 0;
-  padding: 0;
-  overflow-x: auto;
 }
 </style>
