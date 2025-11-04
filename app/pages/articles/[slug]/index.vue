@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { motion } from 'motion-v'
 import { Button } from '~/components/shadcn/ui/button'
+import { Badge } from '~/components/shadcn/ui/badge'
 import { Separator } from '~/components/shadcn/ui/separator'
 import { Calendar, Clock, Twitter, Linkedin, Link2 } from 'lucide-vue-next'
 
@@ -34,6 +35,11 @@ const readingTime = computed(() => {
   return `${rounded} min read`
 })
 
+const tags = computed(() => {
+  const t = (page.value as unknown as { tags?: unknown })?.tags
+  return Array.isArray(t) ? (t as string[]).filter(Boolean) : []
+})
+
 const requestUrl = useRequestURL()
 const pageUrl = computed(() => new URL(path, requestUrl).toString())
 
@@ -63,7 +69,7 @@ async function copyLink() {
 <template>
   <div
     v-if="page"
-    class="container mx-auto px-4 py-16 max-w-3xl"
+    class="container mx-auto px-4 py-24 max-w-3xl"
   >
     <motion.h1
       :initial="{ opacity: 0, y: 20 }"
@@ -104,6 +110,18 @@ async function copyLink() {
         >
           <Clock class="h-4 w-4" />
           <span>{{ readingTime }}</span>
+        </div>
+        <div
+          v-if="tags.length"
+          class="flex flex-wrap items-center gap-2"
+        >
+          <Badge
+            v-for="tag in tags"
+            :key="tag"
+            variant="secondary"
+          >
+            {{ tag }}
+          </Badge>
         </div>
       </div>
 

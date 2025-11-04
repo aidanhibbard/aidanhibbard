@@ -4,17 +4,10 @@ import { Moon, Sun } from 'lucide-vue-next'
 const { theme, toggleTheme } = useTheme()
 
 const links = [
-  { name: 'About', href: '#about' },
-  { name: 'Articles', href: '#articles' },
-  { name: 'Resume', href: '#resume' },
+  { name: 'About', href: '/about' },
+  { name: 'Articles', href: '/articles' },
+  { name: 'Resume', href: '/resume' },
 ]
-
-const scrollToSection = (href: string) => {
-  const element = document.querySelector(href)
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })
-  }
-}
 </script>
 
 <template>
@@ -34,14 +27,14 @@ const scrollToSection = (href: string) => {
       </div>
 
       <nav class="hidden md:flex items-center gap-8">
-        <button
+        <NuxtLink
           v-for="link in links"
           :key="link.name"
-          class="text-sm font-medium hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-current after:transition-all hover:after:w-full"
-          @click="scrollToSection(link.href)"
+          class="text-sm font-medium hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-current after:transition-all hover:after:w-full"
+          :to="link.href"
         >
           {{ link.name }}
-        </button>
+        </NuxtLink>
       </nav>
 
       <div

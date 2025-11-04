@@ -6,7 +6,7 @@ import { motion } from 'motion-v'
   <motion.li
     class="leading-relaxed"
     :initial="{ opacity: 0, y: 6 }"
-    :whileInView="{ opacity: 1, y: 0 }"
+    :while-in-view="{ opacity: 1, y: 0 }"
     :transition="{ duration: 0.3, ease: 'easeOut' }"
     :viewport="{ once: true, margin: '-10% 0px' }"
   >

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
 import { Copy, Check } from 'lucide-vue-next'
 import { motion } from 'motion-v'
 
@@ -49,10 +48,6 @@ async function onCopy() {
     void err
   }
 }
-
-onMounted(() => {
-  // no-op; ensures preEl is bound for fallback copy
-})
 </script>
 
 <template>
@@ -95,7 +90,7 @@ onMounted(() => {
 
       <pre
         ref="preEl"
-        :class="$props.class"
+        :class="['m-0 p-0', $props.class]"
       >
         <slot />
       </pre>
