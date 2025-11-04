@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Badge } from '~/shadcn/components/ui/badge'
+import { Badge } from '~/components/shadcn/ui/badge'
 import { motion } from 'motion-v'
-import { Separator } from '~/shadcn/components/ui/separator'
+import { Separator } from '~/components/shadcn/ui/separator'
 import { ArrowRight } from 'lucide-vue-next'
 </script>
 

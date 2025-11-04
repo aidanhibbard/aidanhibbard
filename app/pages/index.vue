@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Separator } from '~/shadcn/components/ui/separator'
+import { Separator } from '~/components/shadcn/ui/separator'
 import SectionIndicator from '~/components/landing/navigation/SectionIndicator.vue'
 
 onMounted(() => {

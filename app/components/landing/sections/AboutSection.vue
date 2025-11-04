@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { motion } from 'motion-v'
-import { Button } from '~/shadcn/components/ui/button'
+import { Button } from '~/components/shadcn/ui/button'
 import { RotateCcw, Eye, Trash2 } from 'lucide-vue-next'
 
 import {
@@ -10,7 +10,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '~/shadcn/components/ui/table'
+} from '~/components/shadcn/ui/table'
 
 type SyncItem = {
   id: string

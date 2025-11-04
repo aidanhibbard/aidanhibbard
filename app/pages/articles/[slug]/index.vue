@@ -1,14 +1,150 @@
 <script setup lang="ts">
+import { motion } from 'motion-v'
+import { Button } from '~/components/shadcn/ui/button'
+import { Separator } from '~/components/shadcn/ui/separator'
+import { Calendar, Clock, Twitter, Linkedin, Link2 } from 'lucide-vue-next'
+import ArticleScrollIndicator from '~/components/articles/ArticleScrollIndicator.vue'
+
 const { path } = useRoute()
 
-const { data: page, pending, error } = await useAsyncData(path, () => {
+const { data: page } = await useAsyncData(path, () => {
   return queryCollection('articles').path(path).first()
 })
+
+// https://nuxtseo.com/docs/nuxt-seo/guides/nuxt-content
+useSeoMeta(page.value!.seo ?? {}) // <-- Nuxt Robots
+
+const readableDate = computed(() => {
+  const d = page.value?.date
+  if (!d) return null
+  try {
+    return new Intl.DateTimeFormat(undefined, {
+      year: 'numeric', month: 'long', day: 'numeric',
+    }).format(new Date(d))
+  }
+  catch {
+    return d
+  }
+})
+
+// Try to use provided reading time if available; otherwise omit
+const readingTime = computed(() => {
+  const mins = (page.value as unknown as { readingTime?: { minutes?: number } })?.readingTime?.minutes
+  if (!mins) return null
+  const rounded = Math.max(1, Math.round(mins))
+  return `${rounded} min read`
+})
+
+const requestUrl = useRequestURL()
+const pageUrl = computed(() => new URL(path, requestUrl).toString())
+
+function shareTwitter() {
+  const text = encodeURIComponent(page.value?.title || '')
+  const url = encodeURIComponent(pageUrl.value)
+  const share = `https://twitter.com/intent/tweet?text=${text}&url=${url}`
+  window.open(share, '_blank', 'noopener,noreferrer')
+}
+
+function shareLinkedIn() {
+  const url = encodeURIComponent(pageUrl.value)
+  const share = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
+  window.open(share, '_blank', 'noopener,noreferrer')
+}
+
+async function copyLink() {
+  try {
+    await navigator.clipboard.writeText(pageUrl.value)
+  }
+  catch (err) {
+    void err
+  }
+}
 </script>
 
 <template>
-  <ContentRenderer
+  <div
     v-if="page"
-    :value="page"
-  />
+    class="container mx-auto px-4 py-16 max-w-3xl"
+  >
+    <ArticleScrollIndicator />
+    <motion.h1
+      :initial="{ opacity: 0, y: 20 }"
+      :animate="{ opacity: 1, y: 0 }"
+      :transition="{ duration: 0.6, delay: 0.2 }"
+      class="text-5xl md:text-6xl font-bold tracking-tight text-balance mb-6 leading-tight"
+    >
+      {{ page.title }}
+    </motion.h1>
+
+    <motion.p
+      v-if="page.description"
+      :initial="{ opacity: 0, y: 20 }"
+      :animate="{ opacity: 1, y: 0 }"
+      :transition="{ duration: 0.6, delay: 0.3 }"
+      class="text-xl text-muted-foreground text-pretty leading-relaxed mb-8"
+    >
+      {{ page.description }}
+    </motion.p>
+
+    <motion.div
+      :initial="{ opacity: 0, y: 20 }"
+      :animate="{ opacity: 1, y: 0 }"
+      :transition="{ duration: 0.6, delay: 0.4 }"
+      class="flex items-center justify-between mb-12"
+    >
+      <div class="flex items-center gap-6 text-sm text-muted-foreground">
+        <div
+          v-if="readableDate"
+          class="flex items-center gap-2"
+        >
+          <Calendar class="h-4 w-4" />
+          <span>{{ readableDate }}</span>
+        </div>
+        <div
+          v-if="readingTime"
+          class="flex items-center gap-2"
+        >
+          <Clock class="h-4 w-4" />
+          <span>{{ readingTime }}</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <Button
+          variant="ghost"
+          size="icon"
+          class="h-8 w-8"
+          @click="shareTwitter"
+        >
+          <Twitter class="h-4 w-4" />
+          <span class="sr-only">Share on Twitter</span>
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          class="h-8 w-8"
+          @click="shareLinkedIn"
+        >
+          <Linkedin class="h-4 w-4" />
+          <span class="sr-only">Share on LinkedIn</span>
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          class="h-8 w-8"
+          @click="copyLink"
+        >
+          <Link2 class="h-4 w-4" />
+          <span class="sr-only">Copy link</span>
+        </Button>
+      </div>
+    </motion.div>
+
+    <Separator class="mb-12" />
+
+    <ContentRenderer
+      as="article"
+      :value="page"
+    />
+  </div>
 </template>

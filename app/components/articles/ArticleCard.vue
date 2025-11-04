@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { motion } from 'motion-v'
-import { Badge } from '~/shadcn/components/ui/badge'
+import { Badge } from '~/components/shadcn/ui/badge'
 import { formatISO } from 'date-fns'
 import type { ArticlesCollectionItem } from '@nuxt/content'
 
