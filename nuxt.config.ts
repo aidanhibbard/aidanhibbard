@@ -30,8 +30,6 @@ export default defineNuxtConfig({
       meta: [
         { property: 'og:image', content: 'https://res.cloudinary.com/dlnxtpill/image/upload/v1762317463/Screenshot_2025-11-04_at_8.35.23_PM_yo28vh.png' },
         { property: 'og:image:alt', content: 'Site preview' },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:image', content: 'https://res.cloudinary.com/dlnxtpill/image/upload/v1762317463/Screenshot_2025-11-04_at_8.35.23_PM_yo28vh.png' },
       ],
     },
     pageTransition: {
