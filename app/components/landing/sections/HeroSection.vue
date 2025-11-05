@@ -21,13 +21,17 @@ import { motion } from 'motion-v'
       <p class="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
         Using technology to delight; focusing on elegant systems, thoughtful UX, and resilient architecture.
       </p>
-      <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
-        <div class="flex items-center gap-2">
+      <div class="flex flex-row flex-wrap justify-center sm:justify-start sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
+        <div class="flex items-center gap-2 whitespace-nowrap">
           <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
           Available for hire
         </div>
-        <Minus />
-        <div>Based in the Pacific Time Zone</div>
+
+        <Minus class="shrink-0" />
+
+        <div class="whitespace-nowrap">
+          Based in the Pacific Time Zone
+        </div>
       </div>
     </motion.div>
 
