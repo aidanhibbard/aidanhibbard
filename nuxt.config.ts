@@ -21,7 +21,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: '%s | Aidan Hibbard',
+      title: 'Aidan Hibbard',
+      titleTemplate: '%s %separator Aidan Hibbard',
       htmlAttrs: {
         lang: 'en',
       },
