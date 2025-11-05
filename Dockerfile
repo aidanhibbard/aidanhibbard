@@ -5,8 +5,8 @@
 FROM node:24-alpine AS build
 WORKDIR /app
 
-# Copy package.json and your lockfile, here we add pnpm-lock.yaml for illustration
-COPY package.json npm-lock.yaml ./
+# Copy package.json and your lockfile
+COPY package.json package-lock.json ./
 
 # Install dependencies
 RUN npm i

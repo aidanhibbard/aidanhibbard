@@ -66,16 +66,16 @@ const copyLink = async () => {
     v-if="page"
     class="container mx-auto px-4 py-24 max-w-3xl"
   >
-    <motion.h1
+    <h1
       :initial="{ opacity: 0, y: 20 }"
       :animate="{ opacity: 1, y: 0 }"
       :transition="{ duration: 0.6, delay: 0.2 }"
       class="text-5xl md:text-6xl font-bold tracking-tight text-balance mb-6 leading-tight"
     >
       {{ page.title }}
-    </motion.h1>
+    </h1>
 
-    <motion.p
+    <p
       v-if="page.description"
       :initial="{ opacity: 0, y: 20 }"
       :animate="{ opacity: 1, y: 0 }"
@@ -83,7 +83,7 @@ const copyLink = async () => {
       class="text-xl text-muted-foreground text-pretty leading-relaxed mb-8"
     >
       {{ page.description }}
-    </motion.p>
+    </p>
 
     <motion.div
       :initial="{ opacity: 0, y: 20 }"
