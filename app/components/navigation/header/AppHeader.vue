@@ -30,13 +30,22 @@ const links = [
           <SheetContent side="left">
             <nav class="mt-6 flex flex-col gap-4">
               <SheetClose as-child>
-                <NuxtLink class="text-base font-medium hover:text-primary transition-colors" to="/about">About</NuxtLink>
+                <NuxtLink
+                  class="text-base font-medium hover:text-primary transition-colors"
+                  to="/about"
+                >About</NuxtLink>
               </SheetClose>
               <SheetClose as-child>
-                <NuxtLink class="text-base font-medium hover:text-primary transition-colors" to="/articles">Articles</NuxtLink>
+                <NuxtLink
+                  class="text-base font-medium hover:text-primary transition-colors"
+                  to="/articles"
+                >Articles</NuxtLink>
               </SheetClose>
               <SheetClose as-child>
-                <NuxtLink class="text-base font-medium hover:text-primary transition-colors" to="/resume">Resume</NuxtLink>
+                <NuxtLink
+                  class="text-base font-medium hover:text-primary transition-colors"
+                  to="/resume"
+                >Resume</NuxtLink>
               </SheetClose>
             </nav>
           </SheetContent>

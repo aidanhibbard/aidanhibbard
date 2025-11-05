@@ -54,18 +54,19 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
+  <!-- Use teleport so custom mouse appears over aside  -->
   <Teleport to="body">
     <div>
       <div
         ref="outerRef"
-        class="pointer-events-none fixed left-0 top-0 z-50 mix-blend-difference will-change-transform"
+        class="pointer-events-none fixed left-0 top-0 z-60 mix-blend-difference will-change-transform"
         :style="{ contain: 'layout style paint' }"
       >
         <div class="h-4 w-4 rounded-full border-2 border-white" />
       </div>
       <div
         ref="innerRef"
-        class="pointer-events-none fixed left-0 top-0 z-50 mix-blend-difference will-change-transform"
+        class="pointer-events-none fixed left-0 top-0 z-60 mix-blend-difference will-change-transform"
         :style="{ contain: 'layout style paint' }"
       >
         <div class="h-2 w-2 rounded-full bg-white" />
