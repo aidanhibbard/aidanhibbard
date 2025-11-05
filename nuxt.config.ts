@@ -40,7 +40,6 @@ export default defineNuxtConfig({
       headers: {
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Sec-CH-Prefers-Color-Scheme#using_sec-ch-prefers-color-scheme
         'Accept-CH': 'Sec-CH-Prefers-Color-Scheme',
-        'Critical-CH': 'Sec-CH-Prefers-Color-Scheme',
         'Vary': 'Sec-CH-Prefers-Color-Scheme',
       },
     },

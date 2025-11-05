@@ -30,6 +30,10 @@ import { motion } from 'motion-v'
       </div>
     </motion.div>
 
+    <div class="w-1/2">
+      <LandingAnimationsConnectorAnimation />
+    </div>
+
     <div class="absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-2">
       <NuxtLink
         to="#about"

@@ -24,7 +24,7 @@ import { motion } from 'motion-v'
         :initial="{ opacity: 0, y: 30 }"
         :animate="{ opacity: 1, y: 0 }"
         :transition="{ duration: 0.8, delay: 0.2 }"
-        class="md:w-1/2 max-w-xl text-muted-foreground text-sm md:text-base leading-relaxed"
+        class="md:w-1/2 max-w-xl text-muted-foreground text-md md:text-base leading-relaxed"
       >
         <p class="mb-4 md:mb-5">
           <strong class="text-foreground">Passionate</strong> about exploring the world, and am often found at the top of a summit with my husky Bella.

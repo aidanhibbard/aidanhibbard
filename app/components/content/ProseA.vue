@@ -8,7 +8,7 @@ const props = defineProps({
   },
   target: {
     type: String as PropType<'_blank' | '_parent' | '_self' | '_top' | (string & object) | null | undefined>,
-    default: undefined,
+    default: '_blank',
     required: false,
   },
 })
@@ -18,6 +18,7 @@ const props = defineProps({
   <NuxtLink
     :href="props.href"
     :target="props.target"
+    class="text-teal-500 underline"
   >
     <slot />
   </NuxtLink>

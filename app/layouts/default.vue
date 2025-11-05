@@ -11,6 +11,7 @@ import 'vue-sonner/style.css'
     <!-- https://www.shadcn-vue.com/docs/components/sonner.html#add-the-toaster-component -->
     <Toaster />
     <NavigationHeaderAppHeader />
+    <!-- This has to be below the header -->
     <CustomCursor />
     <slot />
     <AppFooter />
