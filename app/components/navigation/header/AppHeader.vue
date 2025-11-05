@@ -86,6 +86,7 @@ const links = [
         <NuxtLink
           to="/"
           class="inline-flex items-center font-brand text-3xl md:text-4xl font-normal tracking-tight"
+          aria-label="Home"
         >
           <span class="hidden md:inline">Aidan Hibbard</span>
         </NuxtLink>
@@ -109,6 +110,9 @@ const links = [
           :as="Button"
           to="https://github.com/aidanHibbard"
           target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub profile"
+          title="GitHub profile"
           class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground hover:bg-accent hover:text-accent-foreground"
         >
           <Github
