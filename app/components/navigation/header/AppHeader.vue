@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Moon, Sun } from 'lucide-vue-next'
+import { Moon, Sun, Menu } from 'lucide-vue-next'
+import { Sheet, SheetTrigger, SheetContent, SheetClose } from '~/components/shadcn/ui/sheet'
 
 const { theme, toggleTheme } = useTheme()
 
@@ -18,11 +19,33 @@ const links = [
       class="flex w-full justify-between px-4 md:px-12"
     >
       <div class="flex items-center gap-2 md:w-1/3">
+        <!-- Mobile nav drawer trigger -->
+        <Sheet>
+          <SheetTrigger
+            aria-label="Open menu"
+            class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground hover:bg-accent hover:text-accent-foreground md:hidden"
+          >
+            <Menu class="h-4 w-4" />
+          </SheetTrigger>
+          <SheetContent side="left">
+            <nav class="mt-6 flex flex-col gap-4">
+              <SheetClose as-child>
+                <NuxtLink class="text-base font-medium hover:text-primary transition-colors" to="/about">About</NuxtLink>
+              </SheetClose>
+              <SheetClose as-child>
+                <NuxtLink class="text-base font-medium hover:text-primary transition-colors" to="/articles">Articles</NuxtLink>
+              </SheetClose>
+              <SheetClose as-child>
+                <NuxtLink class="text-base font-medium hover:text-primary transition-colors" to="/resume">Resume</NuxtLink>
+              </SheetClose>
+            </nav>
+          </SheetContent>
+        </Sheet>
         <NuxtLink
           to="/"
           class="inline-flex items-center font-brand text-3xl md:text-4xl font-normal tracking-tight"
         >
-          <span>Aidan Hibbard</span>
+          <span class="hidden md:inline">Aidan Hibbard</span>
         </NuxtLink>
       </div>
 
