@@ -52,7 +52,7 @@ const renderedChildren = computed(() => {
 </script>
 
 <template>
-  <div class="relative rounded-lg border border-border overflow-hidden">
+  <div class="relative rounded-lg border border-border overflow-hidden not-prose">
     <div class="flex items-center justify-between bg-muted/60 px-3 py-2 border-b border-border">
       <div class="flex items-center gap-1 overflow-x-auto">
         <button

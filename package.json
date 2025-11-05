@@ -55,6 +55,7 @@
   },
   "devDependencies": {
     "@iconify-json/catppuccin": "^1.2.17",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/three": "^0.180.0",
     "typescript": "^5.9.3",
     "vite-plugin-eslint2": "^5.0.4",

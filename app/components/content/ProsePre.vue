@@ -47,7 +47,7 @@ const onCopy = async () => {
 </script>
 
 <template>
-  <div class="relative rounded-lg border border-border bg-background overflow-hidden mb-8">
+  <div class="relative rounded-lg border border-border bg-background overflow-hidden mb-8 not-prose">
     <div
       v-if="hasHeader"
       class="flex items-center justify-between bg-muted/60 px-4 py-2 border-b border-border"

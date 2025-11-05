@@ -5,194 +5,33 @@ tags: ['nitro', 'vite', 'vue', 'react']
 description: 'Creating lightweight servers to back SPA frontends, using a Nuxt like DX.'
 ---
 
-# Nitro v3 Playground
+# Trying out Nitro V3
 
-Welcome to a stress-test of the content pipeline. This page intentionally includes many Markdown and MDC features to exercise all `Prose*` components. Use it as a sandbox while writing the real article later. For reference material, see the Nitro v3 docs: [Nitro v3 docs](https://v3.nitro.build/).
+[Nitro V3 first look is out](https://v3.nitro.build/) and while it's an incredible tool, I have to imagine it comes along with [Vite's announcement to add a SAAS fee](https://voidzero.dev/posts/announcing-vite-plus).
 
-> “Nitro is what you reach for when you want a tiny server that feels first-class in a Vite world.” — A pretend developer
->
-> “I love the `nitro()` Vite plugin. Drop-in, no drama.” — Another imaginary engineer
+So while a Vite plugin for Nuxt, and Nitro is going to be amazing for DX, I hate that it seems to line up with a subscription service.
 
-`inline code` can appear anywhere. For example, call `nitro()` in `vite.config.ts`, create routes in `routes/hello.ts`, and ship it.
+## Diving in
 
----
+If you haven't seen [the release video for V3 from Vite conf](https://www.youtube.com/watch?v=189wogO3aCE&list=PLqGQbXn_GDmkJaoykvHCUmXUPjhgH2bVr&index=8), I'd highly recommend checking it out. Pooya does an incredible job of explaining technologies.
 
-## Quick start (H2)
+The TLDR of the plugin:
 
-Add the Vite plugin and a basic preset:
+- Nitro will fulfill any routes not handled by your spa front end
 
-```typescript [vite.config.ts] {1,5-11}
-import { defineConfig } from 'vite'
-import { nitro } from 'nitro/vite'
+- Nitro will use your index.html as a template, or [you can pass a custom one](https://v3.nitro.build/docs/renderer)
 
-export default defineConfig({
-  plugins: [
-    nitro()
-  ],
-  nitro: {
-    preset: 'standard'
-  }
-})
-```
+- It generates a .output directory
 
-### Server routes (H3)
+If you're already familiar with Nitro, there's not much new here. You use H3 to define your handlers, or another "fetch" based framework.
 
-Minimal file-based route:
+From the setup though my biggest gripe is that they keep calling the "server" directory the "routes" directory. Pooyas' Example setup was something that looked like `./routes/my-handler.ts`, which makes you think that it's a server page, or some way of rendering your spa on the server.
 
-```typescript [routes/hello.ts] filename="routes/hello.ts"
-import { defineHandler } from 'nitro/h3'
+So my first goal when setting up the project was to create a more "Nuxt like" DX where we split out app / server code.
 
-export default defineHandler(({ req }) => {
-  return { api: 'works!' }
-})
-```
+## Creating a good DX
 
-#### Using H3 (H4)
-
-```typescript [server.ts] filename="server.ts" {1,5}
-import { H3 } from 'h3'
-
-const app = new H3()
-
-app.get('/', () => '⚡️ Hello from H3!')
-
-export default app
-```
-
-##### Using Hono (H5)
-
-```typescript [server.ts] filename="server.ts"
-import { Hono } from 'hono'
-
-const app = new Hono()
-
-app.get('/', (c) => c.text('🔥 Hello from Hono!'))
-
-export default app
-```
-
-###### Using Elysia (H6)
-
-```typescript [server.ts] filename="server.ts"
-import { Elysia } from 'elysia'
-
-const app = new Elysia()
-
-app.get('/', (c) => '🦊 Hello from Elysia!')
-
-export default app
-```
-
----
-
-## Lists of all kinds
-
-Regular unordered list:
-
-- Install dependencies
-- Configure `vite.config.ts`
-- Start dev server
-  - Nested item one
-    - Nested item two
-
-Ordered list with nesting:
-
-1. Scaffold project
-2. Add Nitro
-   1. Add plugin
-   2. Create `routes/`
-3. Deploy
-
-Task list (MD flavors):
-
-- [x] Create project
-- [x] Add a route
-- [ ] Add middleware
-- [ ] Deploy to production
-
----
-
-## Emphasis, links, and images
-
-This sentence has both _emphasis_ and **strong emphasis**, along with `inline code` and a reference to the docs: [Nitro v3 docs](https://v3.nitro.build/).
-
-An image (may be a placeholder in your project):
-
-![Nitro logo placeholder](/images/nitro-logo.png "Nitro logo")
-
----
-
-## Tables
-
-| Feature     | Status   | Notes                      |
-|-------------|----------|----------------------------|
-| Vite plugin | Stable   | `nitro()` in Vite config   |
-| FS routing  | Stable   | `routes/` auto-registered  |
-| HMR (server)| Fast     | Great DX                   |
-
----
-
-## Larger code samples
-
-```bash [Terminal]
-pnpm add -D nitro nitro/vite
-```
-
-```typescript [server.ts] filename="server.ts" class="rounded-lg" {2,6}
-export default {
-  async fetch(req: Request): Promise<Response> {
-    return new Response(`Hello world! (${req.url})`)
-  },
-}
-```
-
+Okay first things first, no more `./routes` I want a `./server` concern, we can accomplish this by telling Nitro to use server as the directory.
 
 ```typescript
-const test = 'test'
-```
-
-```typescript [dev-notes.ts]
-// Demonstrate multi-line highlighted code with faux logic
-type Framework = 'h3' | 'hono' | 'elysia'
-
-function createGreeting(framework: Framework): string {
-  if (framework === 'h3') return '⚡️ Hello from H3!'
-  if (framework === 'hono') return '🔥 Hello from Hono!'
-  return '🦊 Hello from Elysia!'
-}
-
-console.log(createGreeting('h3'))
-```
-
-> “Ship anywhere without vendor lock-in.” — Imaginary SRE
-
----
-
-## Edge cases to try
-
-1. Very long paragraph to test wrapping and readability. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-2. Inline code mixed with punctuation: use `defineHandler()`, `useRuntimeConfig()`, `app.get('/')`, and `nitro()`.
-
-3. Multiple blockquotes:
-
-> “Performance is a feature.” — A random performance enthusiast
->
-> “Minimal design. Maximum versatility.” — A fictitious product manager
-
-4. Horizontal rule below:
-
----
-
-5. Deeply nested lists:
-   - Level 1
-     - Level 2
-       - Level 3
-         - Level 4
-
-6. Link variants: [Nitro homepage](https://v3.nitro.build/) and a relative link to [`/about`](/about).
-
----
-
-Happy experimenting! This page is a playground by design. Feel free to add, remove, or mutate anything while you explore Nitro v3.
 

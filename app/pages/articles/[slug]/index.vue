@@ -153,9 +153,13 @@ const copyLink = async () => {
 
     <Separator class="mb-12" />
 
-    <ContentRenderer
-      as="article"
-      :value="page"
-    />
+    <article
+      class="prose prose-neutral dark:prose-invert max-w-none break-normal hyphens-none whitespace-normal prose-p:break-normal prose-a:break-words prose-pre:overflow-x-auto prose-code:overflow-x-auto prose-img:rounded-xl"
+    >
+      <ContentRenderer
+        as="div"
+        :value="page"
+      />
+    </article>
   </div>
 </template>
