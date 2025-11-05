@@ -41,6 +41,7 @@
     "motion-v": "^1.7.4",
     "nuxt": "^4.2.0",
     "nuxt-llms": "^0.1.3",
+    "nuxt-security": "^2.4.0",
     "reka-ui": "^2.6.0",
     "shadcn-nuxt": "^2.3.2",
     "tailwind-merge": "^3.3.1",

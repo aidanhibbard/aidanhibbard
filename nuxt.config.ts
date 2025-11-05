@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     'motion-v/nuxt',
     '@nuxtjs/google-fonts',
     '@nuxtjs/device',
+    'nuxt-security',
   ],
   devtools: { enabled: true },
   app: {
