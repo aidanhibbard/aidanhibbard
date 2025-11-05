@@ -25,6 +25,12 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
+      meta: [
+        { property: 'og:image', content: 'https://res.cloudinary.com/dlnxtpill/image/upload/v1762317463/Screenshot_2025-11-04_at_8.35.23_PM_yo28vh.png' },
+        { property: 'og:image:alt', content: 'Site preview' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:image', content: 'https://res.cloudinary.com/dlnxtpill/image/upload/v1762317463/Screenshot_2025-11-04_at_8.35.23_PM_yo28vh.png' },
+      ],
     },
     pageTransition: {
       mode: 'out-in',
@@ -74,6 +80,9 @@ export default defineNuxtConfig({
     title: 'Aidan Hibbard',
   },
   shadcn: {
+    // Both of these values have to be set alongside components.json
+    // Or the console starts throwing warnings for duplicate components
+    // https://github.com/unovue/shadcn-vue/issues/763
     prefix: '',
     componentDir: './app/components/shadcn/ui',
   },
