@@ -33,7 +33,7 @@ import { motion } from 'motion-v'
 
     <div class="absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-2">
       <NuxtLink
-        to="#about"
+        to="#articles"
         class="font-mono text-xs text-foreground/80"
       >
         Scroll to explore

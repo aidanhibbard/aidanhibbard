@@ -8,7 +8,7 @@ const { data: articles } = await useAsyncData(
   () =>
     queryCollection('articles')
       .order('date', 'DESC')
-      .limit(3)
+      .limit(4)
       .select(
         'date',
         'description',
@@ -37,7 +37,7 @@ const { data: articles } = await useAsyncData(
           Recent Writings
         </h2>
         <p class="text-muted-foreground text-lg mb-12">
-          Thoughts on design, development, and creative technology
+          Thoughts on design, development, and technologies
         </p>
 
         <div class="space-y-12">
