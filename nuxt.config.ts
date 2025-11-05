@@ -73,4 +73,8 @@ export default defineNuxtConfig({
     domain: 'aidanhibbard.dev',
     title: 'Aidan Hibbard',
   },
+  shadcn: {
+    prefix: '',
+    componentDir: './app/components/shadcn/ui',
+  },
 })
