@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { withTrailingSlash, withLeadingSlash, joinURL } from 'ufo'
 import { useRuntimeConfig, computed } from '#imports'
-import { motion } from 'motion-v'
 
 import ImageComponent from '#build/mdc-image-component.mjs'
 
@@ -36,12 +35,7 @@ const refinedSrc = computed(() => {
 </script>
 
 <template>
-  <motion.div
-    :initial="{ opacity: 0, scale: 0.98 }"
-    :while-in-view="{ opacity: 1, scale: 1 }"
-    :transition="{ duration: 0.4, ease: 'easeOut' }"
-    :viewport="{ once: true, margin: '-10% 0px' }"
-  >
+  <div>
     <component
       :is="ImageComponent"
       :src="refinedSrc"
@@ -50,5 +44,5 @@ const refinedSrc = computed(() => {
       :height="props.height"
       class="w-full rounded-lg border border-border shadow-lg"
     />
-  </motion.div>
+  </div>
 </template>

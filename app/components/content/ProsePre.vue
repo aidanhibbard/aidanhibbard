@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Copy } from 'lucide-vue-next'
-import { motion } from 'motion-v'
 import { toast } from 'vue-sonner'
 
 const props = defineProps({
@@ -63,10 +62,9 @@ const onCopy = async () => {
           {{ props.filename }}
         </div>
       </div>
-      <motion.button
+      <button
         type="button"
         class="inline-flex items-center gap-2 text-xs px-2 py-2 rounded-md border border-border hover:bg-muted transition-colors"
-        :while-tap="{ scale: 0.96 }"
         @click="onCopy"
       >
         <component
@@ -74,15 +72,14 @@ const onCopy = async () => {
           class="w-3.5 h-3.5"
         />
         <span>Copy</span>
-      </motion.button>
+      </button>
     </div>
 
     <div class="relative">
-      <motion.button
+      <button
         v-if="!hasHeader"
         type="button"
         class="absolute right-2 top-2 z-10 inline-flex items-center gap-1 text-xs px-2 py-1 rounded-md border border-border bg-background/70 backdrop-blur hover:bg-muted transition-colors"
-        :while-tap="{ scale: 0.96 }"
         @click="onCopy"
       >
         <component
@@ -90,7 +87,7 @@ const onCopy = async () => {
           class="w-3.5 h-3.5"
         />
         <span class="sr-only">Copy</span>
-      </motion.button>
+      </button>
 
       <pre
         ref="preEl"
