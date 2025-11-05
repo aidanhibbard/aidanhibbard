@@ -12,7 +12,7 @@ import 'vue-sonner/style.css'
     <Toaster />
     <NavigationHeaderAppHeader />
     <!-- This has to be below the header -->
-    <CustomCursor />
+    <CustomCursor v-if="$device.isDesktopOrTablet" />
     <slot />
     <AppFooter />
   </div>

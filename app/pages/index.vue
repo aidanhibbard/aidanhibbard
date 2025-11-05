@@ -2,6 +2,10 @@
 import { Separator } from '~/components/shadcn/ui/separator'
 import SectionIndicator from '~/components/landing/navigation/SectionIndicator.vue'
 
+useSeoMeta({
+  title: 'Home',
+})
+
 onMounted(() => {
   document.documentElement.style.scrollBehavior = 'smooth'
 })
