@@ -21,6 +21,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
+      // https://nuxtseo.com/docs/seo-utils/guides/fallback-title#default-title-template
       title: 'Aidan Hibbard',
       titleTemplate: '%s %separator Aidan Hibbard',
       htmlAttrs: {
