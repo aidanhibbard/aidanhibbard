@@ -1,7 +1,6 @@
 import type { Theme } from '~/types/theme'
 
 export default () => {
-  // Prefer server-provided client hint; default to dark on SSR.
   const themeHeader = useRequestHeader('sec-ch-prefers-color-scheme')
 
   const theme = useState<Theme>('theme', (): Theme => {
