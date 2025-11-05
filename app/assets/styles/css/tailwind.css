@@ -149,70 +149,25 @@
   }
 }
 
+/* Added pulse line animations with motion preference support */
 @layer base {
-  /* Horizontal pulse lines */
+  /* Simplified pulse line styles - positioning now handled inline */
   .pulse-line {
     position: absolute;
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, var(--pulse-color-1) 50%, transparent 100%);
     opacity: 0;
+    animation: pulse-horizontal ease-in-out infinite;
   }
 
-  .pulse-line-1 {
-    top: 15%;
-    animation: pulse-horizontal 8s ease-in-out infinite;
-  }
-
-  .pulse-line-2 {
-    top: 35%;
-    animation: pulse-horizontal 10s ease-in-out infinite 2s;
-    background: linear-gradient(90deg, transparent 0%, var(--pulse-color-2) 50%, transparent 100%);
-  }
-
-  .pulse-line-3 {
-    top: 55%;
-    animation: pulse-horizontal 12s ease-in-out infinite 4s;
-    background: linear-gradient(90deg, transparent 0%, var(--pulse-color-3) 50%, transparent 100%);
-  }
-
-  .pulse-line-4 {
-    top: 70%;
-    animation: pulse-horizontal 9s ease-in-out infinite 1s;
-  }
-
-  .pulse-line-5 {
-    top: 85%;
-    animation: pulse-horizontal 11s ease-in-out infinite 3s;
-    background: linear-gradient(90deg, transparent 0%, var(--pulse-color-2) 50%, transparent 100%);
-  }
-
-  /* Vertical pulse lines */
   .pulse-line-vertical {
     position: absolute;
     top: 0;
     bottom: 0;
     width: 1px;
-    background: linear-gradient(180deg, transparent 0%, var(--pulse-color-1) 50%, transparent 100%);
     opacity: 0;
-  }
-
-  .pulse-line-v-1 {
-    left: 25%;
-    animation: pulse-vertical 10s ease-in-out infinite 1.5s;
-  }
-
-  .pulse-line-v-2 {
-    left: 50%;
-    animation: pulse-vertical 13s ease-in-out infinite 3.5s;
-    background: linear-gradient(180deg, transparent 0%, var(--pulse-color-3) 50%, transparent 100%);
-  }
-
-  .pulse-line-v-3 {
-    left: 75%;
-    animation: pulse-vertical 11s ease-in-out infinite 5s;
-    background: linear-gradient(180deg, transparent 0%, var(--pulse-color-2) 50%, transparent 100%);
+    animation: pulse-vertical ease-in-out infinite;
   }
 
   @keyframes pulse-horizontal {
@@ -239,10 +194,11 @@
     }
   }
 
+  /* Respect user's motion preferences */
   @media (prefers-reduced-motion: reduce) {
     .pulse-line,
     .pulse-line-vertical {
-      animation: none;
+      animation: none !important;
       opacity: 0.2;
       transform: none;
     }
