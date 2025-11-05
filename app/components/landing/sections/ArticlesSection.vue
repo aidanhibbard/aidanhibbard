@@ -34,7 +34,7 @@ const { data: articles } = await useAsyncData(
         :transition="{ duration: 0.6 }"
       >
         <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">
-          Recent Writings
+          Recent Articles
         </h2>
         <p class="text-muted-foreground text-lg mb-12">
           Thoughts on design, development, and technologies

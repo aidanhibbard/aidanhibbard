@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { Badge } from '~/components/shadcn/ui/badge'
 import { motion } from 'motion-v'
 import { Separator } from '~/components/shadcn/ui/separator'
+
+const { experience } = useResume()
 </script>
 
 <template>
@@ -58,68 +59,11 @@ import { Separator } from '~/components/shadcn/ui/separator'
         <Separator class="my-12" />
 
         <div class="space-y-12">
-          <!-- Experience Item -->
-          <div class="space-y-4">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-              <h3 class="font-serif text-2xl font-semibold">
-                Senior Creative Developer
-              </h3>
-              <span class="text-muted-foreground">2023 — Present</span>
-            </div>
-            <p class="text-lg text-muted-foreground">
-              Digital Agency
-            </p>
-            <p class="leading-relaxed">
-              Leading development of interactive web experiences for major brands. Specializing in WebGL
-              implementations, custom animations, and performance optimization. Collaborating with designers to
-              push the boundaries of web technology.
-            </p>
-            <div class="flex flex-wrap gap-2 pt-2">
-              <Badge>
-                React
-              </Badge>
-              <Badge>
-                Three.js
-              </Badge>
-              <Badge>
-                GLSL
-              </Badge>
-              <Badge>
-                Next.js
-              </Badge>
-            </div>
-          </div>
-
-          <Separator />
-
-          <!-- Experience Item -->
-          <div class="space-y-4">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-              <h3 class="font-serif text-2xl font-semibold">
-                Frontend Developer
-              </h3>
-              <span class="text-muted-foreground">2021 — 2023</span>
-            </div>
-            <p class="text-lg text-muted-foreground">
-              Tech Startup
-            </p>
-            <p class="leading-relaxed">
-              Built and maintained responsive web applications with focus on user experience and accessibility.
-              Implemented design systems and component libraries. Mentored junior developers and established best
-              practices.
-            </p>
-            <div class="flex flex-wrap gap-2 pt-2">
-              <Badge>
-                TypeScript
-              </Badge>
-              <Badge>
-                Vue.js
-              </Badge>
-              <Badge>
-                Tailwind CSS
-              </Badge>
-            </div>
-          </div>
+          <ResumeExpCard
+            v-for="item in experience"
+            :key="item.company"
+            :item
+          />
         </div>
       </motion.div>
     </div>

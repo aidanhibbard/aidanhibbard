@@ -18,7 +18,7 @@ defineProps<{
       <span class="text-muted-foreground">{{ item.from }} — {{ item.to ?? 'Present' }}</span>
     </div>
     <p class="text-lg text-muted-foreground">
-      {{ item.company }}
+      {{ item.company }}, {{ item.location }}{{ item.contract ? ' · Contract' : '' }}
     </p>
     <p class="leading-relaxed">
       {{ item.description }}
