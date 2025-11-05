@@ -94,6 +94,10 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --pulse-color-1: oklch(0.7 0.15 250);
+  --pulse-color-2: oklch(0.65 0.12 200);
+  --pulse-color-3: oklch(0.68 0.13 280);
 }
 
 .dark {
@@ -129,6 +133,10 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+
+  --pulse-color-1: oklch(0.5 0.12 250);
+  --pulse-color-2: oklch(0.48 0.1 200);
+  --pulse-color-3: oklch(0.52 0.11 280);
 }
 
 @layer base {
@@ -138,5 +146,105 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer base {
+  /* Horizontal pulse lines */
+  .pulse-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--pulse-color-1) 50%, transparent 100%);
+    opacity: 0;
+  }
+
+  .pulse-line-1 {
+    top: 15%;
+    animation: pulse-horizontal 8s ease-in-out infinite;
+  }
+
+  .pulse-line-2 {
+    top: 35%;
+    animation: pulse-horizontal 10s ease-in-out infinite 2s;
+    background: linear-gradient(90deg, transparent 0%, var(--pulse-color-2) 50%, transparent 100%);
+  }
+
+  .pulse-line-3 {
+    top: 55%;
+    animation: pulse-horizontal 12s ease-in-out infinite 4s;
+    background: linear-gradient(90deg, transparent 0%, var(--pulse-color-3) 50%, transparent 100%);
+  }
+
+  .pulse-line-4 {
+    top: 70%;
+    animation: pulse-horizontal 9s ease-in-out infinite 1s;
+  }
+
+  .pulse-line-5 {
+    top: 85%;
+    animation: pulse-horizontal 11s ease-in-out infinite 3s;
+    background: linear-gradient(90deg, transparent 0%, var(--pulse-color-2) 50%, transparent 100%);
+  }
+
+  /* Vertical pulse lines */
+  .pulse-line-vertical {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent 0%, var(--pulse-color-1) 50%, transparent 100%);
+    opacity: 0;
+  }
+
+  .pulse-line-v-1 {
+    left: 25%;
+    animation: pulse-vertical 10s ease-in-out infinite 1.5s;
+  }
+
+  .pulse-line-v-2 {
+    left: 50%;
+    animation: pulse-vertical 13s ease-in-out infinite 3.5s;
+    background: linear-gradient(180deg, transparent 0%, var(--pulse-color-3) 50%, transparent 100%);
+  }
+
+  .pulse-line-v-3 {
+    left: 75%;
+    animation: pulse-vertical 11s ease-in-out infinite 5s;
+    background: linear-gradient(180deg, transparent 0%, var(--pulse-color-2) 50%, transparent 100%);
+  }
+
+  @keyframes pulse-horizontal {
+    0%,
+    100% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    50% {
+      opacity: 0.6;
+      transform: translateX(0%);
+    }
+  }
+
+  @keyframes pulse-vertical {
+    0%,
+    100% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    50% {
+      opacity: 0.6;
+      transform: translateY(0%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pulse-line,
+    .pulse-line-vertical {
+      animation: none;
+      opacity: 0.2;
+      transform: none;
+    }
   }
 }
