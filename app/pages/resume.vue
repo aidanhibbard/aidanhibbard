@@ -28,13 +28,29 @@ const { experience } = useResume()
           <h3 class="font-serif text-2xl font-semibold">
             Skills & Technologies
           </h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
             <div>
               <h4 class="font-medium mb-2">
                 Frontend
               </h4>
               <p class="text-sm text-muted-foreground leading-relaxed">
-                React, Next.js, Vue, TypeScript, HTML/CSS
+                React, Next, Vue, Nuxt, Vite, Astro, Angular, Svelte
+              </p>
+            </div>
+            <div>
+              <h4 class="font-medium mb-2">
+                Backend
+              </h4>
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                Rails, Node, Laravel, Flask, Django
+              </p>
+            </div>
+            <div>
+              <h4 class="font-medium mb-2">
+                Deployments
+              </h4>
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                Google Cloud, Kubernetes, Digital Ocean, Railway, AWS, Vercel, Heroku
               </p>
             </div>
             <div>
@@ -42,7 +58,7 @@ const { experience } = useResume()
                 Creative
               </h4>
               <p class="text-sm text-muted-foreground leading-relaxed">
-                Three.js, WebGL, GLSL, Canvas API, Framer Motion
+                Three, WebGL, GLSL, Canvas, Motion, Tailwind
               </p>
             </div>
             <div>
@@ -50,7 +66,7 @@ const { experience } = useResume()
                 Tools
               </h4>
               <p class="text-sm text-muted-foreground leading-relaxed">
-                Git, Figma, Blender, Adobe Creative Suite
+                Figma, Canva, Illustrator
               </p>
             </div>
           </div>
