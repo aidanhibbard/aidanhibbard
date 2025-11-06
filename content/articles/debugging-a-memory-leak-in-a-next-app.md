@@ -81,7 +81,7 @@ So with some "chaos engineering" (clicking really fast on our sidebar to navigat
 
 Okay, shrink the payload, and fix any unecessary re-renders, it resolves the issue right?
 
-I shipped this fix to prod, and within twenty minutes of the release production restarted again.
+I shipped this fix to prod, and within twenty minutes of the release, production restarted again.
 
 > It does tell us something. Though I have no idea what. - Dr House
 
@@ -273,6 +273,6 @@ Either you'll eventually clean all your apps tech debt, or you'll solve the issu
 
 ## What was sentry doing wrong?
 
-This is where my debugging ended, this issue had already cost us considerable engineering time it wasn't worth raising an issue to sentry. Maybe some day I'll get some free time to review what they were doing in the module to cause this.
+This is where my debugging ended, this issue had already cost us considerable engineering time it wasn't worth raising an issue to sentry, or trying to find the issue in the middleware. Maybe some day I'll get some free time to review what they were doing in the module to cause this.
 
 For now we've simply removed the middleware, sentry monitors our app, and Inngest just hits our apps routes. Any errors we throw in functions are also stored in Inngest for review, so for now this handles our business requirements.
