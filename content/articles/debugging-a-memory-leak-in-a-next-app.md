@@ -196,7 +196,7 @@ This lined up perfectly with my previously known facts too, since staging does n
 
 I began scrolling through my app logs locally looking for anything related to the inngest entry point, the requests themselves didn't start taking longer over time like I thought they would.
 
-Inngest when running locally pings your app _a lot_, like an absurd amount? So all of my app logs would get constantly burried under `/api/inngest 200`, however after scrolling for a eternity, I found a instance of this message:
+Inngest when running locally pings your app _a lot_, like an absurd amount? So all of my app logs would get constantly buried under `/api/inngest 200`, however after scrolling for a eternity, I found a instance of this message:
 
 ```bash [logs]
 (node:34713) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 beforeExit listeners added to [process]. MaxListeners is 10. Use emitter.setMaxListeners() to increase limit
