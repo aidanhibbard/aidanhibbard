@@ -91,7 +91,7 @@ const onCopy = async () => {
 
       <pre
         ref="preEl"
-        :class="[$props.class]"
+        :class="[$props.class, 'overflow-x-auto']"
         v-bind="$attrs"
       >
         <slot />
