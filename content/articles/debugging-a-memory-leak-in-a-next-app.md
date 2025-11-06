@@ -267,7 +267,7 @@ These answers wasted hours of time debugging random routes with no issues, gener
 
 If you profile an entire app, or ask AI "where do these issues occur in my app" you're bound to get a million "weird looking things."
 
-I found that the best use of your time in these cases is to follow the rabbit holes. Pick a stack trace, a error, something, and work through it.
+I found that the best use of your time in these cases is to tackle real known tech debt. Pick a stack trace, a error, something, and work through it.
 
 Either you'll eventually clean all your apps tech debt, or you'll solve the issue, hopefully both.
 
