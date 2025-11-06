@@ -89,11 +89,11 @@ I shipped this fix to prod, and within twenty minutes of the release production 
 
 After re-reviewing there were a few "known facts" that we had
 
-- The staging server doesnt restart unless interacted with
+- We noticed the staging server was not crashing, and had consistent uptimes for deploys
 
 - Production continues restarting through the night when we have virtually no users
 
-Based on the above, I decided to focus my attention to our server side logic. We depend on vendor webhooks that come in 24/7 so I reviewed some of our traffic on those endpoints.
+Based on the above, I decided to focus my attention to our server side logic. We depend on vendor webhooks that come in 24/7 so I reviewed some of our traffic on those endpoints. These endpoints dont get any requests on staging unless we do a test request from the vendors UI, so this lines up with what we see.
 
 I found something that I was surprised no one had noticed before:
 
@@ -191,6 +191,8 @@ RangeError: Maximum call stack size exceeded
 Now that made my eyes light up like a red state on the fourth of july.
 
 I now knew that it was related to inngest, and did not require a job to be running, we just had to hit our inngest entry route. The inngest dev poller replicated it perfectly, now I just had to find out why...
+
+This lined up perfectly with my previously known facts too, since staging does not have any inngest jobs running unless we manually trigger them. So while production gets a steady volume of inngest hits, staging wouldn't have ran into that.
 
 I began scrolling through my app logs locally looking for anything related to the inngest entry point, the requests themselves didn't start taking longer over time like I thought they would.
 
