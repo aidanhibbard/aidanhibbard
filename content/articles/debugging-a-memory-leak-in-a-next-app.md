@@ -247,6 +247,30 @@ Created a PR removing the middleware, and sent it to production.
 
 We haven't seen a restart since.
 
+## Things I've learned
+
+#### Just use Node
+
+Abstractions such as special start commands for enterprise software means you don't know what your app is doing when deploying. Take careful consideration of your deployment process when you have customers that depend on your tools.
+
+#### Avoid AI at all costs
+
+Many of my co-workers were quick to take my stack traces, and give them to cursor, chatgpt, claude, you name it. They all spat back the same thing: "You've got a infinite redirect loop."
+
+When pressed for more information Cursor would always give AN answer but not THE answer, and any ask for a instruction set to reproduce the crashing instance was always met with some hallucinated use case.
+
+These answers wasted hours of time debugging random routes with no issues, generating meaningless PRs, and creating random unit tests that mocked the entire universe to cause a error in the app.
+
+#### Every app has gremlins
+
+> Could probably scan every one of us and find five different doodads that look like cancer - Dr House
+
+If you profile an entire app, or ask AI "where do these issues occur in my app" you're bound to get a million "weird looking things."
+
+I found that the best use of your time in these cases is to follow the rabbit holes. Pick a stack trace, a error, something, and work through it.
+
+Either you'll eventually clean all your apps tech debt, or you'll solve the issue, hopefully both.
+
 ## What was sentry doing wrong?
 
 This is where my debugging ended, this issue had already cost us considerable engineering time it wasn't worth raising an issue to sentry. Maybe some day I'll get some free time to review what they were doing in the module to cause this.
