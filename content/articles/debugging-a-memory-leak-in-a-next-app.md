@@ -137,9 +137,9 @@ node .output/server/index.mjs
 
 So it turns out using Next start means that no node exit code was being produced, so everytime the app was restarting it was a gamble on if railway would pick it up because there was never a code.
 
-The kind folks over at Railway told us they had seen this kind of thing before, and recommended to Next teams to use a single entry point for their app.
+The kind folks over at Railway told us they had seen this kind of thing before, and recommended to Next teams to use a single entry point for their app. They pointed us to [their docs for node sigterm events](https://docs.railway.com/guides/nodejs-sigterm).
 
-We ended up using the first recommendation in [this comment on a github thread](https://github.com/vercel/next.js/discussions/14145#discussioncomment-25832). Which was to create a app.mjs at the top level of your app to start your service.
+We ended up using the first recommendation in [this comment on a github thread](https://github.com/vercel/next.js/discussions/14145#discussioncomment-25832) in order to create our entry point.
 
 ```typescript [app.mjs]
 // Credit illuminist on github
