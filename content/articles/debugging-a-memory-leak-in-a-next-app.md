@@ -129,7 +129,7 @@ Pretty quickly we learned we did not have that luxury when a instance went down.
 
 Railway like most hosts listens for exit codes from your service to know what is going on. It turns out our next app bootstraps with the proprietary `next start` which does _something_ other than starting an entry point with node.
 
-I'm used to more "modern" vite frameworks such as Nuxt which simply start with executing node on a entry point.
+I'm used to more "modern" frameworks such as Nuxt which simply start with executing node on a entry point.
 
 ```bash
 node .output/server/index.mjs
