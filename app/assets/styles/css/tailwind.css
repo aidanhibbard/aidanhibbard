@@ -159,6 +159,7 @@
     right: 0;
     height: 1px;
     opacity: 0;
+    will-change: transform, opacity;
     animation: pulse-horizontal ease-in-out infinite;
   }
 
@@ -168,7 +169,13 @@
     bottom: 0;
     width: 1px;
     opacity: 0;
+    will-change: transform, opacity;
     animation: pulse-vertical ease-in-out infinite;
+  }
+
+  /* Reduce paint scope for background line effects */
+  .pulse-lines {
+    contain: layout paint;
   }
 
   @keyframes pulse-horizontal {

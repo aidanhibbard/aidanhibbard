@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@nuxtjs/device',
     'nuxt-security',
+    'nuxt-mcp',
   ],
   devtools: { enabled: true },
   app: {

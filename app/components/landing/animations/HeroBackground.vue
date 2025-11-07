@@ -1,19 +1,44 @@
 <script setup lang="ts">
-const horizontalLines = Array.from({ length: 15 }, (_, i) => ({
-  id: `h-${i}`,
-  position: 5 + i * 6.5, // Spread across the viewport
-  delay: i * 0.8,
-  duration: 8 + (i % 5),
-  colorIndex: (i % 3) + 1,
-}))
+// Deterministic pseudo-random to avoid hydration mismatch while breaking uniform patterns
+const pseudoRandom = (seed: number): number => {
+  const x = Math.sin(seed * 78.233) * 43758.5453123
+  return x - Math.floor(x)
+}
 
-const verticalLines = Array.from({ length: 12 }, (_, i) => ({
-  id: `v-${i}`,
-  position: 8 + i * 7.5, // Spread across the viewport
-  delay: i * 1.2,
-  duration: 9 + (i % 4),
-  colorIndex: (i % 3) + 1,
-}))
+const horizontalLines = Array.from({ length: 15 }, (_, i) => {
+  // Base layout
+  const baseTop = 5 + i * 6.5
+  // Jitter position within ±1.2% of viewport height
+  const topJitter = (pseudoRandom(101 + i) - 0.5) * 2.4
+  // Stagger with slight randomization to avoid phasing
+  const delay = i * 0.6 + pseudoRandom(201 + i) * 0.9
+  // Diverse durations ~7–13s
+  const duration = 7 + pseudoRandom(301 + i) * 6
+  // Random color index 1..3
+  const colorIndex = (Math.floor(pseudoRandom(401 + i) * 3) % 3) + 1
+  return {
+    id: `h-${i}`,
+    position: baseTop + topJitter,
+    delay,
+    duration,
+    colorIndex,
+  }
+})
+
+const verticalLines = Array.from({ length: 12 }, (_, i) => {
+  const baseLeft = 8 + i * 7.5
+  const leftJitter = (pseudoRandom(501 + i) - 0.5) * 2.4
+  const delay = i * 0.9 + pseudoRandom(601 + i) * 1.1
+  const duration = 7.5 + pseudoRandom(701 + i) * 6.5
+  const colorIndex = (Math.floor(pseudoRandom(801 + i) * 3) % 3) + 1
+  return {
+    id: `v-${i}`,
+    position: baseLeft + leftJitter,
+    delay,
+    duration,
+    colorIndex,
+  }
+})
 </script>
 
 <template>
