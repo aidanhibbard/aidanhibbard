@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ArrowRight } from 'lucide-vue-next'
-import { motion } from 'motion-v'
 import ArticleCard from '~/components/articles/ArticleCard.vue'
 
 const { data: articles } = await useAsyncData(
@@ -27,12 +26,7 @@ const { data: articles } = await useAsyncData(
     class="min-h-screen py-24 px-4 md:px-16"
   >
     <div class="container mx-auto max-w-5xl">
-      <motion.div
-        :initial="{ opacity: 0, y: 30 }"
-        :while-in-view="{ opacity: 1, y: 0 }"
-        :viewport="{ once: true }"
-        :transition="{ duration: 0.6 }"
-      >
+      <div>
         <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">
           Recent Articles
         </h2>
@@ -48,11 +42,7 @@ const { data: articles } = await useAsyncData(
           />
         </div>
 
-        <motion.div
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :viewport="{ once: true }"
-          :transition="{ duration: 0.5, delay: 0.3 }"
+        <div
           class="mt-12 flex justify-center"
         >
           <NuxtLink
@@ -62,8 +52,8 @@ const { data: articles } = await useAsyncData(
             View All Articles
             <ArrowRight class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </NuxtLink>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
