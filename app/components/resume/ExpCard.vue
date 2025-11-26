@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ExperienceItem } from '~/composables/use-resume'
+import type { ExperienceItem } from '~/types/experience-item'
 import { Badge } from '~/components/shadcn/ui/badge'
 
 defineProps<{

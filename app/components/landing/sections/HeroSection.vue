@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Minus } from 'lucide-vue-next'
+// import { Minus } from 'lucide-vue-next'
 import { motion } from 'motion-v'
 </script>
 
@@ -16,12 +16,12 @@ import { motion } from 'motion-v'
       class="md:w-1/2 max-w-2xl text-center md:text-left"
     >
       <h2 class="font-serif text-5xl md:text-7xl font-bold mb-6 text-balance">
-        Creative Developer <span class="block md:inline">& Engineer</span>
+        Senior Software <span class="block md:inline">Engineer</span>
       </h2>
       <p class="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
         Using technology to delight; focusing on elegant systems, thoughtful UX, and resilient architecture.
       </p>
-      <div class="flex flex-row flex-wrap justify-center sm:justify-start sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
+      <!-- <div class="flex flex-row flex-wrap justify-center sm:justify-start sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground">
         <div class="flex items-center gap-2 whitespace-nowrap">
           <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
           Available for hire
@@ -32,7 +32,7 @@ import { motion } from 'motion-v'
         <div class="whitespace-nowrap">
           Based in the Pacific Time Zone
         </div>
-      </div>
+      </div> -->
     </motion.div>
 
     <div class="absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-2">

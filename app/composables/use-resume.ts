@@ -1,35 +1,26 @@
-export type ExperienceItem = {
-  title: string
-  company: string
-  from: string
-  to?: string
-  description: string
-  location: string
-  contract?: boolean
-  tags: string[]
-}
+import type { ExperienceItem } from '~/types/experience-item'
 
 const experience: ExperienceItem[] = [
   {
-    title: 'Senior Full-Stack Engineer',
-    company: 'Art of X',
-    from: 'Sep 2025',
-    to: 'Present',
-    description:
-      'Building infrastructure in Digital Ocean, maintaining user facing services with Nuxt, implementing best practices for scaling.',
-    location: 'Remote',
-    contract: true,
-    tags: ['Nuxt', 'Digital Ocean', 'Vite', 'Supabase'],
-  },
-  {
-    title: 'Software Engineer',
+    title: 'Senior Software Engineer',
     company: 'Niche',
     from: 'Jul 2025',
     to: 'Present',
     description:
-      'Maintaining user facing services with Next and Tailwind. Implementing best practices around testing and infrastructure. Built user onboarding, payment processing, and handled data integrations.',
+      'Crafting user facing services with Next and Tailwind. Implementing best practices around testing and infrastructure. Built user onboarding, payment processing, and handled data integrations.',
     location: 'Remote',
-    tags: ['Next', 'React', 'ShadCN', 'Railway', 'Postgres', 'Stripe', 'Clerk'],
+    tags: ['Next', 'ShadCN', 'Railway', 'Postgres', 'Stripe', 'Clerk'],
+  },
+  {
+    title: 'Senior full-stack developer',
+    company: 'Art of X',
+    from: 'Sep 2025',
+    to: 'December 2025',
+    description:
+      'Building infrastructure in Digital Ocean, implementing user facing services with Nuxt, implementing background processing with BullMQ.',
+    location: 'Remote',
+    contract: true,
+    tags: ['Nuxt', 'Digital Ocean', 'Vite', 'Supabase', 'BullMQ', 'Valkey'],
   },
   {
     title: 'Software Engineer',
