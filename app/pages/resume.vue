@@ -34,7 +34,7 @@ const { experience } = useResume()
                 Frontend
               </h4>
               <p class="text-sm text-muted-foreground leading-relaxed">
-                React, Next, Vue, Nuxt, Vite, Astro, Angular, Svelte
+                React, Next, Vue, Nuxt, Vite, Astro, Angular, Svelte, Webpack
               </p>
             </div>
             <div>
