@@ -47,7 +47,7 @@ const { experience } = useResume()
             </div>
             <div>
               <h4 class="font-medium mb-2">
-                Deployments
+                Hosting
               </h4>
               <p class="text-sm text-muted-foreground leading-relaxed">
                 Google Cloud, Kubernetes, Digital Ocean, Railway, AWS, Vercel, Heroku

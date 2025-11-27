@@ -38,10 +38,15 @@ const readingTime = computed(() => {
 
 const pageUrl = computed(() => new URL(path, requestUrl).toString())
 
-const shareLinkedIn = () => {
+const shareLinkedIn = async () => {
   const url = encodeURIComponent(pageUrl.value)
   const share = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
-  window.open(share, '_blank', 'noopener,noreferrer')
+  await navigateTo(share, {
+    external: true,
+    open: {
+      target: '_blank',
+    },
+  })
 }
 
 const copyLink = async () => {
