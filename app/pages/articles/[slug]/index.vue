@@ -3,7 +3,7 @@ import { motion } from 'motion-v'
 import { Button } from '~/components/shadcn/ui/button'
 import { Badge } from '~/components/shadcn/ui/badge'
 import { Separator } from '~/components/shadcn/ui/separator'
-import { Calendar, Clock, Twitter, Linkedin, Link2 } from 'lucide-vue-next'
+import { Calendar, Clock, Linkedin, Link2 } from 'lucide-vue-next'
 
 const { path } = useRoute()
 const requestUrl = useRequestURL()
@@ -37,13 +37,6 @@ const readingTime = computed(() => {
 })
 
 const pageUrl = computed(() => new URL(path, requestUrl).toString())
-
-const shareTwitter = () => {
-  const text = encodeURIComponent(page.value?.title || '')
-  const url = encodeURIComponent(pageUrl.value)
-  const share = `https://twitter.com/intent/tweet?text=${text}&url=${url}`
-  window.open(share, '_blank', 'noopener,noreferrer')
-}
 
 const shareLinkedIn = () => {
   const url = encodeURIComponent(pageUrl.value)
@@ -125,15 +118,6 @@ const copyLink = async () => {
           variant="ghost"
           size="icon"
           class="h-8 w-8"
-          @click="shareTwitter"
-        >
-          <Twitter class="h-4 w-4" />
-          <span class="sr-only">Share on Twitter</span>
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon"
-          class="h-8 w-8"
           @click="shareLinkedIn"
         >
           <Linkedin class="h-4 w-4" />
@@ -154,7 +138,7 @@ const copyLink = async () => {
     <Separator class="mb-12" />
 
     <article
-      class="prose prose-neutral dark:prose-invert max-w-none break-normal hyphens-none whitespace-normal prose-p:break-normal prose-a:break-words prose-pre:overflow-x-auto prose-code:overflow-x-auto prose-img:rounded-xl"
+      class="prose prose-neutral dark:prose-invert max-w-none break-normal hyphens-none whitespace-normal prose-p:break-normal prose-a:wrap-break-word prose-pre:overflow-x-auto prose-code:overflow-x-auto prose-img:rounded-xl"
     >
       <ContentRenderer
         as="div"
