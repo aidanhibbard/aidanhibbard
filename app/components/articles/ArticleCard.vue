@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { motion } from 'motion-v'
 import { Badge } from '~/components/shadcn/ui/badge'
 import { formatISO } from 'date-fns'
 import type { ArticlesCollectionItem } from '@nuxt/content'
@@ -15,7 +14,7 @@ defineProps<{
 </script>
 
 <template>
-  <motion.article
+  <article
     :key="post.title"
     :initial="{ opacity: 0, y: 20 }"
     :while-in-view="{ opacity: 1, y: 0 }"
@@ -46,5 +45,5 @@ defineProps<{
         {{ post.description }}
       </p>
     </NuxtLink>
-  </motion.article>
+  </article>
 </template>
