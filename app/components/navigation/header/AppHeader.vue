@@ -9,6 +9,7 @@ const { theme, toggleTheme } = useTheme()
 const links = [
   { name: 'About', href: '/about' },
   { name: 'Articles', href: '/articles' },
+  { name: 'Projects', href: '/projects' },
   { name: 'Resume', href: '/resume' },
 ]
 </script>

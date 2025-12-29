@@ -66,7 +66,7 @@ const experience: ExperienceItem[] = [
     tags: ['Usage-based pricing', 'Onboarding', 'CI/CD', 'Observability', 'Testing'],
   },
   {
-    title: 'Software Developer',
+    title: 'Lead Developer',
     company: 'Legal Nature',
     from: 'Aug 2024',
     to: 'Jul 2025',
