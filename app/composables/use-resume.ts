@@ -6,8 +6,7 @@ const contact = {
   phone: '(458) 600-6584',
   links: {
     linkedin: 'https://www.linkedin.com/in/aidan-hibbard/',
-    website: 'https://aidanhibbard.dev/',
-    github: 'https://github.com/aidanHibbard',
+    github: 'https://github.com/aidanhibbard',
   },
 }
 
@@ -20,7 +19,7 @@ const technicalSummary = [
   },
   {
     category: 'Backend',
-    items: ['Ruby on Rails', 'Spring Boot', 'Node.js (Express, NestJS, NitroJS)'],
+    items: ['Ruby on Rails', 'Spring Boot', 'Node.js (Express, NestJS, NitroJS)', 'tRPC'],
   },
   {
     category: 'Job Queues',
@@ -44,6 +43,7 @@ const technicalSummary = [
       'Pub/Sub',
       'REST',
       'GraphQL',
+      'gRPC',
       'Soap',
     ],
   },

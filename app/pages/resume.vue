@@ -23,43 +23,32 @@ const { contact, professionalSummary, technicalSummary, experience } = useResume
               {{ contact.name }}
             </h1>
             <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
-              <a
+              <NuxtLink
                 class="hover:text-foreground transition-colors"
                 :href="`mailto:${contact.email}`"
               >
                 {{ contact.email }}
-              </a>
+              </NuxtLink>
               <span aria-hidden="true">|</span>
-              <a
+              <NuxtLink
                 class="hover:text-foreground transition-colors"
                 href="tel:+14586006584"
               >
                 {{ contact.phone }}
-              </a>
+              </NuxtLink>
               <span aria-hidden="true">|</span>
               <NuxtLink
                 class="hover:text-foreground transition-colors"
                 :to="contact.links.linkedin"
-                target="_blank"
-                rel="noopener noreferrer"
+                external
               >
                 LinkedIn
               </NuxtLink>
               <span aria-hidden="true">|</span>
               <NuxtLink
                 class="hover:text-foreground transition-colors"
-                :to="contact.links.website"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Website
-              </NuxtLink>
-              <span aria-hidden="true">|</span>
-              <NuxtLink
-                class="hover:text-foreground transition-colors"
                 :to="contact.links.github"
-                target="_blank"
-                rel="noopener noreferrer"
+                external
               >
                 GitHub
               </NuxtLink>
