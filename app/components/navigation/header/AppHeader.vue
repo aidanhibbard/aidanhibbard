@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Moon, Sun, Menu, Github, Home, User, Newspaper, FileText } from 'lucide-vue-next'
+import { Moon, Sun, Menu, Github, Home, User, Newspaper, FileText, Linkedin } from 'lucide-vue-next'
 import { Sheet, SheetTrigger, SheetContent, SheetClose } from '~/components/shadcn/ui/sheet'
 import { Button } from '~/components/shadcn/ui/button'
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem } from '~/components/shadcn/ui/sidebar'
@@ -108,14 +108,26 @@ const links = [
       >
         <NuxtLink
           :as="Button"
-          to="https://github.com/aidanHibbard"
+          to="https://github.com/aidanhibbard"
+          external
+          aria-label="GitHub profile"
+          title="GitHub profile"
+          class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground hover:bg-accent hover:text-accent-foreground"
+        >
+          <Github
+            class="w-4 h-4"
+          />
+        </NuxtLink>
+        <NuxtLink
+          :as="Button"
+          to="https://www.linkedin.com/in/aidan-hibbard/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub profile"
           title="GitHub profile"
           class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground hover:bg-accent hover:text-accent-foreground"
         >
-          <Github
+          <Linkedin
             class="w-4 h-4"
           />
         </NuxtLink>
