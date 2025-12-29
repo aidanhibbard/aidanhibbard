@@ -20,10 +20,21 @@ defineProps<{
     <p class="text-lg text-muted-foreground">
       {{ item.company }}, {{ item.location }}{{ item.contract ? ' · Contract' : '' }}
     </p>
-    <p class="leading-relaxed">
-      {{ item.description }}
-    </p>
-    <div class="flex flex-wrap gap-2 pt-2">
+    <ul
+      v-if="item.bullets?.length"
+      class="list-disc pl-5 space-y-2 leading-relaxed"
+    >
+      <li
+        v-for="(bullet, idx) in item.bullets"
+        :key="idx"
+      >
+        {{ bullet }}
+      </li>
+    </ul>
+    <div
+      v-if="item.tags?.length"
+      class="flex flex-wrap gap-2 pt-2"
+    >
       <Badge
         v-for="tag in item.tags"
         :key="tag"

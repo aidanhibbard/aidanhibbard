@@ -39,7 +39,7 @@ const { landingItems } = useResume()
               to="/resume"
               class="group inline-flex items-center gap-2 text-lg font-medium hover:text-foreground transition-colors"
             >
-              View my full expierence
+              View my full experience
               <ArrowRight class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </NuxtLink>
           </motion.div>

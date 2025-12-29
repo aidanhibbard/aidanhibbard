@@ -2,7 +2,7 @@
 import { motion } from 'motion-v'
 import { Separator } from '~/components/shadcn/ui/separator'
 
-const { experience } = useResume()
+const { contact, professionalSummary, technicalSummary, experience } = useResume()
 </script>
 
 <template>
@@ -17,69 +17,101 @@ const { experience } = useResume()
         :viewport="{ once: true }"
         :transition="{ duration: 0.6 }"
       >
-        <h2 class="font-serif text-4xl md:text-5xl font-bold mb-12">
-          Experience
-        </h2>
-
-        <Separator />
-
-        <!-- Skills -->
-        <div class="space-y-4 pt-8">
-          <h3 class="font-serif text-2xl font-semibold">
-            Skills & Technologies
-          </h3>
-          <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-            <div>
-              <h4 class="font-medium mb-2">
-                Frontend
-              </h4>
-              <p class="text-sm text-muted-foreground leading-relaxed">
-                React, Next, Vue, Nuxt, Vite, Astro, Angular, Svelte, Webpack
-              </p>
-            </div>
-            <div>
-              <h4 class="font-medium mb-2">
-                Backend
-              </h4>
-              <p class="text-sm text-muted-foreground leading-relaxed">
-                Rails, Node, Laravel, Flask, Django
-              </p>
-            </div>
-            <div>
-              <h4 class="font-medium mb-2">
-                Hosting
-              </h4>
-              <p class="text-sm text-muted-foreground leading-relaxed">
-                Google Cloud, Kubernetes, Digital Ocean, Railway, AWS, Vercel, Heroku
-              </p>
-            </div>
-            <div>
-              <h4 class="font-medium mb-2">
-                Creative
-              </h4>
-              <p class="text-sm text-muted-foreground leading-relaxed">
-                Three, WebGL, GLSL, Canvas, Motion, Tailwind
-              </p>
-            </div>
-            <div>
-              <h4 class="font-medium mb-2">
-                Tools
-              </h4>
-              <p class="text-sm text-muted-foreground leading-relaxed">
-                Figma, Canva, Illustrator
-              </p>
+        <div class="space-y-12">
+          <div class="space-y-3">
+            <h1 class="font-serif text-4xl md:text-5xl font-bold">
+              {{ contact.name }}
+            </h1>
+            <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+              <a
+                class="hover:text-foreground transition-colors"
+                :href="`mailto:${contact.email}`"
+              >
+                {{ contact.email }}
+              </a>
+              <span aria-hidden="true">|</span>
+              <a
+                class="hover:text-foreground transition-colors"
+                href="tel:+14586006584"
+              >
+                {{ contact.phone }}
+              </a>
+              <span aria-hidden="true">|</span>
+              <NuxtLink
+                class="hover:text-foreground transition-colors"
+                :to="contact.links.linkedin"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </NuxtLink>
+              <span aria-hidden="true">|</span>
+              <NuxtLink
+                class="hover:text-foreground transition-colors"
+                :to="contact.links.website"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Website
+              </NuxtLink>
+              <span aria-hidden="true">|</span>
+              <NuxtLink
+                class="hover:text-foreground transition-colors"
+                :to="contact.links.github"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </NuxtLink>
             </div>
           </div>
-        </div>
 
-        <Separator class="my-12" />
+          <Separator />
 
-        <div class="space-y-12">
-          <ResumeExpCard
-            v-for="item in experience"
-            :key="item.company"
-            :item
-          />
+          <div class="space-y-4">
+            <h2 class="font-serif text-2xl font-semibold">
+              Professional Summary
+            </h2>
+            <p class="text-muted-foreground leading-relaxed">
+              {{ professionalSummary }}
+            </p>
+          </div>
+
+          <Separator />
+
+          <div class="space-y-4">
+            <h2 class="font-serif text-2xl font-semibold">
+              Technical Summary
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div
+                v-for="section in technicalSummary"
+                :key="section.category"
+              >
+                <h3 class="font-medium mb-2">
+                  {{ section.category }}
+                </h3>
+                <p class="text-sm text-muted-foreground leading-relaxed">
+                  {{ section.items.join(', ') }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <Separator />
+
+          <div class="space-y-8">
+            <h2 class="font-serif text-4xl md:text-5xl font-bold">
+              Experience
+            </h2>
+            <div class="space-y-12">
+              <ResumeExpCard
+                v-for="item in experience"
+                :key="item.company"
+                :item
+              />
+            </div>
+          </div>
         </div>
       </motion.div>
     </div>

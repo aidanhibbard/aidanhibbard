@@ -3,7 +3,7 @@ export type ExperienceItem = {
   company: string
   from: string
   to?: string
-  description: string
+  bullets: string[]
   location: string
   contract?: boolean
   tags: string[]
