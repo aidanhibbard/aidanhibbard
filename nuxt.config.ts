@@ -18,7 +18,6 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
 
     // Third-party
-    '@tresjs/nuxt',
     'motion-v/nuxt',
     'nuxt-llms',
     'nuxt-mcp',
@@ -93,8 +92,5 @@ export default defineNuxtConfig({
     // https://github.com/unovue/shadcn-vue/issues/763
     prefix: '',
     componentDir: './app/components/shadcn/ui',
-  },
-  tres: {
-    devtools: true,
   },
 })
