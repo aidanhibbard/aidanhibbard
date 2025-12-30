@@ -21,7 +21,7 @@ const technicalSummary = [
     items: ['Ruby on Rails', 'Spring Boot', 'Node.js (Express, NestJS, NitroJS)', 'tRPC'],
   },
   {
-    category: 'Job Queues',
+    category: 'Background Processing',
     items: ['BullMQ', 'RabbitMQ', 'Sidekiq', 'Delayed Jobs'],
   },
   {
