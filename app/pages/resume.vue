@@ -32,13 +32,6 @@ const { contact, professionalSummary, technicalSummary, experience } = useResume
               <span aria-hidden="true">|</span>
               <NuxtLink
                 class="hover:text-foreground transition-colors"
-                href="tel:+14586006584"
-              >
-                {{ contact.phone }}
-              </NuxtLink>
-              <span aria-hidden="true">|</span>
-              <NuxtLink
-                class="hover:text-foreground transition-colors"
                 :to="contact.links.linkedin"
                 external
               >
