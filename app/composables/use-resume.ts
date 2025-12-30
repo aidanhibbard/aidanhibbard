@@ -3,7 +3,6 @@ import type { ExperienceItem } from '~/types/experience-item'
 const contact = {
   name: 'Aidan Hibbard',
   email: 'aidanchibbard@gmail.com',
-  phone: '(458) 600-6584',
   links: {
     linkedin: 'https://www.linkedin.com/in/aidan-hibbard/',
     github: 'https://github.com/aidanhibbard',
