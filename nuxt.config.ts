@@ -2,8 +2,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-
   modules: [
+    // Nuxt
     '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/fonts',
@@ -11,14 +11,19 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/scripts',
     '@nuxt/test-utils',
-    'nuxt-llms',
-    '@nuxtjs/seo',
-    'shadcn-nuxt',
-    'motion-v/nuxt',
-    '@nuxtjs/google-fonts',
+
+    // Nuxt community
     '@nuxtjs/device',
-    'nuxt-security',
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/seo',
+
+    // Third-party
+    '@tresjs/nuxt',
+    'motion-v/nuxt',
+    'nuxt-llms',
     'nuxt-mcp',
+    'nuxt-security',
+    'shadcn-nuxt',
   ],
   devtools: { enabled: true },
   app: {
@@ -88,5 +93,8 @@ export default defineNuxtConfig({
     // https://github.com/unovue/shadcn-vue/issues/763
     prefix: '',
     componentDir: './app/components/shadcn/ui',
+  },
+  tres: {
+    devtools: true,
   },
 })
