@@ -66,7 +66,7 @@ const experience: ExperienceItem[] = [
     tags: ['Usage-based pricing', 'Onboarding', 'CI/CD', 'Observability', 'Testing'],
   },
   {
-    title: 'Lead Developer',
+    title: 'Software Developer',
     company: 'Legal Nature',
     from: 'Aug 2024',
     to: 'Jul 2025',
@@ -81,7 +81,7 @@ const experience: ExperienceItem[] = [
     tags: ['Nuxt', 'Rails', 'TypeScript', 'Stripe', 'Micro-frontends', 'SSR'],
   },
   {
-    title: 'Software Developer',
+    title: 'Lead Developer',
     company: 'Central Oregon Community College',
     from: 'Mar 2025',
     to: 'Jun 2025',
