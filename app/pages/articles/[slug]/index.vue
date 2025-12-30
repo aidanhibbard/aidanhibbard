@@ -4,6 +4,7 @@ import { Button } from '~/components/shadcn/ui/button'
 import { Badge } from '~/components/shadcn/ui/badge'
 import { Separator } from '~/components/shadcn/ui/separator'
 import { Calendar, Clock, Linkedin, Link2 } from 'lucide-vue-next'
+import { toast } from 'vue-sonner'
 
 const route = useRoute()
 const requestUrl = useRequestURL()
@@ -52,9 +53,10 @@ const shareLinkedIn = async () => {
 const copyLink = async () => {
   try {
     await navigator.clipboard.writeText(pageUrl.value)
+    toast.success('Copied to clipboard')
   }
-  catch (err) {
-    void err
+  catch {
+    toast.error('Copy failed')
   }
 }
 </script>
