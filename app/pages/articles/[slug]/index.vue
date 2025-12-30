@@ -5,11 +5,11 @@ import { Badge } from '~/components/shadcn/ui/badge'
 import { Separator } from '~/components/shadcn/ui/separator'
 import { Calendar, Clock, Linkedin, Link2 } from 'lucide-vue-next'
 
-const { path } = useRoute()
+const route = useRoute()
 const requestUrl = useRequestURL()
 
-const { data: page } = await useAsyncData(path, () => {
-  return queryCollection('articles').path(path).first()
+const { data: page } = await useAsyncData(route.path, () => {
+  return queryCollection('articles').path(route.path).first()
 })
 
 // https://nuxtseo.com/docs/nuxt-seo/guides/nuxt-content
@@ -36,7 +36,7 @@ const readingTime = computed(() => {
   return `${rounded} min read`
 })
 
-const pageUrl = computed(() => new URL(path, requestUrl).toString())
+const pageUrl = computed(() => new URL(route.path, requestUrl).toString())
 
 const shareLinkedIn = async () => {
   const url = encodeURIComponent(pageUrl.value)
