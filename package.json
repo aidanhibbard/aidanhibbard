@@ -65,6 +65,7 @@
     "zod-to-json-schema": "^3.24.6"
   },
   "engines": {
-    "node": "24.x"
+    "node": "24.2.0",
+    "npm": "11.3.0"
   }
 }
