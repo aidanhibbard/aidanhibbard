@@ -86,6 +86,14 @@ export default defineNuxtConfig({
     domain: 'aidanhibbard.dev',
     title: 'Aidan Hibbard',
   },
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        // Allow Cloudinary-hosted images (default is only 'self' + data:)
+        'img-src': ['\'self\'', 'data:', 'https://res.cloudinary.com'],
+      },
+    },
+  },
   shadcn: {
     // Both of these values have to be set alongside components.json
     // Or the console starts throwing warnings for duplicate components

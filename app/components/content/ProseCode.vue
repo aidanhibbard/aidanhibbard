@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { toast } from 'vue-sonner'
+import { Button } from '@/components/shadcn/ui/button'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/shadcn/ui/tooltip'
 
 const codeEl = ref<HTMLElement | null>(null)
 
@@ -15,26 +22,23 @@ const copyInline = async () => {
     toast.error('Copy failed')
   }
 }
-
-const onKeydown = (e: KeyboardEvent) => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault()
-    copyInline()
-  }
-}
 </script>
 
 <template>
-  <code
-    ref="codeEl"
-    class="border p-0.5 rounded hover:border-teal-500"
-    role="button"
-    tabindex="0"
-    aria-label="Copy code"
-    title="Copy code"
-    @click="copyInline"
-    @keydown="onKeydown"
-  >
-    <slot />
-  </code>
+  <TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger>
+        <Button
+          ref="codeEl"
+          variant="ghost"
+          @click="copyInline"
+        >
+          <slot />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        Click to Copy
+      </TooltipContent>
+    </Tooltip>
+  </TooltipProvider>
 </template>

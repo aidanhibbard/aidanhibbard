@@ -4,6 +4,21 @@
     <ProseP>
       Born, and raised in the beautiful mountain town of Bend, Oregon I've been incredibly fortunate to live in a tech focused community that is passionate about the outdoors.
     </ProseP>
+    <figure class="my-8">
+      <NuxtImg
+        src="https://res.cloudinary.com/dlnxtpill/image/upload/v1764131020/IMG_0714_mhg7cq.jpg"
+        class="w-full rounded-lg"
+        alt="Broken Top, Oregon"
+        width="800"
+        height="600"
+        sizes="(max-width: 768px) 100vw, 768px"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption class="mt-2 text-sm text-muted-foreground">
+        No Name Lake near the peak of Broken Top
+      </figcaption>
+    </figure>
     <ProseP>
       I picked up web development back in the twenty-teens with Adobe Dreamweaver, and Java backends. It felt so empowering to be able to build services that anyone could access.
       Picking up JQuery, it was so fun to build interactive sites, didn't have to be anything impressive, but buttons that made things spin, or playing with tags like marquee.
@@ -15,7 +30,7 @@
       JavaScript syntax, with the strict types that you can get from Java? Count me in.
     </ProseP>
     <ProseP>
-      I started my software career at a company called G5 in Bend (later purchased by RealPage) as a QA engineer writing E2E tests using Selenium, Ruby, and Rails.
+      I started my software career as a QA engineer writing E2E tests using Selenium, Ruby, and Rails it was a cool expierence.
       It was in that role where I gained a deep respect for best practices, UX, accessability, and those are values I carry in my development still.
     </ProseP>
     <ProseP>

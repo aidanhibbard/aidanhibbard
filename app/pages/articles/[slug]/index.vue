@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { motion } from 'motion-v'
 import { Button } from '~/components/shadcn/ui/button'
 import { Badge } from '~/components/shadcn/ui/badge'
 import { Separator } from '~/components/shadcn/ui/separator'
@@ -9,9 +8,10 @@ import { toast } from 'vue-sonner'
 const route = useRoute()
 const requestUrl = useRequestURL()
 
-const { data: page } = await useAsyncData(route.path, () => {
-  return queryCollection('articles').path(route.path).first()
-})
+const { data: page } = await useAsyncData(
+  route.path, () =>
+    queryCollection('articles').path(route.path).first(),
+)
 
 // https://nuxtseo.com/docs/nuxt-seo/guides/nuxt-content
 useSeoMeta(page.value!.seo ?? {})
@@ -66,29 +66,18 @@ const copyLink = async () => {
     v-if="page"
     class="container mx-auto px-4 py-24 max-w-3xl"
   >
-    <h1
-      :initial="{ opacity: 0, y: 20 }"
-      :animate="{ opacity: 1, y: 0 }"
-      :transition="{ duration: 0.6, delay: 0.2 }"
-      class="text-5xl md:text-6xl font-bold tracking-tight text-balance mb-6 leading-tight"
-    >
+    <ProseH1>
       {{ page.title }}
-    </h1>
+    </ProseH1>
 
     <p
       v-if="page.description"
-      :initial="{ opacity: 0, y: 20 }"
-      :animate="{ opacity: 1, y: 0 }"
-      :transition="{ duration: 0.6, delay: 0.3 }"
       class="text-xl text-muted-foreground text-pretty leading-relaxed mb-8"
     >
       {{ page.description }}
     </p>
 
-    <motion.div
-      :initial="{ opacity: 0, y: 20 }"
-      :animate="{ opacity: 1, y: 0 }"
-      :transition="{ duration: 0.6, delay: 0.4 }"
+    <div
       class="flex items-center justify-between mb-12"
     >
       <div class="flex items-center gap-6 text-sm text-muted-foreground">
@@ -140,7 +129,7 @@ const copyLink = async () => {
           <span class="sr-only">Copy link</span>
         </Button>
       </div>
-    </motion.div>
+    </div>
 
     <Separator class="mb-12" />
 

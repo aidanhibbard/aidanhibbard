@@ -3,7 +3,7 @@
 
 <template>
   <li
-    class="leading-relaxed"
+    class="my-4 list-disc [&>li]:mt-2"
   >
     <slot />
   </li>

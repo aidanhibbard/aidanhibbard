@@ -10,7 +10,7 @@ const generate = computed(() => props.id && ((typeof headings?.anchorLinks === '
 <template>
   <h3
     :id="props.id"
-    class="text-xl font-semibold mb-4"
+    class="scroll-m-20 text-2xl font-semibold tracking-tight"
   >
     <NuxtLink
       v-if="props.id && generate"

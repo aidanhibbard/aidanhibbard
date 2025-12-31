@@ -16,7 +16,7 @@ const state = reactive<{
 
 const { data: articles } = await useAsyncData(
   route.path,
-  async () => {
+  () => {
     const q = queryCollection('articles')
       .skip(
         (state.page - 1) * state.perPage,

@@ -3,7 +3,7 @@
 
 <template>
   <ol
-    class="space-y-3 text-lg text-foreground/90 mb-6 list-decimal list-inside"
+    class="my-4 [&>li]:mt-2 list-decimal"
   >
     <slot />
   </ol>
