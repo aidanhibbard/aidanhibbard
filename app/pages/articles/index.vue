@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import ArticleCard from '~/components/articles/ArticleCard.vue'
 
-const route = useRoute()
 const state = reactive<{
   page: number
   query: string
@@ -15,7 +14,7 @@ const state = reactive<{
 })
 
 const { data: articles } = await useAsyncData(
-  route.path,
+  'articles',
   () => {
     const q = queryCollection('articles')
       .skip(

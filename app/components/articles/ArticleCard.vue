@@ -16,10 +16,6 @@ defineProps<{
 <template>
   <article
     :key="post.title"
-    :initial="{ opacity: 0, y: 20 }"
-    :while-in-view="{ opacity: 1, y: 0 }"
-    :viewport="{ once: true }"
-    :transition="{ duration: 0.5, delay: post.index ? post.index * 0.1 : undefined }"
   >
     <NuxtLink
       :to="post.stem"

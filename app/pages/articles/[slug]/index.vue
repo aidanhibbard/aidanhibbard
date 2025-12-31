@@ -72,7 +72,7 @@ const copyLink = async () => {
 
     <p
       v-if="page.description"
-      class="text-xl text-muted-foreground text-pretty leading-relaxed mb-8"
+      class="text-xl text-muted-foreground text-pretty leading-relaxed mb-4"
     >
       {{ page.description }}
     </p>
