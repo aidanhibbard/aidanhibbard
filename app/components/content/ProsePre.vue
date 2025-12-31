@@ -89,13 +89,14 @@ const onCopy = async () => {
         <span class="sr-only">Copy</span>
       </button>
 
+      <!-- Indentation has to be like this or things render weird -->
+      <!-- Touch At Your Own Risk -->
       <pre
         ref="preEl"
-        :class="[$props.class, 'overflow-x-auto']"
+        :class="[$props.class, 'overflow-x-auto', 'p-2']"
         v-bind="$attrs"
       >
-        <slot />
-      </pre>
+<slot /></pre>
     </div>
   </div>
 </template>
