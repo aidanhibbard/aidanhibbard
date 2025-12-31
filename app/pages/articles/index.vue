@@ -13,7 +13,7 @@ const state = reactive<{
   perPage: 5,
 })
 
-const { data: articles } = await useAsyncData(
+const { data } = await useAsyncData(
   'articles',
   () => {
     const q = queryCollection('articles')
@@ -51,11 +51,13 @@ const { data: articles } = await useAsyncData(
     id="articles"
     class="min-h-screen py-24 px-4 md:px-16"
   >
+    {{ data }}
     <ul class="container mx-auto max-w-5xl">
-      <li>
+      <li
+        v-for="(a, idx) in data"
+        :key="a.title"
+      >
         <ArticleCard
-          v-for="(a, idx) in articles"
-          :key="a.title"
           :post="{
             ...a,
             index: idx,
