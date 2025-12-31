@@ -36,22 +36,14 @@ const { data } = await useAsyncData(
 
     return q.all()
   },
-  {
-    watch: [
-      () => state.page,
-      () => state.query,
-      () => state.tags,
-    ],
-  },
 )
 </script>
 
 <template>
   <section
     id="articles"
-    class="min-h-screen py-24 px-4 md:px-16"
+    class="min-h-full py-24 px-4 md:px-16"
   >
-    {{ data }}
     <ul class="container mx-auto max-w-5xl">
       <li
         v-for="(a, idx) in data"

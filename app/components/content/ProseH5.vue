@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, useRuntimeConfig } from '#imports'
 import { toast } from 'vue-sonner'
 import {
   Tooltip,
@@ -13,13 +12,17 @@ const props = defineProps<{ id?: string }>()
 const { headings } = useRuntimeConfig().public.mdc
 const generate = computed(() => props.id && ((typeof headings?.anchorLinks === 'boolean' && headings?.anchorLinks === true) || (typeof headings?.anchorLinks === 'object' && headings?.anchorLinks?.h5)))
 
+const route = useRoute()
+const requestURL = useRequestURL()
+
 const copyLink = async () => {
   if (!props.id || !generate.value)
     return
   try {
-    const base = window.location.href.split('#')[0] ?? ''
-    const url = `${base}#${props.id}`
-    await navigator.clipboard.writeText(url)
+    const basePath = route.fullPath.split('#')[0] ?? route.fullPath
+    const url = new URL(basePath, requestURL.origin)
+    url.hash = props.id
+    await navigator.clipboard.writeText(url.toString())
     toast.success('Copied to clipboard')
   }
   catch {
