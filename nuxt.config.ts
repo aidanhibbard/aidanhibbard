@@ -21,7 +21,6 @@ export default defineNuxtConfig({
     'motion-v/nuxt',
     'nuxt-llms',
     'nuxt-mcp-dev',
-    'nuxt-security',
     'shadcn-nuxt',
   ],
   devtools: { enabled: true },
@@ -85,14 +84,6 @@ export default defineNuxtConfig({
   llms: {
     domain: 'aidanhibbard.dev',
     title: 'Aidan Hibbard',
-  },
-  security: {
-    headers: {
-      contentSecurityPolicy: {
-        // Allow Cloudinary-hosted images (default is only 'self' + data:)
-        'img-src': ['\'self\'', 'data:', 'https://res.cloudinary.com'],
-      },
-    },
   },
   shadcn: {
     // Both of these values have to be set alongside components.json

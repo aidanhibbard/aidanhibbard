@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ArrowRight } from 'lucide-vue-next'
 import ArticleCard from '~/components/articles/ArticleCard.vue'
+import { Empty, EmptyHeader } from '~/components/shadcn/ui/empty'
 
-const { data: articles } = await useAsyncData(
+const { data: articles, status } = await useAsyncData(
   'landing-articles',
   () => {
     return queryCollection('articles')
@@ -35,7 +36,18 @@ const { data: articles } = await useAsyncData(
           Thoughts on design, development, and technologies
         </p>
 
-        <ul class="space-y-12">
+        <Empty v-if="status === 'error'">
+          <EmptyHeader>
+            <p class="text-lg font-medium tracking-tight">
+              No articles to display
+            </p>
+          </EmptyHeader>
+        </Empty>
+
+        <ul
+          v-else
+          class="space-y-12"
+        >
           <li
             v-for="(post, idx) in articles"
             :key="post.title"
