@@ -53,6 +53,7 @@ const { data: projects } = await useAsyncData(
           >
             <NuxtLink
               :to="project.stem"
+              external
               class="block"
             >
               <ProjectsProjectCard :project="project" />
