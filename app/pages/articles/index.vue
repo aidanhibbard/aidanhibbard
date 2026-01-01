@@ -14,7 +14,7 @@ const state = reactive<{
 })
 
 const { data } = await useAsyncData(
-  `blog-articles-${state.page}-${state.query}-${state.tags}-${state.perPage}`,
+  `blog-articles`,
   () => {
     const q = queryCollection('articles')
       .skip(
@@ -29,7 +29,6 @@ const { data } = await useAsyncData(
 
     if (state.tags.length) {
       for (const tag of state.tags) {
-        // Match JSON array stringified content like ["nuxt","css"]
         q.where('tags', 'LIKE', `%"${tag}"%`)
       }
     }
@@ -41,22 +40,26 @@ const { data } = await useAsyncData(
 
 <template>
   <section
-    id="articles"
-    class="min-h-full py-24 px-4 md:px-16"
+    id="about"
+    class="min-h-screen py-24 px-4 md:px-16"
   >
-    <ul class="container mx-auto max-w-5xl">
-      <li
-        v-for="(a, idx) in data"
-        :key="a.title"
+    <div class="container mx-auto max-w-4xl">
+      <ul
+        class="container mx-auto max-w-5xl"
       >
-        <ArticleCard
-          :post="{
-            ...a,
-            index: idx,
-          }"
-          class="space-y-12"
-        />
-      </li>
-    </ul>
+        <li
+          v-for="(a, idx) in data ?? []"
+          :key="a.title"
+        >
+          <ArticleCard
+            :post="{
+              ...a,
+              index: idx,
+            }"
+            class="space-y-12"
+          />
+        </li>
+      </ul>
+    </div>
   </section>
 </template>
