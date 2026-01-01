@@ -25,7 +25,7 @@ const { data: articles, status } = await useAsyncData(
 <template>
   <section
     id="articles"
-    class="min-h-screen py-24 px-4 md:px-16"
+    class="py-24 px-4 md:px-16"
   >
     <div class="container mx-auto max-w-5xl">
       <div>
