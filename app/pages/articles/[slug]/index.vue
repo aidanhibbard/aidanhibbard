@@ -12,7 +12,7 @@ const requestUrl = useRequestURL()
 const articleEl = ref<HTMLElement | null>(null)
 
 const { data: page } = await useAsyncData(
-  route.path, () =>
+  route.path, async () =>
     queryCollection('articles').path(route.path).first(),
 )
 

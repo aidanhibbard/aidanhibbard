@@ -5,10 +5,10 @@ import { Empty, EmptyHeader } from '~/components/shadcn/ui/empty'
 
 const { data: articles, status } = await useAsyncData(
   'landing-articles',
-  () => {
+  async () => {
     return queryCollection('articles')
       .order('date', 'DESC')
-      .limit(4)
+      .limit(3)
       .select(
         'date',
         'description',
