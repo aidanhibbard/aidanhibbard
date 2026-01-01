@@ -265,6 +265,7 @@ watch(pageCount, (value) => {
                     v-for="tag in allTags"
                     :key="tag"
                     :value="tag"
+                    class="cursor-none"
                   >
                     <span class="truncate">
                       {{ tag }}
