@@ -205,7 +205,6 @@ watch(pageCount, (value) => {
     >
       <FieldGroup class="gap-4 sm:flex-row sm:items-end">
         <Field
-          class="sm:flex-1"
           :data-invalid="queryErrors.length ? true : undefined"
         >
           <FieldLabel for="articles-query">
@@ -224,7 +223,6 @@ watch(pageCount, (value) => {
         </Field>
 
         <Field
-          class="sm:flex-1"
           :data-invalid="tagsErrors.length ? true : undefined"
         >
           <FieldLabel for="articles-tags">
