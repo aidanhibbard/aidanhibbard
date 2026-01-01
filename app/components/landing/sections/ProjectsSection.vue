@@ -2,6 +2,27 @@
 import {
   ArrowRight,
 } from 'lucide-vue-next'
+import { motion } from 'motion-v'
+
+const { data: projects } = await useAsyncData(
+  'projects-landing',
+  async () => {
+    return queryCollection('projects')
+      .order('date', 'DESC')
+      .select(
+        'date',
+        'description',
+        'id',
+        'image',
+        'link',
+        'stem',
+        'tags',
+        'title',
+      )
+      .limit(4)
+      .all()
+  },
+)
 </script>
 
 <template>
@@ -18,19 +39,42 @@ import {
           How many is to many?
         </p>
 
-        <div class="space-y-12" />
+        <ul
+          v-if="projects?.length"
+          class="container mx-auto max-w-5xl grid gap-8 md:grid-cols-2"
+        >
+          <motion.li
+            v-for="(project, idx) in projects"
+            :key="project.id"
+            :initial="{ opacity: 0, y: 20 }"
+            :while-in-view="{ opacity: 1, y: 0 }"
+            :viewport="{ once: true }"
+            :transition="{ duration: 0.5, delay: idx * 0.1 }"
+          >
+            <NuxtLink
+              :to="project.stem"
+              class="block"
+            >
+              <ProjectsProjectCard :project="project" />
+            </NuxtLink>
+          </motion.li>
+        </ul>
 
-        <div
+        <motion.div
+          :initial="{ opacity: 0, y: 20 }"
+          :while-in-view="{ opacity: 1, y: 0 }"
+          :viewport="{ once: true }"
+          :transition="{ duration: 0.5, delay: 0.3 }"
           class="mt-12 flex justify-center"
         >
           <NuxtLink
             to="/projects"
             class="group inline-flex items-center gap-2 text-lg font-medium hover:text-foreground transition-colors"
           >
-            View All Projects
+            View all projects
             <ArrowRight class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </NuxtLink>
-        </div>
+        </motion.div>
       </div>
     </div>
   </section>

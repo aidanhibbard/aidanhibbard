@@ -1,0 +1,152 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="800"
+  viewBox="0 0 1200 800"
+  fill="none"
+  role="img"
+  aria-label="Abstract water artwork"
+>
+  <defs>
+    <linearGradient id="o-bg" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#06112B" />
+      <stop offset="0.45" stop-color="#041A3A" />
+      <stop offset="1" stop-color="#021226" />
+    </linearGradient>
+
+    <radialGradient id="o-glow-1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(360 220) rotate(25) scale(520 420)">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity="0.35" />
+      <stop offset="0.55" stop-color="#0EA5E9" stop-opacity="0.12" />
+      <stop offset="1" stop-color="#0EA5E9" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="o-glow-2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(860 620) rotate(-12) scale(620 520)">
+      <stop offset="0" stop-color="#34D399" stop-opacity="0.22" />
+      <stop offset="0.55" stop-color="#22D3EE" stop-opacity="0.10" />
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="o-wave" x1="120" y1="520" x2="1080" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#38BDF8" />
+      <stop offset="0.45" stop-color="#22D3EE" />
+      <stop offset="1" stop-color="#34D399" />
+    </linearGradient>
+
+    <linearGradient id="o-wave-2" x1="80" y1="600" x2="1120" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#60A5FA" />
+      <stop offset="0.5" stop-color="#22D3EE" />
+      <stop offset="1" stop-color="#A7F3D0" />
+    </linearGradient>
+
+    <filter id="o-soft" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="18" result="blur" />
+      <feColorMatrix
+        in="blur"
+        type="matrix"
+        values="
+          1 0 0 0 0
+          0 1 0 0 0
+          0 0 1 0 0
+          0 0 0 0.65 0"
+        result="glow"
+      />
+      <feMerge>
+        <feMergeNode in="glow" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="o-caustics" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="7" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+
+    <filter id="o-grain" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="matrix" values="
+        0 0 0 0 0
+        0 0 0 0 0
+        0 0 0 0 0
+        0 0 0 0.10 0
+      " />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="800" fill="url(#o-bg)" />
+  <rect width="1200" height="800" fill="url(#o-glow-1)" />
+  <rect width="1200" height="800" fill="url(#o-glow-2)" />
+
+  <!-- Caustic highlights (soft, watery shimmer) -->
+  <g filter="url(#o-soft)" opacity="0.55">
+    <path
+      d="M 0 470 C 180 420 260 520 420 470 C 580 420 660 340 820 390 C 980 440 1040 560 1200 520 L 1200 800 L 0 800 Z"
+      fill="#22D3EE"
+      opacity="0.12"
+    />
+    <path
+      d="M 0 540 C 210 500 300 610 470 560 C 640 510 720 410 900 455 C 1080 500 1110 660 1200 620 L 1200 800 L 0 800 Z"
+      fill="#34D399"
+      opacity="0.10"
+    />
+  </g>
+
+  <!-- Flowing wave lines -->
+  <g filter="url(#o-soft)" opacity="0.9">
+    <path
+      d="M 80 520 C 210 455 360 610 520 545 C 680 480 760 380 910 430 C 1030 470 1100 610 1180 570"
+      stroke="url(#o-wave)"
+      stroke-width="6"
+      stroke-linecap="round"
+      fill="none"
+      opacity="0.55"
+    />
+    <path
+      d="M 60 565 C 220 510 350 690 545 610 C 735 535 810 420 980 490 C 1100 540 1135 705 1185 655"
+      stroke="url(#o-wave-2)"
+      stroke-width="3"
+      stroke-linecap="round"
+      fill="none"
+      opacity="0.40"
+    />
+    <path
+      d="M 40 610 C 230 570 360 735 560 650 C 760 565 820 460 1010 540 C 1130 590 1155 740 1200 705"
+      stroke="url(#o-wave)"
+      stroke-width="2"
+      stroke-linecap="round"
+      fill="none"
+      opacity="0.25"
+    />
+  </g>
+
+  <!-- Droplets / bubbles -->
+  <g filter="url(#o-soft)" opacity="0.75">
+    <circle cx="220" cy="320" r="10" fill="#22D3EE" opacity="0.20" />
+    <circle cx="260" cy="280" r="6" fill="#A7F3D0" opacity="0.18" />
+    <circle cx="880" cy="260" r="8" fill="#38BDF8" opacity="0.18" />
+    <circle cx="930" cy="300" r="12" fill="#22D3EE" opacity="0.16" />
+    <circle cx="720" cy="180" r="7" fill="#34D399" opacity="0.14" />
+  </g>
+
+  <!-- Subtle distorted surface texture -->
+  <g opacity="0.18" filter="url(#o-caustics)">
+    <path
+      d="M -40 430 C 220 360 380 560 560 470 C 740 380 860 280 1040 350 C 1220 420 1280 600 1260 520"
+      stroke="#E0FBFF"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      fill="none"
+    />
+    <path
+      d="M -60 500 C 220 430 400 650 600 560 C 800 470 900 330 1080 410 C 1260 490 1300 700 1280 620"
+      stroke="#CFFAFE"
+      stroke-width="1.2"
+      stroke-linecap="round"
+      fill="none"
+    />
+  </g>
+
+  <!-- Grain -->
+  <rect width="1200" height="800" filter="url(#o-grain)" opacity="0.8" />
+</svg>
+

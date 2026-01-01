@@ -1,44 +1,80 @@
 <script setup lang="ts">
+import { ArrowUpRight } from 'lucide-vue-next'
+
+import { Badge } from '~/components/shadcn/ui/badge'
+import { Button } from '~/components/shadcn/ui/button'
+import { Card, CardContent } from '~/components/shadcn/ui/card'
+
+type Project = {
+  title: string
+  description: string
+  tags: string[]
+  image?: string | null
+}
+
+defineProps<{
+  project: Project
+}>()
 </script>
 
 <template>
-           <Card
-              className="group relative overflow-hidden rounded-3xl border-0 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+  <Card
+    class="group relative overflow-hidden rounded-xl border-0 py-0 gap-0 shadow-sm transition-all duration-300 hover:shadow-md"
+  >
+    <CardContent class="relative h-[600px] p-0">
+      <NuxtImg
+        v-if="project.image"
+        :src="project.image"
+        :alt="project.title"
+        class="size-full object-cover"
+        width="1200"
+        height="800"
+        sizes="(max-width: 768px) 100vw, 768px"
+        loading="lazy"
+        decoding="async"
+      />
+
+      <div
+        v-else
+        class="size-full bg-linear-to-br from-muted to-muted/40"
+      />
+
+      <div
+        class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity group-hover:opacity-90"
+      />
+
+      <div class="absolute inset-0 flex flex-col justify-between p-6">
+        <div class="translate-y-4 transition-all duration-300">
+          <h3 class="mb-2 font-serif text-2xl font-light">
+            {{ project.title }}
+          </h3>
+          <p class="text-sm leading-relaxed text-pretty">
+            {{ project.description }}
+          </p>
+        </div>
+
+        <div class="flex items-end justify-between gap-4">
+          <div class="flex flex-wrap gap-2">
+            <Badge
+              v-for="(tag, tagIndex) in project.tags"
+              :key="tagIndex"
+              variant="secondary"
+              class="rounded-full border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm"
             >
-              <CardContent className="relative h-[600px] p-0">
-                {/* Project Image */}
-                <img src={project.image || "/placeholder.svg"} alt={project.title} className="size-full object-cover" />
+              {{ tag }}
+            </Badge>
+          </div>
 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity group-hover:opacity-90" />
-
-                {/* Content Overlay */}
-                <div className="absolute inset-0 flex flex-col justify-between p-6">
-                  {/* Top Content - Title & Description */}
-                  <div className="translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    <h3 className="mb-2 font-serif text-2xl font-light text-white text-balance">{project.title}</h3>
-                    <p className="text-sm leading-relaxed text-white/80 text-pretty">{project.description}</p>
-                  </div>
-
-                  {/* Bottom Content - Tags & Icon */}
-                  <div className="flex items-end justify-between">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag, tagIndex) => (
-                        <Badge
-                          key={tagIndex}
-                          variant="secondary"
-                          className="rounded-full border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    <div className="flex size-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-colors group-hover:bg-white/20">
-                      <ArrowUpRight className="size-5" />
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          <Button
+            as="span"
+            variant="ghost"
+            size="icon"
+            class="size-10 rounded-full bg-white/10 text-white backdrop-blur-sm transition-colors group-hover:bg-white/20"
+          >
+            <ArrowUpRight class="size-5" />
+          </Button>
+        </div>
+      </div>
+    </CardContent>
+  </Card>
 </template>
