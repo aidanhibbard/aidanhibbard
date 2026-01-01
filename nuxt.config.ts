@@ -34,7 +34,7 @@ export default defineNuxtConfig({
       },
       meta: [
         { name: 'description', content: 'Aidan Hibbard - Senior Engineer' },
-        { property: 'og:image', content: 'https://res.cloudinary.com/dlnxtpill/image/upload/v1762317463/Screenshot_2025-11-04_at_8.35.23_PM_yo28vh.png' },
+        { property: 'og:image', content: 'https://res.cloudinary.com/dlnxtpill/image/upload/v1767259242/Screenshot_2026-01-01_at_1.20.06_AM_j4xrbp.png' },
         { property: 'og:image:alt', content: 'Site preview' },
       ],
     },
