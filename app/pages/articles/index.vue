@@ -298,7 +298,7 @@ watch(pageCount, (value) => {
     </form>
 
     <ul
-      class="container mx-auto max-w-5xl"
+      class="container mx-auto max-w-5xl flex flex-col gap-y-8"
     >
       <li
         v-for="(a, idx) in data?.items ?? []"
