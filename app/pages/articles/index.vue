@@ -10,7 +10,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '~/components/shadcn/ui/pagination'
-import { Badge } from '~/components/shadcn/ui/badge'
 import { Button } from '~/components/shadcn/ui/button'
 import {
   Combobox,
@@ -282,19 +281,6 @@ watch(pageCount, (value) => {
           <FieldError :errors="tagsErrors" />
         </Field>
       </FieldGroup>
-
-      <div
-        v-if="state.tags.length"
-        class="mt-3 flex flex-wrap gap-2"
-      >
-        <Badge
-          v-for="tag in state.tags"
-          :key="tag"
-          variant="secondary"
-        >
-          {{ tag }}
-        </Badge>
-      </div>
     </form>
 
     <ul
