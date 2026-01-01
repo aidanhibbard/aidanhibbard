@@ -7,7 +7,7 @@ import 'vue-sonner/style.css'
 </script>
 
 <template>
-  <div>
+  <div id="app-container">
     <NuxtLink
       href="#main-content"
       class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-background focus:px-3 focus:py-2 focus:text-foreground focus:outline focus:outline-2 focus:outline-primary"

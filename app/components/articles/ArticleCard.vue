@@ -20,7 +20,6 @@ defineProps<{
     <NuxtLink
       :to="post.stem"
       class="block space-y-4"
-      external
     >
       <div class="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
         <time>{{ formatISO(post.date, { representation: 'date' }) }}</time>

@@ -1,3 +1,11 @@
+html, body, #__nuxt {
+  height: 100%;
+}
+
+#app-container {
+  min-height: 100%;
+}
+
 .page-enter-active,
 .page-leave-active {
   transition: opacity 0.3s ease;

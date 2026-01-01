@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { motion } from 'motion-v'
+import {
+  ArrowRight,
+} from 'lucide-vue-next'
+</script>
+
 <template>
   <div class="container mx-auto px-4 py-24 max-w-3xl">
     <ProseH1>About</ProseH1>
@@ -45,5 +52,20 @@
     <ProseP>
       Since then I have had an absolute pleasure working on unique, and intricate projects as well as meting some of the best developers.
     </ProseP>
+    <motion.div
+      :initial="{ opacity: 0, y: 20 }"
+      :while-in-view="{ opacity: 1, y: 0 }"
+      :viewport="{ once: true }"
+      :transition="{ duration: 0.5, delay: 0.3 }"
+      class="my-8 flex justify-center"
+    >
+      <NuxtLink
+        to="/resume"
+        class="group inline-flex items-center gap-2 text-lg font-medium hover:text-foreground transition-colors"
+      >
+        View my full experience
+        <ArrowRight class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+      </NuxtLink>
+    </motion.div>
   </div>
 </template>
