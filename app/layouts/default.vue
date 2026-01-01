@@ -18,7 +18,7 @@ import 'vue-sonner/style.css'
     <Toaster />
     <NavigationHeaderAppHeader />
     <!-- This has to be below the header -->
-    <CustomCursor v-if="$device.isDesktopOrTablet" />
+    <CustomCursor v-if="$device.isDesktop" />
     <main
       id="main-content"
       tabindex="-1"
