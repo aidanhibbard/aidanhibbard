@@ -3,9 +3,9 @@ import { ArrowRight } from 'lucide-vue-next'
 import ArticleCard from '~/components/articles/ArticleCard.vue'
 
 const { data: articles } = await useAsyncData(
-  'articles',
-  () =>
-    queryCollection('articles')
+  'landing-articles',
+  () => {
+    return queryCollection('articles')
       .order('date', 'DESC')
       .limit(4)
       .select(
@@ -16,7 +16,8 @@ const { data: articles } = await useAsyncData(
         'stem',
         'title',
       )
-      .all(),
+      .all()
+  },
 )
 </script>
 
@@ -34,13 +35,16 @@ const { data: articles } = await useAsyncData(
           Thoughts on design, development, and technologies
         </p>
 
-        <div class="space-y-12">
-          <ArticleCard
+        <ul class="space-y-12">
+          <li
             v-for="(post, idx) in articles"
             :key="post.title"
-            :post="{ ...post, index: idx }"
-          />
-        </div>
+          >
+            <ArticleCard
+              :post="{ ...post, index: idx }"
+            />
+          </li>
+        </ul>
 
         <div
           class="mt-12 flex justify-center"

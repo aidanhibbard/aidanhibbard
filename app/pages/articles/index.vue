@@ -14,7 +14,7 @@ const state = reactive<{
 })
 
 const { data } = await useAsyncData(
-  'articles',
+  `blog-articles-${state.page}-${state.query}-${state.tags}-${state.perPage}`,
   () => {
     const q = queryCollection('articles')
       .skip(

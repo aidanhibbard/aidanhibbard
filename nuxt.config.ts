@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     // Third-party
     'motion-v/nuxt',
     'nuxt-llms',
-    'nuxt-mcp',
+    'nuxt-mcp-dev',
     'nuxt-security',
     'shadcn-nuxt',
   ],

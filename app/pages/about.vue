@@ -6,7 +6,9 @@ import {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 py-24 max-w-3xl">
+  <div
+    class="container mx-auto px-4 py-24 max-w-3xl"
+  >
     <ProseH1>About</ProseH1>
     <ProseP>
       Born, and raised in the beautiful mountain town of Bend, Oregon I've been incredibly fortunate to live in a tech focused community that is passionate about the outdoors.
