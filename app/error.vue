@@ -18,7 +18,7 @@ const handleError = async () => await clearError()
 </script>
 
 <template>
-  <LayoutPageContainer>
+  <LayoutPageContainer id="error">
     <Empty>
       <EmptyHeader>
         <EmptyMedia variant="icon">

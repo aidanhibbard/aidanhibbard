@@ -76,10 +76,8 @@ const tagsButtonLabel = computed(() => {
 
 const articlesFilterSchema = z.object({
   query: z.string()
-    .max(120, 'Query must be 120 characters or fewer')
     .transform(v => v.trim()),
   tags: z.array(z.string())
-    .max(20, 'Select up to 20 tags')
     .transform(tags => [...new Set(tags)]),
 })
   .superRefine((value, ctx) => {
