@@ -28,7 +28,7 @@ export default defineNuxtConfig({
       name: 'page',
     },
   },
-    css: [
+  css: [
     '~/assets/styles/css/main.css',
   ],
 })
