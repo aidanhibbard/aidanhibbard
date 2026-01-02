@@ -44,7 +44,7 @@ const handleError = async () => await clearError()
       >
         <NuxtLink
           external
-          to="https://github.com/aidanHibbard/aidanhibbard/issues"
+          to="https://github.com/aidanhibbard/aidanhibbard/issues"
         >
           Open an issue <ArrowUpRightIcon />
         </NuxtLink>
