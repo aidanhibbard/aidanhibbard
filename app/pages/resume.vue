@@ -84,6 +84,5 @@ const { contact, professionalSummary, technicalSummary, experience } = useResume
         </div>
       </div>
     </div>
-    </div>
   </LayoutPageContainer>
 </template>
