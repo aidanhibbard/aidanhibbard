@@ -1,6 +1,5 @@
 <script setup lang="ts">
 // import { Minus } from 'lucide-vue-next'
-import { motion } from 'motion-v'
 </script>
 
 <template>
@@ -9,12 +8,7 @@ import { motion } from 'motion-v'
     class="min-h-screen flex flex-col md:flex-row items-end md:items-center justify-center md:justify-between gap-8 md:gap-16 px-4 md:px-16 pb-32 md:pb-0 relative"
   >
     <LandingAnimationsHeroBackground />
-    <motion.div
-      :initial="{ opacity: 0, y: 30 }"
-      :animate="{ opacity: 1, y: 0 }"
-      :transition="{ duration: 0.8, delay: 0.2 }"
-      class="md:w-1/2 max-w-2xl text-center md:text-left"
-    >
+    <div class="md:w-1/2 max-w-2xl text-center md:text-left">
       <h2 class="font-serif text-5xl md:text-7xl font-bold mb-6 text-balance">
         Senior Software <span class="block md:inline">Engineer</span>
       </h2>
@@ -33,7 +27,7 @@ import { motion } from 'motion-v'
           Based in the Pacific Time Zone
         </div>
       </div> -->
-    </motion.div>
+    </div>
 
     <div class="absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-2">
       <NuxtLink

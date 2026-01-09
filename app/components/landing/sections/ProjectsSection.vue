@@ -2,7 +2,6 @@
 import {
   ArrowRight,
 } from 'lucide-vue-next'
-import { motion } from 'motion-v'
 
 const { data: projects } = await useAsyncData(
   'projects-landing',
@@ -43,13 +42,9 @@ const { data: projects } = await useAsyncData(
           v-if="projects?.length"
           class="container mx-auto max-w-5xl grid gap-8 md:grid-cols-2"
         >
-          <motion.li
-            v-for="(project, idx) in projects"
+          <li
+            v-for="project in projects"
             :key="project.id"
-            :initial="{ opacity: 0, y: 20 }"
-            :while-in-view="{ opacity: 1, y: 0 }"
-            :viewport="{ once: true }"
-            :transition="{ duration: 0.5, delay: idx * 0.1 }"
           >
             <NuxtLink
               :to="project.stem"
@@ -58,16 +53,10 @@ const { data: projects } = await useAsyncData(
             >
               <ProjectsProjectCard :project="project" />
             </NuxtLink>
-          </motion.li>
+          </li>
         </ul>
 
-        <motion.div
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :viewport="{ once: true }"
-          :transition="{ duration: 0.5, delay: 0.3 }"
-          class="mt-12 flex justify-center"
-        >
+        <div class="mt-12 flex justify-center">
           <NuxtLink
             to="/projects"
             class="group inline-flex items-center gap-2 text-lg font-medium hover:text-foreground transition-colors"
@@ -75,7 +64,7 @@ const { data: projects } = await useAsyncData(
             View all projects
             <ArrowRight class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </NuxtLink>
-        </motion.div>
+        </div>
       </div>
     </div>
   </section>

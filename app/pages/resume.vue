@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { motion } from 'motion-v'
 import { Separator } from '~/components/shadcn/ui/separator'
 
 const { contact, professionalSummary, technicalSummary, experience } = useResume()
@@ -7,13 +6,7 @@ const { contact, professionalSummary, technicalSummary, experience } = useResume
 
 <template>
   <LayoutPageContainer id="resume">
-    <motion.div
-      :initial="{ opacity: 0, y: 30 }"
-      :while-in-view="{ opacity: 1, y: 0 }"
-      :viewport="{ once: true }"
-      :transition="{ duration: 0.6 }"
-    >
-      <div class="space-y-12">
+    <div class="space-y-12">
         <div class="space-y-3">
           <h1 class="font-serif text-4xl md:text-5xl font-bold">
             {{ contact.name }}
@@ -91,6 +84,6 @@ const { contact, professionalSummary, technicalSummary, experience } = useResume
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   </LayoutPageContainer>
 </template>

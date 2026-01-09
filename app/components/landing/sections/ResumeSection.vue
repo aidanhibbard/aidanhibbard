@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { motion } from 'motion-v'
 import { ArrowRight } from 'lucide-vue-next'
 
 const { landingItems } = useResume()
@@ -17,27 +16,17 @@ const { landingItems } = useResume()
 
       <div class="space-y-12">
         <ul class="flex flex-col gap-y-8">
-          <motion.li
-            v-for="(item, idx) in landingItems"
+          <li
+            v-for="item in landingItems"
             :key="item.company"
-            :initial="{ opacity: 0, y: 20 }"
-            :while-in-view="{ opacity: 1, y: 0 }"
-            :viewport="{ once: true }"
-            :transition="{ duration: 0.5, delay: idx * 0.1 }"
           >
             <ResumeExpCard
               :item
             />
-          </motion.li>
+          </li>
         </ul>
 
-        <motion.div
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :viewport="{ once: true }"
-          :transition="{ duration: 0.5, delay: 0.3 }"
-          class="mt-12 flex justify-center"
-        >
+        <div class="mt-12 flex justify-center">
           <NuxtLink
             to="/resume"
             class="group inline-flex items-center gap-2 text-lg font-medium hover:text-foreground transition-colors"
@@ -45,7 +34,7 @@ const { landingItems } = useResume()
             View my full experience
             <ArrowRight class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </NuxtLink>
-        </motion.div>
+        </div>
       </div>
     </div>
   </section>

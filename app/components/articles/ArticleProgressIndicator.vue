@@ -190,6 +190,7 @@ watch(
       })
     }
   },
+  { immediate: true },
 )
 
 onBeforeUnmount(() => {

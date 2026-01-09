@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { motion } from 'motion-v'
 import ProjectCard from '~/components/projects/ProjectCard.vue'
 
 const { data: projects } = await useAsyncData(
@@ -28,24 +27,18 @@ const { data: projects } = await useAsyncData(
       v-if="projects?.length"
       class="container mx-auto max-w-5xl grid gap-8 md:grid-cols-2"
     >
-      <ClientOnly>
-        <motion.li
-          v-for="(project, idx) in projects"
-          :key="project.id"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :viewport="{ once: true }"
-          :transition="{ duration: 0.5, delay: idx * 0.1 }"
+      <li
+        v-for="project in projects"
+        :key="project.id"
+      >
+        <NuxtLink
+          :href="project.link"
+          external
+          class="block"
         >
-          <NuxtLink
-            :href="project.link"
-            external
-            class="block"
-          >
-            <ProjectCard :project="project" />
-          </NuxtLink>
-        </motion.li>
-      </ClientOnly>
+          <ProjectCard :project="project" />
+        </NuxtLink>
+      </li>
     </ul>
   </LayoutPageContainer>
 </template>
