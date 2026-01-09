@@ -283,14 +283,11 @@ watch(pageCount, (value) => {
       class="container mx-auto max-w-5xl flex flex-col gap-y-8"
     >
       <li
-        v-for="(a, idx) in data?.items ?? []"
-        :key="a.id"
+        v-for="post in data?.items ?? []"
+        :key="post.id"
       >
         <ArticleCard
-          :post="{
-            ...a,
-            index: idx,
-          }"
+          :post
           class="space-y-12"
         />
       </li>

@@ -49,11 +49,11 @@ const { data: articles, status } = await useAsyncData(
           class="space-y-12"
         >
           <li
-            v-for="(post, idx) in articles"
+            v-for="post in articles"
             :key="post.title"
           >
             <ArticleCard
-              :post="{ ...post, index: idx }"
+              :post
             />
           </li>
         </ul>
