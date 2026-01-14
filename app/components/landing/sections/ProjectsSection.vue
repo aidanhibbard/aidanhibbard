@@ -35,7 +35,7 @@ const { data: projects } = await useAsyncData(
           Side Projects
         </h2>
         <p class="text-muted-foreground text-lg mb-12">
-          How many is to many?
+          How many is too many?
         </p>
 
         <ul
