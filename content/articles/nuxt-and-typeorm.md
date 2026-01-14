@@ -7,7 +7,7 @@ description: 'Absolutely worth the trouble'
 
 # Setting Up TypeORM with Nuxt 4: A Complete Guide
 
-Coming from a background in MVC frameworks, I absolutely love TypeORM. Being able to create type-safe models (entities) with a intuitive developer expierence is fantastic. Not to mention they received new sponsorship, are lining up new maintainers, and seem to be making the most robust ORM out there.
+Coming from a background in MVC frameworks, I absolutely love TypeORM. Being able to create type-safe models (entities) with an intuitive developer experience is fantastic. Not to mention they received new sponsorship, are lining up new maintainers, and seem to be making the most robust ORM out there.
 
 Getting it setup with Nuxt, _and_ strict type-checking though was a bit of a headache...
 
@@ -35,7 +35,7 @@ These require separate fixes because they happen at different stages of the buil
 
 So what does this mean?
 
-Well if you though you could just update your nuxt apps server side `tsconfig.json` to support decorators, and emit metadata then I've got bad news for you...
+Well if you thought you could just update your nuxt apps server side `tsconfig.json` to support decorators, and emit metadata then I've got bad news for you...
 
 ## Step 1: Configure Nitro's esbuild (Runtime Compilation)
 
@@ -79,7 +79,7 @@ Nuxt 4 uses project references with multiple tsconfig files. The root `tsconfig.
 }
 ```
 
-**Why're we duplicating the effort here?**
+**Why are we duplicating the effort here?**
 
 - composite - [Required for TypeScript project references](https://www.typescriptlang.org/tsconfig/composite.html)
 - experimentalDecorators - Enables the `@decorator` syntax
@@ -122,9 +122,9 @@ export default defineNuxtConfig({
 })
 ```
 
-Yes, this duplicates the settings from server/tsconfig.json. Both are needed because nuxi typecheck runs vue-tsc in a way that doesn't always pick up the server tsconfig overrides.
+Yes, this duplicates the settings from server/tsconfig.json. Both are needed because nuxi typecheck runs vue-tsc in a way that doesn't pick up the server tsconfig overrides.
 
-## Step 4: Gitignore the Build Cache
+## Step 5: Gitignore the Build Cache
 
 The `composite: true` setting generates a build cache file in your server directory so we need to add it to the `.gitignore`
 
