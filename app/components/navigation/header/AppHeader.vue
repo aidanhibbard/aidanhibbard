@@ -1,10 +1,18 @@
 <script setup lang="ts">
-import { Moon, Sun, Menu, Github, Home, User, Newspaper, FileText, Linkedin } from 'lucide-vue-next'
-import { Sheet, SheetTrigger, SheetContent, SheetClose } from '~/components/shadcn/ui/sheet'
+import { Moon, Sun, Menu, Github, Home, User, Newspaper, FileText, Linkedin, FolderKanban } from 'lucide-vue-next'
+import { Sheet, SheetTrigger, SheetContent, SheetClose, SheetHeader, SheetTitle, SheetDescription } from '~/components/shadcn/ui/sheet'
 import { Button } from '~/components/shadcn/ui/button'
-import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem } from '~/components/shadcn/ui/sidebar'
+import { Separator } from '~/components/shadcn/ui/separator'
 
 const { theme, toggleTheme } = useTheme()
+
+const navItems = [
+  { name: 'Home', href: '/', icon: Home },
+  { name: 'About', href: '/about', icon: User },
+  { name: 'Articles', href: '/articles', icon: Newspaper },
+  { name: 'Projects', href: '/projects', icon: FolderKanban },
+  { name: 'Resume', href: '/resume', icon: FileText },
+]
 
 const links = [
   { name: 'About', href: '/about' },
@@ -30,58 +38,37 @@ const links = [
           >
             <Menu class="h-4 w-4" />
           </SheetTrigger>
-          <SheetContent side="left">
-            <div class="mt-4">
-              <SidebarGroup>
-                <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-                <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SheetClose as-child>
-                      <NuxtLink
-                        to="/"
-                        class="flex h-8 w-full items-center gap-2 overflow-hidden rounded-md p-2 text-sm outline-hidden transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 ring-sidebar-ring [&>svg]:size-4 [&>svg]:shrink-0"
-                      >
-                        <Home />
-                        <span>Home</span>
-                      </NuxtLink>
-                    </SheetClose>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SheetClose as-child>
-                      <NuxtLink
-                        to="/about"
-                        class="flex h-8 w-full items-center gap-2 overflow-hidden rounded-md p-2 text-sm outline-hidden transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 ring-sidebar-ring [&>svg]:size-4 [&>svg]:shrink-0"
-                      >
-                        <User />
-                        <span>About</span>
-                      </NuxtLink>
-                    </SheetClose>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SheetClose as-child>
-                      <NuxtLink
-                        to="/articles"
-                        class="flex h-8 w-full items-center gap-2 overflow-hidden rounded-md p-2 text-sm outline-hidden transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 ring-sidebar-ring [&>svg]:size-4 [&>svg]:shrink-0"
-                      >
-                        <Newspaper />
-                        <span>Articles</span>
-                      </NuxtLink>
-                    </SheetClose>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SheetClose as-child>
-                      <NuxtLink
-                        to="/resume"
-                        class="flex h-8 w-full items-center gap-2 overflow-hidden rounded-md p-2 text-sm outline-hidden transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 ring-sidebar-ring [&>svg]:size-4 [&>svg]:shrink-0"
-                      >
-                        <FileText />
-                        <span>Resume</span>
-                      </NuxtLink>
-                    </SheetClose>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarGroup>
-            </div>
+          <SheetContent
+            side="left"
+            class="w-72 p-0 [&>button]:hidden"
+          >
+            <SheetHeader class="px-5 py-8">
+              <SheetTitle class="font-brand text-3xl font-normal tracking-tight text-center">
+                Aidan Hibbard
+              </SheetTitle>
+              <SheetDescription class="sr-only">
+                Site navigation
+              </SheetDescription>
+            </SheetHeader>
+            <Separator class="bg-border/50" />
+            <nav class="flex flex-col gap-1 p-4">
+              <SheetClose
+                v-for="item in navItems"
+                :key="item.name"
+                as-child
+              >
+                <NuxtLink
+                  :to="item.href"
+                  class="flex items-center gap-3 rounded-lg px-3 py-3 text-base font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                >
+                  <component
+                    :is="item.icon"
+                    class="size-5"
+                  />
+                  <span>{{ item.name }}</span>
+                </NuxtLink>
+              </SheetClose>
+            </nav>
           </SheetContent>
         </Sheet>
         <NuxtLink
