@@ -131,3 +131,5 @@ The `composite: true` setting generates a build cache file in your server direct
 ```
 *.tsbuildinfo
 ```
+
+That's it, now you can follow the rest of the TypeORM setup instructions.
