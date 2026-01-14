@@ -126,7 +126,7 @@ Yes, this duplicates the settings from server/tsconfig.json. Both are needed bec
 
 ## Step 4: Gitignore the Build Cache
 
-The `composite: true` setting generates a build cache file in your server directory so we need to add it to the `.gitignore`.
+The `composite: true` setting generates a build cache file in your server directory so we need to add it to the `.gitignore`
 
 ```
 *.tsbuildinfo
