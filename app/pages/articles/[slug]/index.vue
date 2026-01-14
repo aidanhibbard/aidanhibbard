@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ArticleProgressIndicator from '~/components/articles/ArticleProgressIndicator.vue'
 import { Button } from '~/components/shadcn/ui/button'
 import { Badge } from '~/components/shadcn/ui/badge'
 import { Separator } from '~/components/shadcn/ui/separator'
@@ -8,8 +7,6 @@ import { toast } from 'vue-sonner'
 
 const route = useRoute()
 const requestUrl = useRequestURL()
-
-const articleEl = ref<HTMLElement | null>(null)
 
 const { data: page } = await useAsyncData(
   route.path, async () =>
@@ -69,8 +66,6 @@ const copyLink = async () => {
     v-if="page"
     class="relative"
   >
-    <ArticleProgressIndicator :target="articleEl" />
-
     <div class="container mx-auto px-4 py-24 max-w-3xl">
       <ProseH1>
         {{ page.title }}
@@ -138,7 +133,6 @@ const copyLink = async () => {
       <Separator class="mb-12" />
 
       <article
-        ref="articleEl"
         class="prose prose-neutral dark:prose-invert max-w-none break-normal hyphens-none whitespace-normal prose-p:break-normal prose-a:wrap-break-word prose-pre:overflow-x-auto prose-code:overflow-x-auto prose-img:rounded-xl"
       >
         <ContentRenderer
