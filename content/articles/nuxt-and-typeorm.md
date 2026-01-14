@@ -39,7 +39,9 @@ Well if you though you could just update your nuxt apps server side `tsconfig.js
 
 ## Step 1: Configure Nitro's esbuild (Runtime Compilation)
 
-Nitro uses esbuild to compile server code. By default, esbuild strips decorators. We need to tell it to process them:
+Nitro uses esbuild to compile server code. By default, esbuild strips decorators.
+
+So this fix comes from Daniel Roe [on a related GitHub Issue](https://github.com/nuxt/nuxt/issues/21756#issuecomment-1606150617).
 
 ```typescript
 // nuxt.config.ts
@@ -61,7 +63,7 @@ export default defineNuxtConfig({
 
 **Why this works:** The `tsconfigRaw` option passes compiler settings directly to esbuild's TypeScript transform, enabling decorator support during the build.
 
-## Step 3: Configure TypeScript for Type Checking
+## Step 2: Configure the server 
 
 Nuxt 4 uses project references with multiple tsconfig files. The root `tsconfig.json` references generated configs in `.nuxt/`. For decorator type-checking to work, we need to:
 

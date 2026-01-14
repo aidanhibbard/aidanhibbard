@@ -4,11 +4,23 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   modules: [
     // Nuxt
-    '@nuxt/content', '@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxt/image', '@nuxt/scripts', '@nuxt/test-utils',
+    '@nuxt/content',
+    '@nuxtjs/color-mode',
+    '@nuxt/eslint',
+    '@nuxt/fonts',
+    '@nuxt/icon',
+    '@nuxt/image',
+    '@nuxt/scripts',
+    '@nuxt/test-utils',
     // Nuxt community
-    '@nuxtjs/device', '@nuxtjs/google-fonts', '@nuxtjs/seo',
+    '@nuxtjs/device',
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/seo',
     // Third-party
-    'motion-v/nuxt', 'nuxt-llms', 'nuxt-mcp-dev', 'shadcn-nuxt', '@nuxtjs/color-mode',
+    'motion-v/nuxt',
+    'nuxt-llms',
+    'nuxt-mcp-dev',
+    'shadcn-nuxt',
   ],
   devtools: { enabled: true },
   app: {
@@ -26,10 +38,6 @@ export default defineNuxtConfig({
         { property: 'og:logo', content: '' },
       ],
     },
-    // https://www.shadcn-vue.com/docs/dark-mode/nuxt
-    colorMode: {
-      classSuffix: '',
-    },
     pageTransition: {
       mode: 'out-in',
       name: 'page',
@@ -39,6 +47,10 @@ export default defineNuxtConfig({
     '~/assets/styles/css/tailwind.css',
     '~/assets/styles/css/main.css',
   ],
+  // https://www.shadcn-vue.com/docs/dark-mode/nuxt
+  colorMode: {
+    classSuffix: '',
+  },
   compatibilityDate: '2025-10-26',
   vite: {
     plugins: [
