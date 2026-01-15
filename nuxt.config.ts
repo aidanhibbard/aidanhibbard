@@ -80,6 +80,13 @@ export default defineNuxtConfig({
     domain: 'aidanhibbard.dev',
     title: 'Aidan Hibbard',
   },
+  scripts: {
+    registry: {
+      googleAnalytics: {
+        id: process.env.GOOGLE_ANALYTICS_ID,
+      },
+    },
+  },
   shadcn: {
     // Both of these values have to be set alongside components.json
     // Or the console starts throwing warnings for duplicate components
