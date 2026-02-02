@@ -21,15 +21,14 @@ defineProps<{
 
 <template>
   <NuxtLink
-    :to="project.link"
-    external
-    class="block"
+    :to="project.stem"
+    class="block h-full"
   >
-    <Card class="transition-colors hover:bg-accent/30">
+    <Card class="h-full flex flex-col transition-colors hover:bg-accent/30">
       <CardHeader>
         <CardTitle>{{ project.title }}</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent class="flex-1">
         <CardDescription>{{ project.description }}</CardDescription>
       </CardContent>
       <CardFooter class="flex justify-between">

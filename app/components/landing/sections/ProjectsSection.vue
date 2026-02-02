@@ -46,13 +46,7 @@ const { data: projects } = await useAsyncData(
             v-for="project in projects"
             :key="project.id"
           >
-            <NuxtLink
-              :to="project.stem"
-              external
-              class="block"
-            >
-              <ProjectsProjectCard :project="project" />
-            </NuxtLink>
+            <ProjectsProjectCard :project="project" />
           </li>
         </ul>
 
