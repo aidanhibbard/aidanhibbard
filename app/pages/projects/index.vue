@@ -22,6 +22,15 @@ const { data: projects } = await useAsyncData(
 
 <template>
   <LayoutPageContainer id="projects">
+    <div class="container mx-auto max-w-5xl">
+      <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">
+        Side Projects
+      </h2>
+      <p class="text-muted-foreground text-lg mb-12">
+        How many is too many?
+      </p>
+    </div>
+
     <ul
       v-if="projects?.length"
       class="container mx-auto max-w-5xl grid gap-8 md:grid-cols-2"
