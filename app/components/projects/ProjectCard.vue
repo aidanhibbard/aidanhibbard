@@ -21,7 +21,7 @@ defineProps<{
 
 <template>
   <NuxtLink
-    :to="project.stem"
+    :to="project.link"
     class="block h-full"
   >
     <Card class="h-full flex flex-col transition-colors hover:bg-accent/30">

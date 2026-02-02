@@ -12,7 +12,6 @@ const { data: projects } = await useAsyncData(
         'date',
         'description',
         'id',
-        'image',
         'link',
         'stem',
         'tags',
