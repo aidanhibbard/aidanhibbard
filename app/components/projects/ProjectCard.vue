@@ -37,7 +37,7 @@ defineProps<{
             v-for="(tag, tagIndex) in project.tags"
             :key="tagIndex"
             variant="secondary"
-            class="rounded-full border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm"
+            class="text-xs"
           >
             {{ tag }}
           </Badge>
