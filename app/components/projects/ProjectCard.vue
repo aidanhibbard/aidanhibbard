@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type { ProjectsCollectionItem } from '@nuxt/content'
+import { ArrowRight } from 'lucide-vue-next'
 
 import { Badge } from '~/components/shadcn/ui/badge'
+import { Button } from '~/components/shadcn/ui/button'
 
 import {
   Card,
@@ -18,24 +20,37 @@ defineProps<{
 </script>
 
 <template>
-  <Card>
-    <CardHeader>
-      <CardTitle>{{ project.title }}</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <CardDescription>{{ project.description }}</CardDescription>
-    </CardContent>
-    <CardFooter>
-      <div class="flex flex-wrap gap-x-2">
-        <Badge
-          v-for="(tag, tagIndex) in project.tags"
-          :key="tagIndex"
-          variant="secondary"
-          class="rounded-full border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm"
+  <NuxtLink
+    :to="project.link"
+    external
+    class="block"
+  >
+    <Card class="transition-colors hover:bg-accent/30">
+      <CardHeader>
+        <CardTitle>{{ project.title }}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <CardDescription>{{ project.description }}</CardDescription>
+      </CardContent>
+      <CardFooter class="flex justify-between">
+        <div class="flex flex-wrap gap-x-2">
+          <Badge
+            v-for="(tag, tagIndex) in project.tags"
+            :key="tagIndex"
+            variant="secondary"
+            class="rounded-full border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm"
+          >
+            {{ tag }}
+          </Badge>
+        </div>
+        <Button
+          as="span"
+          variant="ghost"
+          size="icon"
         >
-          {{ tag }}
-        </Badge>
-      </div>
-    </CardFooter>
-  </Card>
+          <ArrowRight class="size-4" />
+        </Button>
+      </CardFooter>
+    </Card>
+  </NuxtLink>
 </template>
