@@ -51,6 +51,9 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
+  future: {
+    compatibilityVersion: 5,
+  },
   compatibilityDate: '2025-10-26',
   vite: {
     plugins: [
