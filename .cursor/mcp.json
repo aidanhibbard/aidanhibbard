@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "shadcnVue": {
+    "shadcn-vue": {
       "command": "npx",
       "args": [
         "shadcn-vue@latest",
@@ -9,9 +9,6 @@
     },
     "nuxt-docs": {
       "url": "https://nuxt.com/mcp"
-    },
-    "nuxt": {
-      "url": "http://localhost:3000/__mcp/sse"
     }
   }
 }

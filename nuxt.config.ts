@@ -3,24 +3,14 @@ import tailwindcss from '@tailwindcss/vite'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-    // Nuxt
     '@nuxt/content',
-    '@nuxtjs/color-mode',
+    'nuxt-studio',
     '@nuxt/eslint',
-    '@nuxt/fonts',
-    '@nuxt/icon',
-    '@nuxt/image',
-    '@nuxt/scripts',
-    '@nuxt/test-utils',
-    // Nuxt community
-    '@nuxtjs/device',
-    '@nuxtjs/google-fonts',
-    '@nuxtjs/seo',
-    // Third-party
-    'motion-v/nuxt',
-    'nuxt-llms',
-    'nuxt-mcp-dev',
+    '@nuxtjs/color-mode',
     'shadcn-nuxt',
+    '@nuxt/icon',
+    '@nuxtjs/seo',
+    'nuxt-ai-ready',
   ],
   devtools: { enabled: true },
   app: {
@@ -31,12 +21,6 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
-      meta: [
-        { name: 'description', content: 'Aidan Hibbard - Senior Engineer' },
-        { property: 'og:image', content: 'https://res.cloudinary.com/dlnxtpill/image/upload/v1767259242/Screenshot_2026-01-01_at_1.20.06_AM_j4xrbp.png' },
-        { property: 'og:image:alt', content: 'Site preview' },
-        { property: 'og:logo', content: '' },
-      ],
     },
     pageTransition: {
       mode: 'out-in',
@@ -44,25 +28,45 @@ export default defineNuxtConfig({
     },
   },
   css: [
-    '~/assets/styles/css/tailwind.css',
-    '~/assets/styles/css/main.css',
+    './app/assets/css/tailwind.css',
+    '~/assets/css/main.css',
   ],
-  // https://www.shadcn-vue.com/docs/dark-mode/nuxt
+  // // https://www.shadcn-vue.com/docs/dark-mode/nuxt
   colorMode: {
     classSuffix: '',
   },
+  // https://github.com/unovue/shadcn-vue/issues/763#issuecomment-3893652866
+  ignore: ['app/components/shadcn/ui/**'],
   future: {
     compatibilityVersion: 5,
   },
-  compatibilityDate: '2025-10-26',
+  compatibilityDate: '2026-05-14',
   vite: {
     plugins: [
       tailwindcss(),
     ],
+    optimizeDeps: {
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        '@vueuse/core',
+        'class-variance-authority',
+        'clsx',
+        'reka-ui',
+        'tailwind-merge',
+        'vue-sonner',
+      ],
+    },
   },
   typescript: {
     strict: true,
     typeCheck: true,
+    tsConfig: {
+      exclude: [
+        // Nuxt writes this into .nuxt/tsconfig.*.json (cwd .nuxt/), so ../app/… not ./app/…
+        '../app/components/shadcn/ui/**',
+      ],
+    },
   },
   eslint: {
     config: {
@@ -71,24 +75,6 @@ export default defineNuxtConfig({
       },
     },
     checker: true,
-  },
-  googleFonts: {
-    families: {
-      'Dancing Script': [400, 600, 700],
-    },
-    display: 'swap',
-    preconnect: true,
-  },
-  llms: {
-    domain: 'aidanhibbard.dev',
-    title: 'Aidan Hibbard',
-  },
-  scripts: {
-    registry: {
-      googleAnalytics: {
-        id: process.env.GOOGLE_ANALYTICS_ID,
-      },
-    },
   },
   shadcn: {
     // Both of these values have to be set alongside components.json

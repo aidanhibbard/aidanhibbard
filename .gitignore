@@ -23,6 +23,7 @@ logs
 .env.*
 !.env.example
 
-.eslintcache
+pnpm-lock.yaml
 
-.npm-cache
+# Skilld references (recreated by `skilld install`)
+.skilld
