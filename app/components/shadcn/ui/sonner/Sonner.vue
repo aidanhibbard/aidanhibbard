@@ -13,23 +13,33 @@ import { Toaster as Sonner } from 'vue-sonner'
 import { cn } from '@/lib/utils'
 
 const props = defineProps<ToasterProps>()
+
+const forwarded = computed(() => {
+  const { class: className, toastOptions, ...rest } = props
+
+  return {
+    ...rest,
+    class: cn('toaster group', className),
+    toastOptions: {
+      ...toastOptions,
+      classes: {
+        ...toastOptions?.classes,
+        toast: cn('rounded-2xl', toastOptions?.classes?.toast),
+      },
+    },
+  }
+})
 </script>
 
 <template>
   <Sonner
-    :class="cn('toaster group', props.class)"
     :style="{
       '--normal-bg': 'var(--popover)',
       '--normal-text': 'var(--popover-foreground)',
       '--normal-border': 'var(--border)',
       '--border-radius': 'var(--radius)',
     }"
-    :toast-options="{
-      classes: {
-        toast: 'rounded-2xl',
-      },
-    }"
-    v-bind="props"
+    v-bind="forwarded"
   >
     <template #success-icon>
       <CircleCheckIcon class="size-4" />
