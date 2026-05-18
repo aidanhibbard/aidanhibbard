@@ -1,5 +1,5 @@
 <template>
-  <div id="app-container">
+  <div>
     <main
       tabindex="-1"
     >
