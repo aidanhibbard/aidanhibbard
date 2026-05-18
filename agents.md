@@ -1,8 +1,34 @@
 # Conventions
 
-## Component Names
+## Components (auto-import)
 
-- First-party Vue component names must be one or two words only. Avoid three-or-more-word component names such as `CreateTeamModal`; prefer a shorter name such as `TeamModal`.
+Nuxt auto-imports Vue components from `app/components/` (see [Nuxt components](https://nuxt.com/docs/4.x/directory-structure/app/components)). Do not add manual `import` statements for first-party components used statically in templates unless you need to bypass auto-import (dynamic `:is`, explicit `#components` imports, etc.).
+
+### Path-based names (default)
+
+With Nuxt’s default `pathPrefix: true`, the registered tag is built from **every folder segment plus the filename** (PascalCase), with duplicate segments removed. Namespace with folders; keep the **filename** as a clear, specific PascalCase name.
+
+```text
+app/components/navigation/header/AppHeader.vue  →  <NavigationHeaderAppHeader />
+app/components/posts/card/PostCard.vue          →  <PostsCardPostCard />
+```
+
+- Use **lowercase folder segments** for namespaces (`navigation/`, `posts/`, `layout/`).
+- Use **PascalCase** for component files (`AppHeader.vue`, `PostCard.vue`).
+- Prefer filenames that read well with their path prefix (e.g. `AppHeader` under `navigation/header/`, not a vague `Index.vue` unless the path already disambiguates).
+- Do **not** set `components.pathPrefix: false` for first-party dirs unless there is a deliberate, documented reason (that mode drops path segments and registers by filename only, e.g. `Some/MyComponent.vue` → `<MyComponent>`).
+
+### Usage in templates and scripts
+
+- **Static usage:** rely on auto-import; use the full PascalCase tag in templates (`<NavigationHeaderAppHeader />`).
+- **Lazy / code-split:** prefix with `Lazy` (`<LazyNavigationHeaderAppHeader v-if="open" />`).
+- **Dynamic `:is`:** use `resolveComponent('NavigationHeaderAppHeader')` with a **string literal** component name, or import from `#components` and pass the import to `:is`.
+- **Explicit import:** `import { NavigationHeaderAppHeader } from '#components'` when you need a typed reference or auto-import is insufficient.
+
+### Scope and vendored UI
+
+- These rules apply to **first-party** components (everything under `app/components/` outside generated/vendor trees).
+- Do not reorganize or rename `app/components/shadcn/**` or Nuxt Content prose components to satisfy first-party naming; follow upstream / module conventions and customize at call sites or via thin wrappers in a namespaced folder (e.g. `app/components/navigation/header/AppHeader.vue` composing shadcn primitives).
 
 ## File naming (TypeScript and modules)
 
