@@ -151,7 +151,7 @@ export default defineNuxtConfig({
   schemaOrg: {
     identity: definePerson({
       name: 'Aidan Hibbard',
-      description: 'Senior software engineer in Central Oregon.',
+      description: 'Senior Software Engineer',
       url: process.env.SITE_URL,
       sameAs: [
         'https://github.com/aidanhibbard',
