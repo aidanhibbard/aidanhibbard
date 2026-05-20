@@ -11,13 +11,17 @@ export default defineNitroPlugin((nitroApp) => {
   nitroApp.hooks.hook('beforeResponse', (event, { body }) => {
     const contentType = normalizeResponseHeader(getResponseHeader(event, 'content-type'))
     const contextBody = (event.context as { markdownBody?: string }).markdownBody
-    const markdownBody = typeof body === 'string' && body.length > 0
-      ? body
-      : contextBody
+    const isMarkdownResponse = contextBody !== undefined || contentType?.includes('text/markdown')
 
-    if (markdownBody) {
-      setHeader(event, 'content-type', 'text/markdown; charset=utf-8')
-      setHeader(event, 'x-markdown-tokens', String(estimateMarkdownTokens(markdownBody)))
+    if (isMarkdownResponse) {
+      const markdownBody = contextBody ?? (typeof body === 'string' ? body : undefined)
+
+      if (markdownBody) {
+        setHeader(event, 'content-type', 'text/markdown; charset=utf-8')
+        setHeader(event, 'x-markdown-tokens', String(estimateMarkdownTokens(markdownBody)))
+      }
+
+      return
     }
 
     if (!contentType?.includes('text/html')) {
