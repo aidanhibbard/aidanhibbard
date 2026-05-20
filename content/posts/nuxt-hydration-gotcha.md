@@ -3,6 +3,15 @@ title: 'A Nuxt hydration mismatch that was not a date bug'
 date: '2025-10-02'
 tags: ['nuxt', 'vue', 'ssr']
 description: 'The server HTML was correct. The client disagreed anyway. Of course it did.'
+theme:
+  light:
+    - '#ffffff'
+    - '#ccfbf1'
+    - '#5eead4'
+  dark:
+    - '#ecfeff'
+    - '#99f6e4'
+    - '#2dd4bf'
 robots: index, follow
 sitemap:
   lastmod: 2025-10-02

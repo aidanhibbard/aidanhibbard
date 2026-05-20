@@ -4,7 +4,7 @@ import { Card } from '@/components/shadcn/ui/card'
 import { formatPostDate } from '@/utils/format-post-date'
 
 const cardFrameClass
-  = 'h-full gap-0 rounded-none border border-border bg-card/40 py-0 shadow-none ring-0 transition-colors hover:border-primary/35'
+  = 'relative h-full gap-0 overflow-hidden rounded-none border border-border bg-transparent py-0 shadow-none ring-0 transition-colors hover:border-primary/35'
 
 const categoryClass
   = 'font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase'
@@ -17,6 +17,14 @@ const sectionCtaLinkClass
 
 const sectionCtaArrowClass
   = 'size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5'
+
+const landingCardLinkClass = 'text-slate-950'
+
+const landingCardTitleClass
+  = 'text-slate-950 transition-opacity group-hover:opacity-75'
+
+const landingCardMetaClass
+  = 'font-mono text-[11px] font-medium tracking-[0.22em] text-slate-600 uppercase tabular-nums'
 
 const { primaryNav } = useNavigation()
 
@@ -49,22 +57,26 @@ const {
           :class="[cardFrameClass, 'lg:col-span-2 rounded-none']"
           size="sm"
         >
+          <LandingPostCardTheme
+            :theme="featuredPost.theme"
+            :seed="featuredPost.path"
+          />
           <NuxtLink
             :to="featuredPost.path"
-            class="group flex min-h-88 flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-104 lg:min-h-full"
+            :class="[landingCardLinkClass, 'group relative z-10 flex min-h-88 flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-104 lg:min-h-full']"
           >
             <div
               class="flex flex-1 flex-col justify-end gap-8 px-6 py-8 sm:gap-10 sm:px-8 sm:py-10 lg:px-10 lg:py-12"
             >
               <h2
-                class="cn-font-heading max-w-[16ch] text-balance text-4xl font-bold leading-[1.02] tracking-tight text-foreground transition-opacity group-hover:opacity-80 sm:text-5xl lg:text-6xl xl:text-7xl"
+                :class="[landingCardTitleClass, 'cn-font-heading max-w-[16ch] text-balance text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl']"
               >
                 {{ featuredPost.title }}
               </h2>
               <time
                 v-if="featuredPost.date"
                 :datetime="featuredPost.date"
-                :class="dateClass"
+                :class="landingCardMetaClass"
               >
                 {{ formatPostDate(featuredPost.date) }}
               </time>
@@ -79,19 +91,23 @@ const {
             :class="[cardFrameClass, 'min-h-56 lg:min-h-0 lg:flex-1 rounded-none']"
             size="sm"
           >
+            <LandingPostCardTheme
+              :theme="post.theme"
+              :seed="post.path"
+            />
             <NuxtLink
               :to="post.path"
-              class="group flex h-full min-h-56 flex-col justify-between px-6 py-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-7 sm:py-9 lg:min-h-0 lg:px-8 lg:py-10"
+              :class="[landingCardLinkClass, 'group relative z-10 flex h-full min-h-56 flex-col justify-between px-6 py-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-7 sm:py-9 lg:min-h-0 lg:px-8 lg:py-10']"
             >
               <h3
-                class="cn-font-heading text-balance text-2xl font-bold leading-[1.08] tracking-tight text-foreground transition-opacity group-hover:opacity-80 sm:text-[1.65rem] lg:text-3xl"
+                :class="[landingCardTitleClass, 'cn-font-heading text-balance text-2xl font-bold leading-[1.08] tracking-tight sm:text-[1.65rem] lg:text-3xl']"
               >
                 {{ post.title }}
               </h3>
               <time
                 v-if="post.date"
                 :datetime="post.date"
-                :class="dateClass"
+                :class="landingCardMetaClass"
               >
                 {{ formatPostDate(post.date) }}
               </time>

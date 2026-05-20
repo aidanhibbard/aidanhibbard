@@ -3,6 +3,15 @@ title: 'OAuth token refresh races'
 date: '2026-01-08'
 tags: ['oauth', 'postgres', 'integrations']
 description: 'Two requests, one refresh token, and a partner integration that worked 99.9% of the time.'
+theme:
+  light:
+    - '#ecfeff'
+    - '#a5f3fc'
+    - '#22d3ee'
+  dark:
+    - '#cffafe'
+    - '#67e8f9'
+    - '#06b6d4'
 robots: index, follow
 sitemap:
   lastmod: 2026-01-08

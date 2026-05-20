@@ -24,7 +24,7 @@ export const useLandingContent = () => {
     queryCollection('content')
       .where('path', 'LIKE', '/posts/%')
       .order('date', 'DESC')
-      .select('path', 'title', 'description', 'date')
+      .select('path', 'title', 'description', 'date', 'theme')
       .limit(3)
       .all() as Promise<PostListItem[]>,
   )

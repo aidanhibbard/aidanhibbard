@@ -3,6 +3,15 @@ title: 'Webhooks are at-least-once whether you like it or not'
 date: '2025-12-14'
 tags: ['webhooks', 'postgres', 'stripe']
 description: 'Your handler ran twice. Your database only noticed once. That is not a vendor bug.'
+theme:
+  light:
+    - '#f8fafc'
+    - '#dbeafe'
+    - '#60a5fa'
+  dark:
+    - '#eff6ff'
+    - '#bfdbfe'
+    - '#93c5fd'
 robots: index, follow
 sitemap:
   lastmod: 2025-12-14
