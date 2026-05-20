@@ -210,6 +210,18 @@ const { data: posts } = await useAsyncData('posts', (_nuxtApp, { signal }) =>
 })
 ```
 
+## Styling And shadcn
+
+First-party UI must be built with **shadcn-vue** primitives and **Tailwind utility classes** in templates only.
+
+- Do **not** add `<style>` blocks (scoped or unscoped) to first-party Vue components.
+- Do **not** use `@apply` in first-party component code.
+- Do **not** use `:deep()` or other CSS overrides to patch shadcn internals — pass supported `class` props, compose wrappers, or consult the shadcn Vue MCP for the correct primitive.
+- Prefer shadcn layout patterns (for example sidebar blocks with `SidebarMenuButton`, icons beside labels, `variant="floating"`) over bespoke markup.
+- Glass / translucent surfaces: use Tailwind utilities such as `bg-white/85`, `dark:bg-black/85`, `backdrop-blur-xl`, and `border-border/50` on shadcn components — not custom CSS.
+- Global base styles and design tokens belong in `app/assets/css/` only (`tailwind.css`, `main.css`).
+- Consult the **shadcn Vue MCP** before adding or substantially changing UI.
+
 ## Scope
 
 These conventions apply to first-party app code. Do not rewrite vendored-style `shadcn` internals just to force this structure.
