@@ -27,7 +27,7 @@ const closeMobileSidebar = (): void => {
     side="left"
     variant="floating"
     collapsible="offcanvas"
-    class="[&_[data-mobile=true][data-slot=sidebar]]:border-border/50 [&_[data-mobile=true][data-slot=sidebar]]:bg-white/85 [&_[data-mobile=true][data-slot=sidebar]]:text-foreground [&_[data-mobile=true][data-slot=sidebar]]:shadow-xl [&_[data-mobile=true][data-slot=sidebar]]:backdrop-blur-xl dark:[&_[data-mobile=true][data-slot=sidebar]]:bg-black/85 [&_[data-slot=sidebar-inner]]:border-border/50 [&_[data-slot=sidebar-inner]]:bg-white/85 [&_[data-slot=sidebar-inner]]:backdrop-blur-xl dark:[&_[data-slot=sidebar-inner]]:bg-black/85"
+    class="[&_[data-mobile=true][data-slot=sidebar]]:border-border/50 [&_[data-mobile=true][data-slot=sidebar]]:bg-white/85 [&_[data-mobile=true][data-slot=sidebar]]:text-foreground [&_[data-mobile=true][data-slot=sidebar]]:shadow-xl [&_[data-mobile=true][data-slot=sidebar]]:backdrop-blur-xl dark:[&_[data-mobile=true][data-slot=sidebar]]:bg-black/85 **:data-[slot=sidebar-inner]:border-border/50 **:data-[slot=sidebar-inner]:bg-white/85 **:data-[slot=sidebar-inner]:backdrop-blur-xl dark:**:data-[slot=sidebar-inner]:bg-black/85"
   >
     <SidebarHeader class="border-b border-border/50 bg-white/85 backdrop-blur-xl dark:bg-black/85">
       <SidebarMenu>

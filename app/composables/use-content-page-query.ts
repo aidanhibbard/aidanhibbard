@@ -27,10 +27,7 @@ export const useContentPageQuery = (
     },
   )
 
-  useSeoMeta({
-    title: () => page.value?.title ?? '',
-    description: () => page.value?.description ?? '',
-  })
+  useContentSeo(page)
 
   const tocLinks = computed(() => buildToc(page.value?.body))
 

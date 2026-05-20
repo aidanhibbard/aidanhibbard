@@ -4,6 +4,7 @@ import {
   Card,
   CardFooter,
 } from '@/components/shadcn/ui/card'
+import { defineSiteOgImage } from '@/utils/define-site-og-image'
 
 type LanderAuthor = {
   name: string
@@ -115,6 +116,17 @@ const resumeTimeline: ResumeTimelineEntry[] = [
 
 const currentRole = resumeTimeline[0]!
 const pastRoles = resumeTimeline.slice(1)
+
+useSeoMeta({
+  title: 'Home',
+  description: 'Senior software engineer in Central Oregon building production systems, integrations, and polished user experiences.',
+  ogType: 'website',
+})
+
+defineSiteOgImage({
+  title: 'Aidan Hibbard',
+  description: 'Senior software engineer in Central Oregon building software that ships, scales, and feels good to use.',
+})
 </script>
 
 <template>

@@ -18,8 +18,11 @@ import {
 } from '@/components/shadcn/ui/pagination'
 import { Input } from '@/components/shadcn/ui/input'
 import type { PostListItem } from '#shared/types/content/post-list-item'
+import { defineSiteOgImage } from '@/utils/define-site-og-image'
+import { resolvePostsCollectionSchemaOrg } from '@/utils/resolve-posts-collection-schema-org'
 
 const POSTS_PAGE_SIZE = 5
+const BLOG_DESCRIPTION = 'Notes on building software, debugging production systems, and the occasional side quest.'
 
 const state = reactive<{
   page: number
@@ -74,12 +77,30 @@ const {
 
 useSeoMeta({
   title: 'Blog',
-  description: 'Notes on building software, debugging production systems, and the occasional side quest.',
+  description: BLOG_DESCRIPTION,
+  ogType: 'website',
 })
+
+defineSiteOgImage({
+  title: 'Blog',
+  description: BLOG_DESCRIPTION,
+})
+
+const schemaIds = useSiteSchemaIds()
 
 const posts = computed(() => postsResult.value?.items ?? [])
 const totalPosts = computed(() => postsResult.value?.total ?? 0)
 const showPagination = computed(() => totalPosts.value > POSTS_PAGE_SIZE)
+
+useSchemaOrg(computed(() =>
+  resolvePostsCollectionSchemaOrg({
+    posts: posts.value,
+    totalPosts: totalPosts.value,
+    page: state.page,
+    pageSize: POSTS_PAGE_SIZE,
+    description: BLOG_DESCRIPTION,
+  }, schemaIds),
+))
 
 watch(debouncedQuery, () => {
   state.page = 1

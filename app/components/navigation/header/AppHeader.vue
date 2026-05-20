@@ -9,7 +9,7 @@ const { primaryNav, socialLinks, isActive } = useNavigation()
 
 <template>
   <header
-    class="sticky top-0 z-50 flex h-14 shrink-0 items-center border-b border-border/50 bg-background/75 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 md:h-16"
+    class="sticky top-0 z-50 flex h-14 shrink-0 items-center border-b border-border/50 bg-background/75 shadow-sm backdrop-blur-xl supports-backdrop-filter:bg-background/60 md:h-16"
   >
     <div class="mx-auto flex w-full max-w-7xl items-center gap-1 px-4 sm:px-6 lg:gap-2 lg:px-8">
       <SidebarTrigger class="-ml-1 md:hidden" />
