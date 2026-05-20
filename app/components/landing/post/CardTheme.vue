@@ -29,10 +29,14 @@ const gradient = computed(() =>
       :style="{ background: gradient }"
     />
     <div
-      class="absolute inset-0 bg-white/45 backdrop-blur-2xl backdrop-saturate-125 dark:bg-white/38"
-    />
-    <div
-      class="absolute inset-0 bg-linear-to-br from-white/65 via-white/40 to-sky-50/30 dark:from-white/55 dark:via-white/32 dark:to-sky-100/22"
-    />
+      class="absolute inset-0 bg-white/55 backdrop-blur-3xl backdrop-brightness-90 backdrop-saturate-70"
+    >
+      <div
+        class="absolute inset-0 bg-white/45 backdrop-blur-3xl backdrop-brightness-92 backdrop-saturate-75"
+      />
+      <div
+        class="absolute inset-0 bg-white/35 backdrop-blur-3xl backdrop-brightness-95 backdrop-saturate-80"
+      />
+    </div>
   </div>
 </template>
