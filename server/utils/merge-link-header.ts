@@ -1,9 +1,15 @@
 export const mergeLinkHeader = (
-  existing: string | number | undefined,
+  existing: string | number | string[] | undefined,
   additions: string[],
 ): string => {
-  const current = typeof existing === 'string'
-    ? existing.split(',').map(part => part.trim()).filter(Boolean)
+  const normalized = typeof existing === 'undefined'
+    ? undefined
+    : Array.isArray(existing)
+      ? existing.join(', ')
+      : String(existing)
+
+  const current = normalized
+    ? normalized.split(',').map(part => part.trim()).filter(Boolean)
     : []
 
   const merged = [...current]
