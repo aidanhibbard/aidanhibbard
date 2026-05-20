@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavigationHeaderAppHeader />
     <main
       tabindex="-1"
     >

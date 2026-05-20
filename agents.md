@@ -30,6 +30,39 @@ app/components/posts/card/PostCard.vue          →  <PostsCardPostCard />
 - These rules apply to **first-party** components (everything under `app/components/` outside generated/vendor trees).
 - Do not reorganize or rename `app/components/shadcn/**` or Nuxt Content prose components to satisfy first-party naming; follow upstream / module conventions and customize at call sites or via thin wrappers in a namespaced folder (e.g. `app/components/navigation/header/AppHeader.vue` composing shadcn primitives).
 
+### Server components, islands, and client-only (SEO)
+
+Default universal rendering (`ssr: true`) ships full HTML on first load so crawlers can index content. Prefer server-rendered markup for anything that must be indexed; keep client-only boundaries for interactivity and browser APIs.
+
+| Mechanism | SSR / HTML | Use for |
+|-----------|------------|---------|
+| Normal components | Full SSR + hydration | Default UI; indexable copy and structure |
+| `*.server.vue` | Server HTML only; no client JS for the component | Heavy parsing (markdown, etc.) that should be in HTML but not the client bundle |
+| `<NuxtIsland>` / `app/components/islands/*.vue` | Static server HTML; non-interactive | Same as server components; explicit island API |
+| `<ClientOnly>` / `*.client.vue` | Default slot **omitted** from server HTML | Widgets needing `window`, charts, comments — not primary page copy |
+| `Comments.server.vue` + `Comments.client.vue` | Server half in HTML; client half after mount | Split implementations; SEO depends on the **server** half |
+
+**Enable islands / server components** (experimental) when using `.server.vue` or `<NuxtIsland>`:
+
+```ts
+export default defineNuxtConfig({
+  experimental: {
+    componentIslands: true,
+  },
+})
+```
+
+**SEO rules:**
+
+- Put **indexable text** (headings, body, product copy) in normal or `.server.vue` / island components — not inside `<ClientOnly>` without a meaningful server `#fallback` (fallback is for loading UI, not substitute copy).
+- Set **meta / OG / canonical** in pages or layouts with `useServerSeoMeta` or `useHead` during SSR. Prefer `useServerSeoMeta` for static meta robots only need on initial load. Do not define SEO meta only inside client-only trees.
+- **Islands are isolated:** route middleware does not run; `useRoute()` inside an island reflects the island request, not the page. Pass route-dependent SEO or content via props from the parent, or `<NuxtIsland context="…">` read from `nuxtApp.ssrContext.islandContext`.
+- **Island constraints:** single root element; props are sent as URL query params (length limits, may appear in access logs). Avoid nesting islands deeply.
+- **Delayed hydration** (`Lazy*` + `hydrate-on-visible`, `hydrate-never`, etc.) still SSRs HTML; do not use delayed hydration for above-the-fold content that must be interactive immediately.
+- Do not use `ssr: false` for content that must be indexed unless prerendering/static generation covers those routes.
+
+Docs: [Server components](https://nuxt.com/docs/4.x/directory-structure/app/components#server-components), [`<NuxtIsland>`](https://nuxt.com/docs/4.x/api/components/nuxt-island), [`<ClientOnly>`](https://nuxt.com/docs/4.x/api/components/client-only), [SEO and meta](https://nuxt.com/docs/4.x/getting-started/seo-meta), [`useServerSeoMeta`](https://nuxt.com/docs/4.x/api/composables/use-server-seo-meta).
+
 ## File naming (TypeScript and modules)
 
 - Use **kebab-case** for essentially all first-party non-Vue source filenames: `my-service.ts`, `pending-team-checkout-payload.ts`, `use-billing.ts`, `team-role.ts`.
