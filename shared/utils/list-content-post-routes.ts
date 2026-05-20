@@ -6,8 +6,8 @@ export const listContentPostRoutes = (contentRoot: string): string[] => {
 
   try {
     return readdirSync(postsDir)
-      .filter((filename) => filename.endsWith('.md'))
-      .map((filename) => `/posts/${filename.slice(0, -3)}`)
+      .filter(filename => filename.endsWith('.md'))
+      .map(filename => `/posts/${filename.slice(0, -3)}`)
   }
   catch {
     return []
