@@ -1,5 +1,6 @@
 import tailwindcss from '@tailwindcss/vite'
 import { definePerson } from 'nuxt-schema-org/schema'
+import { logger } from './server/utils/logger'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -51,17 +52,21 @@ export default defineNuxtConfig({
   ignore: ['app/components/shadcn/ui/**'],
   routeRules: {
     '/': {
-      prerender: true,
+      prerender: false,
       headers: {
         link: '</llms.txt>; rel="service-desc", </llms-full.txt>; rel="describedby", </index.md>; rel="alternate"; type="text/markdown"',
       },
     },
-    '/index.md': { prerender: true },
     '/about': { prerender: true },
-    '/about.md': { prerender: true },
+    '/index.md': { prerender: true },
     '/posts': { prerender: true },
     '/posts/**': { prerender: true },
     '/resume': { prerender: true },
+    '/**/*.md': {
+      headers: {
+        'content-type': 'text/markdown; charset=utf-8',
+      },
+    },
     '/llms.txt': { prerender: true },
     '/llms-full.txt': { prerender: true },
     '/sitemap.xml': { prerender: true },
@@ -103,6 +108,33 @@ export default defineNuxtConfig({
   hooks: {
     'ai-ready:llms-txt': (payload) => {
       payload.notes.push('Raw markdown: /page.md')
+    },
+    'nitro:init'(nitro) {
+      const log = logger.withTag('prerender-markdown')
+
+      nitro.hooks.hook('prerender:generate', (route) => {
+        if (!route.fileName?.endsWith('.md')) {
+          return
+        }
+
+        const contents = route.contents?.trimStart()
+
+        if (!contents?.startsWith('{')) {
+          return
+        }
+
+        try {
+          const parsed = JSON.parse(route.contents ?? '') as { markdown?: string }
+
+          if (typeof parsed.markdown === 'string') {
+            route.contents = parsed.markdown
+            route.contentType = 'text/markdown; charset=utf-8'
+          }
+        }
+        catch (error) {
+          log.error(`Failed to parse prerendered markdown for ${route.route}`, error)
+        }
+      })
     },
   },
   aiReady: {
