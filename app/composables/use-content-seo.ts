@@ -57,6 +57,7 @@ export const useContentSeo = (
   defineSiteOgImage({
     title: computed(() => resolveOgImageTitle(page.value)),
     description: computed(() => resolveOgImageDescription(page.value)),
+    siteLabel: computed(() => page.value?.title),
     colorMode: computed(() =>
       (page.value?.ogImage?.props?.colorMode as 'dark' | 'light' | undefined)
       ?? 'dark',

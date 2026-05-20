@@ -13,13 +13,20 @@ const INTERNAL_HTML_HEADER = 'x-ai-ready-internal'
 const PRERENDER_HEADER = 'x-nitro-prerender'
 
 const resolveNegotiatedMarkdown = async (
-  event: Parameters<typeof convertPageHtmlToMarkdown>[0],
+  event: H3Event,
   path: string,
 ): Promise<string> => {
   const contentMarkdown = await resolvePageMarkdown(event, path)
 
   if (contentMarkdown) {
     return contentMarkdown
+  }
+
+  if (event.path.endsWith('.md') || path.startsWith('/posts/')) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: 'Page not found',
+    })
   }
 
   log.error(`Content markdown unavailable for ${path}, falling back to HTML conversion`)

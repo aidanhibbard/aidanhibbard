@@ -84,6 +84,7 @@ useSeoMeta({
 defineSiteOgImage({
   title: 'Blog',
   description: BLOG_DESCRIPTION,
+  siteLabel: 'Blog',
 })
 
 const schemaIds = useSiteSchemaIds()

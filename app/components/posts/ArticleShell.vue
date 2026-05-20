@@ -1,13 +1,17 @@
 <script setup lang="ts">
+import type { TocLink } from '@nuxtjs/mdc'
 import { formatPostDate } from '@/utils/format-post-date'
 
-const props = defineProps<{
+defineProps<{
   contentPath: string
+  page: {
+    title?: string
+    description?: string
+    date?: string
+    body?: unknown
+  }
+  tocLinks: TocLink[]
 }>()
-
-const { page, tocLinks } = useContentPageQuery(() => props.contentPath, {
-  notFoundMessage: 'Post not found',
-})
 
 const labelClass
   = 'font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase'

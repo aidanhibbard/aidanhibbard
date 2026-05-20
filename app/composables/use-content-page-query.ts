@@ -5,13 +5,13 @@ type UseContentPageQueryOptions = {
   notFoundMessage?: string
 }
 
-export const useContentPageQuery = (
+export const useContentPageQuery = async (
   contentPath: MaybeRefOrGetter<string>,
   options?: UseContentPageQueryOptions,
 ) => {
   const { buildToc } = useContentPage()
 
-  const { data: page } = useAsyncData(
+  const { data: page, error } = await useAsyncData(
     () => `content-page:${toValue(contentPath)}`,
     async () => {
       const result = await queryCollection('content').path(toValue(contentPath)).first()
@@ -26,6 +26,10 @@ export const useContentPageQuery = (
       return result
     },
   )
+
+  if (error.value) {
+    throw error.value
+  }
 
   useContentSeo(page)
 
