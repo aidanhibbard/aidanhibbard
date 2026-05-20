@@ -43,12 +43,12 @@ const isActive = (path: string): boolean => {
   <header
     class="sticky top-0 z-50 border-b border-border/50 bg-background/75 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-background/60"
   >
-    <div class="mx-auto flex h-14 max-w-6xl items-center gap-2 px-4 sm:px-6">
-      <div class="flex min-w-0 flex-1 items-center gap-2 md:flex-initial">
+    <div class="mx-auto flex h-14 max-w-7xl items-center gap-2 px-4 sm:px-6 md:h-16 lg:px-8">
+      <div class="flex min-w-0 flex-1 items-center gap-3 md:min-w-48 md:flex-initial">
         <SidebarTrigger class="md:hidden" />
         <NuxtLink
           to="/"
-          class="hidden truncate text-sm font-semibold tracking-tight transition-colors hover:text-foreground/80 md:inline-block"
+          class="cn-font-heading hidden truncate text-lg font-bold leading-none tracking-tight text-foreground transition-opacity hover:opacity-80 md:inline-block lg:text-xl"
         >
           Aidan Hibbard
         </NuxtLink>
@@ -66,7 +66,7 @@ const isActive = (path: string): boolean => {
             <NuxtLink
               :to="item.to"
               :class="cn(
-                'rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                'rounded-none px-3 py-2 text-sm font-medium tracking-wide transition-colors',
                 isActive(item.to)
                   ? 'text-foreground'
                   : 'text-muted-foreground hover:text-foreground',
@@ -79,7 +79,6 @@ const isActive = (path: string): boolean => {
       </nav>
 
       <div class="flex flex-1 items-center justify-end gap-0.5 md:flex-initial">
-        <HeaderThemeToggle />
         <Button
           v-for="link in socialLinks"
           :key="link.href"
@@ -99,6 +98,11 @@ const isActive = (path: string): boolean => {
             <span class="sr-only">{{ link.label }}</span>
           </NuxtLink>
         </Button>
+        <Separator
+          orientation="vertical"
+          class="mx-2 data-[orientation=vertical]:h-4"
+        />
+        <HeaderThemeToggle />
       </div>
     </div>
   </header>

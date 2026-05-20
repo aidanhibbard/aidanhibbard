@@ -70,7 +70,7 @@ const authorLabel = featuredPost.authors
 <template>
   <div class="flex min-h-full flex-1 flex-col">
     <section
-      class="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-10 sm:px-6 lg:min-h-[calc(100svh-3.5rem)] lg:px-8 lg:py-14"
+      class="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-10 sm:px-6 md:min-h-[calc(100svh-4rem)] lg:px-8 lg:py-14"
       aria-label="Latest writing"
     >
       <div class="grid flex-1 gap-4 lg:grid-cols-3 lg:gap-5">
