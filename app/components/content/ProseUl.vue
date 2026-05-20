@@ -3,7 +3,7 @@
 
 <template>
   <ul
-    class="space-y-4 text-lg text-foreground/90 mb-8 list-disc list-inside"
+    class="mb-8 list-disc space-y-2 pl-6 text-muted-foreground not-first:mt-6"
   >
     <slot />
   </ul>

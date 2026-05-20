@@ -2,9 +2,7 @@
 </script>
 
 <template>
-  <li
-    class="my-4 list-disc [&>li]:mt-2"
-  >
+  <li class="leading-7">
     <slot />
   </li>
 </template>

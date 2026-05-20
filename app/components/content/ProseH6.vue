@@ -37,7 +37,7 @@ const copyLink = async () => {
       <TooltipTrigger as-child>
         <h6
           :id="props.id"
-          class="text-base inline font-semibold my-4 tracking-tight"
+          class="block w-fit text-base font-semibold tracking-tight not-first:mt-6"
           role="button"
           tabindex="0"
           @click="copyLink"
@@ -56,7 +56,7 @@ const copyLink = async () => {
   <h6
     v-else
     :id="props.id"
-    class="text-base inline font-semibold my-4 tracking-tight"
+    class="block w-fit text-base font-semibold tracking-tight not-first:mt-6"
   >
     <slot />
   </h6>

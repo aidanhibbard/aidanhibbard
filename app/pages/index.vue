@@ -221,16 +221,10 @@ const pastRoles = resumeTimeline.slice(1)
             I care about production debugging, query tuning, and polish in equal measure.
           </p>
           <p class="mt-6 leading-7 text-muted-foreground">
-            I believe the best work happens through collaboration—sharing knowledge, lifting people up,
-            and shipping mission-driven software that solves real problems. Off the keyboard, I help
-            organize the Deschutes Tech Guild and advocate for the local tech community in Central Oregon.
+            I believe the best work happens through collaboration: sharing knowledge, lifting people up,
+            and shipping software that solves real problems. Off the keyboard, I help run the Deschutes
+            Tech Guild here in Central Oregon.
           </p>
-          <blockquote class="mt-10 border-l-2 border-primary/50 pl-6 text-lg leading-relaxed text-muted-foreground italic">
-            “Don't Panic.”
-            <footer class="mt-3 font-mono text-[11px] not-italic tracking-[0.2em] text-muted-foreground uppercase">
-              — Douglas Adams
-            </footer>
-          </blockquote>
         </div>
 
         <NuxtLink

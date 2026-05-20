@@ -10,7 +10,7 @@ import {
 const props = defineProps<{ id?: string }>()
 
 const { headings } = useRuntimeConfig().public.mdc
-const generate = computed(() => props.id && ((typeof headings?.anchorLinks === 'boolean' && headings?.anchorLinks === true) || (typeof headings?.anchorLinks === 'object' && headings?.anchorLinks?.h2)))
+const generate = computed(() => props.id && ((typeof headings?.anchorLinks === 'boolean' && headings?.anchorLinks === true) || (typeof headings?.anchorLinks === 'object' && headings?.anchorLinks?.h1)))
 
 const route = useRoute()
 const requestURL = useRequestURL()
@@ -37,7 +37,7 @@ const copyLink = async () => {
       <TooltipTrigger as-child>
         <h1
           :id="props.id"
-          class="scroll-m-20 inline text-3xl font-extrabold tracking-tight text-balance"
+          class="scroll-m-20 cn-font-heading block w-fit text-4xl font-bold tracking-tight text-balance lg:text-5xl"
           role="button"
           tabindex="0"
           @click="copyLink"
@@ -56,7 +56,7 @@ const copyLink = async () => {
   <h1
     v-else
     :id="props.id"
-    class="scroll-m-20 inline text-3xl font-extrabold tracking-tight text-balance"
+    class="scroll-m-20 cn-font-heading block w-fit text-4xl font-bold tracking-tight text-balance lg:text-5xl"
   >
     <slot />
   </h1>
