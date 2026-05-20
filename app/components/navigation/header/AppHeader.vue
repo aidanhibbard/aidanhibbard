@@ -67,7 +67,6 @@ const { primaryNav, socialLinks, isActive } = useNavigation()
         </Button>
         <Separator
           orientation="vertical"
-          class="mx-2 h-4 shrink-0 self-center"
         />
         <HeaderThemeToggle />
       </div>
