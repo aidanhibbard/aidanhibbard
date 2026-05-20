@@ -1,43 +1,10 @@
 <script setup lang="ts">
-import { Github, Linkedin } from 'lucide-vue-next'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/shadcn/ui/button'
 import { Separator } from '@/components/shadcn/ui/separator'
 import { SidebarTrigger } from '@/components/shadcn/ui/sidebar'
 
-type NavItem = {
-  label: string
-  to: string
-}
-
-const primaryNav: NavItem[] = [
-  { label: 'About', to: '/about' },
-  { label: 'Blog', to: '/posts' },
-  { label: 'Resume', to: '/resume' },
-]
-
-const socialLinks = [
-  {
-    label: 'GitHub',
-    href: 'https://github.com/aidanhibbard',
-    icon: Github,
-  },
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/aidan-hibbard/',
-    icon: Linkedin,
-  },
-] as const
-
-const route = useRoute()
-
-const isActive = (path: string): boolean => {
-  if (path === '/') {
-    return route.path === '/'
-  }
-
-  return route.path === path || route.path.startsWith(`${path}/`)
-}
+const { primaryNav, socialLinks, isActive } = useNavigation()
 </script>
 
 <template>
@@ -100,6 +67,7 @@ const isActive = (path: string): boolean => {
         </Button>
         <Separator
           orientation="vertical"
+          class="mx-2 h-4 shrink-0 self-center"
         />
         <HeaderThemeToggle />
       </div>

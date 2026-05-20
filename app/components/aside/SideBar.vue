@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { LucideIcon } from 'lucide-vue-next'
-import { BookOpen, FileText, UserRound } from 'lucide-vue-next'
 import {
   Sidebar,
   SidebarContent,
@@ -14,28 +12,8 @@ import {
   useSidebar,
 } from '@/components/shadcn/ui/sidebar'
 
-type NavItem = {
-  label: string
-  to: string
-  icon: LucideIcon
-}
-
-const primaryNav: NavItem[] = [
-  { label: 'About', to: '/about', icon: UserRound },
-  { label: 'Blog', to: '/posts', icon: BookOpen },
-  { label: 'Resume', to: '/resume', icon: FileText },
-]
-
-const route = useRoute()
+const { primaryNav, isActive } = useNavigation()
 const { isMobile, setOpenMobile } = useSidebar()
-
-const isActive = (path: string): boolean => {
-  if (path === '/') {
-    return route.path === '/'
-  }
-
-  return route.path === path || route.path.startsWith(`${path}/`)
-}
 
 const closeMobileSidebar = (): void => {
   if (isMobile.value) {
