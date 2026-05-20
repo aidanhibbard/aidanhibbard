@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { refDebounced, toRef } from '@vueuse/core'
-import { Search } from 'lucide-vue-next'
+import { Search, SearchX } from 'lucide-vue-next'
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from '@/components/shadcn/ui/empty'
 import {
   Pagination,
   PaginationContent,
@@ -100,7 +107,7 @@ watch(debouncedQuery, () => {
         </label>
         <div class="relative">
           <Search
-            class="pointer-events-none absolute top-1/2 left-0 size-4 -translate-y-1/2 text-muted-foreground"
+            class="pointer-events-none absolute top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
             aria-hidden="true"
           />
           <Input
@@ -109,34 +116,46 @@ watch(debouncedQuery, () => {
             type="search"
             autocomplete="off"
             placeholder="Search by title or description"
-            class="h-10 rounded-none border-0 border-b border-border bg-transparent pl-7 shadow-none focus-visible:border-primary focus-visible:ring-0"
+            class="h-10 rounded-none p-2 border-0 border-b border-border bg-transparent pl-7 shadow-none focus-visible:border-primary focus-visible:ring-0"
           />
         </div>
       </div>
     </header>
 
-    <section
-      aria-label="Post list"
-      class="min-h-80 border-t border-border"
-    >
-      <PostsListSkeleton v-if="pending" />
-
+    <section aria-label="Post list">
       <div
-        v-else-if="posts.length === 0"
-        class="flex flex-col items-start gap-3 py-16 sm:py-20"
+        v-if="pending"
+        class="min-h-80"
       >
-        <p :class="categoryClass">
-          // NO MATCHES
-        </p>
-        <p class="max-w-md text-muted-foreground">
-          <template v-if="state.query.trim()">
-            Nothing matched your search. Try a different title or phrase.
-          </template>
-          <template v-else>
-            Posts will show up here once they are published.
-          </template>
-        </p>
+        <PostsListSkeleton />
       </div>
+
+      <Empty
+        v-else-if="posts.length === 0"
+        class="items-start rounded-none border-0 px-0 py-6 text-left sm:py-8"
+      >
+        <EmptyHeader class="max-w-md items-start">
+          <EmptyMedia variant="icon">
+            <SearchX />
+          </EmptyMedia>
+          <EmptyTitle>
+            <template v-if="state.query.trim()">
+              No matches
+            </template>
+            <template v-else>
+              No posts yet
+            </template>
+          </EmptyTitle>
+          <EmptyDescription class="text-left">
+            <template v-if="state.query.trim()">
+              Nothing matched your search. Try a different title or phrase.
+            </template>
+            <template v-else>
+              Posts will show up here once they are published.
+            </template>
+          </EmptyDescription>
+        </EmptyHeader>
+      </Empty>
 
       <div
         v-else
