@@ -41,7 +41,7 @@ const { primaryNav, socialLinks, isActive } = useNavigation()
               :class="cn(
                 'rounded-none px-3 py-2 text-sm font-medium tracking-wide transition-colors',
                 isActive(item.to)
-                  ? 'text-foreground'
+                  ? 'text-primary'
                   : 'text-muted-foreground hover:text-foreground',
               )"
             >

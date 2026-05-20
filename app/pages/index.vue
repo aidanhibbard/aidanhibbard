@@ -32,7 +32,7 @@ type ResumeTimelineEntry = {
 }
 
 const cardFrameClass
-  = 'h-full gap-0 rounded-none border border-border bg-transparent py-0 shadow-none ring-0'
+  = 'h-full gap-0 rounded-none border border-border bg-transparent py-0 shadow-none ring-0 transition-colors hover:border-primary/35'
 
 const categoryClass
   = 'font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase'
@@ -41,7 +41,10 @@ const dateClass
   = 'shrink-0 font-mono text-[11px] font-medium tracking-[0.22em] text-muted-foreground uppercase tabular-nums'
 
 const sectionCtaLinkClass
-  = 'group flex items-center justify-between border border-border px-6 py-4 font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-7 lg:px-8'
+  = 'group flex items-center justify-between border border-border px-6 py-4 font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-7 lg:px-8'
+
+const sectionCtaArrowClass
+  = 'size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5'
 
 const featuredPost: FeaturedPost = {
   category: 'ANNOUNCEMENTS',
@@ -193,7 +196,7 @@ const pastRoles = resumeTimeline.slice(1)
             :class="[sectionCtaLinkClass, 'sm:col-span-2 lg:col-span-1']"
           >
             <span>View all posts</span>
-            <ArrowRight class="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight :class="sectionCtaArrowClass" />
           </NuxtLink>
         </div>
       </div>
@@ -222,7 +225,7 @@ const pastRoles = resumeTimeline.slice(1)
             and shipping mission-driven software that solves real problems. Off the keyboard, I help
             organize the Deschutes Tech Guild and advocate for the local tech community in Central Oregon.
           </p>
-          <blockquote class="mt-10 border-l-2 border-border pl-6 text-lg leading-relaxed text-muted-foreground italic">
+          <blockquote class="mt-10 border-l-2 border-primary/50 pl-6 text-lg leading-relaxed text-muted-foreground italic">
             “Don't Panic.”
             <footer class="mt-3 font-mono text-[11px] not-italic tracking-[0.2em] text-muted-foreground uppercase">
               — Douglas Adams
@@ -235,7 +238,7 @@ const pastRoles = resumeTimeline.slice(1)
           :class="[sectionCtaLinkClass, 'lg:self-end']"
         >
           <span>Read the full story</span>
-          <ArrowRight class="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+          <ArrowRight :class="sectionCtaArrowClass" />
         </NuxtLink>
       </div>
     </section>
@@ -311,7 +314,7 @@ const pastRoles = resumeTimeline.slice(1)
           :class="[sectionCtaLinkClass, 'lg:col-start-3']"
         >
           <span>View full resume</span>
-          <ArrowRight class="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+          <ArrowRight :class="sectionCtaArrowClass" />
         </NuxtLink>
       </div>
     </section>
