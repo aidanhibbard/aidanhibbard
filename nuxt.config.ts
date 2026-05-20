@@ -50,7 +50,13 @@ export default defineNuxtConfig({
   // https://github.com/unovue/shadcn-vue/issues/763#issuecomment-3893652866
   ignore: ['app/components/shadcn/ui/**'],
   routeRules: {
-    '/': { prerender: true },
+    '/': {
+      prerender: true,
+      headers: {
+        link: '</llms.txt>; rel="service-desc", </llms-full.txt>; rel="describedby", </index.md>; rel="alternate"; type="text/markdown"',
+      },
+    },
+    '/index.md': { prerender: true },
     '/about': { prerender: true },
     '/about.md': { prerender: true },
     '/posts': { prerender: true },
