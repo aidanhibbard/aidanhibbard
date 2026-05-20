@@ -6,13 +6,17 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/seo',
     '@nuxt/content',
-    'nuxt-studio',
     '@nuxt/eslint',
     '@nuxtjs/color-mode',
     'shadcn-nuxt',
     '@nuxt/icon',
     'nuxt-ai-ready',
   ],
+  $development: {
+    modules: [
+      'nuxt-studio',
+    ],
+  },
   devtools: { enabled: true },
   app: {
     head: {
