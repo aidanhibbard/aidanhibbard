@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     'nuxt-ai-ready',
     '@nuxt/scripts',
+    'nuxt-security',
   ],
   $development: {
     modules: [
@@ -69,7 +70,6 @@ export default defineNuxtConfig({
       },
     },
     '/llms.txt': { prerender: true },
-    '/llms-full.txt': { prerender: true },
     '/sitemap.xml': { prerender: true },
     '/robots.txt': { prerender: true },
   },
@@ -77,6 +77,11 @@ export default defineNuxtConfig({
     compatibilityVersion: 5,
   },
   compatibilityDate: '2026-05-14',
+  nitro: {
+    prerender: {
+      routes: ['/sitemap.xml'],
+    },
+  },
   vite: {
     plugins: [
       tailwindcss(),
@@ -113,45 +118,9 @@ export default defineNuxtConfig({
     'nitro:init'(nitro) {
       const log = logger.withTag('prerender-markdown')
 
-      nitro.hooks.hook('prerender:generate', async (route) => {
-        if (!route.fileName?.endsWith('.md')) {
-          return
-        }
-
-        const contents = route.contents?.trimStart()
-
-        if (!contents?.startsWith('{')) {
-          return
-        }
-
-        try {
-          const parsed = JSON.parse(route.contents ?? '') as { markdown?: string }
-
-          if (typeof parsed.markdown === 'string') {
-            route.contents = parsed.markdown
-            route.contentType = 'text/markdown; charset=utf-8'
-          }
-        }
-        catch (error) {
-          log.error(`Failed to parse prerendered markdown for ${route.route}`, error)
-        }
-
-        const pageRoute = route.route.replace(/\.md$/, '').replace(/\/index$/, '') || '/'
-
-        if (pageRoute !== '/resume') {
-          return
-        }
-
-        const { readResumeMarkdownFromFile } = await import('./server/services/content/read-resume-markdown-from-file')
-        const resumeMarkdown = await readResumeMarkdownFromFile()
-
-        if (!resumeMarkdown) {
-          log.error('Failed to build prerendered resume markdown from content')
-          return
-        }
-
-        route.contents = resumeMarkdown
-        route.contentType = 'text/markdown; charset=utf-8'
+      nitro.hooks.hook('prerender:route', async (route) => {
+        const { enrichPrerenderMarkdownRoute } = await import('./server/prerender/enrich-markdown-route')
+        await enrichPrerenderMarkdownRoute(route, nitro, log)
       })
     },
   },
@@ -222,6 +191,25 @@ export default defineNuxtConfig({
         trigger: 'onNuxtReady',
       },
     },
+  },
+  security: {
+    headers: {
+      referrerPolicy: 'strict-origin-when-cross-origin',
+      crossOriginResourcePolicy: 'same-origin',
+      xContentTypeOptions: 'nosniff',
+      xFrameOptions: 'SAMEORIGIN',
+    },
+    ssg: {
+      meta: true,
+      hashScripts: true,
+      hashStyles: false,
+      nitroHeaders: true,
+      exportToPresets: true,
+    },
+    nonce: true,
+    sri: true,
+    hidePoweredBy: true,
+    removeLoggers: true,
   },
   seo: {
     automaticOgAndTwitterTags: false,
