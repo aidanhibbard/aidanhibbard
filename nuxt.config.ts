@@ -2,6 +2,10 @@ import tailwindcss from '@tailwindcss/vite'
 import { resolve } from 'node:path'
 import { definePerson } from 'nuxt-schema-org/schema'
 import { buildConnectSrc, cspScriptSrc } from './shared/google-analytics-csp-sources'
+import { listContentPostRoutes } from './shared/utils/list-content-post-routes'
+
+const contentDir = resolve(import.meta.dirname, 'content')
+const postRoutes = listContentPostRoutes(contentDir)
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -80,7 +84,8 @@ export default defineNuxtConfig({
   compatibilityDate: '2026-05-14',
   nitro: {
     prerender: {
-      routes: ['/sitemap.xml'],
+      crawlLinks: true,
+      routes: ['/sitemap.xml', ...postRoutes],
     },
   },
   vite: {
