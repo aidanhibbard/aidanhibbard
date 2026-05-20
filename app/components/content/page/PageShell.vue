@@ -44,12 +44,12 @@ const gridShellClass = 'mx-auto grid w-full max-w-7xl px-4 sm:px-6 lg:grid-cols-
           <p class="font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase">
             // {{ sectionLabel }}
           </p>
-          <p
+          <h1
             v-if="page?.description"
             class="cn-font-heading mt-5 max-w-3xl text-balance text-2xl font-semibold leading-[1.15] tracking-tight text-foreground sm:text-[2rem] lg:leading-[1.12]"
           >
             {{ page.description }}
-          </p>
+          </h1>
         </div>
         <div
           aria-hidden="true"

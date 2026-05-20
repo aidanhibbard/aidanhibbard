@@ -7,13 +7,37 @@ const props = defineProps<{
   links: TocLink[]
 }>()
 
+const route = useRoute()
 const activeId = ref('')
 const flatLinks = computed(() => flattenContentTocLinks(props.links))
 
+const scrollOffset = 112
+
+let stopObserver = (): void => {}
+
+const syncActiveFromScroll = (): void => {
+  const headings = flatLinks.value
+    .map(link => document.getElementById(link.id))
+    .filter((element): element is HTMLElement => element !== null)
+
+  if (headings.length === 0) {
+    return
+  }
+
+  let current = headings[0]!.id
+
+  for (const heading of headings) {
+    if (heading.getBoundingClientRect().top <= scrollOffset) {
+      current = heading.id
+    }
+  }
+
+  activeId.value = current
+}
+
 const observeHeadings = (): (() => void) => {
-  const ids = flatLinks.value.map(link => link.id)
-  const elements = ids
-    .map(id => document.getElementById(id))
+  const elements = flatLinks.value
+    .map(link => document.getElementById(link.id))
     .filter((element): element is HTMLElement => element !== null)
 
   if (elements.length === 0) {
@@ -39,24 +63,47 @@ const observeHeadings = (): (() => void) => {
   )
 
   elements.forEach(element => observer.observe(element))
+  syncActiveFromScroll()
 
   return () => observer.disconnect()
 }
 
-let stopObserver = (): void => {}
+const mountObserver = async (): Promise<void> => {
+  stopObserver()
+
+  for (let attempt = 0; attempt < 30; attempt++) {
+    await nextTick()
+
+    if (attempt > 0) {
+      await new Promise<void>(resolve => requestAnimationFrame(() => resolve()))
+    }
+
+    const cleanup = observeHeadings()
+    const hasHeadings = flatLinks.value.some(link => document.getElementById(link.id))
+
+    if (hasHeadings) {
+      stopObserver = cleanup
+      return
+    }
+
+    cleanup()
+  }
+}
 
 onMounted(() => {
-  stopObserver = observeHeadings()
+  void mountObserver()
 })
 
 onUnmounted(() => {
   stopObserver()
 })
 
-watch(flatLinks, async () => {
-  stopObserver()
-  await nextTick()
-  stopObserver = observeHeadings()
+watch(flatLinks, () => {
+  void mountObserver()
+})
+
+watch(() => route.path, () => {
+  void mountObserver()
 })
 </script>
 

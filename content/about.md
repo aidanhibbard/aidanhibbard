@@ -3,6 +3,8 @@ title: About
 description: How I think about software, community, and the work of building things that last.
 ---
 
+## Who I am
+
 I'm Aidan, a senior engineer in Central Oregon. I like building software people can depend on: the API, the background job, the dashboard that tells you what went wrong without making you guess.
 
 I'm drawn to work with real constraints. Usage limits that have to add up. Integrations that can't drop messages. Migrations where downtime isn't an option. The interesting part is rarely the novelty. It's making the right thing obvious and the wrong thing hard.
