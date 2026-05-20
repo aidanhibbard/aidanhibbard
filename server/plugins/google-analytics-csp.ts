@@ -14,6 +14,23 @@ const googleAnalyticsImgSrc = [
   'https://*.google-analytics.com',
 ]
 
+const mergeCspSources = (
+  existing: string | string[] | false | undefined,
+  additions: string[],
+): string[] => {
+  if (existing === false) {
+    return additions
+  }
+
+  const base = Array.isArray(existing)
+    ? existing
+    : existing
+      ? [existing]
+      : []
+
+  return [...new Set([...base, ...additions])]
+}
+
 export default defineNitroPlugin((nitroApp) => {
   if (!process.env.GOOGLE_ANALYTICS_ID) {
     return
@@ -21,18 +38,23 @@ export default defineNitroPlugin((nitroApp) => {
 
   nitroApp.hooks.hook('nuxt-security:routeRules', (routeRules) => {
     for (const route of Object.keys(routeRules)) {
-      routeRules[route] = defuReplaceArray(
-        {
-          headers: {
-            contentSecurityPolicy: {
-              'connect-src': googleAnalyticsConnectSrc,
-              'script-src': googleAnalyticsScriptSrc,
-              'img-src': googleAnalyticsImgSrc,
-            },
-          },
-        },
-        routeRules[route],
-      )
+      const rule = routeRules[route] ?? { headers: {} }
+      const headers = rule.headers === false ? {} : (rule.headers ?? {})
+      const existingCsp = headers.contentSecurityPolicy === false
+        ? {}
+        : (headers.contentSecurityPolicy ?? {})
+
+      headers.contentSecurityPolicy = {
+        ...existingCsp,
+        'connect-src': mergeCspSources(existingCsp['connect-src'], googleAnalyticsConnectSrc),
+        'script-src': mergeCspSources(existingCsp['script-src'], googleAnalyticsScriptSrc),
+        'img-src': mergeCspSources(existingCsp['img-src'], googleAnalyticsImgSrc),
+      }
+
+      routeRules[route] = {
+        ...rule,
+        headers,
+      }
     }
   })
 })
