@@ -1,23 +1,13 @@
-const googleAnalyticsConnectSrc = [
-  'https://www.google-analytics.com',
-  'https://*.google-analytics.com',
-  'https://analytics.google.com',
-  'https://region1.google-analytics.com',
-  'https://www.google.com',
-]
-
-const googleAnalyticsScriptSrc = [
-  'https://www.googletagmanager.com',
-]
-
-const googleAnalyticsImgSrc = [
-  'https://www.google-analytics.com',
-  'https://*.google-analytics.com',
-]
+import {
+  cspSelf,
+  googleAnalyticsConnectSrc,
+  googleAnalyticsImgSrc,
+  googleAnalyticsScriptSrc,
+} from '../../shared/google-analytics-csp-sources'
 
 const mergeCspSources = (
   existing: string | string[] | false | undefined,
-  additions: string[],
+  additions: readonly string[],
 ): string[] => {
   const base = existing === false
     ? []
@@ -27,7 +17,7 @@ const mergeCspSources = (
         ? [existing]
         : []
 
-  return [...new Set(['\'self\'', ...base, ...additions])]
+  return [...new Set([cspSelf, ...base, ...additions])]
 }
 
 export default defineNitroPlugin((nitroApp) => {
