@@ -1,26 +1,20 @@
-import { readFile } from 'node:fs/promises'
-import { resolve } from 'node:path'
+import type { H3Event } from 'h3'
+import { useStorage } from 'nitropack/runtime'
 
-const contentRoot = resolve(process.cwd(), 'content')
-
-export const readContentMarkdown = async (contentPath: string): Promise<string> => {
+export const readContentMarkdown = async (
+  _event: H3Event,
+  contentPath: string,
+): Promise<string> => {
   const relativePath = contentPath.replace(/^\//, '')
-  const filePath = resolve(contentRoot, `${relativePath}.md`)
+  const storage = useStorage('assets:content')
+  const markdown = await storage.getItem<string>(`${relativePath}.md`)
 
-  if (!filePath.startsWith(contentRoot)) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Invalid content path',
-    })
-  }
-
-  try {
-    return await readFile(filePath, 'utf8')
-  }
-  catch {
+  if (!markdown) {
     throw createError({
       statusCode: 404,
       statusMessage: 'Content not found',
     })
   }
+
+  return markdown
 }

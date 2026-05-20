@@ -1,5 +1,5 @@
 import type { H3Event } from 'h3'
-import { htmlToMarkdown } from 'mdream'
+import { convertHtmlStringToMarkdown } from './convert-html-string-to-markdown'
 
 const INTERNAL_HTML_HEADER = 'x-ai-ready-internal'
 
@@ -36,9 +36,5 @@ export const convertPageHtmlToMarkdown = async (
   const html = await response.text()
   const canonicalUrl = buildCanonicalUrl(event, path)
 
-  return htmlToMarkdown(html, {
-    minimal: true,
-    clean: true,
-    origin: new URL(canonicalUrl).origin,
-  })
+  return convertHtmlStringToMarkdown(html, canonicalUrl)
 }

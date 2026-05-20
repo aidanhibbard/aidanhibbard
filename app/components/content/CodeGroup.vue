@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useSlots, computed, ref, cloneVNode, type VNode } from 'vue'
 import { Copy, Check } from 'lucide-vue-next'
+import { toast } from 'vue-sonner'
 
 type Pane = {
   label: string
@@ -38,8 +39,9 @@ const onCopy = async () => {
       copied.value = false
     }, 1500)
   }
-  catch (err) {
-    void err
+  catch {
+    copied.value = false
+    toast.error('Copy failed')
   }
 }
 

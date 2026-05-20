@@ -1,34 +1,16 @@
-import { getHeader, setHeader } from 'h3'
-import { buildAlternateHtmlLink } from '../utils/build-alternate-html-link'
-import { buildHomepageAgentLinks } from '../utils/build-homepage-agent-links'
-import { convertPageHtmlToMarkdown } from '../utils/convert-page-html-to-markdown'
-import { estimateMarkdownTokens } from '../utils/estimate-markdown-tokens'
-import { isMarkdownNegotiationRequest } from '../utils/is-markdown-negotiation-request'
-import { mergeLinkHeader } from '../utils/merge-link-header'
-import { resolveMarkdownPagePath } from '../utils/resolve-markdown-page-path'
+import type { H3Event } from 'h3'
+import { getHeader, send, sendNoContent } from 'h3'
+import { convertPageHtmlToMarkdown } from './convert-page-html-to-markdown'
+import { isMarkdownNegotiationRequest } from './is-markdown-negotiation-request'
+import { isSupportedMarkdownPage } from './is-supported-markdown-page'
+import { resolveMarkdownPagePath } from './resolve-markdown-page-path'
+import { setMarkdownResponseHeaders } from './set-markdown-response-headers'
 import { resolvePageMarkdown } from '../services/content/resolve-page-markdown'
 
 const log = logger.withTag('markdown-negotiation')
 
 const INTERNAL_HTML_HEADER = 'x-ai-ready-internal'
 const PRERENDER_HEADER = 'x-nitro-prerender'
-
-const setMarkdownResponseHeaders = (
-  event: Parameters<typeof setHeader>[0],
-  path: string,
-  markdown: string,
-): void => {
-  setHeader(event, 'content-type', 'text/markdown; charset=utf-8')
-  setHeader(event, 'vary', 'Accept, Sec-Fetch-Dest')
-  setHeader(event, 'x-markdown-tokens', String(estimateMarkdownTokens(markdown)))
-
-  const alternateLink = buildAlternateHtmlLink(path)
-  const link = path === '/'
-    ? mergeLinkHeader(alternateLink, buildHomepageAgentLinks())
-    : alternateLink
-
-  setHeader(event, 'link', link)
-}
 
 const resolveNegotiatedMarkdown = async (
   event: Parameters<typeof convertPageHtmlToMarkdown>[0],
@@ -45,37 +27,44 @@ const resolveNegotiatedMarkdown = async (
   return convertPageHtmlToMarkdown(event, path)
 }
 
-export default defineEventHandler(async (event) => {
+export const handleMarkdownRequest = async (
+  event: H3Event,
+): Promise<unknown> => {
   if (event.method !== 'GET' && event.method !== 'HEAD') {
-    return
+    return undefined
   }
 
   if (getHeader(event, INTERNAL_HTML_HEADER) || getHeader(event, PRERENDER_HEADER)) {
-    return
+    return undefined
+  }
+
+  if (!isSupportedMarkdownPage(event.path)) {
+    return undefined
   }
 
   const accept = getHeader(event, 'accept')
 
   if (!isMarkdownNegotiationRequest(event.path, accept)) {
-    return
+    return undefined
   }
 
   const path = resolveMarkdownPagePath(event.path)
 
   if (!path) {
-    return
+    return undefined
   }
 
   try {
     const markdown = await resolveNegotiatedMarkdown(event, path)
 
+    event.context.markdownBody = markdown
     setMarkdownResponseHeaders(event, path, markdown)
 
     if (event.method === 'HEAD') {
-      return ''
+      return sendNoContent(event)
     }
 
-    return markdown
+    return send(event, markdown, 'text/markdown; charset=utf-8')
   }
   catch (error) {
     if (event.path.endsWith('.md')) {
@@ -87,4 +76,4 @@ export default defineEventHandler(async (event) => {
 
     throw error
   }
-})
+}

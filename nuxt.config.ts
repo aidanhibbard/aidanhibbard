@@ -1,6 +1,6 @@
 import tailwindcss from '@tailwindcss/vite'
+import { resolve } from 'node:path'
 import { definePerson } from 'nuxt-schema-org/schema'
-import { logger } from './server/utils/logger'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -60,11 +60,11 @@ export default defineNuxtConfig({
       },
     },
     '/about': { prerender: true },
-    '/index.md': { prerender: true },
     '/posts': { prerender: true },
     '/posts/**': { prerender: true },
     '/resume': { prerender: true },
     '/**/*.md': {
+      prerender: false,
       headers: {
         'content-type': 'text/markdown; charset=utf-8',
       },
@@ -116,11 +116,14 @@ export default defineNuxtConfig({
       payload.notes.push('Raw markdown: /page.md')
     },
     'nitro:init'(nitro) {
-      const log = logger.withTag('prerender-markdown')
+      nitro.options.serverAssets.push({
+        baseName: 'content',
+        dir: resolve(nitro.options.rootDir, 'content'),
+      })
 
-      nitro.hooks.hook('prerender:route', async (route) => {
-        const { enrichPrerenderMarkdownRoute } = await import('./server/prerender/enrich-markdown-route')
-        await enrichPrerenderMarkdownRoute(route, nitro, log)
+      nitro.hooks.hook('prerender:done', async () => {
+        const { deletePrerenderedMarkdownFiles } = await import('./server/services/content/delete-prerendered-markdown-files')
+        await deletePrerenderedMarkdownFiles(nitro.options.output.publicDir)
       })
     },
   },
@@ -198,6 +201,9 @@ export default defineNuxtConfig({
       crossOriginResourcePolicy: 'same-origin',
       xContentTypeOptions: 'nosniff',
       xFrameOptions: 'SAMEORIGIN',
+      contentSecurityPolicy: {
+        'connect-src': ['\'self\''],
+      },
     },
     ssg: {
       meta: true,

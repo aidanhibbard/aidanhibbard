@@ -1,27 +1,39 @@
 import { getResponseHeader, setHeader } from 'h3'
 import { buildHomepageAgentLinks } from '../utils/build-homepage-agent-links'
+import { buildMarkdownAlternateLink } from '../utils/build-markdown-alternate-link'
 import { estimateMarkdownTokens } from '../utils/estimate-markdown-tokens'
+import { isSupportedMarkdownPage } from '../utils/is-supported-markdown-page'
 import { mergeLinkHeader } from '../utils/merge-link-header'
 import { normalizeResponseHeader } from '../utils/normalize-response-header'
+import { resolveMarkdownPagePath } from '../utils/resolve-markdown-page-path'
 
 export default defineNitroPlugin((nitroApp) => {
   nitroApp.hooks.hook('beforeResponse', (event, { body }) => {
     const contentType = normalizeResponseHeader(getResponseHeader(event, 'content-type'))
+    const contextBody = (event.context as { markdownBody?: string }).markdownBody
+    const markdownBody = typeof body === 'string' && body.length > 0
+      ? body
+      : contextBody
 
-    if (typeof body === 'string' && contentType?.includes('text/markdown')) {
-      setHeader(event, 'x-markdown-tokens', String(estimateMarkdownTokens(body)))
-    }
-
-    if (event.path !== '/') {
-      return
+    if (markdownBody) {
+      setHeader(event, 'content-type', 'text/markdown; charset=utf-8')
+      setHeader(event, 'x-markdown-tokens', String(estimateMarkdownTokens(markdownBody)))
     }
 
     if (!contentType?.includes('text/html')) {
       return
     }
 
+    if (!isSupportedMarkdownPage(event.path)) {
+      return
+    }
+
+    const pagePath = resolveMarkdownPagePath(event.path) ?? event.path.split('?')[0] ?? '/'
     const existingLink = getResponseHeader(event, 'link')
-    const link = mergeLinkHeader(existingLink, buildHomepageAgentLinks())
+    const additions = pagePath === '/'
+      ? buildHomepageAgentLinks()
+      : [buildMarkdownAlternateLink(pagePath)]
+    const link = mergeLinkHeader(existingLink, additions)
 
     setHeader(event, 'link', link)
   })

@@ -3,6 +3,7 @@ const googleAnalyticsConnectSrc = [
   'https://*.google-analytics.com',
   'https://analytics.google.com',
   'https://region1.google-analytics.com',
+  'https://www.google.com',
 ]
 
 const googleAnalyticsScriptSrc = [
@@ -18,17 +19,15 @@ const mergeCspSources = (
   existing: string | string[] | false | undefined,
   additions: string[],
 ): string[] => {
-  if (existing === false) {
-    return additions
-  }
+  const base = existing === false
+    ? []
+    : Array.isArray(existing)
+      ? existing
+      : existing
+        ? [existing]
+        : []
 
-  const base = Array.isArray(existing)
-    ? existing
-    : existing
-      ? [existing]
-      : []
-
-  return [...new Set([...base, ...additions])]
+  return [...new Set(['\'self\'', ...base, ...additions])]
 }
 
 export default defineNitroPlugin((nitroApp) => {
