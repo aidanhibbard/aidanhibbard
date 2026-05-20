@@ -45,7 +45,7 @@ const contactLinks = computed<ContactLink[]>(() => [
 
 <template>
   <TooltipProvider>
-    <div class="mt-6 flex items-center gap-1">
+    <div class="flex items-center gap-1">
       <Tooltip
         v-for="link in contactLinks"
         :key="link.label"

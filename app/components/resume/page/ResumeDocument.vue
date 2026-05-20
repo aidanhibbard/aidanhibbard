@@ -18,7 +18,10 @@ const sectionHeadingClass
       <h1 class="cn-font-heading mt-4 text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
         {{ resume.name }}
       </h1>
-      <ResumeHeaderContactLinks :contact="resume.contact" />
+      <div class="mt-6 flex items-center justify-between gap-6">
+        <ResumeHeaderContactLinks :contact="resume.contact" />
+        <CopyMarkdown path="/resume" />
+      </div>
     </header>
 
     <section
