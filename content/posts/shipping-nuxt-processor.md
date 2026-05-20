@@ -3,15 +3,6 @@ title: 'Why I built nuxt-processor'
 date: '2025-09-20'
 tags: ['nuxt', 'bullmq', 'open-source']
 description: 'Background jobs in Nuxt kept being a side quest. I wanted them to be boring.'
-theme:
-  light:
-    - '#f0fdfa'
-    - '#cffafe'
-    - '#06b6d4'
-  dark:
-    - '#ecfeff'
-    - '#a5f3fc'
-    - '#22d3ee'
 robots: index, follow
 sitemap:
   lastmod: 2025-09-20

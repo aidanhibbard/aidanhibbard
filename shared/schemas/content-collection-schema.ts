@@ -3,7 +3,6 @@ import { defineRobotsSchema } from '@nuxtjs/robots/content'
 import { defineSitemapSchema } from '@nuxtjs/sitemap/content'
 import { defineOgImageSchema } from 'nuxt-og-image/content'
 import { defineSchemaOrgSchema } from 'nuxt-schema-org/content'
-import { postThemeSchema } from './post-theme-schema'
 
 const schemaOptions = { z }
 
@@ -28,7 +27,6 @@ export const contentCollectionSchema = z.object({
   draft: z.boolean().optional(),
   landing: landingSchema.optional(),
   roles: z.array(resumeRoleSchema).optional(),
-  theme: postThemeSchema.optional(),
   robots: defineRobotsSchema(schemaOptions),
   sitemap: defineSitemapSchema({
     ...schemaOptions,

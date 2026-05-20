@@ -3,15 +3,6 @@ title: 'The BullMQ retry setting that doubled our load'
 date: '2026-02-18'
 tags: ['bullmq', 'redis', 'queues']
 description: 'We wanted resilience. We got a DDoS we authored ourselves.'
-theme:
-  light:
-    - '#ffffff'
-    - '#e0f2fe'
-    - '#38bdf8'
-  dark:
-    - '#f0f9ff'
-    - '#bae6fd'
-    - '#7dd3fc'
 robots: index, follow
 sitemap:
   lastmod: 2026-02-18

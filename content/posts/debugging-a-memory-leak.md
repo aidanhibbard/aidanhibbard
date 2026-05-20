@@ -3,15 +3,6 @@ title: 'Debugging a memory leak in a Next app'
 date: '2025-11-11'
 tags: ['next', 'sentry', 'inngest']
 description: 'Finding a needle in a haystack, blindfolded, and the hay is on fire.'
-theme:
-  light:
-    - '#fafafa'
-    - '#e0f2fe'
-    - '#0ea5e9'
-  dark:
-    - '#f0f9ff'
-    - '#bae6fd'
-    - '#38bdf8'
 robots: index, follow
 sitemap:
   lastmod: 2025-11-11

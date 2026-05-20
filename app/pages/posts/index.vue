@@ -59,7 +59,7 @@ const {
   const total = await builder.count()
 
   const items = await builder
-    .select('path', 'title', 'description', 'date', 'theme')
+    .select('path', 'title', 'description', 'date')
     .skip((state.page - 1) * POSTS_PAGE_SIZE)
     .limit(POSTS_PAGE_SIZE)
     .all() as PostListItem[]
