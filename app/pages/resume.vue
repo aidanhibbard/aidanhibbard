@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { defineWebPage } from 'nuxt-schema-org/schema'
+import type { ResumePage } from '#shared/types/content/resume-page'
 
 const { page } = useContentPageQuery('/resume')
+
+const resume = computed(() => page.value?.resume as ResumePage | undefined)
 
 const schemaIds = useSiteSchemaIds()
 
@@ -19,8 +22,8 @@ useSchemaOrg([
 </script>
 
 <template>
-  <ContentRenderer
-    v-if="page"
-    :value="page"
+  <ResumePageResumeDocument
+    v-if="resume"
+    :resume="resume"
   />
 </template>
