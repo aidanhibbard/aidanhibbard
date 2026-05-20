@@ -12,16 +12,16 @@ type ResumeContent = ContentSeoPage & {
   resume?: ResumePage
 }
 
-export const useLandingContent = async () => {
-  const { data: home } = await useAsyncData('landing-home', () =>
+export const useLandingContent = () => {
+  const { data: home } = useAsyncData('landing-home', () =>
     queryCollection('content').path('/').first() as Promise<HomeContent | null>,
   )
 
-  const { data: resume } = await useAsyncData('landing-resume', () =>
+  const { data: resume } = useAsyncData('landing-resume', () =>
     queryCollection('content').path('/resume').first() as Promise<ResumeContent | null>,
   )
 
-  const { data: latestPosts } = await useAsyncData('landing-posts', () =>
+  const { data: latestPosts } = useAsyncData('landing-posts', () =>
     queryCollection('content')
       .where('path', 'LIKE', '/posts/%')
       .order('date', 'DESC')

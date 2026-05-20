@@ -31,7 +31,7 @@ const {
   featuredPost,
   sidebarPosts,
   hasPosts,
-} = await useLandingContent()
+} = useLandingContent()
 </script>
 
 <template>

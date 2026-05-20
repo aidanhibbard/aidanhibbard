@@ -11,7 +11,6 @@ type SiteOgImageProps = {
 export const defineSiteOgImage = (props: SiteOgImageProps): void => {
   const site = useSiteConfig()
 
-  // @ts-expect-error SitePage is registered from app/components/OgImage/SitePage.vue
   defineOgImage('SitePage', {
     title: () => toValue(props.title) ?? site.name,
     description: () => toValue(props.description) ?? site.description,

@@ -13,24 +13,16 @@ const slug = computed((): string => {
 
 const contentPath = computed(() => `/posts/${slug.value}`)
 
-const { page, tocLinks } = await useContentPageQuery(contentPath, {
+const { page, tocLinks } = useContentPageQuery(contentPath, {
   notFoundMessage: 'Post not found',
 })
-
-if (!page.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: 'Post not found',
-  })
-}
-
-const resolvedPage = page.value
 </script>
 
 <template>
   <PostsArticleShell
+    v-if="page"
     :content-path="contentPath"
-    :page="resolvedPage"
+    :page="page"
     :toc-links="tocLinks"
   />
 </template>
