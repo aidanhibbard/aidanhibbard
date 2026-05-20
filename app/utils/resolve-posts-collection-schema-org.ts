@@ -24,25 +24,25 @@ export const resolvePostsCollectionSchemaOrg = (
   return [
     {
       '@type': 'CollectionPage',
-      name: 'Blog',
+      'name': 'Blog',
       description,
-      url: ids.pageUrl('/posts'),
-      isPartOf: {
+      'url': ids.pageUrl('/posts'),
+      'isPartOf': {
         '@id': ids.websiteId,
       },
-      mainEntity: {
+      'mainEntity': {
         '@type': 'ItemList',
-        numberOfItems: totalPosts,
-        itemListElement: posts.map((post, index) => ({
+        'numberOfItems': totalPosts,
+        'itemListElement': posts.map((post, index) => ({
           '@type': 'ListItem',
-          position: (page - 1) * pageSize + index + 1,
-          item: {
+          'position': (page - 1) * pageSize + index + 1,
+          'item': {
             '@type': 'BlogPosting',
-            headline: post.title,
-            description: post.description,
-            datePublished: post.date,
-            url: ids.pageUrl(post.path),
-            author: {
+            'headline': post.title,
+            'description': post.description,
+            'datePublished': post.date,
+            'url': ids.pageUrl(post.path),
+            'author': {
               '@id': ids.identityId,
             },
           },

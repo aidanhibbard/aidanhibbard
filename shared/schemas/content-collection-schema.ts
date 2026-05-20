@@ -6,12 +6,27 @@ import { defineSchemaOrgSchema } from 'nuxt-schema-org/content'
 
 const schemaOptions = { z }
 
+const resumeRoleSchema = z.object({
+  period: z.string(),
+  title: z.string(),
+  organization: z.string(),
+  summary: z.string(),
+})
+
+const landingSchema = z.object({
+  aboutHeadline: z.string(),
+  aboutLead: z.string(),
+  aboutBody: z.string(),
+})
+
 export const contentCollectionSchema = z.object({
   title: z.string(),
   description: z.string().optional(),
   date: z.string().optional(),
   tags: z.array(z.string()).optional(),
   draft: z.boolean().optional(),
+  landing: landingSchema.optional(),
+  roles: z.array(resumeRoleSchema).optional(),
   robots: defineRobotsSchema(schemaOptions),
   sitemap: defineSitemapSchema({
     ...schemaOptions,

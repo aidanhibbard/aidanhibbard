@@ -1,39 +1,10 @@
 <script setup lang="ts">
 import { ArrowRight } from 'lucide-vue-next'
-import {
-  Card,
-  CardFooter,
-} from '@/components/shadcn/ui/card'
-import { defineSiteOgImage } from '@/utils/define-site-og-image'
-
-type LanderAuthor = {
-  name: string
-}
-
-type FeaturedPost = {
-  category: string
-  title: string
-  date: string
-  href: string
-  authors: LanderAuthor[]
-}
-
-type SidebarPost = {
-  category: string
-  title: string
-  date: string
-  href: string
-}
-
-type ResumeTimelineEntry = {
-  period: string
-  title: string
-  organization: string
-  summary: string
-}
+import { Card } from '@/components/shadcn/ui/card'
+import { formatPostDate } from '@/utils/format-post-date'
 
 const cardFrameClass
-  = 'h-full gap-0 rounded-none border border-border bg-transparent py-0 shadow-none ring-0 transition-colors hover:border-primary/35'
+  = 'h-full gap-0 rounded-none border border-border bg-card/40 py-0 shadow-none ring-0 transition-colors hover:border-primary/35'
 
 const categoryClass
   = 'font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase'
@@ -47,86 +18,20 @@ const sectionCtaLinkClass
 const sectionCtaArrowClass
   = 'size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5'
 
-const featuredPost: FeaturedPost = {
-  category: 'ANNOUNCEMENTS',
-  title: 'Announcing Rolldown 1.0',
-  date: 'MAY 7, 2026',
-  href: '/posts',
-  authors: [
-    { name: 'Yuhao Zhao' },
-    { name: 'sapphi-red' },
-    { name: 'Yunfei He' },
-    { name: 'Xiangjun He' },
-    { name: 'Shuyuan Wang' },
-  ],
-}
-
-const sidebarPosts: SidebarPost[] = [
-  {
-    category: 'UPDATES',
-    title: 'Tales from the Void: April 2026 Recap',
-    date: 'MAY 5, 2026',
-    href: '/posts',
-  },
-  {
-    category: 'ECOSYSTEM',
-    title: 'How we made the Angular Compiler faster using AI',
-    date: 'APR 10, 2026',
-    href: '/posts',
-  },
-]
-
-const authorLabel = featuredPost.authors
-  .map(author => author.name)
-  .join(', ')
-  .replace(/, ([^,]+)$/, ', and $1')
-
 const { primaryNav } = useNavigation()
 
 const blogPath = primaryNav.find(item => item.label === 'Blog')?.to ?? '/posts'
 const aboutPath = primaryNav.find(item => item.label === 'About')?.to ?? '/about'
 const resumePath = primaryNav.find(item => item.label === 'Resume')?.to ?? '/resume'
 
-const resumeTimeline: ResumeTimelineEntry[] = [
-  {
-    period: '2025 — Now',
-    title: 'Senior Developer',
-    organization: 'Niche',
-    summary: 'Partner APIs, OAuth 2.0, webhooks, and customer-facing features on React and Next.js.',
-  },
-  {
-    period: '2024 — 2025',
-    title: 'Software Developer',
-    organization: 'Legal Nature',
-    summary: 'Stripe migration, Nuxt micro-frontends, and TypeScript adoption across SSR services.',
-  },
-  {
-    period: '2022 — 2024',
-    title: 'Software Developer',
-    organization: 'RealPage',
-    summary: 'Rails and Vue at scale—WebSockets, Kubernetes microservices, and a Vue 2→3 migration.',
-  },
-  {
-    period: '2023 — 2024',
-    title: 'Lead Developer',
-    organization: 'GreenT Climate',
-    summary: 'NitroJS data pipelines, BullMQ, D3 dashboards, and Google Cloud infrastructure.',
-  },
-]
-
-const currentRole = resumeTimeline[0]!
-const pastRoles = resumeTimeline.slice(1)
-
-useSeoMeta({
-  title: 'Home',
-  description: 'Senior software engineer in Central Oregon building production systems, integrations, and polished user experiences.',
-  ogType: 'website',
-})
-
-defineSiteOgImage({
-  title: 'Aidan Hibbard',
-  description: 'Senior software engineer in Central Oregon building software that ships, scales, and feels good to use.',
-})
+const {
+  landing,
+  currentRole,
+  pastRoles,
+  featuredPost,
+  sidebarPosts,
+  hasPosts,
+} = useLandingContent()
 </script>
 
 <template>
@@ -135,70 +40,60 @@ defineSiteOgImage({
       class="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-10 sm:px-6 md:min-h-[calc(100svh-4rem)] lg:px-8 lg:py-14"
       aria-label="Latest writing"
     >
-      <div class="grid flex-1 gap-4 lg:grid-cols-3 lg:gap-5">
+      <div
+        v-if="hasPosts"
+        class="grid flex-1 gap-4 lg:grid-cols-3 lg:gap-5"
+      >
         <Card
+          v-if="featuredPost"
           :class="[cardFrameClass, 'lg:col-span-2 rounded-none']"
           size="sm"
         >
           <NuxtLink
-            :to="featuredPost.href"
+            :to="featuredPost.path"
             class="group flex min-h-88 flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-104 lg:min-h-full"
           >
             <div
               class="flex flex-1 flex-col justify-end gap-8 px-6 py-8 sm:gap-10 sm:px-8 sm:py-10 lg:px-10 lg:py-12"
             >
-              <p :class="categoryClass">
-                // {{ featuredPost.category }}
-              </p>
               <h2
                 class="cn-font-heading max-w-[16ch] text-balance text-4xl font-bold leading-[1.02] tracking-tight text-foreground transition-opacity group-hover:opacity-80 sm:text-5xl lg:text-6xl xl:text-7xl"
               >
                 {{ featuredPost.title }}
               </h2>
-            </div>
-
-            <CardFooter
-              class="flex flex-col gap-4 rounded-none border-t border-border bg-transparent px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-8 sm:py-6 lg:px-10"
-            >
-              <p class="min-w-0 font-mono text-xs leading-relaxed tracking-wide text-muted-foreground sm:text-sm">
-                {{ authorLabel }}
-              </p>
               <time
+                v-if="featuredPost.date"
                 :datetime="featuredPost.date"
                 :class="dateClass"
               >
-                {{ featuredPost.date }}
+                {{ formatPostDate(featuredPost.date) }}
               </time>
-            </CardFooter>
+            </div>
           </NuxtLink>
         </Card>
 
         <div class="grid gap-4 sm:grid-cols-2 lg:flex lg:min-h-full lg:flex-col lg:gap-5">
           <Card
             v-for="post in sidebarPosts"
-            :key="post.title"
+            :key="post.path"
             :class="[cardFrameClass, 'min-h-56 lg:min-h-0 lg:flex-1 rounded-none']"
             size="sm"
           >
             <NuxtLink
-              :to="post.href"
+              :to="post.path"
               class="group flex h-full min-h-56 flex-col justify-between px-6 py-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-7 sm:py-9 lg:min-h-0 lg:px-8 lg:py-10"
             >
-              <div class="flex flex-col gap-6">
-                <p :class="categoryClass">
-                  // {{ post.category }}
-                </p>
-                <h3
-                  class="cn-font-heading text-balance text-2xl font-bold leading-[1.08] tracking-tight text-foreground transition-opacity group-hover:opacity-80 sm:text-[1.65rem] lg:text-3xl"
-                >
-                  {{ post.title }}
-                </h3>
-              </div>
+              <h3
+                class="cn-font-heading text-balance text-2xl font-bold leading-[1.08] tracking-tight text-foreground transition-opacity group-hover:opacity-80 sm:text-[1.65rem] lg:text-3xl"
+              >
+                {{ post.title }}
+              </h3>
               <time
+                v-if="post.date"
                 :datetime="post.date"
                 :class="dateClass"
               >
-                {{ post.date }}
+                {{ formatPostDate(post.date) }}
               </time>
             </NuxtLink>
           </Card>
@@ -212,9 +107,23 @@ defineSiteOgImage({
           </NuxtLink>
         </div>
       </div>
+
+      <div
+        v-else
+        class="flex flex-1 flex-col justify-center"
+      >
+        <NuxtLink
+          :to="blogPath"
+          :class="sectionCtaLinkClass"
+        >
+          <span>View all posts</span>
+          <ArrowRight :class="sectionCtaArrowClass" />
+        </NuxtLink>
+      </div>
     </section>
 
     <section
+      v-if="landing"
       class="mx-auto w-full max-w-7xl border-t border-border px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28"
       aria-label="About"
     >
@@ -226,16 +135,13 @@ defineSiteOgImage({
           <h2
             class="cn-font-heading mt-6 scroll-m-20 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl"
           >
-            Building software that ships, scales, and feels good to use.
+            {{ landing.aboutHeadline }}
           </h2>
           <p class="mt-8 text-xl leading-relaxed text-muted-foreground">
-            Full-stack engineer working across real-time systems, integrations, cloud infra, and UI.
-            I care about production debugging, query tuning, and polish in equal measure.
+            {{ landing.aboutLead }}
           </p>
           <p class="mt-6 leading-7 text-muted-foreground">
-            I believe the best work happens through collaboration: sharing knowledge, lifting people up,
-            and shipping software that solves real problems. Off the keyboard, I help run the Deschutes
-            Tech Guild here in Central Oregon.
+            {{ landing.aboutBody }}
           </p>
         </div>
 
@@ -250,6 +156,7 @@ defineSiteOgImage({
     </section>
 
     <section
+      v-if="currentRole"
       class="mx-auto w-full max-w-7xl border-t border-border px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
       aria-label="Resume"
     >
@@ -281,6 +188,7 @@ defineSiteOgImage({
       </article>
 
       <div
+        v-if="pastRoles.length > 0"
         class="mt-10 lg:mt-12"
         aria-label="Previous roles"
       >

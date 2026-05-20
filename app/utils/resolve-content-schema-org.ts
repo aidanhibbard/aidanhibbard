@@ -51,16 +51,16 @@ const resolveBlogPostingNode = (
 
   const node: Record<string, unknown> = {
     '@type': 'BlogPosting',
-    headline: page.title,
-    datePublished: page.date,
-    url: ids.pageUrl(path),
-    mainEntityOfPage: {
+    'headline': page.title,
+    'datePublished': page.date,
+    'url': ids.pageUrl(path),
+    'mainEntityOfPage': {
       '@id': ids.webpageId(path),
     },
-    author: {
+    'author': {
       '@id': ids.identityId,
     },
-    publisher: {
+    'publisher': {
       '@id': ids.identityId,
     },
   }

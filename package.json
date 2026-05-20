@@ -45,6 +45,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@iconify-json/catppuccin": "^1.2.17",
     "@nuxt/eslint": "^1.15.2",
     "shadcn-nuxt": "^2.7.3",
     "vite-plugin-eslint2": "^5.1.0",
