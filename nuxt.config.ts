@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@nuxt/icon',
     'nuxt-ai-ready',
+    '@nuxt/scripts',
   ],
   $development: {
     modules: [
@@ -213,6 +214,14 @@ export default defineNuxtConfig({
         'https://www.linkedin.com/in/aidan-hibbard/',
       ],
     }),
+  },
+  scripts: {
+    registry: {
+      googleAnalytics: {
+        id: process.env.GOOGLE_ANALYTICS_ID,
+        trigger: 'onNuxtReady',
+      },
+    },
   },
   seo: {
     automaticOgAndTwitterTags: false,
