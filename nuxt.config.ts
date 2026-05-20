@@ -37,7 +37,7 @@ export default defineNuxtConfig({
     '~/assets/css/main.css',
   ],
   site: {
-    url: process.env.SITE_URL,
+    url: 'https://aidanhibbard.dev',
     name: 'Aidan Hibbard',
     description: 'Senior software engineer in Central Oregon writing about production systems, integrations, and the craft of building software.',
     defaultLocale: 'en',
@@ -152,7 +152,7 @@ export default defineNuxtConfig({
     identity: definePerson({
       name: 'Aidan Hibbard',
       description: 'Senior Software Engineer',
-      url: process.env.SITE_URL,
+      url: 'https://aidanhibbard.dev',
       sameAs: [
         'https://github.com/aidanhibbard',
         'https://www.linkedin.com/in/aidan-hibbard/',
