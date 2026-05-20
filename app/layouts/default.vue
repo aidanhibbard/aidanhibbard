@@ -3,7 +3,10 @@ import { SidebarProvider } from '@/components/shadcn/ui/sidebar'
 </script>
 
 <template>
-  <SidebarProvider :default-open="false">
+  <SidebarProvider
+    :default-open="false"
+    class="antialiased"
+  >
     <AsideSideBar />
     <div class="flex min-h-svh w-full flex-col">
       <NavigationHeaderAppHeader />

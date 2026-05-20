@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ArrowRight } from 'lucide-vue-next'
 import {
   Card,
   CardFooter,
@@ -23,6 +24,13 @@ type SidebarPost = {
   href: string
 }
 
+type ResumeTimelineEntry = {
+  period: string
+  title: string
+  organization: string
+  summary: string
+}
+
 const cardFrameClass
   = 'h-full gap-0 rounded-none border border-border bg-transparent py-0 shadow-none ring-0'
 
@@ -31,6 +39,9 @@ const categoryClass
 
 const dateClass
   = 'shrink-0 font-mono text-[11px] font-medium tracking-[0.22em] text-muted-foreground uppercase tabular-nums'
+
+const sectionCtaLinkClass
+  = 'group flex items-center justify-between border border-border px-6 py-4 font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-7 lg:px-8'
 
 const featuredPost: FeaturedPost = {
   category: 'ANNOUNCEMENTS',
@@ -65,6 +76,42 @@ const authorLabel = featuredPost.authors
   .map(author => author.name)
   .join(', ')
   .replace(/, ([^,]+)$/, ', and $1')
+
+const { primaryNav } = useNavigation()
+
+const blogPath = primaryNav.find(item => item.label === 'Blog')?.to ?? '/posts'
+const aboutPath = primaryNav.find(item => item.label === 'About')?.to ?? '/about'
+const resumePath = primaryNav.find(item => item.label === 'Resume')?.to ?? '/resume'
+
+const resumeTimeline: ResumeTimelineEntry[] = [
+  {
+    period: '2025 — Now',
+    title: 'Senior Developer',
+    organization: 'Niche',
+    summary: 'Partner APIs, OAuth 2.0, webhooks, and customer-facing features on React and Next.js.',
+  },
+  {
+    period: '2024 — 2025',
+    title: 'Software Developer',
+    organization: 'Legal Nature',
+    summary: 'Stripe migration, Nuxt micro-frontends, and TypeScript adoption across SSR services.',
+  },
+  {
+    period: '2022 — 2024',
+    title: 'Software Developer',
+    organization: 'RealPage',
+    summary: 'Rails and Vue at scale—WebSockets, Kubernetes microservices, and a Vue 2→3 migration.',
+  },
+  {
+    period: '2023 — 2024',
+    title: 'Lead Developer',
+    organization: 'GreenT Climate',
+    summary: 'NitroJS data pipelines, BullMQ, D3 dashboards, and Google Cloud infrastructure.',
+  },
+]
+
+const currentRole = resumeTimeline[0]!
+const pastRoles = resumeTimeline.slice(1)
 </script>
 
 <template>
@@ -140,7 +187,132 @@ const authorLabel = featuredPost.authors
               </time>
             </NuxtLink>
           </Card>
+
+          <NuxtLink
+            :to="blogPath"
+            :class="[sectionCtaLinkClass, 'sm:col-span-2 lg:col-span-1']"
+          >
+            <span>View all posts</span>
+            <ArrowRight class="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+          </NuxtLink>
         </div>
+      </div>
+    </section>
+
+    <section
+      class="mx-auto w-full max-w-7xl border-t border-border px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28"
+      aria-label="About"
+    >
+      <div class="grid gap-4 lg:grid-cols-3 lg:gap-5">
+        <div class="lg:col-span-2">
+          <p :class="categoryClass">
+            // ABOUT
+          </p>
+          <h2
+            class="cn-font-heading mt-6 scroll-m-20 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+          >
+            Building software that ships, scales, and feels good to use.
+          </h2>
+          <p class="mt-8 text-xl leading-relaxed text-muted-foreground">
+            Full-stack engineer working across real-time systems, integrations, cloud infra, and UI.
+            I care about production debugging, query tuning, and polish in equal measure.
+          </p>
+          <p class="mt-6 leading-7 text-muted-foreground">
+            I believe the best work happens through collaboration—sharing knowledge, lifting people up,
+            and shipping mission-driven software that solves real problems. Off the keyboard, I help
+            organize the Deschutes Tech Guild and advocate for the local tech community in Central Oregon.
+          </p>
+          <blockquote class="mt-10 border-l-2 border-border pl-6 text-lg leading-relaxed text-muted-foreground italic">
+            “Don't Panic.”
+            <footer class="mt-3 font-mono text-[11px] not-italic tracking-[0.2em] text-muted-foreground uppercase">
+              — Douglas Adams
+            </footer>
+          </blockquote>
+        </div>
+
+        <NuxtLink
+          :to="aboutPath"
+          :class="[sectionCtaLinkClass, 'lg:self-end']"
+        >
+          <span>Read the full story</span>
+          <ArrowRight class="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+        </NuxtLink>
+      </div>
+    </section>
+
+    <section
+      class="mx-auto w-full max-w-7xl border-t border-border px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
+      aria-label="Resume"
+    >
+      <p :class="categoryClass">
+        // RESUME
+      </p>
+
+      <article
+        class="mt-6 max-w-2xl lg:mt-8"
+        aria-label="Current role"
+      >
+        <time
+          :datetime="currentRole.period"
+          :class="dateClass"
+        >
+          {{ currentRole.period }}
+        </time>
+        <h2
+          class="cn-font-heading mt-3 text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl"
+        >
+          {{ currentRole.title }}
+        </h2>
+        <p class="mt-2 font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase">
+          {{ currentRole.organization }}
+        </p>
+        <p class="mt-4 leading-7 text-muted-foreground">
+          {{ currentRole.summary }}
+        </p>
+      </article>
+
+      <div
+        class="mt-10 lg:mt-12"
+        aria-label="Previous roles"
+      >
+        <p :class="categoryClass">
+          // PREVIOUSLY
+        </p>
+        <ol
+          class="mt-6 flex flex-col gap-8 lg:grid lg:grid-cols-3 lg:gap-10"
+        >
+          <li
+            v-for="entry in pastRoles"
+            :key="`${entry.period}-${entry.title}-${entry.organization}`"
+            class="min-w-0 lg:border-l lg:border-border lg:pl-10 lg:first:border-l-0 lg:first:pl-0"
+          >
+            <time
+              :datetime="entry.period"
+              :class="dateClass"
+            >
+              {{ entry.period }}
+            </time>
+            <p class="cn-font-heading mt-3 text-balance text-base font-bold leading-snug tracking-tight text-foreground sm:text-lg">
+              {{ entry.title }}
+            </p>
+            <p class="mt-1.5 font-mono text-[11px] font-medium tracking-[0.24em] text-muted-foreground uppercase">
+              {{ entry.organization }}
+            </p>
+            <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+              {{ entry.summary }}
+            </p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="mt-10 grid gap-4 lg:mt-12 lg:grid-cols-3 lg:gap-5">
+        <NuxtLink
+          :to="resumePath"
+          :class="[sectionCtaLinkClass, 'lg:col-start-3']"
+        >
+          <span>View full resume</span>
+          <ArrowRight class="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+        </NuxtLink>
       </div>
     </section>
   </div>

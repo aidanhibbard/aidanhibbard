@@ -16,9 +16,15 @@ const { primaryNav, socialLinks, isActive } = useNavigation()
 
       <NuxtLink
         to="/"
-        class="cn-font-heading hidden truncate text-lg font-bold leading-none tracking-tight text-foreground transition-opacity hover:opacity-80 md:inline-block lg:text-xl"
+        class="group hidden shrink-0 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:inline-block"
       >
-        Aidan Hibbard
+        <span
+          class="cn-font-heading text-lg tracking-[-0.03em] text-foreground lg:text-xl"
+          aria-label="Aidan Hibbard"
+        >
+          <span class="font-semibold">Aidan</span>
+          <span class="font-bold tracking-[-0.045em]"> Hibbard</span>
+        </span>
       </NuxtLink>
 
       <nav
