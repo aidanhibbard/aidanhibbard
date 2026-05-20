@@ -1,6 +1,6 @@
-import type { ResumeContact } from '#shared/types/content/resume-contact'
-import type { ResumeExperience } from '#shared/types/content/resume-experience'
-import type { ResumeSkillGroup } from '#shared/types/content/resume-skill-group'
+import type { ResumeContact } from './resume-contact'
+import type { ResumeExperience } from './resume-experience'
+import type { ResumeSkillGroup } from './resume-skill-group'
 
 export type ResumePage = {
   name: string

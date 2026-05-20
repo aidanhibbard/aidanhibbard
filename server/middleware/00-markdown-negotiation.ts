@@ -6,8 +6,7 @@ import { estimateMarkdownTokens } from '../utils/estimate-markdown-tokens'
 import { isMarkdownNegotiationRequest } from '../utils/is-markdown-negotiation-request'
 import { mergeLinkHeader } from '../utils/merge-link-header'
 import { resolveMarkdownPagePath } from '../utils/resolve-markdown-page-path'
-import { stripMarkdownFrontmatter } from '../utils/strip-markdown-frontmatter'
-import { readContentMarkdown } from '../services/content/read-content-markdown'
+import { resolvePageMarkdown } from '../services/content/resolve-page-markdown'
 
 const log = logger.withTag('markdown-negotiation')
 
@@ -31,21 +30,17 @@ const setMarkdownResponseHeaders = (
   setHeader(event, 'link', link)
 }
 
-const resolvePageMarkdown = async (
+const resolveNegotiatedMarkdown = async (
   event: Parameters<typeof convertPageHtmlToMarkdown>[0],
   path: string,
 ): Promise<string> => {
-  try {
-    const contentMarkdown = await readContentMarkdown(path)
-    const body = stripMarkdownFrontmatter(contentMarkdown)
+  const contentMarkdown = await resolvePageMarkdown(event, path)
 
-    if (body.length > 0) {
-      return contentMarkdown
-    }
+  if (contentMarkdown) {
+    return contentMarkdown
   }
-  catch (error) {
-    log.error(`Content markdown unavailable for ${path}, falling back to HTML conversion`, error)
-  }
+
+  log.error(`Content markdown unavailable for ${path}, falling back to HTML conversion`)
 
   return convertPageHtmlToMarkdown(event, path)
 }
@@ -72,7 +67,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const markdown = await resolvePageMarkdown(event, path)
+    const markdown = await resolveNegotiatedMarkdown(event, path)
 
     setMarkdownResponseHeaders(event, path, markdown)
 

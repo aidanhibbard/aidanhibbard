@@ -112,7 +112,7 @@ export default defineNuxtConfig({
     'nitro:init'(nitro) {
       const log = logger.withTag('prerender-markdown')
 
-      nitro.hooks.hook('prerender:generate', (route) => {
+      nitro.hooks.hook('prerender:generate', async (route) => {
         if (!route.fileName?.endsWith('.md')) {
           return
         }
@@ -134,6 +134,23 @@ export default defineNuxtConfig({
         catch (error) {
           log.error(`Failed to parse prerendered markdown for ${route.route}`, error)
         }
+
+        const pageRoute = route.route.replace(/\.md$/, '').replace(/\/index$/, '') || '/'
+
+        if (pageRoute !== '/resume') {
+          return
+        }
+
+        const { readResumeMarkdownFromFile } = await import('./server/services/content/read-resume-markdown-from-file')
+        const resumeMarkdown = await readResumeMarkdownFromFile()
+
+        if (!resumeMarkdown) {
+          log.error('Failed to build prerendered resume markdown from content')
+          return
+        }
+
+        route.contents = resumeMarkdown
+        route.contentType = 'text/markdown; charset=utf-8'
       })
     },
   },
