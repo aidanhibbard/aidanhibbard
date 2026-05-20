@@ -2,6 +2,7 @@
 import { Github, Linkedin } from 'lucide-vue-next'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/shadcn/ui/button'
+import { Separator } from '@/components/shadcn/ui/separator'
 import { SidebarTrigger } from '@/components/shadcn/ui/sidebar'
 
 type NavItem = {
@@ -41,18 +42,17 @@ const isActive = (path: string): boolean => {
 
 <template>
   <header
-    class="sticky top-0 z-50 border-b border-border/50 bg-background/75 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-background/60"
+    class="sticky top-0 z-50 flex h-14 shrink-0 items-center border-b border-border/50 bg-background/75 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 md:h-16"
   >
-    <div class="mx-auto flex h-14 max-w-7xl items-center gap-2 px-4 sm:px-6 md:h-16 lg:px-8">
-      <div class="flex min-w-0 flex-1 items-center gap-3 md:min-w-48 md:flex-initial">
-        <SidebarTrigger class="md:hidden" />
-        <NuxtLink
-          to="/"
-          class="cn-font-heading hidden truncate text-lg font-bold leading-none tracking-tight text-foreground transition-opacity hover:opacity-80 md:inline-block lg:text-xl"
-        >
-          Aidan Hibbard
-        </NuxtLink>
-      </div>
+    <div class="mx-auto flex w-full max-w-7xl items-center gap-1 px-4 sm:px-6 lg:gap-2 lg:px-8">
+      <SidebarTrigger class="-ml-1 md:hidden" />
+
+      <NuxtLink
+        to="/"
+        class="cn-font-heading hidden truncate text-lg font-bold leading-none tracking-tight text-foreground transition-opacity hover:opacity-80 md:inline-block lg:text-xl"
+      >
+        Aidan Hibbard
+      </NuxtLink>
 
       <nav
         class="hidden flex-1 justify-center md:flex"
@@ -78,7 +78,7 @@ const isActive = (path: string): boolean => {
         </ul>
       </nav>
 
-      <div class="flex flex-1 items-center justify-end gap-0.5 md:flex-initial">
+      <div class="ml-auto flex items-center gap-2">
         <Button
           v-for="link in socialLinks"
           :key="link.href"
@@ -100,7 +100,6 @@ const isActive = (path: string): boolean => {
         </Button>
         <Separator
           orientation="vertical"
-          class="mx-2 data-[orientation=vertical]:h-4"
         />
         <HeaderThemeToggle />
       </div>
