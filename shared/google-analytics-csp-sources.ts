@@ -1,5 +1,14 @@
 export const cspSelf = '\'self\'' as const
 
+export const cspScriptSrc = [
+  cspSelf,
+  'https:',
+  '\'unsafe-inline\'',
+  '\'strict-dynamic\'',
+  '\'nonce-{{nonce}}\'',
+  '\'wasm-unsafe-eval\'',
+] as const
+
 export const googleAnalyticsConnectSrc = [
   'https://www.google-analytics.com',
   'https://*.google-analytics.com',

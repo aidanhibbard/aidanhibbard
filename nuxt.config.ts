@@ -1,7 +1,7 @@
 import tailwindcss from '@tailwindcss/vite'
 import { resolve } from 'node:path'
 import { definePerson } from 'nuxt-schema-org/schema'
-import { buildConnectSrc } from './shared/google-analytics-csp-sources'
+import { buildConnectSrc, cspScriptSrc } from './shared/google-analytics-csp-sources'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -204,6 +204,7 @@ export default defineNuxtConfig({
       xFrameOptions: 'SAMEORIGIN',
       contentSecurityPolicy: {
         'connect-src': buildConnectSrc(Boolean(process.env.GOOGLE_ANALYTICS_ID)),
+        'script-src': [...cspScriptSrc],
       },
     },
     ssg: {
