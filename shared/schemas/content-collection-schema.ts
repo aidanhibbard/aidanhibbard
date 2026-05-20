@@ -1,4 +1,5 @@
 import { z } from '@nuxt/content'
+import type { ZodTypeAny } from 'zod'
 import { defineRobotsSchema } from '@nuxtjs/robots/content'
 import { defineSitemapSchema } from '@nuxtjs/sitemap/content'
 import { defineOgImageSchema } from 'nuxt-og-image/content'
@@ -53,6 +54,6 @@ export const contentCollectionSchema = z.object({
       }
     },
   }),
-  ogImage: defineOgImageSchema(schemaOptions),
+  ogImage: defineOgImageSchema(schemaOptions) as unknown as ZodTypeAny,
   schemaOrg: defineSchemaOrgSchema(schemaOptions),
 })
