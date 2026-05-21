@@ -1,14 +1,19 @@
 ---
-title: 'Debugging a memory leak in a Next app'
-date: '2025-11-11'
-tags: ['next', 'sentry', 'inngest']
-description: 'Finding a needle in a haystack, blindfolded, and the hay is on fire.'
-sitemap:
-  lastmod: 2025-11-11
+title: Debugging a memory leak in a Next app
+date: 2025-11-11
+description: Finding a needle in a haystack, blindfolded, and the hay is on fire.
+draft: false
 ogImage:
   props:
-    title: 'Debugging a memory leak in a Next app'
-    description: 'Finding a needle in a haystack, blindfolded, and the hay is on fire.'
+    title: Debugging a memory leak in a Next app
+    description: Finding a needle in a haystack, blindfolded, and the hay is on fire.
+sitemap:
+  loc: /posts/debugging-a-memory-leak
+  lastmod: 2025-11-11
+tags:
+  - next
+  - sentry
+  - inngest
 ---
 
 # Debugging a memory leak in a Next app
@@ -22,9 +27,7 @@ Before continuing this piece, I want to give a big shoutout to the folks over at
 If you can't tell from the article tags, our setup is pretty consistent with most new projects.
 
 - [Next.js](https://nextjs.org/)
-
 - [Inngest](https://www.inngest.com/) for queues
-
 - [Sentry](https://sentry.io) for reporting
 
 The only difference between this and most Next apps is that we deploy to a dedicated instance instead of "serverless".
@@ -98,7 +101,6 @@ I shipped this fix to prod, and within twenty minutes of the release, production
 After re-reviewing, there were a few "known facts" that we had
 
 - We noticed the staging server was not crashing, and had consistent uptimes for deploys
-
 - Production continued restarting through the night when we had virtually no users
 
 Based on the above, I decided to focus my attention on our server-side logic. We depend on vendor webhooks that come in 24/7, so I reviewed some of our traffic on those endpoints. These endpoints don't get any requests on staging unless we do a test request from the vendor's UI, so this lines up with what we saw.
@@ -135,7 +137,7 @@ We had set our restart limit to 10K while we worked through this thinking that i
 
 Pretty quickly we learned we did not have that luxury when an instance went down.
 
-Railway, like most hosts, listens for exit codes from your service to know what is going on. It turns out our Next app bootstraps with the proprietary `next start`, which does _something_ other than starting an entry point with Node.
+Railway, like most hosts, listens for exit codes from your service to know what is going on. It turns out our Next app bootstraps with the proprietary `next start`, which does *something* other than starting an entry point with Node.
 
 I'm used to more "modern" frameworks such as Nuxt, which simply start by executing Node on an entry point.
 
@@ -204,13 +206,13 @@ This lined up perfectly with my previously known facts too, since staging does n
 
 I began scrolling through my app logs locally looking for anything related to the Inngest entry point; the requests themselves didn't start taking longer over time like I thought they would.
 
-Inngest, when running locally, pings your app _a lot_—like an absurd amount. So all of my app logs would get constantly buried under `/api/inngest 200`; however, after scrolling for an eternity, I found an instance of this message:
+Inngest, when running locally, pings your app *a lot*—like an absurd amount. So all of my app logs would get constantly buried under `/api/inngest 200`; however, after scrolling for an eternity, I found an instance of this message:
 
 ```bash [logs]
 (node:34713) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 beforeExit listeners added to [process]. MaxListeners is 10. Use emitter.setMaxListeners() to increase limit
 ```
 
-This ended up being the holy grail, _it literally says memory leak detected_. So I rushed to our production logs to query for "memory leak detected" and what would you know—it was buried under the noise the whole time.
+This ended up being the holy grail, *it literally says memory leak detected*. So I rushed to our production logs to query for "memory leak detected" and what would you know—it was buried under the noise the whole time.
 
 ```bash [logs]
 (node:1) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 31 unpipe listeners added to [y]. MaxListeners is 30. Use emitter.setMaxListeners() to increase limit
@@ -257,11 +259,11 @@ We haven't seen a restart since.
 
 ## Things I've learned
 
-#### Just use Node
+### Just use Node
 
 Abstractions such as special start commands for enterprise software mean you don't know what your app is doing when deploying. Give careful consideration to your deployment process when you have customers that depend on your tools.
 
-#### Avoid AI at all costs
+### Avoid AI at all costs
 
 Many of my co-workers were quick to take my stack traces and give them to Cursor, ChatGPT, Claude—you name it. They all spat back the same thing: "You've got an infinite redirect loop."
 
