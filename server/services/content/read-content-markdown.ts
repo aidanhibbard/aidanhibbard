@@ -11,8 +11,8 @@ export const readContentMarkdown = async (
 
   if (!markdown) {
     throw createError({
-      statusCode: 404,
-      statusMessage: 'Content not found',
+      status: 404,
+      message: 'Content not found',
     })
   }
 

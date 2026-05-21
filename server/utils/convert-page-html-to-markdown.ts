@@ -28,8 +28,8 @@ export const convertPageHtmlToMarkdown = async (
 
   if (!response.ok || !contentType.includes('text/html')) {
     throw createError({
-      statusCode: 404,
-      statusMessage: 'Page not found',
+      status: 404,
+      message: 'Page not found',
     })
   }
 

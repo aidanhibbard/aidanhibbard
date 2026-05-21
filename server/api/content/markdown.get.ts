@@ -14,8 +14,8 @@ export default defineEventHandler(async (event) => {
 
   if (path.startsWith('/posts/')) {
     throw createError({
-      statusCode: 404,
-      statusMessage: 'Page not found',
+      status: 404,
+      message: 'Page not found',
     })
   }
 

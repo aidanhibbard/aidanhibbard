@@ -6,8 +6,8 @@ export const fetchContentPage = async (
 
   if (!result) {
     throw createError({
-      statusCode: 404,
-      statusMessage: notFoundMessage,
+      status: 404,
+      message: notFoundMessage,
     })
   }
 

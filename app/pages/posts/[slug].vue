@@ -18,6 +18,13 @@ const { data: page } = await useContentPageAsyncData(
   () => fetchContentPage(contentPath.value, 'Post not found'),
 )
 
+if (!page.value) {
+  throw createError({
+    status: 404,
+    message: 'Post not found',
+  })
+}
+
 useContentSeo(page)
 
 const tocLinks = useContentPageToc(page)

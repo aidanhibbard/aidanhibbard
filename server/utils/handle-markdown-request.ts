@@ -24,8 +24,8 @@ const resolveNegotiatedMarkdown = async (
 
   if (event.path.endsWith('.md') || path.startsWith('/posts/')) {
     throw createError({
-      statusCode: 404,
-      statusMessage: 'Page not found',
+      status: 404,
+      message: 'Page not found',
     })
   }
 
@@ -76,8 +76,8 @@ export const handleMarkdownRequest = async (
   catch (error) {
     if (event.path.endsWith('.md')) {
       throw createError({
-        statusCode: 404,
-        statusMessage: 'Page not found',
+        status: 404,
+        message: 'Page not found',
       })
     }
 
