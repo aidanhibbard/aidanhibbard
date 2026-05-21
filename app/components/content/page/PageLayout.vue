@@ -11,7 +11,7 @@ defineProps<{
 
 const gridShellClass = 'mx-auto grid w-full max-w-7xl px-4 sm:px-6 lg:grid-cols-12 lg:gap-x-5 lg:px-8'
 
-const articleClassDefault = 'py-2'
+const articleClassDefault = 'py-12 sm:py-14 lg:py-16'
 </script>
 
 <template>
