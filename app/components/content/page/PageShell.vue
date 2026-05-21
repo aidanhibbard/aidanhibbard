@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import {
+  contentPageDescriptionClass,
+  contentPageLabelClass,
+  contentPageTitleClass,
+} from '@/utils/content-page-header-styles'
+import { cn } from '@/lib/utils'
+
 const props = defineProps<{
   contentPath: string
 }>()
@@ -15,12 +22,6 @@ const tocLinks = useContentPageToc(page)
 const sectionLabel = computed(() =>
   page.value?.title?.toUpperCase() ?? 'PAGE',
 )
-
-const labelClass
-  = 'font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase'
-
-const headlineClass
-  = 'cn-font-heading mt-5 max-w-3xl text-balance text-2xl font-semibold leading-[1.15] tracking-tight text-foreground sm:text-[2rem] lg:leading-[1.12]'
 </script>
 
 <template>
@@ -30,15 +31,21 @@ const headlineClass
     :aria-label="page?.title"
   >
     <template #header>
-      <p :class="labelClass">
+      <p :class="contentPageLabelClass">
         // {{ sectionLabel }}
       </p>
       <h1
+        v-if="page?.title"
+        :class="cn(contentPageTitleClass, 'mt-5')"
+      >
+        {{ page.title }}
+      </h1>
+      <p
         v-if="page?.description"
-        :class="headlineClass"
+        :class="contentPageDescriptionClass"
       >
         {{ page.description }}
-      </h1>
+      </p>
     </template>
 
     <ContentRenderer
