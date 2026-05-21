@@ -11,7 +11,7 @@ const route = useRoute()
 const activeId = ref('')
 const flatLinks = computed(() => flattenContentTocLinks(props.links))
 
-const scrollOffset = 112
+const scrollOffset = 80
 
 let stopObserver = (): void => {}
 
@@ -111,7 +111,7 @@ watch(() => route.path, () => {
   <nav
     v-if="flatLinks.length > 0"
     aria-label="On this page"
-    class="sticky top-22 max-h-[calc(100svh-6.5rem)] overflow-y-auto pt-12 pb-8 pl-6 sm:pt-14"
+    class="sticky top-16 max-h-[calc(100svh-4.5rem)] overflow-y-auto pb-8 pl-6"
   >
     <p class="font-mono text-[10px] font-medium tracking-[0.32em] text-muted-foreground/90 uppercase">
       // On this page

@@ -71,7 +71,7 @@ const articleClassDefault = 'py-12 sm:py-14 lg:py-16'
         </article>
       </div>
 
-      <div class="relative hidden lg:col-span-2 lg:block">
+      <div class="relative hidden lg:col-span-2 lg:block pt-12 sm:pt-14">
         <div class="absolute inset-y-0 left-0 w-px bg-border" />
         <ContentToc
           v-if="tocLinks.length > 0"

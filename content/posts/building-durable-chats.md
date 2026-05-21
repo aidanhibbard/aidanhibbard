@@ -59,10 +59,10 @@ We standardized on the [AI SDK](https://ai-sdk.dev/docs/introduction) for model 
 
 For our use case we needed more than the default chat route:
 
-- [`streamText`](https://ai-sdk.dev/docs/reference/ai-sdk-core/stream-text) with tools
-- [`toUIMessageStreamResponse`](https://ai-sdk.dev/docs/reference/ai-sdk-core/stream-text#to-ui-message-stream-response) for the wire format
-- [`consumeSseStream`](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-resume-streams) to fork the SSE stream into Redis
-- [`convertToModelMessages`](https://ai-sdk.dev/docs/reference/ai-sdk-ui/convert-to-model-messages) when rebuilding context from stored UI messages
+- [streamText](https://ai-sdk.dev/docs/reference/ai-sdk-core/stream-text) with tools
+- [toUIMessageStreamResponse](https://ai-sdk.dev/docs/reference/ai-sdk-core/stream-text#to-ui-message-stream-response) for the wire format
+- [consumeSseStream](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-resume-streams) to fork the SSE stream into Redis
+- [convertToModelMessages](https://ai-sdk.dev/docs/reference/ai-sdk-ui/convert-to-model-messages) when rebuilding context from stored UI messages
 
 The [Chatbot Message Persistence](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-message-persistence) and [Chatbot Resume Streams](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-resume-streams) docs describe the persistence model we followed.
 
@@ -72,7 +72,7 @@ We already had Redis for BullMQ through nuxt-processor. The same instance also b
 
 ### Frontend: AI SDK UI + AI Elements Vue
 
-[@ai-sdk/vue](https://ai-sdk.dev/docs/ai-sdk-ui/overview) gives you the `Chat` class and transport layer. [AI Elements Vue](https://www.ai-elements-vue.com/overview/introduction) gives you the actual UI: [`Conversation`](https://www.ai-elements-vue.com/components/chatbot/conversation), [`Message`](https://www.ai-elements-vue.com/components/chatbot/message), [`PromptInput`](https://www.ai-elements-vue.com/components/chatbot/prompt-input), [`Reasoning`](https://www.ai-elements-vue.com/components/chatbot/reasoning), [`Tool`](https://www.ai-elements-vue.com/components/chatbot/tool), and the rest.
+[@ai-sdk/vue](https://ai-sdk.dev/docs/ai-sdk-ui/overview) gives you the `Chat` class and transport layer. [AI Elements Vue](https://www.ai-elements-vue.com/overview/introduction) gives you the actual UI: [Conversation](https://www.ai-elements-vue.com/components/chatbot/conversation), [Message](https://www.ai-elements-vue.com/components/chatbot/message), [PromptInput](https://www.ai-elements-vue.com/components/chatbot/prompt-input), [Reasoning](https://www.ai-elements-vue.com/components/chatbot/reasoning), [Tool](https://www.ai-elements-vue.com/components/chatbot/tool), and the rest.
 
 The [chatbot example](https://www.ai-elements-vue.com/examples/chatbot) is the best starting point. Install with:
 
