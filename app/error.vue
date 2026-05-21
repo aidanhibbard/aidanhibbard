@@ -12,8 +12,8 @@ const handleError = async () => await clearError({
 </script>
 
 <template>
-  <NuxtLayout name="error">
-    <div class="mx-auto flex w-full max-w-lg flex-col items-center gap-8 text-center">
+  <NuxtLayout>
+    <div class="mx-auto flex min-h-[calc(100svh-3.5rem)] w-full max-w-lg flex-col items-center justify-center gap-8 px-4 text-center md:min-h-[calc(100svh-4rem)]">
       <div class="flex size-14 items-center justify-center rounded-xl bg-muted text-foreground">
         <Sprout class="size-7" />
       </div>
