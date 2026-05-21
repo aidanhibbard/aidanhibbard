@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { LandingContent } from '#shared/types/content/landing-content'
-import { landingCategoryClass } from '@/utils/landing-section-styles'
+import {
+  landingAboutBodyClass,
+  landingAboutLeadClass,
+  landingCategoryClass,
+} from '@/utils/landing-section-styles'
 
 defineProps<{
   aboutPath: string
@@ -22,10 +26,10 @@ defineProps<{
       >
         {{ landing.aboutHeadline }}
       </h2>
-      <p class="mt-8 text-xl leading-relaxed text-muted-foreground">
+      <p :class="landingAboutLeadClass">
         {{ landing.aboutLead }}
       </p>
-      <p class="mt-6 leading-7 text-muted-foreground">
+      <p :class="landingAboutBodyClass">
         {{ landing.aboutBody }}
       </p>
     </div>

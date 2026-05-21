@@ -3,6 +3,11 @@ import type { ResumeRole } from '#shared/types/content/resume-role'
 import {
   landingCategoryClass,
   landingDateClass,
+  landingResumeOrgClass,
+  landingResumePastOrgClass,
+  landingResumePastSummaryClass,
+  landingResumePastTitleClass,
+  landingResumeSummaryClass,
 } from '@/utils/landing-section-styles'
 
 defineProps<{
@@ -36,10 +41,10 @@ defineProps<{
       >
         {{ currentRole.title }}
       </h2>
-      <p class="mt-2 font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase">
+      <p :class="landingResumeOrgClass">
         {{ currentRole.organization }}
       </p>
-      <p class="mt-4 leading-7 text-muted-foreground">
+      <p :class="landingResumeSummaryClass">
         {{ currentRole.summary }}
       </p>
     </article>
@@ -66,13 +71,13 @@ defineProps<{
           >
             {{ entry.period }}
           </time>
-          <p class="cn-font-heading mt-3 text-balance text-base font-bold leading-snug tracking-tight text-foreground sm:text-lg">
+          <p :class="landingResumePastTitleClass">
             {{ entry.title }}
           </p>
-          <p class="mt-1.5 font-mono text-[11px] font-medium tracking-[0.24em] text-muted-foreground uppercase">
+          <p :class="landingResumePastOrgClass">
             {{ entry.organization }}
           </p>
-          <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+          <p :class="landingResumePastSummaryClass">
             {{ entry.summary }}
           </p>
         </li>
