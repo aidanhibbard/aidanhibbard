@@ -13,6 +13,8 @@ ogImage:
 
 # Debugging a memory leak in a Next app
 
+## Acknowledgments
+
 Before continuing this piece I want to give a big shoutout to the folks over at [Railway](https://railway.com), their recommendations were a big contribution.
 
 ## Setup
