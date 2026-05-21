@@ -57,7 +57,7 @@ const contactLinks = computed<ContactLink[]>(() => [
             as-child
             :class="iconButtonClass"
           >
-            <a
+            <NuxtLink
               :href="link.href"
               :target="link.external ? '_blank' : undefined"
               :rel="link.external ? 'noopener noreferrer' : undefined"
@@ -68,7 +68,7 @@ const contactLinks = computed<ContactLink[]>(() => [
                 aria-hidden="true"
               />
               <span class="sr-only">{{ link.label }}</span>
-            </a>
+            </NuxtLink>
           </Button>
         </TooltipTrigger>
         <TooltipContent>{{ link.label }}</TooltipContent>

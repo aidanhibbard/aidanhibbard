@@ -71,14 +71,14 @@ const copyLink = async (): Promise<void> => {
             as-child
             :class="iconButtonClass"
           >
-            <a
+            <NuxtLink
               :href="linkedInShareUrl"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Linkedin class="size-4" />
               <span class="sr-only">Share on LinkedIn</span>
-            </a>
+            </NuxtLink>
           </Button>
         </TooltipTrigger>
         <TooltipContent>Share on LinkedIn</TooltipContent>
@@ -92,14 +92,14 @@ const copyLink = async (): Promise<void> => {
             as-child
             :class="iconButtonClass"
           >
-            <a
+            <NuxtLink
               :href="githubSourceUrl"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Github class="size-4" />
               <span class="sr-only">Open in GitHub</span>
-            </a>
+            </NuxtLink>
           </Button>
         </TooltipTrigger>
         <TooltipContent>Open in GitHub</TooltipContent>

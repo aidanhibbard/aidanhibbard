@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<{
 </script>
 
 <template>
-  <a
+  <NuxtLink
     :href="href"
     data-slot="pagination-link"
     :data-active="isActive ? '' : undefined"
@@ -31,5 +31,5 @@ const props = withDefaults(defineProps<{
     )"
   >
     <slot />
-  </a>
+  </NuxtLink>
 </template>

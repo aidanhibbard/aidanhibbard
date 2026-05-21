@@ -122,7 +122,7 @@ watch(() => route.path, () => {
         v-for="link in flatLinks"
         :key="link.id"
       >
-        <a
+        <NuxtLink
           :href="`#${link.id}`"
           :class="cn(
             'relative block py-2 text-[13px] leading-5 transition-colors',
@@ -133,7 +133,7 @@ watch(() => route.path, () => {
           )"
         >
           {{ link.text }}
-        </a>
+        </NuxtLink>
       </li>
     </ul>
   </nav>
