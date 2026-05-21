@@ -14,7 +14,7 @@ This checklist matches **this repo’s routes and config** — not generic Nuxt 
 
 Re-run the curl checks below after deploy; update this table.
 
-**Deploy:** `buildId: 3d9e8557-4425-4063-882a-4e0617a08a69`
+**Deploy:** `buildId: 1e89ecc9-e1a0-4c0c-848c-be15df57f1e5`
 
 | Check | Expected | Prod now |
 |-------|----------|----------|
@@ -25,9 +25,9 @@ Re-run the curl checks below after deploy; update this table.
 | `/about/_payload.json` | **200** JSON | ✅ |
 | `/_payload.json` (homepage SSR) | **404** | ✅ |
 | `/posts/does-not-exist.md` | **404** | ✅ |
-| `/posts/does-not-exist` HTML status | **404** | ❌ **200** (error UI shows “404 / Post not found”, status not propagated) |
-| `/api/content/markdown?path=/posts/does-not-exist` | **404** | ❌ **200** garbage from HTML fallback |
-| `/posts/building-durable-chats` content | durable-chats article | ❌ still memory-leak duplicate (wrong title in HTML + `llms.txt`) |
+| `/posts/does-not-exist` HTML status | **404** | ❌ **200** (error UI shows “404 / Post not found”) |
+| `/api/content/markdown?path=/posts/does-not-exist` | **404** | ✅ |
+| `/posts/building-durable-chats` content | durable-chats article | ❌ still memory-leak duplicate (content not changed) |
 | Discovery files (`sitemap`, `robots`, `llms*`) | **200** | ✅ (11 sitemap locs, llms-full ~52 KB) |
 | OG PNG (`/_og/...`) | **200** `image/png` | ✅ |
 
@@ -323,13 +323,13 @@ curl -sS -o /dev/null -w 'post-payload=%{http_code} invalid-html=%{http_code} in
 |------|------|-------|
 | HTML pages | ✅ | All routes 200 `text/html` |
 | Client nav / payloads | ✅ | All 7 post payloads 200; root `_payload.json` 404 (SSR) |
-| Markdown + `/api/content/markdown` | ⚠️ | Valid `.md` routes OK; invalid slug API still 200 garbage |
+| Markdown + `/api/content/markdown` | ⚠️ | Valid routes OK; invalid slug API **404** ✅; invalid slug HTML still **200** |
 | Discovery files | ✅ | sitemap 11 locs, robots, llms.txt, llms-full ~52 KB |
 | Security / CSP | ✅ | wasm-unsafe-eval, connect-src self, security headers present |
-| Titles / descriptions / OG PNG | ✅ | OG PNG 200; building-durable-chats title wrong (content bug) |
-| Schema.org | ✅ | WebSite/Person/WebPage/AboutPage/CollectionPage/BlogPosting/ProfilePage present |
-| Page UI (per route) | — | Browser-only (not curl-verified this scan) |
-| GA (if enabled) | — | GTM in CSP; browser POST not verified this scan |
+| Titles / descriptions / OG PNG | ✅ | OG PNG 200; building-durable-chats title wrong (content bug, untouched) |
+| Schema.org | ✅ | Not re-verified this scan (unchanged from prior) |
+| Page UI (per route) | — | Browser-only (not curl-verified) |
+| GA (if enabled) | — | GTM in CSP; browser POST not verified |
 
 **Tested by:** _______________  
 **Date:** _______________  
