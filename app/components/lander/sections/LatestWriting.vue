@@ -5,6 +5,8 @@ import { formatPostDate } from '@/utils/format-post-date'
 import {
   landingCardFrameClass,
   landingDateClass,
+  landingFeaturedDescriptionClass,
+  landingSidebarDescriptionClass,
 } from '@/utils/landing-section-styles'
 
 defineProps<{
@@ -34,13 +36,19 @@ defineProps<{
           class="group flex min-h-88 flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-104 lg:min-h-full"
         >
           <div
-            class="flex flex-1 flex-col justify-end gap-8 px-6 py-8 sm:gap-10 sm:px-8 sm:py-10 lg:px-10 lg:py-12"
+            class="flex flex-1 flex-col justify-end gap-6 px-6 py-8 sm:gap-7 sm:px-8 sm:py-10 lg:gap-8 lg:px-10 lg:py-12"
           >
             <h2
               class="cn-font-heading max-w-[16ch] text-balance text-4xl font-bold leading-[1.02] tracking-tight text-foreground transition-opacity group-hover:opacity-80 sm:text-5xl lg:text-6xl xl:text-7xl"
             >
               {{ featuredPost.title }}
             </h2>
+            <p
+              v-if="featuredPost.description"
+              :class="landingFeaturedDescriptionClass"
+            >
+              {{ featuredPost.description }}
+            </p>
             <time
               v-if="featuredPost.date"
               :datetime="featuredPost.date"
@@ -61,17 +69,23 @@ defineProps<{
         >
           <NuxtLink
             :to="post.path"
-            class="group flex h-full min-h-56 flex-col justify-between px-6 py-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-7 sm:py-9 lg:min-h-0 lg:px-8 lg:py-10"
+            class="group flex h-full min-h-56 flex-col px-6 py-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-7 sm:py-9 lg:min-h-0 lg:px-8 lg:py-10"
           >
             <h3
               class="cn-font-heading text-balance text-2xl font-bold leading-[1.08] tracking-tight text-foreground transition-opacity group-hover:opacity-80 sm:text-[1.65rem] lg:text-3xl"
             >
               {{ post.title }}
             </h3>
+            <p
+              v-if="post.description"
+              :class="landingSidebarDescriptionClass"
+            >
+              {{ post.description }}
+            </p>
             <time
               v-if="post.date"
               :datetime="post.date"
-              :class="landingDateClass"
+              :class="[landingDateClass, 'mt-auto pt-6 sm:pt-8']"
             >
               {{ formatPostDate(post.date) }}
             </time>
