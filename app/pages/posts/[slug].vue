@@ -15,7 +15,7 @@ const contentPath = computed(() => `/posts/${slug.value}`)
 
 const { data: page } = await useContentPageAsyncData(
   () => `content-page:${contentPath.value}`,
-  () => fetchContentPage(contentPath.value, 'Post not found'),
+  () => fetchContentPage(contentPath.value),
 )
 
 if (!page.value) {

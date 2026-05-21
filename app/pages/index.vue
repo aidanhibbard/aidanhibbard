@@ -15,6 +15,11 @@ const dateClass
 const sectionCtaLinkClass
   = 'group flex items-center justify-between border border-border px-6 py-4 font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-7 lg:px-8'
 
+const sectionCtaRowClass
+  = 'mt-10 grid gap-4 lg:mt-12 lg:grid-cols-3 lg:gap-5'
+
+const sectionCtaPlacementClass = 'lg:col-start-3'
+
 const sectionCtaArrowClass
   = 'size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5'
 
@@ -97,24 +102,13 @@ const {
               </time>
             </NuxtLink>
           </Card>
-
-          <NuxtLink
-            :to="blogPath"
-            :class="[sectionCtaLinkClass, 'sm:col-span-2 lg:col-span-1']"
-          >
-            <span>View all posts</span>
-            <ArrowRight :class="sectionCtaArrowClass" />
-          </NuxtLink>
         </div>
       </div>
 
-      <div
-        v-else
-        class="flex flex-1 flex-col justify-center"
-      >
+      <div :class="sectionCtaRowClass">
         <NuxtLink
           :to="blogPath"
-          :class="sectionCtaLinkClass"
+          :class="[sectionCtaLinkClass, sectionCtaPlacementClass]"
         >
           <span>View all posts</span>
           <ArrowRight :class="sectionCtaArrowClass" />
@@ -127,27 +121,27 @@ const {
       class="mx-auto w-full max-w-7xl border-t border-border px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28"
       aria-label="About"
     >
-      <div class="grid gap-4 lg:grid-cols-3 lg:gap-5">
-        <div class="lg:col-span-2">
-          <p :class="categoryClass">
-            // ABOUT
-          </p>
-          <h2
-            class="cn-font-heading mt-6 scroll-m-20 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl"
-          >
-            {{ landing.aboutHeadline }}
-          </h2>
-          <p class="mt-8 text-xl leading-relaxed text-muted-foreground">
-            {{ landing.aboutLead }}
-          </p>
-          <p class="mt-6 leading-7 text-muted-foreground">
-            {{ landing.aboutBody }}
-          </p>
-        </div>
+      <div class="max-w-3xl">
+        <p :class="categoryClass">
+          // ABOUT
+        </p>
+        <h2
+          class="cn-font-heading mt-6 scroll-m-20 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+        >
+          {{ landing.aboutHeadline }}
+        </h2>
+        <p class="mt-8 text-xl leading-relaxed text-muted-foreground">
+          {{ landing.aboutLead }}
+        </p>
+        <p class="mt-6 leading-7 text-muted-foreground">
+          {{ landing.aboutBody }}
+        </p>
+      </div>
 
+      <div :class="sectionCtaRowClass">
         <NuxtLink
           :to="aboutPath"
-          :class="[sectionCtaLinkClass, 'lg:self-end']"
+          :class="[sectionCtaLinkClass, sectionCtaPlacementClass]"
         >
           <span>Read the full story</span>
           <ArrowRight :class="sectionCtaArrowClass" />
@@ -222,10 +216,10 @@ const {
         </ol>
       </div>
 
-      <div class="mt-10 grid gap-4 lg:mt-12 lg:grid-cols-3 lg:gap-5">
+      <div :class="sectionCtaRowClass">
         <NuxtLink
           :to="resumePath"
-          :class="[sectionCtaLinkClass, 'lg:col-start-3']"
+          :class="[sectionCtaLinkClass, sectionCtaPlacementClass]"
         >
           <span>View full resume</span>
           <ArrowRight :class="sectionCtaArrowClass" />
