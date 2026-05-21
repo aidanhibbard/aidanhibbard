@@ -1,7 +1,6 @@
 ---
 title: Home
 description: Senior software engineer in Central Oregon building production systems, integrations, and polished user experiences.
-robots: index, follow
 landing:
   aboutHeadline: Building software that ships, scales, and feels good to use.
   aboutLead: Full-stack engineer working across real-time systems, integrations, cloud infra, and UI. I care about production debugging, query tuning, and polish in equal measure.

@@ -1,7 +1,6 @@
 ---
 title: About
 description: How I think about software, community, and the work of building things that last.
-robots: index, follow
 ogImage:
   props:
     title: About

@@ -46,7 +46,8 @@ export const useContentSeo = (
       page.value?.seo?.description ?? page.value?.description ?? '',
     robots: () =>
       resolveRobotsMeta(page.value?.robots)
-      ?? page.value?.seo?.robots,
+      ?? page.value?.seo?.robots
+      ?? 'index, follow',
     ogImage: () => page.value?.ogImage?.url,
   })
 

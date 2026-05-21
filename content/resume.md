@@ -1,7 +1,6 @@
 ---
 title: Resume
 description: Professional experience across real-time systems, integrations, cloud infrastructure, and full-stack product engineering.
-robots: index, follow
 resume:
   name: Aidan Hibbard
   contact:
