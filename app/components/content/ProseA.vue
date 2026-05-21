@@ -18,7 +18,7 @@ const props = defineProps({
   <NuxtLink
     :href="props.href"
     :target="props.target"
-    class="text-primary transition-colors hover:text-primary/80"
+    class="text-primary underline-offset-4 transition-colors hover:brightness-110"
   >
     <slot />
   </NuxtLink>
