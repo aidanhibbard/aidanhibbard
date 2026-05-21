@@ -10,7 +10,7 @@ defineProps({
 
 <template>
   <div
-    class="relative flex h-full w-full flex-col justify-between bg-[#09090b] p-12 text-[#fafafa] lg:p-16"
+    class="relative flex h-full w-full flex-col bg-[#09090b] p-12 text-[#fafafa] lg:p-16"
   >
     <div
       class="pointer-events-none absolute inset-0 opacity-40"
@@ -30,17 +30,6 @@ defineProps({
       >
         {{ description }}
       </p>
-    </div>
-
-    <div
-      class="relative mt-10 flex items-center justify-between border border-[#27272a] bg-[#111113] px-6 py-5 lg:px-8 lg:py-6"
-    >
-      <span class="font-mono text-[18px] tracking-[0.08em] text-[#a1a1aa] uppercase lg:text-[22px]">
-        github.com/aidanhibbard
-      </span>
-      <span class="font-mono text-[18px] tracking-[0.08em] text-[#a1a1aa] uppercase lg:text-[22px]">
-        linkedin.com/in/aidan-hibbard
-      </span>
     </div>
   </div>
 </template>
