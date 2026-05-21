@@ -20,11 +20,6 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     'nuxt-security',
   ],
-  $development: {
-    modules: [
-      'nuxt-studio',
-    ],
-  },
   devtools: { enabled: true },
   app: {
     head: {
