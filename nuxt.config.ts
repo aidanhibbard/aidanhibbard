@@ -42,7 +42,7 @@ export default defineNuxtConfig({
   site: {
     url: 'https://aidanhibbard.dev',
     name: 'Aidan Hibbard',
-    description: 'Senior software engineer writing about .',
+    description: 'Senior Software Engineer',
     defaultLocale: 'en',
     indexable: process.env.NODE_ENV === 'production',
   },
