@@ -23,7 +23,7 @@ const copyLink = async () => {
     const url = new URL(basePath, requestURL.origin)
     url.hash = props.id
     await navigator.clipboard.writeText(url.toString())
-    toast.success('Copied to clipboard')
+    toast.success('Link copied')
   }
   catch {
     toast.error('Copy failed')

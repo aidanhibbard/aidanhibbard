@@ -6,8 +6,6 @@ defineProps({
   siteUrl: { type: String, required: false, default: 'aidanhibbard.dev' },
   colorMode: { type: String, required: false, default: 'dark' },
 })
-
-const displayUrl = (url: string): string => url.replace(/^https?:\/\//, '')
 </script>
 
 <template>
@@ -20,12 +18,6 @@ const displayUrl = (url: string): string => url.replace(/^https?:\/\//, '')
     />
 
     <div class="relative flex flex-1 flex-col justify-center gap-8">
-      <p
-        class="m-0 font-mono text-[18px] font-medium tracking-[0.32em] text-[#a1a1aa] uppercase lg:text-[22px]"
-      >
-        // {{ siteLabel ?? title }}
-      </p>
-
       <h1
         class="m-0 max-w-[980px] text-[56px] leading-[1.05] font-semibold tracking-tight text-balance lg:text-[76px]"
       >
@@ -43,11 +35,11 @@ const displayUrl = (url: string): string => url.replace(/^https?:\/\//, '')
     <div
       class="relative mt-10 flex items-center justify-between border border-[#27272a] bg-[#111113] px-6 py-5 lg:px-8 lg:py-6"
     >
-      <span class="text-[24px] font-semibold tracking-tight lg:text-[28px]">
-        {{ siteLabel ?? title }}
+      <span class="font-mono text-[18px] tracking-[0.08em] text-[#a1a1aa] uppercase lg:text-[22px]">
+        github.com/aidanhibbard
       </span>
       <span class="font-mono text-[18px] tracking-[0.08em] text-[#a1a1aa] uppercase lg:text-[22px]">
-        {{ displayUrl(siteUrl) }}
+        linkedin.com/in/aidan-hibbard
       </span>
     </div>
   </div>

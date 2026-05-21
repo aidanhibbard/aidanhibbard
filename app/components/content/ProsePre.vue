@@ -38,7 +38,7 @@ const onCopy = async () => {
     return
   try {
     await navigator.clipboard.writeText(text)
-    toast.success('Copied to clipboard')
+    toast.success('Link copied')
   }
   catch {
     toast.error('Copy failed')

@@ -21,13 +21,15 @@ It looks like a chat UI, however, it is not a conversation.
 
 The user sends one message, we kick off a long job, and they watch something get built. Think [v0](https://v0.dev), not [ChatGPT](https://chatgpt.com).
 
-That distinction matters for architecture. A chat demo can get away with response calls, or an AI sdk endpoint. A generator cannot. When you _have_ to guarentee something is done you need this frustrating thing called "durability."
+A chat can get away with response calls behind http, or a streaming endpoint. However we did not have this luxury for a few reason.
 
-When you generate something you likely need to bill the user for the tokens cost, persist extra resources besides chat messages, and deliver events, emails, etc.
+1. **HTTP timeouts.** A long generation cannot live inside one request. The model call, tools, and side effects need a runner that outlasts the connection.
 
-Now our processes wouldn't live this long, however our host limited open connections to 15 minutes. Same as any serverless host, but we are on a persisted instance, so we had the option to move our workloads _outside of http_.
+2. **Work tied to the user.** Due to the nature of computers, when they go down, you have to save some info for them to pickup where they left off. If your web app goes down, the user has to come back, hit your endpoint, and tell it to start back up. This is bad, never trust the user.
 
-We also had a ticket under this project that sounded simple on paper: two users open the same workflow and "see the same thing". Which is just never going to happen, because they never will. Not really. One tab closes, one person has slower internet, one misses a reconnect, one gets the tool call event three seconds late.
+So we needed this frustrating thing LLMs seem to never mention, called "durability."
+
+We also had a ticket under this project that made me laugh a little: two users open the same workflow and "see the same thing". Which is just never going to happen, because they never will. Not really. One tab closes, one person has slower internet, one misses a reconnect, one gets the tool call event three seconds later.
 
 Realtime developers have been wrestling with "show everyone the same state" for decades. Now everybody wants it for AI, and engineers are looking at us like what the hell.
 
@@ -39,19 +41,17 @@ Maybe it is generalized anxiety, but I like to think through every way the softw
 
 Because everything in life begins with a user ticket, these were the pillars of UX.
 
-1. **Durability.** If the web process restarts, the generation should keep running.
+1. **Durability.** If the process restarts, the generation should automatically pick back up.
 
-2. **Streaming.** The user should see tokens, tool calls, and status updates as they arrive.
+2. **Streaming.** The user should see reasoning, tool calls, and status updates as they arrive.
 
-3. **Reconnectivity.** If the user refreshes or their tab sleeps, they should land back on the same in-progress generation, not a blank or incomplete screen.
+3. **Reconnectivity.** If the user refreshes or leaves, they should land back on the same in-progress generation, not a blank or incomplete screen.
 
-4. **Persistence.** Completed messages and partial assistant output should survive reloads.
+4. **Persistence.** Completed messages and partial assistant output should be written to a non-volatile storage.
 
 5. **Tools.** The model validates JSON, calls internal APIs, and writes workflow nodes.
 
-6. **Multiplayer.** Two people can open the same workflow and stay roughly aligned. Perfect frame sync is a lie. Good enough sync is the product.
-
-7. **Authoritative status.** The UI must know when a generation is in progress even if the stream never reconnects. No sending a second prompt into a half-finished job because the chat widget looks idle.
+7. **Authoritative server.** Use status states, pusher, and other tools to deliver critical messages. Errors, finished state, 
 
 ## Architecture
 
@@ -91,16 +91,8 @@ That covers tokens and tool parts. It does not cover everything.
 Some state never belonged in the token stream.
 
 - **Completing generation.** The model finished, tools ran, we are saving the workflow. The stream might already be done. Both users still need to see "finishing up" and then the canvas unlock.
+
 - **Queue failures.** The worker threw after Redis hiccupped. BullMQ will retry, but the user should see an error toast, not a frozen half-message.
-- **Cross-tab sync.** User A refreshes. User B should not stare at a spinner forever because A's tab reconnected first.
-
-We used [Pusher channels](https://pusher.com/docs/channels/using_channels/channels/) per workflow. Stream for prose. Pusher for lifecycle. Both clients subscribe to the same channel name so they converge even when their SSE timelines diverge.
-
-### Frontend: AI SDK UI + AI Elements Vue
-
-[@ai-sdk/vue](https://ai-sdk.dev/docs/ai-sdk-ui/overview) gives you the `Chat` class and transport layer. [AI Elements Vue](https://www.ai-elements-vue.com/overview/introduction) gives you the actual UI: [Conversation](https://www.ai-elements-vue.com/components/chatbot/conversation), [Message](https://www.ai-elements-vue.com/components/chatbot/message), [PromptInput](https://www.ai-elements-vue.com/components/chatbot/prompt-input), [Reasoning](https://www.ai-elements-vue.com/components/chatbot/reasoning), [Tool](https://www.ai-elements-vue.com/components/chatbot/tool), and the rest. The [chatbot example](https://www.ai-elements-vue.com/examples/chatbot) shows how those pieces compose.
-
-We kept generation logic on the worker and rendering logic in Vue. The UI does not know about BullMQ directly. It knows chat IDs, messages, workflow status from the database, and whether a stream is still active.
 
 ## Implementation
 
@@ -178,7 +170,7 @@ new Worker(
 )
 ```
 
-The job runs outside the web process, so deploys do not kill in-flight generations. `activeStreamId` is what the resume GET handler uses. `status` is what keeps the prompt locked when resume never fires. See the [AI SDK resume streams guide](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-resume-streams).
+`activeStreamId` is what the resume GET handler uses. `status` is what keeps the prompt locked when resume never fires. See the [AI SDK resume streams guide](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-resume-streams).
 
 ### Web routes
 
@@ -345,32 +337,6 @@ export type StoredChat = {
 ```
 
 When someone lands on `/workflows/:id`, this row is the source of truth. If `status` is `generating` and Pusher never connects and resume returns 204, the prompt stays disabled anyway. That is the point.
-
-## What we got wrong the first time
-
-**Running the model in the API route.** It worked in demos. It failed in production the first time someone kicked off a heavy workflow and we deployed.
-
-**Treating refresh as abort.** Resumable streams are disconnect-tolerant by design. If your route cleanup calls stop logic, you will fight the resume system. Read the [troubleshooting note on abort vs disconnect](https://ai-sdk.dev/docs/troubleshooting/abort-breaks-resumable-streams).
-
-**Skipping the initial history fetch.** The AI SDK fires new messages well. Catching up existing state is your job.
-
-**Trusting the stream for workflow status.** `chat.status` from the SDK tracks the wire. It goes idle when reconnect fails even though BullMQ is still running. Put generating/completing/failed in the database and mirror it over Pusher.
-
-**Assuming two tabs see identical token timing.** They will not. Give them the same channel, the same persisted status, and the same lock rules. Let the stream be slightly different.
-
-**Sharing one Redis without namespacing.** BullMQ keys and resumable-stream keys can coexist, but use separate logical databases or key prefixes if you run multiple environments on one instance.
-
-**Forgetting the worker process.** The web server and the worker are separate runtimes. If only the app is deployed, generations die on the next Nitro restart.
-
-## How it feels now
-
-A user submits a prompt. We persist it, set status to generating, enqueue a BullMQ job, and the worker owns the rest. They see streaming output through AI Elements Vue. A teammate on the same workflow gets the same status events over Pusher even if their token stream is a beat behind.
-
-If they refresh, we load messages and status from the database, `resume` reconnects to Redis when it can, and the input stays locked until status is idle. If resume never connects, they still cannot fire a second generation into a running job.
-
-If the web server restarts, the worker keeps going. If the worker throws, Pusher tells both tabs. If the user closes the laptop and opens it ten minutes later, they see the last persisted state and pick up the stream if it is still active.
-
-That is durable enough for something that looks like chat but behaves like a job. It is still not two people seeing literally the same chat. It is two people seeing the same **outcome**, which is what the ticket should have said.
 
 ## References
 
