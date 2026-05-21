@@ -271,7 +271,7 @@ When pressed for more information, Cursor would always give AN answer but not TH
 
 These answers wasted hours of time debugging random routes with no issues, generating meaningless PRs, and creating random unit tests that mocked the entire universe to cause an error in the app.
 
-#### Every app has gremlins
+### Every app has gremlins
 
 > Could probably scan every one of us and find five different doodads that look like cancer - Dr House
 
