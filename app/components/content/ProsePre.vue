@@ -50,26 +50,27 @@ const onCopy = async () => {
   <div class="relative rounded-lg border border-border bg-background overflow-hidden mb-8 not-prose">
     <div
       v-if="hasHeader"
-      class="flex items-center justify-between bg-muted/60 px-4 py-2 border-b border-border"
+      class="flex items-center justify-between gap-4 border-b border-border bg-muted/60 px-4 py-2"
     >
-      <div class="flex flex-row items-center gap-x-4">
+      <div class="flex min-w-0 flex-row items-center gap-2.5">
         <Icon
           v-if="props.language"
           :name="'catppuccin:' + props.language"
-          class="w-12 h-12"
+          size="20"
+          class="size-5 shrink-0"
         />
-        <div class="text-xs font-medium text-foreground/80 truncate">
+        <div class="truncate font-mono text-[13px] font-medium leading-none text-foreground/85">
           {{ props.filename }}
         </div>
       </div>
       <button
         type="button"
-        class="inline-flex items-center gap-2 text-xs px-2 py-2 rounded-md border border-border hover:bg-muted transition-colors"
+        class="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-border px-2 py-1.5 text-xs transition-colors hover:bg-muted"
         @click="onCopy"
       >
         <component
           :is="Copy"
-          class="w-3.5 h-3.5"
+          class="size-3.5"
         />
         <span>Copy</span>
       </button>
