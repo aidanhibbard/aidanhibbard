@@ -13,9 +13,14 @@ const slug = computed((): string => {
 
 const contentPath = computed(() => `/posts/${slug.value}`)
 
-const { page, tocLinks } = useContentPageQuery(contentPath, {
-  notFoundMessage: 'Post not found',
-})
+const { data: page } = await useContentPageAsyncData(
+  () => `content-page:${contentPath.value}`,
+  () => fetchContentPage(contentPath.value, 'Post not found'),
+)
+
+useContentSeo(page)
+
+const tocLinks = useContentPageToc(page)
 </script>
 
 <template>

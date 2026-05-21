@@ -3,7 +3,14 @@ const props = defineProps<{
   contentPath: string
 }>()
 
-const { page, tocLinks } = useContentPageQuery(() => props.contentPath)
+const { data: page } = await useContentPageAsyncData(
+  () => `content-page:${props.contentPath}`,
+  () => fetchContentPage(props.contentPath),
+)
+
+useContentSeo(page)
+
+const tocLinks = useContentPageToc(page)
 
 const sectionLabel = computed(() =>
   page.value?.title?.toUpperCase() ?? 'PAGE',

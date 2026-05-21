@@ -10,20 +10,26 @@ This checklist matches **this repo’s routes and config** — not generic Nuxt 
 
 ---
 
-## Prod snapshot (last scan: 2026-05-19)
+## Prod snapshot (last scan: 2026-05-20)
 
 Re-run the curl checks below after deploy; update this table.
+
+**Deploy:** `buildId: 3d9e8557-4425-4063-882a-4e0617a08a69`
 
 | Check | Expected | Prod now |
 |-------|----------|----------|
 | HTML `Content-Type` on `/` | `text/html` | ✅ |
 | CSP `'wasm-unsafe-eval'` | present | ✅ |
 | CSP `connect-src 'self'` | present | ✅ |
-| `/posts/bullmq-retry-footgun/_payload.json` | **200** JSON | ❌ **404** (post routes not prerendered on prod yet) |
+| All 7 post `_payload.json` | **200** JSON | ✅ |
 | `/about/_payload.json` | **200** JSON | ✅ |
+| `/_payload.json` (homepage SSR) | **404** | ✅ |
 | `/posts/does-not-exist.md` | **404** | ✅ |
-| `/posts/does-not-exist` HTML status | **404** | ❌ **200** (error UI renders, status not propagated — see §10) |
-| `/api/content/markdown?path=/posts/does-not-exist` | should not return useful markdown | ❌ **200** garbage from HTML fallback |
+| `/posts/does-not-exist` HTML status | **404** | ❌ **200** (error UI shows “404 / Post not found”, status not propagated) |
+| `/api/content/markdown?path=/posts/does-not-exist` | **404** | ❌ **200** garbage from HTML fallback |
+| `/posts/building-durable-chats` content | durable-chats article | ❌ still memory-leak duplicate (wrong title in HTML + `llms.txt`) |
+| Discovery files (`sitemap`, `robots`, `llms*`) | **200** | ✅ (11 sitemap locs, llms-full ~52 KB) |
+| OG PNG (`/_og/...`) | **200** `image/png` | ✅ |
 
 ---
 
@@ -34,8 +40,8 @@ Re-run the curl checks below after deploy; update this table.
 | `/` | `app/pages/index.vue` → `useLandingContent()` | **no** (`routeRules['/'].prerender: false`, SSR) |
 | `/about` | `PageShell` → Nuxt Content `/about` | yes |
 | `/posts` | Blog index (`POSTS_PAGE_SIZE = 5`, debounced search) | yes |
-| `/posts/[slug]` | `useContentPageQuery` + `ArticleShell` | yes (each `content/posts/*.md` via `listContentPostRoutes`) |
-| `/resume` | `ResumeDocument` + `useContentPageQuery` | yes |
+| `/posts/[slug]` | `useContentPageAsyncData` + `ArticleShell` | yes (each `content/posts/*.md` via `listContentPostRoutes`) |
+| `/resume` | `ResumeDocument` + `useContentPageAsyncData` | yes |
 
 **Navigation** (`use-navigation.ts`): logo/sidebar header → `/`; primary links **About**, **Blog** (`/posts`), **Resume**. No “Home” nav item. Header also has GitHub + LinkedIn icons and theme toggle.
 
@@ -315,15 +321,15 @@ curl -sS -o /dev/null -w 'post-payload=%{http_code} invalid-html=%{http_code} in
 
 | Area | Pass | Notes |
 |------|------|-------|
-| HTML pages | | |
-| Client nav / payloads | | |
-| Markdown + `/api/content/markdown` | | |
-| Discovery files | | |
-| Security / CSP | | |
-| Titles / descriptions / OG PNG | | |
-| Schema.org | | |
-| Page UI (per route) | | |
-| GA (if enabled) | | |
+| HTML pages | ✅ | All routes 200 `text/html` |
+| Client nav / payloads | ✅ | All 7 post payloads 200; root `_payload.json` 404 (SSR) |
+| Markdown + `/api/content/markdown` | ⚠️ | Valid `.md` routes OK; invalid slug API still 200 garbage |
+| Discovery files | ✅ | sitemap 11 locs, robots, llms.txt, llms-full ~52 KB |
+| Security / CSP | ✅ | wasm-unsafe-eval, connect-src self, security headers present |
+| Titles / descriptions / OG PNG | ✅ | OG PNG 200; building-durable-chats title wrong (content bug) |
+| Schema.org | ✅ | WebSite/Person/WebPage/AboutPage/CollectionPage/BlogPosting/ProfilePage present |
+| Page UI (per route) | — | Browser-only (not curl-verified this scan) |
+| GA (if enabled) | — | GTM in CSP; browser POST not verified this scan |
 
 **Tested by:** _______________  
 **Date:** _______________  

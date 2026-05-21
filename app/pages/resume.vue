@@ -2,7 +2,12 @@
 import { defineWebPage } from 'nuxt-schema-org/schema'
 import type { ResumePage } from '#shared/types/content/resume-page'
 
-const { page } = useContentPageQuery('/resume')
+const { data: page } = await useContentPageAsyncData(
+  'content-page:/resume',
+  () => fetchContentPage('/resume'),
+)
+
+useContentSeo(page)
 
 const resume = computed(() => page.value?.resume as ResumePage | undefined)
 

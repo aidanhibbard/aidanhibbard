@@ -6,9 +6,22 @@ export default defineEventHandler(async (event) => {
   const { path } = await getValidatedQuery(event, query => contentMarkdownQuerySchema.parse(query))
 
   const markdown = await resolvePageMarkdown(event, path)
-    ?? await convertPageHtmlToMarkdown(event, path)
+
+  if (markdown) {
+    setHeader(event, 'content-type', 'text/markdown; charset=utf-8')
+    return markdown
+  }
+
+  if (path.startsWith('/posts/')) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: 'Page not found',
+    })
+  }
+
+  const converted = await convertPageHtmlToMarkdown(event, path)
 
   setHeader(event, 'content-type', 'text/markdown; charset=utf-8')
 
-  return markdown
+  return converted
 })
