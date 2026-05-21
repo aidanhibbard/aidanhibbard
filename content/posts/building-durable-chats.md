@@ -1,7 +1,7 @@
 ---
 title: 'Building durable chats'
 date: '2026-05-20'
-tags: ['ai sdk', 'bullmq', 'redis', 'nuxt']
+tags: ['ai sdk', 'bullmq', 'redis', 'pusher', 'nuxt']
 description: 'What happens to your users request if the server restarts?'
 sitemap:
   lastmod: 2026-05-20
@@ -13,15 +13,27 @@ ogImage:
 
 ## Background
 
-Recently at work we shipped a workflow generator. A user sends a prompt, we generate a workflow, validate the output, call tools to store it, and stream progress back while all of that runs.
+Recently at work we shipped a workflow generator.
+
+A user sends a prompt, we generate a workflow, and stream progress back while all of that runs.
 
 It looks like a chat UI, however, it is not a conversation.
 
-There is no back-and-forth thread where the model keeps context across turns in the way a support bot would. The user sends one message, we kick off a long job, and they watch something get built. Think [v0](https://v0.dev), not [ChatGPT](https://chatgpt.com).
+The user sends one message, we kick off a long job, and they watch something get built. Think [v0](https://v0.dev), not [ChatGPT](https://chatgpt.com).
 
-That distinction matters for architecture. A chat demo can get away with a single HTTP request and a SSE stream. A "generator" cannot. The generation can run for minutes. The user can refresh. A deploy can roll while they are still watching the canvas fill in. Dragons could attack, really anything.
+That distinction matters for architecture. A chat demo can get away with response calls, or an AI sdk endpoint. A generator cannot. When you _have_ to guarentee something is done you need this frustrating thing called "durability."
 
-Maybe it's generalized anxiety, but I like to think of all the ways my software can break...
+When you generate something you likely need to bill the user for the tokens cost, persist extra resources besides chat messages, and deliver events, emails, etc.
+
+Now our processes wouldn't live this long, however our host limited open connections to 15 minutes. Same as any serverless host, but we are on a persisted instance, so we had the option to move our workloads _outside of http_.
+
+We also had a ticket under this project that sounded simple on paper: two users open the same workflow and "see the same thing". Which is just never going to happen, because they never will. Not really. One tab closes, one person has slower internet, one misses a reconnect, one gets the tool call event three seconds late.
+
+Realtime developers have been wrestling with "show everyone the same state" for decades. Now everybody wants it for AI, and engineers are looking at us like what the hell.
+
+Half the industry is making LLM response calls behind plain HTTP requests.
+
+Maybe it is generalized anxiety, but I like to think through every way the software can break before it does.
 
 ## The requirements
 
@@ -37,6 +49,10 @@ Because everything in life begins with a user ticket, these were the pillars of 
 
 5. **Tools.** The model validates JSON, calls internal APIs, and writes workflow nodes.
 
+6. **Multiplayer.** Two people can open the same workflow and stay roughly aligned. Perfect frame sync is a lie. Good enough sync is the product.
+
+7. **Authoritative status.** The UI must know when a generation is in progress even if the stream never reconnects. No sending a second prompt into a half-finished job because the chat widget looks idle.
+
 ## Architecture
 
 ### Durable work belongs in a queue
@@ -45,11 +61,11 @@ We already run [BullMQ](https://docs.bullmq.io/) for long-lived background work.
 
 The split looks like this:
 
-1. **Nuxt (Nitro)** accepts the prompt, writes the user message to the database, enqueues a job, and returns quickly. This is a standard webhook catching pattern any seasoned developer should be familiar with.
+1. **The web app** accepts the prompt, writes the user message and status to the database, enqueues a BullMQ job, and returns quickly. Standard "catch the webhook and get out" stuff.
 
-2. **Workers** pick up the job, run the AI SDK pipeline (model calls, tools, validation), and publish stream chunks to Redis.
+2. **Workers** pick up the job, run the AI SDK pipeline (model calls, tools, validation), publish stream chunks to Redis, and push lifecycle events over Pusher.
 
-3. **The client** reads the stream through the AI SDK UI transport, with resume enabled, and renders with AI Elements Vue.
+3. **The client** reads tokens through the AI SDK transport with `resume` enabled, listens on a Pusher channel for status and errors, and renders with AI Elements Vue.
 
 ### AI SDK as the generation layer
 
@@ -68,67 +84,105 @@ The [Chatbot Message Persistence](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-mess
 
 We already had Redis for BullMQ. The same instance can back [resumable-stream](https://github.com/vercel/resumable-stream), which stores the live UI message stream so clients can reconnect.
 
+That covers tokens and tool parts. It does not cover everything.
+
+### Pusher for the rest
+
+Some state never belonged in the token stream.
+
+- **Completing generation.** The model finished, tools ran, we are saving the workflow. The stream might already be done. Both users still need to see "finishing up" and then the canvas unlock.
+- **Queue failures.** The worker threw after Redis hiccupped. BullMQ will retry, but the user should see an error toast, not a frozen half-message.
+- **Cross-tab sync.** User A refreshes. User B should not stare at a spinner forever because A's tab reconnected first.
+
+We used [Pusher channels](https://pusher.com/docs/channels/using_channels/channels/) per workflow. Stream for prose. Pusher for lifecycle. Both clients subscribe to the same channel name so they converge even when their SSE timelines diverge.
+
 ### Frontend: AI SDK UI + AI Elements Vue
 
 [@ai-sdk/vue](https://ai-sdk.dev/docs/ai-sdk-ui/overview) gives you the `Chat` class and transport layer. [AI Elements Vue](https://www.ai-elements-vue.com/overview/introduction) gives you the actual UI: [Conversation](https://www.ai-elements-vue.com/components/chatbot/conversation), [Message](https://www.ai-elements-vue.com/components/chatbot/message), [PromptInput](https://www.ai-elements-vue.com/components/chatbot/prompt-input), [Reasoning](https://www.ai-elements-vue.com/components/chatbot/reasoning), [Tool](https://www.ai-elements-vue.com/components/chatbot/tool), and the rest. The [chatbot example](https://www.ai-elements-vue.com/examples/chatbot) shows how those pieces compose.
 
-We kept generation logic on the worker and rendering logic in Vue. The UI does not know about BullMQ. It only knows about chat IDs, messages, and whether a stream is still active.
+We kept generation logic on the worker and rendering logic in Vue. The UI does not know about BullMQ directly. It knows chat IDs, messages, workflow status from the database, and whether a stream is still active.
 
 ## Implementation
 
-[nuxt-processor](https://aidanhibbard.github.io/nuxt-processor/) queue and worker files are small. The interesting part is what the worker does once it picks up the job.
+The whole flow: persist status and messages, enqueue, generate in a worker, stream through Redis, broadcast lifecycle on Pusher, reconnect on the client.
+
+### Queue and worker
+
+The interesting part is what the worker does once it picks up the job.
 
 ```typescript [server/queues/workflow-generate.ts]
-// BullMQ queue registered by nuxt-processor — https://aidanhibbard.github.io/nuxt-processor/
-import { defineQueue } from '#processor'
+import { Queue } from 'bullmq'
+import { redis } from '../lib/redis'
 
-export default defineQueue({ name: 'workflow-generate' })
+// https://docs.bullmq.io/guide/queues
+export const workflowGenerateQueue = new Queue('workflow-generate', {
+  connection: redis,
+})
 ```
 
 ```typescript [server/workers/workflow-generate.ts]
+import { Worker } from 'bullmq'
 import { openai } from '@ai-sdk/openai'
 import { convertToModelMessages, generateId, streamText } from 'ai'
 import { createResumableStreamContext } from 'resumable-stream'
-import { defineWorker } from '#processor'
+import { redis } from '../lib/redis'
+import { pusher } from '../lib/pusher'
 import { loadChat, saveChat } from '../utils/chat-store'
 import { workflowTools } from '../utils/workflow-tools'
 
-export default defineWorker({
-  name: 'workflow-generate',
-  async processor(job) {
+new Worker(
+  'workflow-generate',
+  async (job) => {
     const chatId = job.data.chatId
     const chat = await loadChat(chatId)
     const streamId = generateId()
 
-    // Model + tools run in the worker, not the POST handler — survives Nitro deploys
-    const result = streamText({
-      model: openai('gpt-4.1'),
-      messages: await convertToModelMessages(chat.messages),
-      tools: workflowTools,
-    })
+    await saveChat({ id: chatId, messages: chat.messages, status: 'generating', activeStreamId: null })
+    await pusher.trigger(`workflow-${chatId}`, 'status', { status: 'generating' })
 
-    const stream = result.toUIMessageStream({
-      onFinish: ({ messages }) => {
-        // Done. Clear activeStreamId or the client keeps trying to resume a finished stream.
-        saveChat({ id: chatId, messages, activeStreamId: null })
-      },
-    })
+    try {
+      const result = streamText({
+        model: openai('gpt-4.1'),
+        messages: await convertToModelMessages(chat.messages),
+        tools: workflowTools,
+      })
 
-    // Publish SSE to Redis — https://github.com/vercel/resumable-stream
-    const ctx = createResumableStreamContext({ waitUntil: (p) => void p })
-    await ctx.createNewResumableStream(streamId, () => stream)
+      const stream = result.toUIMessageStream({
+        onFinish: async ({ messages }) => {
+          // Stream ended — still saving artifacts; clients should stay locked
+          await saveChat({ id: chatId, messages, status: 'completing', activeStreamId: null })
+          await pusher.trigger(`workflow-${chatId}`, 'status', { status: 'completing' })
+        },
+      })
 
-    // GET /stream looks up this id and calls resumeExistingStream()
-    await saveChat({ id: chatId, messages: chat.messages, activeStreamId: streamId })
+      const ctx = createResumableStreamContext({ waitUntil: (p) => void p })
+      await ctx.createNewResumableStream(streamId, () => stream)
+
+      await saveChat({ id: chatId, messages: chat.messages, status: 'generating', activeStreamId: streamId })
+
+      await result.text
+
+      await saveChat({ id: chatId, messages: chat.messages, status: 'idle', activeStreamId: null })
+      await pusher.trigger(`workflow-${chatId}`, 'status', { status: 'idle' })
+    }
+    catch (err) {
+      // Job failed outside the SSE wire — both tabs need this even if resume is dead
+      await saveChat({ id: chatId, messages: chat.messages, status: 'failed', activeStreamId: null })
+      await pusher.trigger(`workflow-${chatId}`, 'generation-failed', {
+        message: err instanceof Error ? err.message : 'Generation failed',
+      })
+      throw err
+    }
   },
-})
+  { connection: redis },
+)
 ```
 
-The job runs outside Nitro, so deploys do not kill in-flight generations. `activeStreamId` in your database is what the resume GET handler uses to find the Redis stream. See the [AI SDK resume streams guide](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-resume-streams).
+The job runs outside the web process, so deploys do not kill in-flight generations. `activeStreamId` is what the resume GET handler uses. `status` is what keeps the prompt locked when resume never fires. See the [AI SDK resume streams guide](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-resume-streams).
 
 ### Web routes
 
-The API route should not run the model. Save the user message, clear any stale stream ID, enqueue, return.
+The API route should not run the model. Save the user message, set status to generating, clear any stale stream ID, enqueue, return.
 
 ```typescript [server/api/workflows/[id]/messages.post.ts]
 export default defineEventHandler(async (event) => {
@@ -136,15 +190,27 @@ export default defineEventHandler(async (event) => {
   const { message } = await readBody(event)
   const chat = await loadChat(id)
 
-  // Save the user message before enqueue — the worker reads this row, not the request body
+  if (chat.status === 'generating' || chat.status === 'completing') {
+    throw createError({ status: 409, message: 'Generation already in progress' })
+  }
+
   await saveChat({
     id,
     messages: [...chat.messages, message],
+    status: 'generating',
     activeStreamId: null,
   })
 
   await workflowGenerateQueue.add('workflow-generate', { chatId: id })
   return { ok: true }
+})
+```
+
+The GET that loads the workflow is what makes refresh safe. Status comes from the database, not from whether the client thinks the stream connected.
+
+```typescript [server/api/workflows/[id].get.ts]
+export default defineEventHandler(async (event) => {
+  return await loadChat(getRouterParam(event, 'id')!)
 })
 ```
 
@@ -169,24 +235,28 @@ export default defineEventHandler(async (event) => {
 
 204 when nothing is active is normal. Closing the tab is a disconnect, not a cancel. A Stop button needs its own endpoint. See [Stop an Active Resumable Stream](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-resume-streams#stop-an-active-resumable-stream).
 
-### Client: history first, then resume
+### Client: history first, then resume, then Pusher
 
-This tripped us up early. The AI SDK is good at new messages and live streams. Hydrating an existing session from your database is your job.
+This tripped us up early. The AI SDK is good at new messages and live streams. Hydrating an existing session from your database is your job. So is locking the UI when the database says a job is still running.
 
-On page load: fetch persisted messages, pass them to `Chat`, then let `resume` attach to Redis.
+On page load: fetch the workflow row (messages **and** status), pass messages to `Chat`, disable input when status is not idle, subscribe to Pusher, then let `resume` attach to Redis.
 
 ```typescript [app/pages/workflows/[id].vue]
 import { DefaultChatTransport } from 'ai'
 import { Chat } from '@ai-sdk/vue'
 
 const id = useRoute().params.id as string
-const { data: chat } = await useFetch(`/api/workflows/${id}`)
+const { data: workflow, refresh } = await useFetch(`/api/workflows/${id}`)
+
+const workflowStatus = ref(workflow.value?.status ?? 'idle')
+const inputLocked = computed(() =>
+  workflowStatus.value === 'generating' || workflowStatus.value === 'completing',
+)
 
 // Hydrate from your DB first — resume only attaches to Redis, not your message history
-// https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-message-persistence
 const chatClient = new Chat({
   id,
-  messages: chat.value?.messages ?? [],
+  messages: workflow.value?.messages ?? [],
   resume: true,
   transport: new DefaultChatTransport({
     api: `/api/workflows/${id}/messages`,
@@ -195,13 +265,26 @@ const chatClient = new Chat({
     }),
   }),
 })
+
+// Lifecycle events both tabs need — https://pusher.com/docs/channels/using_channels/channels/
+const pusher = usePusher()
+onMounted(() => {
+  const channel = pusher.subscribe(`workflow-${id}`)
+  channel.bind('status', ({ status }) => {
+    workflowStatus.value = status
+  })
+  channel.bind('generation-failed', ({ message }) => {
+    toast.error(message)
+    void refresh()
+  })
+})
 ```
 
-Without that fetch, a refresh mid-generation shows a blank thread until resume catches up. Persist first, stream second. The [message persistence guide](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-message-persistence) describes the same split.
+Without that fetch, a refresh mid-generation shows a blank thread until resume catches up, or worse, an empty thread with an enabled prompt. Persist first, stream second, **lock from status**. The [message persistence guide](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-message-persistence) describes the same split for messages. Status is the part they leave out.
 
 ### UI with AI Elements Vue
 
-Generation stays on the worker. The UI only knows chat ID, messages, and stream status. Wire up [AI Elements Vue](https://www.ai-elements-vue.com/examples/chatbot) around the `Chat` instance:
+Generation stays on the worker. The UI only knows chat ID, messages, and whether input is locked. Wire up [AI Elements Vue](https://www.ai-elements-vue.com/examples/chatbot) around the `Chat` instance:
 
 ```vue [app/components/workflows/WorkflowChat.vue]
 <script setup lang="ts">
@@ -210,19 +293,17 @@ import { Message, MessageContent, MessageResponse } from '@/components/ai-elemen
 import { PromptInput, PromptInputTextarea, PromptInputSubmit, usePromptInputProvider } from '@/components/ai-elements/prompt-input'
 import type { Chat } from '@ai-sdk/vue'
 
-const props = defineProps<{ chat: Chat }>()
+const props = defineProps<{ chat: Chat; inputLocked: boolean }>()
 
-// Layout primitives — https://www.ai-elements-vue.com/examples/chatbot
 usePromptInputProvider({
   onSubmit: async (message) => {
-    if (!message.text?.trim()) return
+    if (props.inputLocked || !message.text?.trim()) return
     await props.chat.sendMessage({ text: message.text })
   },
 })
 </script>
 
 <template>
-  <!-- Worker owns generation. This file only renders streamed parts and sends the next prompt. -->
   <Conversation>
     <ConversationContent>
       <Message
@@ -237,9 +318,9 @@ usePromptInputProvider({
     </ConversationContent>
   </Conversation>
 
-  <PromptInput>
-    <PromptInputTextarea />
-    <PromptInputSubmit :status="props.chat.status" />
+  <PromptInput :disabled="inputLocked">
+    <PromptInputTextarea :disabled="inputLocked" />
+    <PromptInputSubmit :status="props.chat.status" :disabled="inputLocked" />
   </PromptInput>
 </template>
 ```
@@ -248,18 +329,22 @@ We render `Reasoning`, `Tool`, and `Task` parts where the workflow needs them. O
 
 ### What to persist
 
-Store full `UIMessage` objects (with parts), plus an `activeStreamId` column. Prisma, Drizzle, whatever you already use.
+Store full `UIMessage` objects (with parts), a workflow `status`, and an `activeStreamId` column. Prisma, Drizzle, whatever you already use.
 
 ```typescript [server/utils/chat-store.ts]
 import type { UIMessage } from 'ai'
 
-// Shape matches what the AI SDK resume docs expect — https://ai-sdk.dev/docs/ai-sdk-ui/reading-ui-message-streams
+export type WorkflowStatus = 'idle' | 'generating' | 'completing' | 'failed'
+
 export type StoredChat = {
   id: string
   messages: UIMessage[]
-  activeStreamId: string | null // null when idle; set while worker is streaming
+  status: WorkflowStatus // authoritative — do not infer this from chat.status alone
+  activeStreamId: string | null // set while Redis has a live stream; null when idle
 }
 ```
+
+When someone lands on `/workflows/:id`, this row is the source of truth. If `status` is `generating` and Pusher never connects and resume returns 204, the prompt stays disabled anyway. That is the point.
 
 ## What we got wrong the first time
 
@@ -269,17 +354,23 @@ export type StoredChat = {
 
 **Skipping the initial history fetch.** The AI SDK fires new messages well. Catching up existing state is your job.
 
+**Trusting the stream for workflow status.** `chat.status` from the SDK tracks the wire. It goes idle when reconnect fails even though BullMQ is still running. Put generating/completing/failed in the database and mirror it over Pusher.
+
+**Assuming two tabs see identical token timing.** They will not. Give them the same channel, the same persisted status, and the same lock rules. Let the stream be slightly different.
+
 **Sharing one Redis without namespacing.** BullMQ keys and resumable-stream keys can coexist, but use separate logical databases or key prefixes if you run multiple environments on one instance.
 
 **Forgetting the worker process.** The web server and the worker are separate runtimes. If only the app is deployed, generations die on the next Nitro restart.
 
 ## How it feels now
 
-A user submits a prompt. We persist it, enqueue `workflow-generate`, and the worker owns the rest. They see streaming output through AI Elements Vue. If they refresh, we load messages from the database, `resume` reconnects to Redis, and the canvas keeps filling in.
+A user submits a prompt. We persist it, set status to generating, enqueue a BullMQ job, and the worker owns the rest. They see streaming output through AI Elements Vue. A teammate on the same workflow gets the same status events over Pusher even if their token stream is a beat behind.
 
-If the web server restarts, the worker keeps going. If the worker restarts, BullMQ retries the job. If the user closes the laptop and opens it ten minutes later, they see the last persisted state and pick up the stream if it is still active.
+If they refresh, we load messages and status from the database, `resume` reconnects to Redis when it can, and the input stays locked until status is idle. If resume never connects, they still cannot fire a second generation into a running job.
 
-That is durable enough for something that looks like chat but behaves like a job.
+If the web server restarts, the worker keeps going. If the worker throws, Pusher tells both tabs. If the user closes the laptop and opens it ten minutes later, they see the last persisted state and pick up the stream if it is still active.
+
+That is durable enough for something that looks like chat but behaves like a job. It is still not two people seeing literally the same chat. It is two people seeing the same **outcome**, which is what the ticket should have said.
 
 ## References
 
@@ -289,9 +380,8 @@ That is durable enough for something that looks like chat but behaves like a job
 - [Chatbot resume streams](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot-resume-streams)
 - [streamText reference](https://ai-sdk.dev/docs/reference/ai-sdk-core/stream-text)
 - [resumable-stream on GitHub](https://github.com/vercel/resumable-stream)
+- [Pusher Channels docs](https://pusher.com/docs/channels/)
 - [AI Elements Vue docs](https://www.ai-elements-vue.com/overview/introduction)
 - [AI Elements Vue chatbot example](https://www.ai-elements-vue.com/examples/chatbot)
 - [AI Elements Vue on GitHub](https://github.com/vuepont/ai-elements-vue)
-- [nuxt-processor docs](https://aidanhibbard.github.io/nuxt-processor/)
-- [nuxt-processor on GitHub](https://github.com/aidanhibbard/nuxt-processor)
 - [BullMQ documentation](https://docs.bullmq.io/)
