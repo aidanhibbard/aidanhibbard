@@ -7,36 +7,31 @@ ogImage:
     description: How I think about software, community, and the work of building things that last.
 ---
 
-## Who I am
+## Principles
 
-I'm Aidan, a senior engineer in Central Oregon. I like building software people can depend on: the API, the background job, the dashboard that tells you what went wrong without making you guess.
+Trust enables velocity, and in the agentic era, trust is at a premium.
 
-I'm drawn to work with real constraints. Usage limits that have to add up. Integrations that can't drop messages. Migrations where downtime isn't an option. The interesting part is rarely the novelty. It's making the right thing obvious and the wrong thing hard.
+Every project I start begins with rules:
 
-## How I work
+- Strict Typesafety
 
-I tend to work end to end. One week it's schema design, the next it's webhooks and frontend polish in the same sprint. I care about observability, tests, and CI because that's what keeps software fast after launch, not just on demo day.
+- Code formatting
 
-I'm comfortable zooming out to architecture and zooming in to the query plan. I work best with teams that communicate clearly and problems that don't come with a manual.
+- CI to keep developers in check
 
-## Community
+After that, is everything else, from `agents.md` to mcp, and beyond.
 
-Off the keyboard, I help run the [Deschutes Tech Guild](https://www.deschutestechguild.com/), a Central Oregon group for technologists. We host meetups on [Meetup](https://www.meetup.com/deschutes-tech-guild/), share resources on [GitHub](https://github.com/deschutes-tech-guild), and welcome people at every stage of their career. If you're local, come say hi.
+## Own the stack
 
-## Open source
+Your app isn't only an app.
 
-I maintain [nuxt-processor](https://github.com/aidanhibbard/nuxt-processor), background jobs and queues for Nuxt, and keep experiments on [GitHub](https://github.com/aidanhibbard).
+It's the dependencies from hosting, to storage.
 
-## Don't Panic
+Deep collaboration between devops, development, and product enables features to move at right speed.
 
-Production has a way of keeping you honest. Clever abstractions are fine until 2am on a Tuesday when something breaks and someone needs an answer.
+Be aware of your environment, learn about it, take initiative to help.
 
-The cover of *The Hitchhiker's Guide to the Galaxy* had two words on it that have outlasted most framework debates I've had:
+## Artifacts are key
 
-> Don't Panic.
 
-Stay calm. Read the logs. Fix the right thing. That's the work.
 
-## Connect
-
-[aidanhibbard@gmail.com](mailto:aidanhibbard@gmail.com) · [LinkedIn](https://www.linkedin.com/in/aidan-hibbard/) · [GitHub](https://github.com/aidanhibbard)
