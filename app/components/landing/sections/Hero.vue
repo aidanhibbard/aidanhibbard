@@ -4,7 +4,9 @@ import type { LandingContent } from '#shared/types/content/landing-content'
 import { Button } from '@/components/shadcn/ui/button'
 import {
   landingCategoryClass,
+  landingHeroCtaPrimaryClass,
   landingHeroCtaRowClass,
+  landingHeroCtaSecondaryClass,
   landingHeroFocusClass,
   landingHeroHeadlineClass,
   landingHeroLeadClass,
@@ -47,11 +49,11 @@ defineProps<{
           <Button
             as-child
             size="lg"
-            class="rounded-none px-6 font-mono text-[11px] tracking-[0.22em] uppercase"
+            :class="landingHeroCtaPrimaryClass"
           >
             <NuxtLink :to="blogPath">
               {{ landing.heroCtaPrimaryLabel }}
-              <ArrowRight class="size-4" />
+              <ArrowRight aria-hidden="true" />
             </NuxtLink>
           </Button>
 
@@ -59,7 +61,7 @@ defineProps<{
             as-child
             variant="outline"
             size="lg"
-            class="rounded-none border-border/80 bg-transparent px-6 font-mono text-[11px] tracking-[0.22em] uppercase backdrop-blur-sm"
+            :class="landingHeroCtaSecondaryClass"
           >
             <NuxtLink :to="resumePath">
               {{ landing.heroCtaSecondaryLabel }}

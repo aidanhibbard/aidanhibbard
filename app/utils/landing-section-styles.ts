@@ -23,7 +23,13 @@ export const landingHeroFocusClass
   = 'mt-4 max-w-xl border-l-2 border-primary/35 pl-4 text-pretty text-base leading-relaxed text-foreground/85 sm:mt-5 sm:text-lg sm:leading-[1.65]'
 
 export const landingHeroCtaRowClass
-  = 'mt-8 flex flex-wrap items-center justify-center gap-3 sm:mt-10 lg:justify-start'
+  = 'mt-8 flex flex-wrap items-stretch justify-center gap-3 sm:mt-10 sm:gap-4 lg:justify-start'
+
+export const landingHeroCtaPrimaryClass
+  = 'h-12 min-w-[11rem] gap-2 rounded-none px-7 text-base font-semibold shadow-sm sm:min-w-[12rem] sm:px-8 [&_svg]:size-5'
+
+export const landingHeroCtaSecondaryClass
+  = 'h-12 min-w-[11rem] gap-2 rounded-none px-7 text-base font-semibold text-foreground sm:min-w-[12rem] sm:px-8'
 
 export const landingSectionHeadlineClass
   = 'cn-font-heading mt-6 scroll-m-20 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl'
