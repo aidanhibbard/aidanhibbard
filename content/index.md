@@ -1,20 +1,19 @@
 ---
 title: Home
-description: Senior Software Engineer
+description: Senior software engineer building resilient systems and clear UI.
 landing:
   heroEyebrow: Senior Software Engineer
   heroHeadline: Software that delights
-  heroLead: Building build resilient systems and cozy UI
-  heroFocus: Notes on infra, frontend, and shipping with confidence in the agentic era.
+  heroLead: I build resilient backends, thoughtful interfaces, and the tooling teams need to ship with confidence.
   heroCtaPrimaryLabel: Read the blog
   heroCtaSecondaryLabel: View resume
   blogHeadline: Latest writing
-  blogLead: Notes on durable systems, frontend craft, and shipping in the agentic era.
-  aboutHeadline: Building software that delights
-  aboutLead: From UI's that make users fall in love, to infra that stands the test of time and scale.
-  aboutBody: I believe that the agentic era allows us to move faster than before, and the teams shipping with the most confidence have the strongest tooling.
+  blogLead: Production debugging, Nuxt and SSR, real-time systems, and AI infrastructure.
+  aboutHeadline: Startups to enterprise
+  aboutLead: Shipping the first commit, leading infrastructure and product
+  aboutBody: Working across the stack to enhance visibility, resiliancy, and developer expierence
 ogImage:
   props:
     title: Aidan Hibbard
-    description: Senior software engineer building software that scales, and delights users.
+    description: Senior software engineer. Resilient systems, clear UI, and production-focused writing.
 ---
