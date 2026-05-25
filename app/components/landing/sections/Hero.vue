@@ -69,7 +69,7 @@ defineProps<{
       </div>
 
       <div
-        class="relative mx-auto mt-12 w-full max-w-md sm:max-w-lg lg:mt-0 lg:max-w-none"
+        class="relative hidden w-full lg:block"
         aria-hidden="true"
       >
         <LandingIllustrationsDotCloud fade-cy="46%" />
