@@ -4,6 +4,18 @@ export const landingCardFrameClass
 export const landingCategoryClass
   = 'font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase'
 
+export const landingHeroHeadlineClass
+  = 'cn-font-heading text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl'
+
+export const landingHeroLeadClass
+  = 'mt-6 text-pretty text-lg leading-[1.65] text-muted-foreground sm:mt-8 sm:text-xl sm:leading-[1.6]'
+
+export const landingSectionHeadlineClass
+  = 'cn-font-heading mt-6 scroll-m-20 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl'
+
+export const landingSectionLeadClass
+  = 'mt-8 text-pretty text-xl leading-[1.65] text-muted-foreground sm:text-2xl sm:leading-[1.6]'
+
 export const landingDateClass
   = 'shrink-0 font-mono text-[11px] font-medium tracking-[0.22em] text-muted-foreground uppercase tabular-nums'
 

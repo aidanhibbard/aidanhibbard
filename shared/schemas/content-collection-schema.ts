@@ -9,6 +9,10 @@ import { resumePageSchema } from './resume-page-schema'
 const schemaOptions = { z }
 
 const landingSchema = z.object({
+  heroHeadline: z.string(),
+  heroLead: z.string(),
+  blogHeadline: z.string(),
+  blogLead: z.string(),
   aboutHeadline: z.string(),
   aboutLead: z.string(),
   aboutBody: z.string(),

@@ -1,16 +1,21 @@
 <script setup lang="ts">
+import type { LandingContent } from '#shared/types/content/landing-content'
 import type { PostListItem } from '#shared/types/content/post-list-item'
 import { Card } from '@/components/shadcn/ui/card'
 import { formatPostDate } from '@/utils/format-post-date'
 import {
   landingCardFrameClass,
+  landingCategoryClass,
   landingDateClass,
   landingFeaturedDescriptionClass,
+  landingSectionHeadlineClass,
+  landingSectionLeadClass,
   landingSidebarDescriptionClass,
 } from '@/utils/landing-section-styles'
 
 defineProps<{
   blogPath: string
+  landing: LandingContent
   featuredPost: PostListItem | null
   sidebarPosts: PostListItem[]
   hasPosts: boolean
@@ -19,12 +24,24 @@ defineProps<{
 
 <template>
   <section
-    class="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-10 sm:px-6 md:min-h-[calc(100svh-4rem)] lg:px-8 lg:py-14"
+    class="mx-auto w-full max-w-7xl border-t border-border px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28"
     aria-label="Latest writing"
   >
+    <div class="max-w-3xl">
+      <p :class="landingCategoryClass">
+        // WRITING
+      </p>
+      <h2 :class="landingSectionHeadlineClass">
+        {{ landing.blogHeadline }}
+      </h2>
+      <p :class="landingSectionLeadClass">
+        {{ landing.blogLead }}
+      </p>
+    </div>
+
     <div
       v-if="hasPosts"
-      class="grid flex-1 gap-4 lg:grid-cols-3 lg:gap-5"
+      class="mt-10 grid gap-4 lg:mt-12 lg:grid-cols-3 lg:gap-5"
     >
       <Card
         v-if="featuredPost"
@@ -33,16 +50,16 @@ defineProps<{
       >
         <NuxtLink
           :to="featuredPost.path"
-          class="group flex min-h-88 flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-104 lg:min-h-full"
+          class="group flex min-h-72 flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-80 lg:min-h-96"
         >
           <div
-            class="flex flex-1 flex-col justify-end gap-6 px-6 py-8 sm:gap-7 sm:px-8 sm:py-10 lg:gap-8 lg:px-10 lg:py-12"
+            class="flex flex-1 flex-col gap-6 px-6 py-8 sm:gap-7 sm:px-8 sm:py-10 lg:gap-8 lg:px-10 lg:py-12"
           >
-            <h2
-              class="cn-font-heading max-w-[16ch] text-balance text-4xl font-bold leading-[1.02] tracking-tight text-foreground transition-opacity group-hover:opacity-80 sm:text-5xl lg:text-6xl xl:text-7xl"
+            <h3
+              class="cn-font-heading max-w-[16ch] text-balance text-4xl font-bold leading-[1.02] tracking-tight text-foreground transition-opacity group-hover:opacity-80 sm:text-5xl lg:text-6xl"
             >
               {{ featuredPost.title }}
-            </h2>
+            </h3>
             <p
               v-if="featuredPost.description"
               :class="landingFeaturedDescriptionClass"
@@ -52,7 +69,7 @@ defineProps<{
             <time
               v-if="featuredPost.date"
               :datetime="featuredPost.date"
-              :class="landingDateClass"
+              :class="[landingDateClass, 'mt-auto']"
             >
               {{ formatPostDate(featuredPost.date) }}
             </time>
@@ -60,7 +77,7 @@ defineProps<{
         </NuxtLink>
       </Card>
 
-      <div class="grid gap-4 sm:grid-cols-2 lg:flex lg:min-h-full lg:flex-col lg:gap-5">
+      <div class="grid gap-4 sm:grid-cols-2 lg:flex lg:min-h-0 lg:flex-col lg:gap-5">
         <Card
           v-for="post in sidebarPosts"
           :key="post.path"

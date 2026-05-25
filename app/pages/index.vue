@@ -17,8 +17,15 @@ const {
 
 <template>
   <div class="flex min-h-full flex-1 flex-col">
+    <LanderSectionsHero
+      v-if="landing"
+      :landing="landing"
+    />
+
     <LanderSectionsLatestWriting
+      v-if="landing"
       :blog-path="blogPath"
+      :landing="landing"
       :featured-post="featuredPost"
       :sidebar-posts="sidebarPosts"
       :has-posts="hasPosts"

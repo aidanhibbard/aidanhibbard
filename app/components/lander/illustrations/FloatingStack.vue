@@ -81,120 +81,78 @@ const layerPaths = stackLayers.map((layer, index) => {
 </script>
 
 <template>
-  <svg
-    viewBox="0 0 320 300"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    role="img"
-    aria-label="Technology stack: Kubernetes, Postgres, Valkey, TypeScript, and Vite"
-    :class="cn('h-auto w-full text-muted-foreground/45', props.class)"
+  <div
+    class="relative"
+    :class="cn('h-auto w-full', props.class)"
   >
-    <title>Technology stack</title>
+    <LanderIllustrationsDotCloud fade-cy="46%" />
 
-    <defs>
-      <pattern
-        id="floating-stack-dots"
-        width="12"
-        height="12"
-        patternUnits="userSpaceOnUse"
-      >
-        <circle
-          cx="6"
-          cy="6"
-          r="1"
-          fill="currentColor"
-        />
-      </pattern>
-      <radialGradient
-        id="floating-stack-dot-fade"
-        cx="50%"
-        cy="46%"
-        r="58%"
-      >
-        <stop
-          offset="0%"
-          stop-color="white"
-          stop-opacity="1"
-        />
-        <stop
-          offset="60%"
-          stop-color="white"
-          stop-opacity="0.65"
-        />
-        <stop
-          offset="100%"
-          stop-color="white"
-          stop-opacity="0"
-        />
-      </radialGradient>
-      <mask id="floating-stack-dot-mask">
-        <rect
-          width="320"
-          height="300"
-          fill="url(#floating-stack-dot-fade)"
-        />
-      </mask>
-      <filter
-        id="floating-stack-shadow"
-        x="-20%"
-        y="-10%"
-        width="140%"
-        height="130%"
-      >
-        <feDropShadow
-          dx="0"
-          dy="6"
-          stdDeviation="8"
-          flood-color="#000000"
-          flood-opacity="0.1"
-        />
-      </filter>
-    </defs>
+    <svg
+      viewBox="0 0 320 300"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      role="img"
+      aria-label="Technology stack: Kubernetes, Postgres, Valkey, TypeScript, and Vite"
+      class="relative h-auto w-full"
+    >
+      <title>Technology stack</title>
 
-    <rect
-      width="320"
-      height="300"
-      fill="url(#floating-stack-dots)"
-      mask="url(#floating-stack-dot-mask)"
-    />
-
-    <g filter="url(#floating-stack-shadow)">
-      <g
-        v-for="(layer, index) in layerPaths"
-        :key="`slice-${index}`"
-      >
-        <path
-          :d="layer.leftFace"
-          :fill="layer.leftFill"
-          class="stroke-border/30"
-          stroke-width="1"
-          stroke-linejoin="round"
-        />
-        <path
-          :d="layer.rightFace"
-          :fill="layer.rightFill"
-          class="stroke-border/30"
-          stroke-width="1"
-          stroke-linejoin="round"
-        />
-        <path
-          :d="layer.topFace"
-          class="fill-card stroke-border/50"
-          stroke-width="1"
-          stroke-linejoin="round"
-        />
-        <image
-          :href="layer.logo"
-          :x="layer.logoX"
-          :y="layer.logoY"
-          :width="logoSize"
-          :height="logoSize"
-          preserveAspectRatio="xMidYMid meet"
+      <defs>
+        <filter
+          id="floating-stack-shadow"
+          x="-20%"
+          y="-10%"
+          width="140%"
+          height="130%"
         >
-          <title>{{ layer.name }}</title>
-        </image>
+          <feDropShadow
+            dx="0"
+            dy="6"
+            stdDeviation="8"
+            flood-color="#000000"
+            flood-opacity="0.1"
+          />
+        </filter>
+      </defs>
+
+      <g filter="url(#floating-stack-shadow)">
+        <g
+          v-for="(layer, index) in layerPaths"
+          :key="`slice-${index}`"
+        >
+          <path
+            :d="layer.leftFace"
+            :fill="layer.leftFill"
+            class="stroke-border/30"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+          <path
+            :d="layer.rightFace"
+            :fill="layer.rightFill"
+            class="stroke-border/30"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+          <path
+            :d="layer.topFace"
+            class="fill-card stroke-border/50"
+            stroke-width="1"
+            stroke-linejoin="round"
+          />
+          <image
+            :href="layer.logo"
+            :x="layer.logoX"
+            :y="layer.logoY"
+            :width="logoSize"
+            :height="logoSize"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <title>{{ layer.name }}</title>
+          </image>
+        </g>
       </g>
-    </g>
-  </svg>
+    </svg>
+  </div>
 </template>

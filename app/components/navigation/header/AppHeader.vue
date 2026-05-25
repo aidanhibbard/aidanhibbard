@@ -2,7 +2,6 @@
 import { useWindowScroll } from '@vueuse/core'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/shadcn/ui/button'
-import { Separator } from '@/components/shadcn/ui/separator'
 import { SidebarTrigger } from '@/components/shadcn/ui/sidebar'
 
 const { primaryNav, socialLinks, isActive } = useNavigation()
@@ -79,9 +78,6 @@ const isScrolled = computed(() => y.value > 0)
             <span class="sr-only">{{ link.label }}</span>
           </NuxtLink>
         </Button>
-        <Separator
-          orientation="vertical"
-        />
         <HeaderThemeToggle />
       </div>
     </div>
