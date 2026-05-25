@@ -1,17 +1,17 @@
 import { z } from 'zod'
 
-export const resumeContactSchema = z.object({
+const resumeContactSchema = z.object({
   email: z.string().email(),
   linkedin: z.string().url(),
   github: z.string().url(),
 })
 
-export const resumeSkillGroupSchema = z.object({
+const resumeSkillGroupSchema = z.object({
   category: z.string(),
   items: z.string(),
 })
 
-export const resumeExperienceSchema = z.object({
+const resumeExperienceSchema = z.object({
   title: z.string(),
   organization: z.string(),
   period: z.string(),

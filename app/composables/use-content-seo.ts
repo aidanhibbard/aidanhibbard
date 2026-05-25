@@ -35,7 +35,7 @@ const resolveOgImageDescription = (
     ?? page?.description
 }
 
-export const useContentSeo = (
+export default (
   page: Ref<ContentSeoPage | null | undefined>,
 ) => {
   const schemaIds = useSiteSchemaIds()

@@ -40,14 +40,14 @@ defineProps<{
       v-if="hasPosts"
       class="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3"
     >
-      <LanderWritingPostTile
+      <LandingWritingPostTile
         v-for="post in posts"
         :key="post.path"
         :post="post"
       />
     </div>
 
-    <LanderSectionsSectionCta
+    <LandingSectionsSectionCta
       :to="blogPath"
       label="View all posts"
     />

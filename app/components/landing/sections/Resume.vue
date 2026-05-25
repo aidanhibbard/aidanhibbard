@@ -84,7 +84,7 @@ defineProps<{
       </ol>
     </div>
 
-    <LanderSectionsSectionCta
+    <LandingSectionsSectionCta
       :to="resumePath"
       label="View full resume"
     />

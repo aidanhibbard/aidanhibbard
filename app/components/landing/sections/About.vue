@@ -36,11 +36,11 @@ defineProps<{
       </div>
 
       <div class="mt-12 flex w-full justify-center lg:col-start-3 lg:mt-0 lg:justify-center">
-        <LanderIllustrationsFloatingStack class="w-full max-w-xs sm:max-w-sm lg:max-w-none" />
+        <LandingIllustrationsFloatingStack class="w-full max-w-xs sm:max-w-sm lg:max-w-none" />
       </div>
     </div>
 
-    <LanderSectionsSectionCta
+    <LandingSectionsSectionCta
       :to="aboutPath"
       label="Read the full story"
     />

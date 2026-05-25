@@ -85,7 +85,7 @@ const layerPaths = stackLayers.map((layer, index) => {
     class="relative"
     :class="cn('h-auto w-full', props.class)"
   >
-    <LanderIllustrationsDotCloud fade-cy="46%" />
+    <LandingIllustrationsDotCloud fade-cy="46%" />
 
     <svg
       viewBox="0 0 320 300"

@@ -78,7 +78,7 @@ const isScrolled = computed(() => y.value > 0)
             <span class="sr-only">{{ link.label }}</span>
           </NuxtLink>
         </Button>
-        <HeaderThemeToggle />
+        <NavigationHeaderThemeToggle />
       </div>
     </div>
   </header>

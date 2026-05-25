@@ -12,7 +12,7 @@ type ResumeContent = ContentSeoPage & {
   resume?: ResumePage
 }
 
-export const useLandingContent = () => {
+export default () => {
   const { data: home } = useAsyncData('landing-home', () =>
     queryCollection('content').path('/').first() as Promise<HomeContent | null>,
   )

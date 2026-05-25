@@ -28,9 +28,9 @@ defineProps<{
       class="relative mx-auto mt-6 w-full max-w-3xl sm:mt-8"
       aria-hidden="true"
     >
-      <LanderIllustrationsDotCloud fade-cy="48%" />
+      <LandingIllustrationsDotCloud fade-cy="48%" />
       <div class="relative z-10 flex justify-center px-4 py-4 sm:py-6">
-        <LanderIllustrationsPublishingWorkflow />
+        <LandingIllustrationsPublishingWorkflow />
       </div>
     </div>
   </section>

@@ -4,7 +4,7 @@ const normalizeSiteUrl = (url: string): string => {
   return url.replace(/\/$/, '')
 }
 
-export const useSiteSchemaIds = (): SiteSchemaIds => {
+export default (): SiteSchemaIds => {
   const { url } = useSiteConfig()
   const siteUrl = normalizeSiteUrl(url)
 

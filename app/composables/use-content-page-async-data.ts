@@ -1,1 +1,1 @@
-export const useContentPageAsyncData = createUseAsyncData()
+export default createUseAsyncData()

@@ -122,12 +122,18 @@ async function handleSubmit(): Promise<void> {
 ## Composables
 
 - Name composable files in kebab-case, for example `use-example.ts`.
-- Export composables as constant functions:
+- Use a **default export**; Nuxt auto-imports it as camelCase from the filename (for example `use-example.ts` → `useExample()`). Do not add a matching named export.
 
 ```ts
-export const useExample = () => {
+export default () => {
   // ...
 }
+```
+
+- Factory macros such as `createUseAsyncData()` also default-export from the composable file:
+
+```ts
+export default createUseAsyncData()
 ```
 
 - Keep the composable body ordered as:

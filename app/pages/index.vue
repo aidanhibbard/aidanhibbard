@@ -16,12 +16,12 @@ const {
 
 <template>
   <div class="flex min-h-full flex-1 flex-col">
-    <LanderSectionsHero
+    <LandingSectionsHero
       v-if="landing"
       :landing="landing"
     />
 
-    <LanderSectionsLatestWriting
+    <LandingSectionsLatestWriting
       v-if="landing"
       :blog-path="blogPath"
       :landing="landing"
@@ -29,13 +29,13 @@ const {
       :has-posts="hasPosts"
     />
 
-    <LanderSectionsAbout
+    <LandingSectionsAbout
       v-if="landing"
       :about-path="aboutPath"
       :landing="landing"
     />
 
-    <LanderSectionsResume
+    <LandingSectionsResume
       v-if="currentRole"
       :current-role="currentRole"
       :past-roles="pastRoles"

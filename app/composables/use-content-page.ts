@@ -1,7 +1,7 @@
 import type { TocLink } from '@nuxtjs/mdc'
 import { toast } from 'vue-sonner'
 
-export const useContentPage = () => {
+export default () => {
   const buildToc = (body: unknown): TocLink[] => {
     if (!body || typeof body !== 'object' || !('toc' in body)) {
       return []

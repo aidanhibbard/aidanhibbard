@@ -7,7 +7,7 @@ import { SidebarProvider } from '@/components/shadcn/ui/sidebar'
     :default-open="false"
     class="antialiased"
   >
-    <AsideSideBar />
+    <NavigationAsideSideBar />
     <div class="flex min-h-svh w-full flex-col">
       <NavigationHeaderAppHeader />
       <main
