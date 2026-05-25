@@ -33,5 +33,8 @@ Be aware of your environment, learn about it, take initiative to help.
 
 ## Artifacts are key
 
+Every issue gets a ticket, every ticket gets triaged, and every pull request reviewed.
 
+Give your sales team, and support team tools to help engineering with artifacts.
 
+Create internal processes to regularly keep documentation alive.
