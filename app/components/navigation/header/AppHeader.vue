@@ -1,15 +1,23 @@
 <script setup lang="ts">
+import { useWindowScroll } from '@vueuse/core'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/shadcn/ui/button'
 import { Separator } from '@/components/shadcn/ui/separator'
 import { SidebarTrigger } from '@/components/shadcn/ui/sidebar'
 
 const { primaryNav, socialLinks, isActive } = useNavigation()
+
+const { y } = useWindowScroll()
+
+const isScrolled = computed(() => y.value > 0)
 </script>
 
 <template>
   <header
-    class="sticky top-0 z-50 flex h-14 shrink-0 items-center border-b border-border/50 bg-background/75 shadow-sm backdrop-blur-xl supports-backdrop-filter:bg-background/60 md:h-16"
+    :class="cn(
+      'sticky top-0 z-50 flex h-14 shrink-0 items-center bg-background/75 backdrop-blur-xl transition-colors supports-backdrop-filter:bg-background/60 md:h-16',
+      isScrolled && 'border-b border-border/50',
+    )"
   >
     <div class="mx-auto flex w-full max-w-7xl items-center gap-1 px-4 sm:px-6 lg:gap-2 lg:px-8">
       <SidebarTrigger class="-ml-1 md:hidden" />

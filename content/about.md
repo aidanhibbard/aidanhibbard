@@ -7,7 +7,7 @@ ogImage:
     description: How I think about software, community, and the work of building things that last.
 ---
 
-## Principles
+## Rigid rules
 
 Trust enables velocity, and in the agentic era, trust is at a premium.
 
@@ -38,3 +38,7 @@ Every issue gets a ticket, every ticket gets triaged, and every pull request rev
 Give your sales team, and support team tools to help engineering with artifacts.
 
 Create internal processes to regularly keep documentation alive.
+
+## Community
+
+
