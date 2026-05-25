@@ -3,7 +3,7 @@ title: Home
 description: Senior Software Engineer
 landing:
   heroHeadline: Software that Delights
-  heroLead: Senior engineer building production systems, integrations, and UI
+  heroLead: Senior engineer building resiliant systems, and cozy UI
   blogHeadline: Latest writing
   blogLead: Notes on durable systems, frontend craft, and shipping in the agentic era.
   aboutHeadline: Building software that delights
