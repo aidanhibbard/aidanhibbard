@@ -4,8 +4,8 @@ description: Senior Software Engineer
 landing:
   heroEyebrow: Senior Software Engineer
   heroHeadline: Software that delights
-  heroLead: I build resilient systems and cozy UI — infrastructure that survives scale, interfaces people love to use.
-  heroFocus: Notes on durable systems, frontend craft, and shipping with confidence in the agentic era.
+  heroLead: Building build resilient systems and cozy UI
+  heroFocus: Notes on infra, frontend, and shipping with confidence in the agentic era.
   heroCtaPrimaryLabel: Read the blog
   heroCtaSecondaryLabel: View resume
   blogHeadline: Latest writing
