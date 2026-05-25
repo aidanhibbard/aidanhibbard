@@ -5,7 +5,6 @@ export const landingSectionShellVariantClasses = {
   hero: 'pt-14 pb-12 sm:pt-16 sm:pb-14 lg:pt-20 lg:pb-16',
   writing: 'border-t border-border pt-10 pb-12 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-20',
   about: 'border-t border-border py-16 sm:py-20 lg:py-28',
-  resume: 'border-t border-border py-16 sm:py-20 lg:py-24',
 } as const
 
 export const landingCardFrameClass
@@ -46,21 +45,6 @@ export const landingAboutLeadClass
 
 export const landingAboutBodyClass
   = 'mt-6 text-pretty text-lg leading-8 text-muted-foreground sm:text-xl sm:leading-8'
-
-export const landingResumeOrgClass
-  = 'mt-2 font-mono text-xs font-medium tracking-[0.24em] text-muted-foreground uppercase sm:text-[13px]'
-
-export const landingResumeSummaryClass
-  = 'mt-5 text-pretty text-lg leading-8 text-muted-foreground sm:mt-6 sm:text-xl sm:leading-[1.65]'
-
-export const landingResumePastTitleClass
-  = 'cn-font-heading mt-3 text-balance text-lg font-bold leading-snug tracking-tight text-foreground sm:text-xl'
-
-export const landingResumePastOrgClass
-  = 'mt-2 font-mono text-xs font-medium tracking-[0.22em] text-muted-foreground uppercase sm:text-[13px]'
-
-export const landingResumePastSummaryClass
-  = 'mt-4 text-pretty text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8'
 
 export const landingSectionCtaLinkClass
   = 'group flex items-center justify-between border border-border px-6 py-4 font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-7 lg:px-8'

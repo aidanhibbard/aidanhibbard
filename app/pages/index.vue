@@ -7,8 +7,6 @@ const resumePath = primaryNav.find(item => item.label === 'Resume')?.to ?? '/res
 
 const {
   landing,
-  currentRole,
-  pastRoles,
   latestPosts,
   hasPosts,
 } = useLandingContent()
@@ -35,13 +33,6 @@ const {
       v-if="landing"
       :about-path="aboutPath"
       :landing="landing"
-    />
-
-    <LandingSectionsResume
-      v-if="currentRole"
-      :current-role="currentRole"
-      :past-roles="pastRoles"
-      :resume-path="resumePath"
     />
   </div>
 </template>
