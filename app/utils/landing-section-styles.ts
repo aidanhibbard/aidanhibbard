@@ -8,7 +8,7 @@ export const landingHeroHeadlineClass
   = 'cn-font-heading text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl'
 
 export const landingHeroLeadClass
-  = 'mt-6 text-pretty text-lg leading-[1.65] text-muted-foreground sm:mt-8 sm:text-xl sm:leading-[1.6]'
+  = 'mt-5 text-pretty text-lg leading-[1.65] text-muted-foreground sm:mt-6 sm:text-xl sm:leading-[1.6]'
 
 export const landingSectionHeadlineClass
   = 'cn-font-heading mt-6 scroll-m-20 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl'

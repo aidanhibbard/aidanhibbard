@@ -9,8 +9,7 @@ const {
   landing,
   currentRole,
   pastRoles,
-  featuredPost,
-  sidebarPosts,
+  latestPosts,
   hasPosts,
 } = useLandingContent()
 </script>
@@ -26,8 +25,7 @@ const {
       v-if="landing"
       :blog-path="blogPath"
       :landing="landing"
-      :featured-post="featuredPost"
-      :sidebar-posts="sidebarPosts"
+      :posts="latestPosts"
       :has-posts="hasPosts"
     />
 

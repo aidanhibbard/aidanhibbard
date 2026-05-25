@@ -43,16 +43,14 @@ export const useLandingContent = () => {
   )
   const currentRole = computed(() => roles.value[0] ?? null)
   const pastRoles = computed(() => roles.value.slice(1))
-  const featuredPost = computed(() => latestPosts.value?.[0] ?? null)
-  const sidebarPosts = computed(() => latestPosts.value?.slice(1) ?? [])
-  const hasPosts = computed(() => (latestPosts.value?.length ?? 0) > 0)
+  const latestPostsList = computed(() => latestPosts.value ?? [])
+  const hasPosts = computed(() => latestPostsList.value.length > 0)
 
   return {
     landing,
     currentRole,
     pastRoles,
-    featuredPost,
-    sidebarPosts,
+    latestPosts: latestPostsList,
     hasPosts,
   }
 }

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { LandingContent } from '#shared/types/content/landing-content'
 import {
-  landingCategoryClass,
   landingHeroHeadlineClass,
   landingHeroLeadClass,
 } from '@/utils/landing-section-styles'
@@ -13,13 +12,10 @@ defineProps<{
 
 <template>
   <section
-    class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
+    class="mx-auto w-full max-w-7xl px-4 pt-16 pb-10 sm:px-6 sm:pt-20 sm:pb-12 lg:px-8 lg:pt-24 lg:pb-14"
     aria-label="Introduction"
   >
     <div class="mx-auto max-w-3xl text-center">
-      <p :class="landingCategoryClass">
-        // HOME
-      </p>
       <h1 :class="landingHeroHeadlineClass">
         {{ landing.heroHeadline }}
       </h1>
@@ -29,11 +25,11 @@ defineProps<{
     </div>
 
     <div
-      class="relative mt-10 min-h-80 w-full overflow-hidden border border-border lg:mt-14 lg:aspect-16/10 lg:min-h-0"
+      class="relative mx-auto mt-6 w-full max-w-3xl sm:mt-8"
       aria-hidden="true"
     >
-      <LanderIllustrationsDotCloud fade-cy="50%" />
-      <div class="relative flex size-full items-center justify-center px-4 py-10 sm:py-12">
+      <LanderIllustrationsDotCloud fade-cy="48%" />
+      <div class="relative z-10 flex justify-center px-4 py-4 sm:py-6">
         <LanderIllustrationsPublishingWorkflow />
       </div>
     </div>
