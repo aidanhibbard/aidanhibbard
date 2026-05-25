@@ -1,3 +1,13 @@
+export const landingSectionShellBaseClass
+  = 'mx-auto flex w-full min-h-svh max-w-7xl flex-col justify-center px-4 sm:px-6 lg:px-8'
+
+export const landingSectionShellVariantClasses = {
+  hero: 'pt-14 pb-12 sm:pt-16 sm:pb-14 lg:pt-20 lg:pb-16',
+  writing: 'border-t border-border pt-10 pb-12 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-20',
+  about: 'border-t border-border py-16 sm:py-20 lg:py-28',
+  resume: 'border-t border-border py-16 sm:py-20 lg:py-24',
+} as const
+
 export const landingCardFrameClass
   = 'relative h-full gap-0 overflow-hidden rounded-none border border-border bg-card/40 py-0 shadow-none ring-0 transition-colors hover:border-primary/35'
 
@@ -5,10 +15,16 @@ export const landingCategoryClass
   = 'font-mono text-[11px] font-medium tracking-[0.28em] text-muted-foreground uppercase'
 
 export const landingHeroHeadlineClass
-  = 'cn-font-heading text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl'
+  = 'cn-font-heading mt-5 text-balance text-4xl font-bold tracking-tight text-foreground sm:mt-6 sm:text-5xl lg:text-[3.25rem] lg:leading-[1.05] xl:text-6xl'
 
 export const landingHeroLeadClass
-  = 'mt-5 text-pretty text-lg leading-[1.65] text-muted-foreground sm:mt-6 sm:text-xl sm:leading-[1.6]'
+  = 'mt-5 max-w-xl text-pretty text-lg leading-[1.65] text-muted-foreground sm:mt-6 sm:text-xl sm:leading-[1.6]'
+
+export const landingHeroFocusClass
+  = 'mt-4 max-w-xl border-l-2 border-primary/35 pl-4 text-pretty text-base leading-relaxed text-foreground/85 sm:mt-5 sm:text-lg sm:leading-[1.65]'
+
+export const landingHeroCtaRowClass
+  = 'mt-8 flex flex-wrap items-center justify-center gap-3 sm:mt-10 lg:justify-start'
 
 export const landingSectionHeadlineClass
   = 'cn-font-heading mt-6 scroll-m-20 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl'

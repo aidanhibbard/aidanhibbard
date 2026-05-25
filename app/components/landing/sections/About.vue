@@ -13,9 +13,9 @@ defineProps<{
 </script>
 
 <template>
-  <section
-    class="mx-auto w-full max-w-7xl border-t border-border px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28"
-    aria-label="About"
+  <LandingSectionShell
+    label="About"
+    variant="about"
   >
     <div class="lg:grid lg:grid-cols-3 lg:items-center lg:gap-5">
       <div class="max-w-3xl lg:col-span-2">
@@ -44,5 +44,5 @@ defineProps<{
       :to="aboutPath"
       label="Read the full story"
     />
-  </section>
+  </LandingSectionShell>
 </template>

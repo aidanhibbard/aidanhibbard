@@ -18,9 +18,9 @@ defineProps<{
 </script>
 
 <template>
-  <section
-    class="mx-auto w-full max-w-7xl border-t border-border px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
-    aria-label="Resume"
+  <LandingSectionShell
+    label="Resume"
+    variant="resume"
   >
     <p :class="landingCategoryClass">
       // RESUME
@@ -88,5 +88,5 @@ defineProps<{
       :to="resumePath"
       label="View full resume"
     />
-  </section>
+  </LandingSectionShell>
 </template>

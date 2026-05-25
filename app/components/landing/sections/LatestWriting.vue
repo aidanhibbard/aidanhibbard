@@ -15,9 +15,9 @@ defineProps<{
 </script>
 
 <template>
-  <section
-    class="mx-auto w-full max-w-7xl border-t border-border px-4 pt-10 pb-12 sm:px-6 sm:pt-12 sm:pb-16 lg:px-8 lg:pt-14 lg:pb-20"
-    aria-label="Latest writing"
+  <LandingSectionShell
+    label="Latest writing"
+    variant="writing"
   >
     <header class="max-w-2xl">
       <p :class="landingCategoryClass">
@@ -51,5 +51,5 @@ defineProps<{
       :to="blogPath"
       label="View all posts"
     />
-  </section>
+  </LandingSectionShell>
 </template>

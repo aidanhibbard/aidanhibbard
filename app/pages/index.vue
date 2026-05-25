@@ -19,6 +19,8 @@ const {
     <LandingSectionsHero
       v-if="landing"
       :landing="landing"
+      :blog-path="blogPath"
+      :resume-path="resumePath"
     />
 
     <LandingSectionsLatestWriting

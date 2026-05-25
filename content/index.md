@@ -2,8 +2,12 @@
 title: Home
 description: Senior Software Engineer
 landing:
-  heroHeadline: Software that Delights
-  heroLead: Senior engineer building resiliant systems, and cozy UI
+  heroEyebrow: Senior Software Engineer
+  heroHeadline: Software that delights
+  heroLead: I build resilient systems and cozy UI — infrastructure that survives scale, interfaces people love to use.
+  heroFocus: Notes on durable systems, frontend craft, and shipping with confidence in the agentic era.
+  heroCtaPrimaryLabel: Read the blog
+  heroCtaSecondaryLabel: View resume
   blogHeadline: Latest writing
   blogLead: Notes on durable systems, frontend craft, and shipping in the agentic era.
   aboutHeadline: Building software that delights

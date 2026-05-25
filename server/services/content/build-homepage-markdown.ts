@@ -47,7 +47,19 @@ export const buildHomepageMarkdown = async (event: H3Event): Promise<string> => 
     lines.push(
       `## ${landing.heroHeadline}`,
       '',
+      landing.heroEyebrow,
+      '',
       landing.heroLead,
+      '',
+    )
+
+    if (landing.heroFocus) {
+      lines.push(landing.heroFocus, '')
+    }
+
+    lines.push(
+      `- [${landing.heroCtaPrimaryLabel}](${siteUrl}/posts)`,
+      `- [${landing.heroCtaSecondaryLabel}](${siteUrl}/resume)`,
       '',
       `## ${landing.blogHeadline}`,
       '',
