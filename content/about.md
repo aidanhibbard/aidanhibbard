@@ -1,54 +1,64 @@
 ---
 title: About
-description: Senior TypeScript engineer across startups and enterprise. Platform work, integrations, observability, and production AI features.
+description: Senior TypeScript engineer from startup to enterprise. Data pipelines, microservices, integrations, SSO, observability, and agentic AI.
 ogImage:
   props:
     title: About
-    description: Senior TypeScript engineer across startups and enterprise. Platform work, integrations, observability, and production AI features.
+    description: Senior TypeScript engineer from startup to enterprise. Data pipelines, microservices, integrations, SSO, observability, and agentic AI.
 ---
 
 ## Who I am
 
-Senior TypeScript engineer across the stack, from a startup's first commit to production at enterprise scale. I launch products from zero, lead platform rewrites, and build infrastructure, observability, and guardrails that let small teams ship fast without gambling on reliability.
+I work across the stack in TypeScript, from a startup's first commit to production at enterprise scale. I launch products from zero. I lead platform rewrites. I build infrastructure, observability, and guardrails so small teams ship fast without gambling on reliability.
 
 ## From first commit to production scale
 
-Most of my best work has been greenfield: customer-facing products and internal tools where the stack, deployment model, and team norms did not exist yet. I own infrastructure as code, CI, cloud environments, and the path from local dev to production.
+Most of my work starts greenfield: customer-facing products, internal tools, and stacks still being defined. I own Terraform on AWS, CI/CD, automated tests, and the path from local dev to production.
 
-I have also shipped inside large organizations: monolith and SPA applications at scale, real-time WebSocket services, Kubernetes microservices, and framework migrations that had to land without breaking customer workflows. Startups teach speed and ownership. Enterprise teaches discipline, coordination, and what breaks when traffic and history show up together.
+In larger organizations I have shipped monolith-to-SPA applications at scale. I have built Kubernetes microservices over gRPC and Pub/Sub. I have run real-time WebSocket services. I have led framework migrations that could not break customer workflows. Startups teach speed. Enterprise teaches coordination when traffic and history show up.
+
+## What I build
+
+Full-stack product in TypeScript covers Vue and Nuxt SSR apps. I work in React where teams standardize on it. I ship micro-frontends, Node.js services, REST APIs, and GraphQL endpoints.
+
+Integrations include partner APIs, OAuth 2.0, OIDC, SSO, webhooks, and machine-to-machine (M2M) auth for B2B customers. I design versioned public APIs, idempotent handlers, and partner-ready docs.
+
+Platform and data systems cover ETL, data pipelines, background jobs, event-driven processing, billing migrations, durable AI generation pipelines. I design PostgreSQL schemas and migrations.
+
+I optimize for clean handoffs. Decisions should still make sense six months later.
 
 ## Small teams, clear ownership
 
-I do my best work on focused teams that know the problem and trust each other. I have been lead developer on contract engagements, mentored engineers on modern frontend platforms, and partnered with product, design, and operations while the plan was still being written.
-
-I lead infrastructure and product rewrites: TypeScript on SSR services, micro-frontends, billing migrations, partner APIs, and durable AI generation pipelines. I care about clean handoffs, readable code, and decisions someone can understand six months later.
+I do my best work on focused teams that know the problem and trust each other. I take end-to-end ownership on contract engagements. I mentor engineers on modern frontend platforms. I partner with product, design, and operations while the plan is still being written.
 
 ## Trust, observability, and standards
 
-Velocity comes from trust. I build it with observability, automation, and rules that apply to everyone, including me: type safety, formatting, CI, and review culture. I instrument services so incidents show up before customers feel them. In the agentic era, that also means `AGENTS.md`, MCP, and team conventions, not ad hoc prompts and hope.
+Velocity comes from trust. I build it with observability, automation, type safety, CI, and review culture that applies to everyone, including me.
 
-I apply the same bar externally: partner APIs, OAuth, webhooks, and developer UIs where integrators need predictable behavior and honest docs. Internal quality and customer trust are the same problem from two sides.
+I instrument services with metrics, structured logging, and distributed tracing so incidents show up before customers feel them. Team conventions (`AGENTS.md`, MCP) keep agentic AI workflows on the same rules as humans.
+
+I apply the same bar externally: developer UIs, honest docs, and APIs with predictable behavior.
 
 ## Working across the company
 
-Much of my work is customer-facing. I integrate with external teams, research vendor APIs, and translate constraints for product and leadership. I give sales and support reusable specs, reliable endpoints, and systems that fail in understandable ways.
+Much of my work is customer-facing solutions engineering. I integrate with external teams. I evaluate vendor APIs. I translate constraints for product and leadership. Sales and support get reusable specs from me. I ship reliable endpoints with failure modes they can explain.
 
-Every issue gets a ticket, every ticket gets triaged, every pull request gets reviewed. Sales and support deserve paths into engineering that produce signal, not noise.
+Every issue gets a ticket. Every ticket gets triaged. Every pull request gets reviewed.
 
-## Building in the agentic era
+## Building with agentic AI
 
-AI is core to how I build. I have shipped LLM search over document stores, durable generation with queues and real-time delivery, and chat tied to business outcomes, not demos. I pull from many sources, ground models in what the business knows, and ship interfaces that help customers get work done.
+AI is core to how I build. I have shipped LLM search with RAG over document stores. I use vector search and embeddings. I have built durable generation with queues and Pub/Sub delivery. I ship chat tied to business outcomes, not demos. Prompt design, tool use, and eval loops are part of every release.
 
 ## How I show up
 
 Kindness, teamwork, and respect are non-negotiable. Colleagues, customers, and partners are people doing their best with incomplete information.
 
-When things go wrong, I fix the problem, communicate clearly, and keep moving. Don't panic is how I work under pressure, not a joke on my desk.
+When things go wrong, I fix the problem. I communicate clearly. I keep moving. Don't panic is how I work under pressure, not a joke on my desk.
 
 ## Open source
 
-I hack on open source tools and patterns that make developers' lives easier. It keeps my instincts sharp and my standards honest.
+I hack on open source tools and patterns that make developers' lives easier.
 
-## Outside of work
+## Community
 
-Based in Central Oregon. When I am not building software, I am usually outside.
+Based in Central Oregon. I help run the [Deschutes Tech Guild](https://www.deschutestechguild.com/), a local tech community. When I am not building software, I am usually outside.

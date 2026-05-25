@@ -9,9 +9,9 @@ landing:
   heroCtaSecondaryLabel: View resume
   blogHeadline: Latest writing
   blogLead: Production debugging, Nuxt and SSR, real-time systems, and AI infrastructure.
-  aboutHeadline: Startups to enterprise
-  aboutLead: Shipping the first commit, leading infrastructure and product
-  aboutBody: Working across the stack to enhance visibility, resiliancy, and developer expierence
+  aboutHeadline: Senior Engineer
+  aboutLead: Platform work, partner integrations, and production agentic AI from startup to enterprise scale.
+  aboutBody: Observability, customer-facing solutions engineering, and teams that ship calmly when production breaks.
 ogImage:
   props:
     title: Aidan Hibbard
