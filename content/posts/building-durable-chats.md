@@ -317,11 +317,11 @@ usePromptInputProvider({
 </template>
 ```
 
-We render `Reasoning`, `Tool`, and `Task` parts where the workflow needs them. One prompt, one generation. No multi-turn input while a job is running.
+We render Reasoning, Tool, and Task parts where the workflow needs them. One prompt, one generation. No multi-turn input while a job is running.
 
 ### What to persist
 
-Store full `UIMessage` objects (with parts), a workflow `status`, and an `activeStreamId` column. Prisma, Drizzle, whatever you already use.
+Store full UIMessage objects (with parts), a workflow status, and an activeStreamId column. Prisma, Drizzle, whatever you already use.
 
 ```typescript [server/utils/chat-store.ts]
 import type { UIMessage } from 'ai'
