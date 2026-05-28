@@ -53,9 +53,6 @@ defineProps<{
       </p>
     </template>
 
-    <ContentRenderer
-      v-if="page"
-      :value="page"
-    />
+    <ContentRenderer :value="page" />
   </PageLayout>
 </template>

@@ -8,6 +8,8 @@ import 'vue-sonner/style.css'
     <NuxtRouteAnnouncer />
     <!-- https://www.shadcn-vue.com/docs/components/sonner.html#add-the-toaster-component -->
     <Toaster />
-    <NuxtPage />
+    <Suspense>
+      <NuxtPage />
+    </Suspense>
   </NuxtLayout>
 </template>

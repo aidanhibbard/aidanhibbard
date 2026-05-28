@@ -278,8 +278,7 @@ Without that fetch, a refresh mid-generation shows a blank thread until resume c
 
 Generation stays on the worker. The UI only knows chat ID, messages, and whether input is locked. Wire up [AI Elements Vue](https://www.ai-elements-vue.com/examples/chatbot) around the `Chat` instance:
 
-```vue [app/components/workflows/WorkflowChat.vue]
-<script setup lang="ts">
+```typescript [WorkflowChat.vue — script]
 import { Conversation, ConversationContent } from '@/components/ai-elements/conversation'
 import { Message, MessageContent, MessageResponse } from '@/components/ai-elements/message'
 import { PromptInput, PromptInputTextarea, PromptInputSubmit, usePromptInputProvider } from '@/components/ai-elements/prompt-input'
@@ -293,28 +292,27 @@ usePromptInputProvider({
     await props.chat.sendMessage({ text: message.text })
   },
 })
-</script>
+```
 
-<template>
-  <Conversation>
-    <ConversationContent>
-      <Message
-        v-for="message in props.chat.messages"
-        :key="message.id"
-        :from="message.role"
-      >
-        <MessageContent>
-          <MessageResponse :content="message.parts[0]?.text ?? ''" />
-        </MessageContent>
-      </Message>
-    </ConversationContent>
-  </Conversation>
+```html [WorkflowChat.vue — template]
+<Conversation>
+  <ConversationContent>
+    <Message
+      v-for="message in props.chat.messages"
+      :key="message.id"
+      :from="message.role"
+    >
+      <MessageContent>
+        <MessageResponse :content="message.parts[0]?.text ?? ''" />
+      </MessageContent>
+    </Message>
+  </ConversationContent>
+</Conversation>
 
-  <PromptInput :disabled="inputLocked">
-    <PromptInputTextarea :disabled="inputLocked" />
-    <PromptInputSubmit :status="props.chat.status" :disabled="inputLocked" />
-  </PromptInput>
-</template>
+<PromptInput :disabled="inputLocked">
+  <PromptInputTextarea :disabled="inputLocked" />
+  <PromptInputSubmit :status="props.chat.status" :disabled="inputLocked" />
+</PromptInput>
 ```
 
 We render Reasoning, Tool, and Task parts where the workflow needs them. One prompt, one generation. No multi-turn input while a job is running.
