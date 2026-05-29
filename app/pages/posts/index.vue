@@ -50,9 +50,11 @@ const {
   if (searchTerm) {
     const term = `%${searchTerm}%`
     builder = builder.andWhere(group =>
-      group
-        .where('title', 'LIKE', term)
-        .orWhere(nested => nested.where('description', 'LIKE', term)),
+      group.orWhere(orGroup =>
+        orGroup
+          .where('title', 'LIKE', term)
+          .orWhere(nested => nested.where('description', 'LIKE', term)),
+      ),
     )
   }
 
