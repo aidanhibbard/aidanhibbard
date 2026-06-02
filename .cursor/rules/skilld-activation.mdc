@@ -1,5 +1,5 @@
 ---
-description: "Activates installed skilld skills before code changes"
+description: 
 alwaysApply: true
 ---
 
