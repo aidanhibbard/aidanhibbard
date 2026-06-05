@@ -12,8 +12,10 @@ SSE dies on disconnect. DB has history, but the in-flight token stream is gone.
 
 ## What we add
 
-- **Server:** `stream.get` resume handler; fork SSE into Redis (`activeStreamId`)
-- **FE:** `resume: true` on transport — hydrate from DB first, then reattach
+- **Server:** `stream.get` resume handler; inline route: `toUIMessageStreamResponse` + `consumeSseStream` → `createNewResumableStream`; save `activeStreamId`; 204 when null
+- **FE:** hydrate from DB first; `resume: true` + `prepareReconnectToStreamRequest`; explicit stop endpoint for cancel
+
+Redis **coordinates** replay — does not durably store every token. Same Redis instance later backs BullMQ at rung 5.
 
 ## Slide assets
 

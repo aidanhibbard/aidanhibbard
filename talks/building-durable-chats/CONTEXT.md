@@ -12,13 +12,13 @@ Progressive architecture the audience climbs, one rung at a time:
 
 1. **HTTP call** — request/response; fine for short work (e.g. naming a project from a small prompt).
 2. **HTTP + streaming** — tokens arrive over SSE; still tied to the request lifecycle.
-3. **SSE + DB** — messages and status persisted; fetch on first land; stream IDs; polling for in-flight status.
-4. **SSE + DB + Redis reconnect** — resumable token stream via Redis; refresh can reattach to live output.
-5. **SSE + DB + Redis + BullMQ worker** — generation runs outside the web request; survives restarts and timeouts. **Pusher** enters here for lifecycle events the stream cannot carry.
+3. **SSE + DB** — messages and `status` persisted; fetch on first land; polling for in-flight status. No `activeStreamId` yet.
+4. **SSE + DB + Redis reconnect** — `activeStreamId` + `resumable-stream`; inline route uses `consumeSseStream`; refresh reattaches to live tokens.
+5. **BullMQ worker + Redis + Pusher** — generation leaves HTTP; POST returns quickly; worker owns stream; Pusher for lifecycle off the SSE wire.
 
 ## Pusher
 
-Pub/sub channel used **only at rung 5** to push final and lifecycle states: done, error, completing, generation-failed. Not for token streaming; not introduced before the worker.
+Pub/sub channel used **only at rung 5** to push lifecycle states: `idle`, `completing`, `generating`, `generation-failed`. Not for token streaming; not introduced before the worker. (Not `done` — code uses `idle`.)
 
 ## Growth phases (not a mandate)
 
@@ -28,7 +28,7 @@ Each rung is **what you should add when that need appears** — not “you must 
 |------|-------------------|--------|
 | 3 | DB: fetch on first land, lock from `status`, polling | — |
 | 4 | + Redis resume on FE; resume handler on server | — |
-| 5 | + Pusher subscribe on FE; enqueue-only on server | Generation moves here; Pusher for done/error/completing |
+| 5 | + Pusher subscribe on FE; enqueue-only on server (POST no longer streams) | Generation moves here; Pusher for lifecycle; same Redis instance also backs BullMQ |
 
 No separate “coda” section — each phase extends the same files on slide.
 
@@ -47,9 +47,15 @@ Each rung: what broke → what we added → highlighted diff. Not a prescription
 
 **Diff visuals:** Pre-rendered assets only — code image generators, or screenshots from Shiki-based tools / online git-diff viewers (not live IDE). Same Server + FE files; highlight additions per phase; rung 5 adds Worker pane the same way.
 
-## Reference code
+## Technical Q&A (prepare)
 
-Implementation is built in a **separate repository** and linked from the talk — not stored or developed under `talks/`. This context covers outline, glossary, and talk decisions only.
+See `adr/` for decisions. Key rebuttals:
+
+- **Stream ID vs Redis:** ID is DB pointer; Redis coordinates cross-process replay; buffer is in worker RAM. ADR 0001.
+- **Redis ≠ restart durability:** BullMQ + DB survive deploy; Redis resume survives refresh while producer lives.
+- **Why Pusher if Redis?** Tokens/tool parts via Redis SSE; `completing` / `generation-failed` happen off-wire or after stream ends.
+- **Disconnect ≠ cancel:** Need explicit stop endpoint when `resume: true`.
+- **Rung 4 vs 5 fork pattern:** ADR 0002. **First send at rung 5:** ADR 0003.
 
 ## Outline structure
 

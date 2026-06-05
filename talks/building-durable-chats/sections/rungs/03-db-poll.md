@@ -12,8 +12,10 @@ Streaming fixed the wait, but state still lives in the open request. Refresh kil
 
 ## What we add
 
-- **Server:** persist messages + `status`; stream IDs; still inline generation
-- **FE:** fetch row on first land; lock input from DB `status`; poll for in-flight state
+- **Server:** persist messages + `status`; still inline generation — no `activeStreamId` yet
+- **FE:** fetch row on first land; lock input from DB `status`; poll `status` (and messages if incrementally persisted)
+
+Polling is interim for multi-tab status sync until Pusher at rung 5. Refresh still loses **live partial tokens** until rung 4.
 
 ## Slide assets
 

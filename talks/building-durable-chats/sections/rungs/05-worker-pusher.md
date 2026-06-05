@@ -12,9 +12,11 @@ Generation inside the request dies on deploy/restart. SSE and Redis can't delive
 
 ## What we add
 
-- **Worker:** `streamText` moves here; Redis fork; Pusher on done / error / completing
-- **Server:** enqueue and return — delete inline generation (highlight as move, not rewrite)
-- **FE:** Pusher subscribe for lifecycle; input still locked from DB `status`
+- **Worker:** `streamText` → `toUIMessageStream()` → `createNewResumableStream` (not `consumeSseStream` — different from rung 4)
+- **Server:** enqueue and return `{ ok: true }` — POST no longer streams; delete inline generation
+- **FE:** Pusher subscribe; after POST must explicitly resume when `activeStreamId` is set (see ADR 0003)
+
+During `completing`, `activeStreamId` is null — resume returns 204; UI stays locked via DB `status` + Pusher.
 
 ## Slide assets
 
