@@ -4,8 +4,7 @@ import { definePerson } from 'nuxt-schema-org/schema'
 import { buildConnectSrc, cspScriptSrc } from './shared/google-analytics-csp-sources'
 import { listContentPostRoutes } from './shared/utils/list-content-post-routes'
 
-const contentDir = resolve(import.meta.dirname, 'content')
-const postRoutes = listContentPostRoutes(contentDir)
+const postRoutes = listContentPostRoutes(resolve(import.meta.dirname, 'content'))
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -53,22 +52,10 @@ export default defineNuxtConfig({
   // https://github.com/unovue/shadcn-vue/issues/763#issuecomment-3893652866
   ignore: ['app/components/shadcn/ui/**'],
   routeRules: {
-    '/': {
-      prerender: false,
-      headers: {
-        link: '</llms.txt>; rel="service-desc", </llms-full.txt>; rel="describedby", </index.md>; rel="alternate"; type="text/markdown"',
-      },
-    },
     '/about': { prerender: true },
     '/posts': { prerender: true },
     '/posts/**': { prerender: true },
     '/resume': { prerender: true },
-    '/**/*.md': {
-      prerender: false,
-      headers: {
-        'content-type': 'text/markdown; charset=utf-8',
-      },
-    },
     '/llms.txt': { prerender: true },
     '/sitemap.xml': { prerender: true },
     '/robots.txt': { prerender: true },
@@ -112,22 +99,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  hooks: {
-    'ai-ready:llms-txt': (payload) => {
-      payload.notes.push('Raw markdown: /page.md')
-    },
-    'nitro:init'(nitro) {
-      nitro.options.serverAssets.push({
-        baseName: 'content',
-        dir: resolve(nitro.options.rootDir, 'content'),
-      })
 
-      nitro.hooks.hook('prerender:done', async () => {
-        const { deletePrerenderedMarkdownFiles } = await import('./server/services/content/delete-prerendered-markdown-files')
-        await deletePrerenderedMarkdownFiles(nitro.options.output.publicDir)
-      })
-    },
-  },
   aiReady: {
     contentSignal: {
       aiTrain: true,

@@ -54,17 +54,17 @@ Two ways in:
 1. **Explicit `.md` URL** — what you see in "View on GitHub" links and what I put in `llms.txt` notes
 2. **`Accept: text/markdown`** on the HTML path — same body, negotiated response
 
-A Nitro handler runs early in the stack and checks whether the request wants markdown. If yes, it resolves the page path, loads content, and returns `text/markdown` with the right headers. Posts and content pages read straight from the `content/` collection via server assets. The homepage and posts index get assembled markdown builders so agents see the landing copy and latest articles, not an empty shell.
+A Nitro handler runs early in the stack and checks whether the request wants markdown. If yes, it resolves the page path, queries `@nuxt/content`'s raw endpoint, and returns `text/markdown` with the right headers. The `/raw/:slug.md` route handles title, description, and link injection automatically.
 
-```typescript [server/utils/handle-markdown-request.ts]
-// Runs before the page render when Accept includes text/markdown
-// Prefer source markdown from content/; fall back to HTML conversion for edge cases
-const markdown = await resolveNegotiatedMarkdown(event, path)
-setMarkdownResponseHeaders(event, path, markdown)
-return send(event, markdown, 'text/markdown; charset=utf-8')
+```typescript [server/api/content/markdown.get.ts]
+const { path } = await getValidatedQuery(event, query => contentMarkdownQuerySchema.parse(query))
+const rawPath = path === '/' ? '/index.md' : `${path}.md`
+const markdown = await $fetch(`/raw${rawPath}`, { signal: event.request.signal })
+setHeader(event, 'content-type', 'text/markdown; charset=utf-8')
+return markdown
 ```
 
-Route rules keep `.md` paths dynamic (`prerender: false`) so negotiation always hits the server. After prerender, a hook deletes any stray `*.md` files from the output folder so static hosting does not shadow the real markdown handler with stale files.
+Route rules no longer serve `*.md` paths dynamically — `@nuxt/content` handles `/raw/:slug.md` natively.
 
 ## Link headers and agent discovery
 
@@ -85,6 +85,10 @@ Link: </about>; rel="alternate"; type="text/html", </about.md>; rel="alternate";
 `rel="service-desc"` points at `llms.txt`. `rel="describedby"` points at the full-text aggregate. `rel="alternate"; type="text/markdown"` is the per-page source. Humans never see these headers. Agents do.
 
 Markdown responses also set `Vary: Accept, Sec-Fetch-Dest` and `x-markdown-tokens` with a rough token estimate so clients can budget context windows without parsing the body first.
+
+## @nuxt/content raw markdown endpoints
+
+Starting with v3.12, `@nuxt/content` serves raw markdown natively at `/raw/:slug.md`. The module queries the content collection, prepends a title `h1` and description `blockquote` when the source lacks one, and appends a `<ul>` of the page's links. Hand-rolled markdown handlers, HTML-to-markdown conversion, and frontmatter generation are no longer needed for the primary path.
 
 ## llms.txt and llms-full.txt
 
@@ -166,7 +170,7 @@ Every article and content page (about, posts, resume) shares the same header row
 
 The button is for humans. It is also how I sanity-check the agent path without curling headers.
 
-Clicking it calls `/api/content/markdown?path=/posts/…` from the browser. That route uses the same `resolvePageMarkdown` helper as markdown negotiation: read from `content/` when the file exists, assemble homepage and index markdown from the collection when it does not, fall back to HTML conversion only when there is no source file. Whatever lands on the clipboard is what an agent should get from `/posts/foo.md` or from `Accept: text/markdown` on the HTML URL.
+Clicking it calls `/api/content/markdown?path=/posts/…` from the browser. That route now proxies to `/raw/:slug.md` from `@nuxt/content`. Whatever lands on the clipboard is what an agent should get from `/posts/foo.md` or from `Accept: text/markdown` on the HTML URL.
 
 ```typescript [app/composables/use-content-page.ts]
 const markdown = await $fetch<string>('/api/content/markdown', { query: { path } })

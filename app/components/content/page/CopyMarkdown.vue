@@ -12,8 +12,6 @@ const props = defineProps<{
   path: string
 }>()
 
-const { copyMarkdown } = useContentPage()
-
 const copying = ref(false)
 const copied = ref(false)
 
@@ -21,17 +19,16 @@ const handleCopyMarkdown = async (): Promise<void> => {
   copying.value = true
 
   try {
-    const didCopy = await copyMarkdown(props.path)
+    const response = await $fetch(`/api/content/markdown${props.path === '/resume' ? '' : props.path}`)
 
-    if (!didCopy) {
-      return
+    if (typeof response === 'string' && response) {
+      await navigator.clipboard.writeText(response)
+      copied.value = true
+
+      window.setTimeout(() => {
+        copied.value = false
+      }, 1500)
     }
-
-    copied.value = true
-
-    window.setTimeout(() => {
-      copied.value = false
-    }, 1500)
   }
   finally {
     copying.value = false
