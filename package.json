@@ -54,6 +54,6 @@
     "vue-tsc": "^3.2.9"
   },
   "engines": {
-    "node": "24.x"
+    "node": "26.x"
   }
 }

@@ -19,7 +19,10 @@ const handleCopyMarkdown = async (): Promise<void> => {
   copying.value = true
 
   try {
-    const response = await $fetch(`/api/content/markdown${props.path === '/resume' ? '' : props.path}`)
+    const mdPath = `${props.path.replace(/\/$/, '')}.md`
+    const response = await $fetch(mdPath, {
+      headers: { Accept: 'text/markdown' },
+    })
 
     if (typeof response === 'string' && response) {
       await navigator.clipboard.writeText(response)
