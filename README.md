@@ -6,12 +6,6 @@
 
 ---
 
-## About
-
-Full-stack engineer interested in real-time, integrations, AI everything, UI design, and Cloud Infra. Equally comfortable in production debugging, query tuning, or UI polishing.
-
-> Shipping relentlessly, fixing what breaks, and not stopping until users are delighted.
-
 ## Favorite Quote
 
 ```
@@ -24,7 +18,11 @@ Full-stack engineer interested in real-time, integrations, AI everything, UI des
 
 ## Philosophy
 
-I believe in **kindness** and treating everyone with **respect**. The best work happens through **collaboration** and **teamwork**. Sharing knowledge, lifting each other up, and building toward something that matters. I'm drawn to **mission-driven development**: shipping software that solves real problems for real people.
+I believe in **kindness** and treating everyone with **respect**.
+
+The best work happens through **collaboration** and **teamwork**. Sharing knowledge, lifting each other up, and building toward something that matters.
+
+I'm drawn to **mission-driven development**: shipping software that solves real problems for real people.
 
 Off the keyboard, I'm an **organizer** for the [Deschutes Tech Guild](https://www.deschutestechguild.com/) in Central Oregon and an advocate for the local tech **community**. Creating a space for people to connect, learn, and grow together.
 
