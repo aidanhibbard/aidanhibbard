@@ -24,8 +24,6 @@ The best work happens through **collaboration** and **teamwork**. Sharing knowle
 
 I'm drawn to **mission-driven development**: shipping software that solves real problems for real people.
 
-Off the keyboard, I'm an **organizer** for the [Deschutes Tech Guild](https://www.deschutestechguild.com/) in Central Oregon and an advocate for the local tech **community**. Creating a space for people to connect, learn, and grow together.
-
 ## Open source
 
 I'm the author of **[nuxt-processor](https://github.com/aidanhibbard/nuxt-processor)** decoupled background job and queue layer for Nuxt, built on BullMQ.
